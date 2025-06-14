@@ -190,16 +190,14 @@ val unionQuery = jpql {
         entity(Book::class)
     ).where(
         path(Book::price)(BookPrice::value).lessThan(BigDecimal.valueOf(20))
-    ).union( // 우측 쿼리는 완전한 jpql 쿼리가 될 수 있습니다.
-        jpql {
-            select(
-                path(Book::isbn)
-            ).from(
-                entity(Book::class)
-            ).where(
-                path(Book::salePrice)(BookPrice::value).lessThan(BigDecimal.valueOf(15))
-            )
-        }
+    ).union( // 우측 쿼리 또한 select 구조입니다.
+        select(
+            path(Book::isbn)
+        ).from(
+            entity(Book::class)
+        ).where(
+            path(Book::salePrice)(BookPrice::value).lessThan(BigDecimal.valueOf(15))
+        )
     ).orderBy(
         path(Book::isbn).asc()
     )
@@ -213,16 +211,14 @@ val unionAllQuery = jpql {
         entity(Author::class)
     ).where(
         path(Author::name).like("%Rowling%")
-    ).unionAll(
-        jpql {
-            select(
-                path(Author::name)
-            ).from(
-                entity(Author::class)
-            ).where(
-                path(Author::name).like("%Tolkien%")
-            )
-        }
+    ).unionAll( // 우측 쿼리 또한 select 구조입니다.
+        select(
+            path(Author::name)
+        ).from(
+            entity(Author::class)
+        ).where(
+            path(Author::name).like("%Tolkien%")
+        )
     ).orderBy(
         path(Author::name).desc()
     )

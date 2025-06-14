@@ -185,16 +185,14 @@ val unionQuery = jpql {
         entity(Book::class)
     ).where(
         path(Book::price)(BookPrice::value).lessThan(BigDecimal.valueOf(20))
-    ).union(
-        jpql { // The right-hand side query can be a full jpql query
-            select(
-                path(Book::isbn)
-            ).from(
-                entity(Book::class)
-            ).where(
-                path(Book::salePrice)(BookPrice::value).lessThan(BigDecimal.valueOf(15))
-            )
-        }
+    ).union( // The right-hand side query is also a select structure
+        select(
+            path(Book::isbn)
+        ).from(
+            entity(Book::class)
+        ).where(
+            path(Book::salePrice)(BookPrice::value).lessThan(BigDecimal.valueOf(15))
+        )
     ).orderBy(
         path(Book::isbn).asc()
     )
@@ -208,16 +206,14 @@ val unionAllQuery = jpql {
         entity(Author::class)
     ).where(
         path(Author::name).like("%Rowling%")
-    ).unionAll(
-        jpql {
-            select(
-                path(Author::name)
-            ).from(
-                entity(Author::class)
-            ).where(
-                path(Author::name).like("%Tolkien%")
-            )
-        }
+    ).unionAll( // The right-hand side query is also a select structure
+        select(
+            path(Author::name)
+        ).from(
+            entity(Author::class)
+        ).where(
+            path(Author::name).like("%Tolkien%")
+        )
     ).orderBy(
         path(Author::name).desc()
     )

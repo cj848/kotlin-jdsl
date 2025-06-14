@@ -18,7 +18,7 @@ class JpqlSelectQueryUnionSerializer : JpqlSerializer<JpqlSelectQueryUnion<*>> {
     override fun serialize(part: JpqlSelectQueryUnion<*>, writer: JpqlWriter, context: RenderContext) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
-        val queryContext = context + JpqlRenderStatement.Select // Indicate we are in a Set Operation context
+        val queryContext = context + JpqlRenderStatement.Select
 
         writer.writeParentheses {
             delegate.serialize(part.left.toQuery(), writer, queryContext)

@@ -6,6 +6,4 @@ import com.linecorp.kotlinjdsl.SinceJdsl
 enum class SetOperatorType {
     UNION,
     UNION_ALL,
-    INTERSECT,
-    EXCEPT,
 }

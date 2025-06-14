@@ -33,8 +33,6 @@ internal data class SetOperatorSelectQueryBuilder<T : Any>(
                 right = rightQuery,
                 orderBy = orderBy,
             )
-
-            else -> error("Unsupported set operator type: $operationType")
         }
     }
 }

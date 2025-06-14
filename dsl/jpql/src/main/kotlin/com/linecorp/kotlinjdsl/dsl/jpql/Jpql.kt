@@ -3326,6 +3326,9 @@ open class Jpql : JpqlDsl {
         return DeleteQueryDsl(entity.toEntity())
     }
 
+    /**
+     * Creates a UNION query with two select queries.
+     */
     @SinceJdsl("3.6.0")
     @JvmName("union")
     inline fun <reified T : Any> union(
@@ -3348,7 +3351,7 @@ open class Jpql : JpqlDsl {
     }
 
     /**
-     * Creates a SelectQuery that represents the union of this query and the [right] query.
+     * Creates a UNION query that represents the union of this query and the [right] query.
      */
     @JvmName("unionDsl")
     @SinceJdsl("3.6.0")
@@ -3364,7 +3367,7 @@ open class Jpql : JpqlDsl {
     }
 
     /**
-     * Creates a SelectQuery that represents the union all of this query and the [right] query.
+     * Creates a UNION ALL that represents the union all of this query and the [right] query.
      */
     @JvmName("unionAllDsl")
     @SinceJdsl("3.6.0")

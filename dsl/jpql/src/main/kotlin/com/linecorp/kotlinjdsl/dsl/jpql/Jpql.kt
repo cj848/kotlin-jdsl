@@ -19,7 +19,10 @@ import com.linecorp.kotlinjdsl.dsl.jpql.join.impl.AssociationJoinDsl
 import com.linecorp.kotlinjdsl.dsl.jpql.join.impl.FetchJoinDsl
 import com.linecorp.kotlinjdsl.dsl.jpql.join.impl.JoinDsl
 import com.linecorp.kotlinjdsl.dsl.jpql.select.SelectQueryFromStep
+import com.linecorp.kotlinjdsl.dsl.jpql.select.SelectQueryOrderByStep
 import com.linecorp.kotlinjdsl.dsl.jpql.select.impl.SelectQueryFromStepDsl
+import com.linecorp.kotlinjdsl.dsl.jpql.select.impl.SetOperatorQueryDsl
+import com.linecorp.kotlinjdsl.dsl.jpql.select.impl.SetOperatorType
 import com.linecorp.kotlinjdsl.dsl.jpql.sort.SortNullsStep
 import com.linecorp.kotlinjdsl.dsl.jpql.sort.impl.SortDsl
 import com.linecorp.kotlinjdsl.dsl.jpql.update.UpdateQuerySetFirstStep
@@ -3321,6 +3324,59 @@ open class Jpql : JpqlDsl {
     @SinceJdsl("3.0.0")
     fun <T : Any> deleteFrom(entity: Entityable<T>): DeleteQueryWhereStep<T> {
         return DeleteQueryDsl(entity.toEntity())
+    }
+
+    @SinceJdsl("3.6.0")
+    @JvmName("union")
+    inline fun <reified T : Any> union(
+        left: JpqlQueryable<SelectQuery<T>>,
+        right: JpqlQueryable<SelectQuery<T>>,
+    ): SelectQueryOrderByStep<T> {
+        return left.union(right)
+    }
+
+    /**
+     * Creates a UNION ALL query with two select queries.
+     */
+    @JvmName("unionAll")
+    @SinceJdsl("3.6.0")
+    inline fun <reified T : Any> unionAll(
+        left: JpqlQueryable<SelectQuery<T>>,
+        right: JpqlQueryable<SelectQuery<T>>,
+    ): SelectQueryOrderByStep<T> {
+        return left.unionAll(right)
+    }
+
+    /**
+     * Creates a SelectQuery that represents the union of this query and the [right] query.
+     */
+    @JvmName("unionDsl")
+    @SinceJdsl("3.6.0")
+    inline fun <reified T : Any> JpqlQueryable<SelectQuery<T>>.union(
+        right: JpqlQueryable<SelectQuery<T>>,
+    ): SelectQueryOrderByStep<T> {
+        return SetOperatorQueryDsl(
+            returnType = T::class,
+            leftQuery = this,
+            operationType = SetOperatorType.UNION,
+            rightQuery = right,
+        )
+    }
+
+    /**
+     * Creates a SelectQuery that represents the union all of this query and the [right] query.
+     */
+    @JvmName("unionAllDsl")
+    @SinceJdsl("3.6.0")
+    inline fun <reified T : Any> JpqlQueryable<SelectQuery<T>>.unionAll(
+        right: JpqlQueryable<SelectQuery<T>>,
+    ): SelectQueryOrderByStep<T> {
+        return SetOperatorQueryDsl(
+            returnType = T::class,
+            leftQuery = this,
+            operationType = SetOperatorType.UNION_ALL,
+            rightQuery = right,
+        )
     }
 
     private fun valueOrExpression(value: Any): Expression<*> {

@@ -36,7 +36,7 @@ jobs:
         uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./build/reports/kover/report.xml
+          files: ./build/reports/kover/report.xml,./support/spring-data-jpa-boot4/build/reports/kover/report.xml,./support/spring-batch6/build/reports/kover/report.xml
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock

@@ -2,6 +2,7 @@ package com.linecorp.kotlinjdsl.support.spring.data.jpa.autoconfigure
 
 import com.linecorp.kotlinjdsl.SinceJdsl
 import com.linecorp.kotlinjdsl.support.spring.data.jpa.repository.KotlinJdslJpqlExecutor
+import com.linecorp.kotlinjdsl.support.spring.data.jpa.repository.KotlinJdslJpqlExecutorProxy
 import org.springframework.beans.factory.BeanFactory
 import org.springframework.beans.factory.BeanFactoryAware
 import org.springframework.beans.factory.config.BeanPostProcessor
@@ -11,10 +12,10 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean
 open class KotlinJdslJpaRepositoryFactoryBeanPostProcessor :
     BeanPostProcessor,
     BeanFactoryAware {
-    private lateinit var kotlinJdslJpqlExecutor: KotlinJdslJpqlExecutor
+    private lateinit var beanFactory: BeanFactory
 
     override fun setBeanFactory(beanFactory: BeanFactory) {
-        kotlinJdslJpqlExecutor = beanFactory.getBean("kotlinJdslJpqlExecutor", KotlinJdslJpqlExecutor::class.java)
+        this.beanFactory = beanFactory
     }
 
     override fun postProcessBeforeInitialization(
@@ -22,7 +23,7 @@ open class KotlinJdslJpaRepositoryFactoryBeanPostProcessor :
         beanName: String,
     ): Any? {
         if (bean is JpaRepositoryFactoryBean<*, *, *> && bean.hasJdsl()) {
-            bean.setCustomImplementation(kotlinJdslJpqlExecutor)
+            bean.setCustomImplementation(KotlinJdslJpqlExecutorProxy(beanFactory))
         }
 
         return super.postProcessAfterInitialization(bean, beanName)

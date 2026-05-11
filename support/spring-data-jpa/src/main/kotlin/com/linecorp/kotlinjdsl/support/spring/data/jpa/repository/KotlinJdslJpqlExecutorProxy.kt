@@ -157,9 +157,7 @@ open class KotlinJdslJpqlExecutorProxy(
         init: DSL.() -> JpqlQueryable<SelectQuery<T>>,
     ): Stream<T?> = getDelegate().findStream(dsl, pageable, init)
 
-    override fun <T : Any> update(
-        init: Jpql.() -> JpqlQueryable<UpdateQuery<T>>,
-    ): Int = getDelegate().update(init)
+    override fun <T : Any> update(init: Jpql.() -> JpqlQueryable<UpdateQuery<T>>): Int = getDelegate().update(init)
 
     override fun <T : Any, DSL : JpqlDsl> update(
         dsl: JpqlDsl.Constructor<DSL>,
@@ -171,9 +169,7 @@ open class KotlinJdslJpqlExecutorProxy(
         init: DSL.() -> JpqlQueryable<UpdateQuery<T>>,
     ): Int = getDelegate().update(dsl, init)
 
-    override fun <T : Any> delete(
-        init: Jpql.() -> JpqlQueryable<DeleteQuery<T>>,
-    ): Int = getDelegate().delete(init)
+    override fun <T : Any> delete(init: Jpql.() -> JpqlQueryable<DeleteQuery<T>>): Int = getDelegate().delete(init)
 
     override fun <T : Any, DSL : JpqlDsl> delete(
         dsl: JpqlDsl.Constructor<DSL>,

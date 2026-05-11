@@ -53,297 +53,312 @@ object Predicates {
      * Creates a predicate the inverse of the predicate.
      */
     @SinceJdsl("3.0.0")
-    fun not(predicate: Predicate): Predicate {
-        return JpqlNot(predicate)
-    }
+    fun not(predicate: Predicate): Predicate = JpqlNot(predicate)
 
     /**
      * Creates a predicate that combines predicates with `AND`.
      */
     @SinceJdsl("3.0.0")
-    fun and(predicates: Iterable<Predicate>): Predicate {
-        return JpqlAnd(predicates)
-    }
+    fun and(predicates: Iterable<Predicate>): Predicate = JpqlAnd(predicates)
 
     /**
      * Creates a predicate that combines predicates with `OR`.
      */
     @SinceJdsl("3.0.0")
-    fun or(predicates: Iterable<Predicate>): Predicate {
-        return JpqlOr(predicates)
-    }
+    fun or(predicates: Iterable<Predicate>): Predicate = JpqlOr(predicates)
 
     /**
      * Creates a predicate that tests whether the value is null.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> isNull(value: Expression<T>): Predicate {
-        return JpqlIsNull(value)
-    }
+    fun <T : Any> isNull(value: Expression<T>): Predicate = JpqlIsNull(value)
 
     /**
      * Creates a predicate that tests whether the value is not null.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> isNotNull(value: Expression<T>): Predicate {
-        return JpqlIsNotNull(value.toExpression())
-    }
+    fun <T : Any> isNotNull(value: Expression<T>): Predicate = JpqlIsNotNull(value.toExpression())
 
     /**
      * Creates a predicate that tests whether values are equal.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> equal(value: Expression<T>, compareValue: Expression<T>): Predicate {
-        return if (compareValue is JpqlNull) {
+    fun <T : Any> equal(
+        value: Expression<T>,
+        compareValue: Expression<T>,
+    ): Predicate =
+        if (compareValue is JpqlNull) {
             isNull(value)
         } else {
             JpqlEqual(value, compareValue)
         }
-    }
 
     /**
      * Creates a predicate that tests whether the value is equal to all values in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> equalAll(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlEqualAll(value, subquery)
-    }
+    fun <T : Any> equalAll(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlEqualAll(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is equal to any value in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> equalAny(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlEqualAny(value, subquery)
-    }
+    fun <T : Any> equalAny(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlEqualAny(value, subquery)
 
     /**
      * Creates a predicate that tests whether values are not equal.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> notEqual(value: Expression<T>, compareValue: Expression<T>): Predicate {
-        return if (compareValue is JpqlNull) {
+    fun <T : Any> notEqual(
+        value: Expression<T>,
+        compareValue: Expression<T>,
+    ): Predicate =
+        if (compareValue is JpqlNull) {
             isNotNull(value)
         } else {
             JpqlNotEqual(value, compareValue)
         }
-    }
 
     /**
      * Creates a predicate that tests whether the value is not equal to all values in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> notEqualAll(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlNotEqualAll(value, subquery)
-    }
+    fun <T : Any> notEqualAll(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlNotEqualAll(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is not equal to any value in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> notEqualAny(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlNotEqualAny(value, subquery)
-    }
+    fun <T : Any> notEqualAny(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlNotEqualAny(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is less than the compareValue.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> lessThan(value: Expression<T>, compareValue: Expression<T>): Predicate {
-        return JpqlLessThan(value, compareValue)
-    }
+    fun <T : Comparable<T>> lessThan(
+        value: Expression<T>,
+        compareValue: Expression<T>,
+    ): Predicate = JpqlLessThan(value, compareValue)
 
     /**
      * Creates a predicate that tests whether the value is less than all values in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> lessThanAll(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlLessThanAll(value, subquery)
-    }
+    fun <T : Comparable<T>> lessThanAll(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlLessThanAll(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is less than any value in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> lessThanAny(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlLessThanAny(value, subquery)
-    }
+    fun <T : Comparable<T>> lessThanAny(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlLessThanAny(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is less than or equal to the compareValue.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> lessThanOrEqualTo(value: Expression<T>, compareValue: Expression<T>): Predicate {
-        return JpqlLessThanOrEqualTo(value, compareValue)
-    }
+    fun <T : Comparable<T>> lessThanOrEqualTo(
+        value: Expression<T>,
+        compareValue: Expression<T>,
+    ): Predicate = JpqlLessThanOrEqualTo(value, compareValue)
 
     /**
      * Creates a predicate that tests whether the value is less than or equal to all values in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> lessThanOrEqualToAll(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlLessThanOrEqualToAll(value, subquery)
-    }
+    fun <T : Comparable<T>> lessThanOrEqualToAll(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlLessThanOrEqualToAll(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is less than or equal to any value in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> lessThanOrEqualToAny(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlLessThanOrEqualToAny(value, subquery)
-    }
+    fun <T : Comparable<T>> lessThanOrEqualToAny(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlLessThanOrEqualToAny(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is greater than the compareValue.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> greaterThan(value: Expression<T>, compareValue: Expression<T>): Predicate {
-        return JpqlGreaterThan(value, compareValue)
-    }
+    fun <T : Comparable<T>> greaterThan(
+        value: Expression<T>,
+        compareValue: Expression<T>,
+    ): Predicate = JpqlGreaterThan(value, compareValue)
 
     /**
      * Creates a predicate that tests whether the value is greater than all values in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> greaterThanAll(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlGreaterThanAll(value, subquery)
-    }
+    fun <T : Comparable<T>> greaterThanAll(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlGreaterThanAll(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is greater than any value in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> greaterThanAny(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlGreaterThanAny(value, subquery)
-    }
+    fun <T : Comparable<T>> greaterThanAny(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlGreaterThanAny(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is greater than or equal to the compareValue.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> greaterThanOrEqualTo(value: Expression<T>, compareValue: Expression<T>): Predicate {
-        return JpqlGreaterThanOrEqualTo(value, compareValue)
-    }
+    fun <T : Comparable<T>> greaterThanOrEqualTo(
+        value: Expression<T>,
+        compareValue: Expression<T>,
+    ): Predicate = JpqlGreaterThanOrEqualTo(value, compareValue)
 
     /**
      * Creates a predicate that tests whether the value is greater than or equal to all values in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> greaterThanOrEqualToAll(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlGreaterThanOrEqualToAll(value, subquery)
-    }
+    fun <T : Comparable<T>> greaterThanOrEqualToAll(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlGreaterThanOrEqualToAll(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is greater than or equal to any value in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> greaterThanOrEqualToAny(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlGreaterThanOrEqualToAny(value, subquery)
-    }
+    fun <T : Comparable<T>> greaterThanOrEqualToAny(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlGreaterThanOrEqualToAny(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is between in min and max.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> between(value: Expression<T>, min: Expression<T>, max: Expression<T>): Predicate {
-        return JpqlBetween(value, min, max)
-    }
+    fun <T : Comparable<T>> between(
+        value: Expression<T>,
+        min: Expression<T>,
+        max: Expression<T>,
+    ): Predicate = JpqlBetween(value, min, max)
 
     /**
      * Creates a predicate that tests whether the value is not between in min and max.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<T>> notBetween(value: Expression<T>, min: Expression<T>, max: Expression<T>): Predicate {
-        return JpqlNotBetween(value, min, max)
-    }
+    fun <T : Comparable<T>> notBetween(
+        value: Expression<T>,
+        min: Expression<T>,
+        max: Expression<T>,
+    ): Predicate = JpqlNotBetween(value, min, max)
 
     /**
      * Creates a predicate that tests whether the value is in compareValues.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> `in`(value: Expression<T>, compareValues: Iterable<Expression<T>>): Predicate {
-        return JpqlIn(value, compareValues)
-    }
+    fun <T : Any> `in`(
+        value: Expression<T>,
+        compareValues: Iterable<Expression<T>>,
+    ): Predicate = JpqlIn(value, compareValues)
 
     /**
      * Creates a predicate that tests whether the value is in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> `in`(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlInSubquery(value, subquery)
-    }
+    fun <T : Any> `in`(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlInSubquery(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value is not in compareValues.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> notIn(value: Expression<T>, compareValues: Iterable<Expression<T>>): Predicate {
-        return JpqlNotIn(value, compareValues)
-    }
+    fun <T : Any> notIn(
+        value: Expression<T>,
+        compareValues: Iterable<Expression<T>>,
+    ): Predicate = JpqlNotIn(value, compareValues)
 
     /**
      * Creates a predicate that tests whether the value is not in the subquery.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> notIn(value: Expression<T>, subquery: Subquery<T>): Predicate {
-        return JpqlNotInSubquery(value, subquery)
-    }
+    fun <T : Any> notIn(
+        value: Expression<T>,
+        subquery: Subquery<T>,
+    ): Predicate = JpqlNotInSubquery(value, subquery)
 
     /**
      * Creates a predicate that tests whether the value matches the pattern.
      */
     @SinceJdsl("3.0.0")
-    fun like(value: Expression<String>, pattern: Expression<String>, escape: Expression<Char>? = null): Predicate {
-        return JpqlLike(value, pattern, escape)
-    }
+    fun like(
+        value: Expression<String>,
+        pattern: Expression<String>,
+        escape: Expression<Char>? = null,
+    ): Predicate = JpqlLike(value, pattern, escape)
 
     /**
      * Creates a predicate that tests whether the value does not match the pattern.
      */
     @SinceJdsl("3.0.0")
-    fun notLike(value: Expression<String>, pattern: Expression<String>, escape: Expression<Char>? = null): Predicate {
-        return JpqlNotLike(value, pattern, escape)
-    }
+    fun notLike(
+        value: Expression<String>,
+        pattern: Expression<String>,
+        escape: Expression<Char>? = null,
+    ): Predicate = JpqlNotLike(value, pattern, escape)
 
     /**
      * Creates a predicate that tests whether the path has no elements.
      */
     @SinceJdsl("3.0.0")
-    fun <T, S : Collection<T>> isEmpty(path: Path<S>): Predicate {
-        return JpqlIsEmpty(path)
-    }
+    fun <T, S : Collection<T>> isEmpty(path: Path<S>): Predicate = JpqlIsEmpty(path)
 
     /**
      * Creates a predicate that tests whether the path has an element.
      */
     @SinceJdsl("3.0.0")
-    fun <T, S : Collection<T>> isNotEmpty(path: Path<S>): Predicate {
-        return JpqlIsNotEmpty(path)
-    }
+    fun <T, S : Collection<T>> isNotEmpty(path: Path<S>): Predicate = JpqlIsNotEmpty(path)
 
     /**
      * Creates a predicate that tests whether the subquery has a row.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> exists(subquery: Subquery<T>): Predicate {
-        return JpqlExists(subquery)
-    }
+    fun <T : Any> exists(subquery: Subquery<T>): Predicate = JpqlExists(subquery)
 
     /**
      * Creates a predicate that tests whether the subquery has no row.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> notExists(subquery: Subquery<T>): Predicate {
-        return JpqlNotExists(subquery)
-    }
+    fun <T : Any> notExists(subquery: Subquery<T>): Predicate = JpqlNotExists(subquery)
 
     /**
      * Creates a predicate that represents predefined database functions and user-defined database functions.
      */
     @SinceJdsl("3.0.0")
-    fun function(name: String, args: Iterable<Expression<*>>): Predicate {
-        return JpqlFunctionPredicate(name, args)
-    }
+    fun function(
+        name: String,
+        args: Iterable<Expression<*>>,
+    ): Predicate = JpqlFunctionPredicate(name, args)
 
     /**
      * Creates a predicate that represents the user-defined predicate.
@@ -364,15 +379,11 @@ object Predicates {
     fun customPredicate(
         template: String,
         args: Iterable<Expression<*>>,
-    ): Predicate {
-        return JpqlCustomPredicate(template, args)
-    }
+    ): Predicate = JpqlCustomPredicate(template, args)
 
     /**
      * Creates a predicate that is enclosed in parentheses.
      */
     @SinceJdsl("3.0.0")
-    fun parentheses(predicate: Predicate): Predicate {
-        return JpqlPredicateParentheses(predicate)
-    }
+    fun parentheses(predicate: Predicate): Predicate = JpqlPredicateParentheses(predicate)
 }

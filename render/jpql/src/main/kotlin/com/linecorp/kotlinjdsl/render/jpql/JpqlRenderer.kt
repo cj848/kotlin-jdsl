@@ -16,15 +16,20 @@ class JpqlRenderer {
      * Render the query as String.
      */
     @SinceJdsl("3.0.0")
-    fun render(query: JpqlQuery<*>, context: RenderContext): JpqlRendered {
-        return render(query, emptyMap(), context)
-    }
+    fun render(
+        query: JpqlQuery<*>,
+        context: RenderContext,
+    ): JpqlRendered = render(query, emptyMap(), context)
 
     /**
      * Render the query as String.
      */
     @SinceJdsl("3.0.0")
-    fun render(query: JpqlQuery<*>, params: Map<String, Any?>, context: RenderContext): JpqlRendered {
+    fun render(
+        query: JpqlQuery<*>,
+        params: Map<String, Any?>,
+        context: RenderContext,
+    ): JpqlRendered {
         val serializer = context.getValue(JpqlRenderSerializer)
         val writer = createWriter(params)
 
@@ -43,9 +48,7 @@ class JpqlRenderer {
         )
     }
 
-    private fun createWriter(params: Map<String, Any?>): DefaultJpqlWriter {
-        return DefaultJpqlWriter(params)
-    }
+    private fun createWriter(params: Map<String, Any?>): DefaultJpqlWriter = DefaultJpqlWriter(params)
 }
 
 private val log = LoggerFactory.getLogger(JpqlRenderer::class.java)

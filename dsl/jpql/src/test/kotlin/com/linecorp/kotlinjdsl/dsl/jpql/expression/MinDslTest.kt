@@ -15,17 +15,19 @@ class MinDslTest : WithAssertions {
     @Test
     fun `min() with a property`() {
         // when
-        val expression = queryPart {
-            min(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                min(Book::price)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.min(
-            distinct = false,
-            expr = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.min(
+                distinct = false,
+                expr = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -33,17 +35,19 @@ class MinDslTest : WithAssertions {
     @Test
     fun `min() with a expression`() {
         // when
-        val expression = queryPart {
-            min(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                min(expression1)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.min(
-            distinct = false,
-            expr = expression1,
-        )
+        val expected =
+            Expressions.min(
+                distinct = false,
+                expr = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -51,17 +55,19 @@ class MinDslTest : WithAssertions {
     @Test
     fun `minDistinct() with a property`() {
         // when
-        val expression = queryPart {
-            minDistinct(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                minDistinct(Book::price)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.min(
-            distinct = true,
-            expr = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.min(
+                distinct = true,
+                expr = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -69,17 +75,19 @@ class MinDslTest : WithAssertions {
     @Test
     fun `minDistinct() with a expression`() {
         // when
-        val expression = queryPart {
-            minDistinct(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                minDistinct(expression1)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.min(
-            distinct = true,
-            expr = expression1,
-        )
+        val expected =
+            Expressions.min(
+                distinct = true,
+                expr = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

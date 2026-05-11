@@ -22,20 +22,23 @@ class CombinedJpqlIntrospectorTest : WithAssertions {
     @MockK
     private lateinit var introspector2: JpqlIntrospector
 
-    private val entityDescription1 = object : JpqlEntityDescription {
-        override val name: String = "entityName1"
-    }
+    private val entityDescription1 =
+        object : JpqlEntityDescription {
+            override val name: String = "entityName1"
+        }
 
-    private val propertyDescription1 = object : JpqlPropertyDescription {
-        override val name: String = "propertyName1"
-    }
+    private val propertyDescription1 =
+        object : JpqlPropertyDescription {
+            override val name: String = "propertyName1"
+        }
 
     @BeforeEach
     fun setUp() {
-        sut = CombinedJpqlIntrospector(
-            introspector1,
-            introspector2,
-        )
+        sut =
+            CombinedJpqlIntrospector(
+                introspector1,
+                introspector2,
+            )
     }
 
     @Test

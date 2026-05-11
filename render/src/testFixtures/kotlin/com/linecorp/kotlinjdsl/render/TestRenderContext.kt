@@ -12,18 +12,18 @@ data class TestRenderContext(
     }
 
     override fun plus(context: RenderContext): RenderContext {
-        val newElements = context.fold<Map<RenderContext.Key<*>, RenderContext.Element>>(emptyMap()) { acc, element ->
-            acc + (element.key to element)
-        }
+        val newElements =
+            context.fold<Map<RenderContext.Key<*>, RenderContext.Element>>(emptyMap()) { acc, element ->
+                acc + (element.key to element)
+            }
 
         return TestRenderContext(elements + newElements)
     }
 
-    override fun <R> fold(initial: R, operation: (R, RenderContext.Element) -> R): R {
-        return elements.values.fold(initial, operation)
-    }
+    override fun <R> fold(
+        initial: R,
+        operation: (R, RenderContext.Element) -> R,
+    ): R = elements.values.fold(initial, operation)
 
-    override fun minusKey(key: RenderContext.Key<*>): RenderContext {
-        return TestRenderContext(elements - key)
-    }
+    override fun minusKey(key: RenderContext.Key<*>): RenderContext = TestRenderContext(elements - key)
 }

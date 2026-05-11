@@ -11,14 +11,21 @@ import com.linecorp.kotlinjdsl.Internal
 class SuperClassDepthComparator(
     private val target: Class<*>,
 ) : Comparator<Class<*>> {
-    override fun compare(o1: Class<*>, o2: Class<*>): Int {
+    override fun compare(
+        o1: Class<*>,
+        o2: Class<*>,
+    ): Int {
         val depth1 = getDepth(o1, target, 0)
         val depth2 = getDepth(o2, target, 0)
 
         return depth1 - depth2
     }
 
-    private tailrec fun getDepth(declaredType: Class<*>, typeToMatch: Class<*>, depth: Int): Int {
+    private tailrec fun getDepth(
+        declaredType: Class<*>,
+        typeToMatch: Class<*>,
+        depth: Int,
+    ): Int {
         if (typeToMatch == declaredType) {
             return depth
         }

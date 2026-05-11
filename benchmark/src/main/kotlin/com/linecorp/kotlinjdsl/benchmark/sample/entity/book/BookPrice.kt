@@ -10,10 +10,6 @@ data class BookPrice(
     val value: BigDecimal,
 )
 
-fun BookPrice(int: Int): BookPrice {
-    return BookPrice(BigDecimal.valueOf(int.toLong()).setScale(2))
-}
+fun BookPrice(int: Int): BookPrice = BookPrice(BigDecimal.valueOf(int.toLong()).setScale(2))
 
-fun BookPrice(double: Double): BookPrice {
-    return BookPrice(BigDecimal.valueOf(double).setScale(2))
-}
+fun BookPrice(double: Double): BookPrice = BookPrice(BigDecimal.valueOf(double).setScale(2))

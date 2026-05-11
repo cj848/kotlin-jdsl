@@ -12,11 +12,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlEntityTreatSerializer : JpqlSerializer<JpqlEntityTreat<*, *>> {
-    override fun handledType(): KClass<JpqlEntityTreat<*, *>> {
-        return JpqlEntityTreat::class
-    }
+    override fun handledType(): KClass<JpqlEntityTreat<*, *>> = JpqlEntityTreat::class
 
-    override fun serialize(part: JpqlEntityTreat<*, *>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlEntityTreat<*, *>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val introspector = context.getValue(JpqlRenderIntrospector)
         val entity = introspector.introspect(part.type)
 

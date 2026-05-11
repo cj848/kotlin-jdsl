@@ -56,23 +56,24 @@ internal object JpqlMutinySessionUtils {
         query: String,
         queryParams: Map<String, Any?>,
         returnType: Class<T>,
-    ): Mutiny.Query<T> {
-        return session.createQuery(query, returnType).apply {
+    ): Mutiny.Query<T> =
+        session.createQuery(query, returnType).apply {
             setParams(this, queryParams)
         }
-    }
 
     private fun <T> createQuery(
         session: Mutiny.Session,
         query: String,
         queryParams: Map<String, Any?>,
-    ): Mutiny.Query<T> {
-        return session.createQuery<T>(query).apply {
+    ): Mutiny.Query<T> =
+        session.createQuery<T>(query).apply {
             setParams(this, queryParams)
         }
-    }
 
-    private fun <T> setParams(query: Mutiny.Query<T>, params: Map<String, Any?>) {
+    private fun <T> setParams(
+        query: Mutiny.Query<T>,
+        params: Map<String, Any?>,
+    ) {
         params.forEach { (name, value) ->
             try {
                 query.setParameter(name, value)

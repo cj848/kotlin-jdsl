@@ -37,9 +37,10 @@ class JpqlAbsSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.abs(
-            value = expression1,
-        )
+        val part =
+            Expressions.abs(
+                value = expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

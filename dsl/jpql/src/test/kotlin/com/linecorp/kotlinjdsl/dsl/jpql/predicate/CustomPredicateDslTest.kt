@@ -19,20 +19,22 @@ class CustomPredicateDslTest : WithAssertions {
     @Test
     fun `customPredicate() with strings`() {
         // when
-        val predicate = queryPart {
-            customPredicate(template1, string1, string2)
-        }
+        val predicate =
+            queryPart {
+                customPredicate(template1, string1, string2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val expected = Predicates.customPredicate(
-            template1,
-            listOf(
-                Expressions.value(string1),
-                Expressions.value(string2),
-            ),
-        )
+        val expected =
+            Predicates.customPredicate(
+                template1,
+                listOf(
+                    Expressions.value(string1),
+                    Expressions.value(string2),
+                ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -40,20 +42,22 @@ class CustomPredicateDslTest : WithAssertions {
     @Test
     fun `customPredicate() with string expressions`() {
         // when
-        val predicate = queryPart {
-            customPredicate(template1, stringExpression1, stringExpression2)
-        }
+        val predicate =
+            queryPart {
+                customPredicate(template1, stringExpression1, stringExpression2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val expected = Predicates.customPredicate(
-            template1,
-            listOf(
-                stringExpression1,
-                stringExpression2,
-            ),
-        )
+        val expected =
+            Predicates.customPredicate(
+                template1,
+                listOf(
+                    stringExpression1,
+                    stringExpression2,
+                ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -61,20 +65,22 @@ class CustomPredicateDslTest : WithAssertions {
     @Test
     fun `customPredicate() with a string and a string expression`() {
         // when
-        val predicate = queryPart {
-            customPredicate(template1, string1, stringExpression2)
-        }
+        val predicate =
+            queryPart {
+                customPredicate(template1, string1, stringExpression2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val expected = Predicates.customPredicate(
-            template1,
-            listOf(
-                Expressions.value(string1),
-                stringExpression2,
-            ),
-        )
+        val expected =
+            Predicates.customPredicate(
+                template1,
+                listOf(
+                    Expressions.value(string1),
+                    stringExpression2,
+                ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

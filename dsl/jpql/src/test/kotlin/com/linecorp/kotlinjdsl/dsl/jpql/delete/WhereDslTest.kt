@@ -15,34 +15,38 @@ import java.math.BigDecimal
 class WhereDslTest : WithAssertions {
     private val entity1 = Entities.entity(Book::class)
 
-    private val predicate1 = Predicates.equal(
-        Paths.path(Book::price),
-        Expressions.value(BigDecimal.valueOf(100)),
-    )
+    private val predicate1 =
+        Predicates.equal(
+            Paths.path(Book::price),
+            Expressions.value(BigDecimal.valueOf(100)),
+        )
 
-    private val predicate2 = Predicates.equal(
-        Paths.path(Book::salePrice),
-        Expressions.value(BigDecimal.valueOf(200)),
-    )
+    private val predicate2 =
+        Predicates.equal(
+            Paths.path(Book::salePrice),
+            Expressions.value(BigDecimal.valueOf(200)),
+        )
 
     @Test
     fun `where() with a predicate`() {
         // when
-        val delete = queryPart {
-            deleteFrom(
-                entity1,
-            ).where(
-                predicate1,
-            )
-        }.toQuery()
+        val delete =
+            queryPart {
+                deleteFrom(
+                    entity1,
+                ).where(
+                    predicate1,
+                )
+            }.toQuery()
 
         val actual: DeleteQuery<Book> = delete // for type check
 
         // then
-        val expected = DeleteQueries.deleteQuery(
-            entity = entity1,
-            where = predicate1,
-        )
+        val expected =
+            DeleteQueries.deleteQuery(
+                entity = entity1,
+                where = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -50,28 +54,31 @@ class WhereDslTest : WithAssertions {
     @Test
     fun `whereAnd() with predicates`() {
         // when
-        val delete = queryPart {
-            deleteFrom(
-                entity1,
-            ).whereAnd(
-                predicate1,
-                null,
-                predicate2,
-            )
-        }.toQuery()
+        val delete =
+            queryPart {
+                deleteFrom(
+                    entity1,
+                ).whereAnd(
+                    predicate1,
+                    null,
+                    predicate2,
+                )
+            }.toQuery()
 
         val actual: DeleteQuery<Book> = delete // for type check
 
         // then
-        val expected = DeleteQueries.deleteQuery(
-            entity = entity1,
-            where = Predicates.and(
-                listOf(
-                    Predicates.parentheses(predicate1),
-                    Predicates.parentheses(predicate2),
-                ),
-            ),
-        )
+        val expected =
+            DeleteQueries.deleteQuery(
+                entity = entity1,
+                where =
+                    Predicates.and(
+                        listOf(
+                            Predicates.parentheses(predicate1),
+                            Predicates.parentheses(predicate2),
+                        ),
+                    ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -79,28 +86,31 @@ class WhereDslTest : WithAssertions {
     @Test
     fun `whereOr() with predicates`() {
         // when
-        val delete = queryPart {
-            deleteFrom(
-                entity1,
-            ).whereOr(
-                predicate1,
-                null,
-                predicate2,
-            )
-        }.toQuery()
+        val delete =
+            queryPart {
+                deleteFrom(
+                    entity1,
+                ).whereOr(
+                    predicate1,
+                    null,
+                    predicate2,
+                )
+            }.toQuery()
 
         val actual: DeleteQuery<Book> = delete // for type check
 
         // then
-        val expected = DeleteQueries.deleteQuery(
-            entity = entity1,
-            where = Predicates.or(
-                listOf(
-                    Predicates.parentheses(predicate1),
-                    Predicates.parentheses(predicate2),
-                ),
-            ),
-        )
+        val expected =
+            DeleteQueries.deleteQuery(
+                entity = entity1,
+                where =
+                    Predicates.or(
+                        listOf(
+                            Predicates.parentheses(predicate1),
+                            Predicates.parentheses(predicate2),
+                        ),
+                    ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

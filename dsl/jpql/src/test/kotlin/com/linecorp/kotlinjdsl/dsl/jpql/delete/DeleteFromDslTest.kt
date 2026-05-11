@@ -14,19 +14,21 @@ class DeleteFromDslTest : WithAssertions {
     @Test
     fun `deleteFrom() with an entity`() {
         // when
-        val delete = queryPart {
-            deleteFrom(
-                entity1,
-            )
-        }.toQuery()
+        val delete =
+            queryPart {
+                deleteFrom(
+                    entity1,
+                )
+            }.toQuery()
 
         val actual: DeleteQuery<Book> = delete // for type check
 
         // then
-        val expected = DeleteQueries.deleteQuery(
-            entity = Entities.entity(Book::class),
-            where = null,
-        )
+        val expected =
+            DeleteQueries.deleteQuery(
+                entity = Entities.entity(Book::class),
+                where = null,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlSubquerySerializer : JpqlSerializer<JpqlSubquery<*>> {
-    override fun handledType(): KClass<JpqlSubquery<*>> {
-        return JpqlSubquery::class
-    }
+    override fun handledType(): KClass<JpqlSubquery<*>> = JpqlSubquery::class
 
-    override fun serialize(part: JpqlSubquery<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlSubquery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.writeParentheses {

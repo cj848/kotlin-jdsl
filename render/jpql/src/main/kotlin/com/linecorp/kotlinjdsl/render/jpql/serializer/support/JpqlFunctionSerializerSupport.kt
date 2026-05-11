@@ -9,7 +9,12 @@ import com.linecorp.kotlinjdsl.render.jpql.writer.JpqlWriter
 
 @Internal
 open class JpqlFunctionSerializerSupport {
-    protected fun serialize(name: String, args: Iterable<Expression<*>>, writer: JpqlWriter, context: RenderContext) {
+    protected fun serialize(
+        name: String,
+        args: Iterable<Expression<*>>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("FUNCTION")

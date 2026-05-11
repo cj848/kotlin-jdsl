@@ -8,7 +8,6 @@ internal data class CaseValueBuilder<T : Any, V : Any>(
     private val value: Path<T>,
     private val whens: MutableMap<Expression<T>, Expression<V>>,
     private var `else`: Expression<V>? = null,
-
     private var currentCompareValue: Expression<T>,
 ) {
     constructor(
@@ -40,11 +39,10 @@ internal data class CaseValueBuilder<T : Any, V : Any>(
         return this
     }
 
-    fun build(): Expression<V> {
-        return Expressions.caseValue(
+    fun build(): Expression<V> =
+        Expressions.caseValue(
             value,
             whens,
             `else`,
         )
-    }
 }

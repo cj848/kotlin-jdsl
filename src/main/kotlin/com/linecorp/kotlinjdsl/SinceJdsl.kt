@@ -18,4 +18,6 @@ package com.linecorp.kotlinjdsl
 )
 @Retention(AnnotationRetention.BINARY)
 @MustBeDocumented
-annotation class SinceJdsl(val version: String)
+annotation class SinceJdsl(
+    val version: String,
+)

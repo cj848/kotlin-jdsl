@@ -5,7 +5,9 @@ import org.springframework.data.domain.Pageable
 import java.util.function.LongSupplier
 
 internal object PageableExecutionUtilsAdaptor {
-    fun <T> getPage(content: List<T>, pageable: Pageable, totalSupplier: LongSupplier): Page<T> {
-        return PageableExecutionUtils.getPage(content, pageable, totalSupplier)
-    }
+    fun <T> getPage(
+        content: List<T>,
+        pageable: Pageable,
+        totalSupplier: LongSupplier,
+    ): Page<T> = PageableExecutionUtils.getPage(content, pageable, totalSupplier)
 }

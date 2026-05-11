@@ -104,16 +104,17 @@ class ExpressionsTest : WithAssertions {
     private val predicate1 = Predicates.equal(Paths.path(Book::price), Expressions.value(BigDecimal.valueOf(100)))
     private val predicate2 = Predicates.equal(Paths.path(Book::price), Expressions.value(BigDecimal.valueOf(200)))
 
-    private val selectQuery1 = JpqlSelectQuery(
-        returnType = Book::class,
-        distinct = false,
-        select = listOf(entity1),
-        from = listOf(entity1),
-        where = predicate1,
-        groupBy = listOf(Paths.path(Employee::name)),
-        having = predicate2,
-        orderBy = listOf(Sorts.asc(Paths.path(Employee::name))),
-    )
+    private val selectQuery1 =
+        JpqlSelectQuery(
+            returnType = Book::class,
+            distinct = false,
+            select = listOf(entity1),
+            from = listOf(entity1),
+            where = predicate1,
+            groupBy = listOf(Paths.path(Employee::name)),
+            having = predicate2,
+            orderBy = listOf(Sorts.asc(Paths.path(Employee::name))),
+        )
 
     private class Class1
 
@@ -123,9 +124,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.value(string1)
 
         // then
-        val expected = JpqlValue(
-            string1,
-        )
+        val expected =
+            JpqlValue(
+                string1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -158,9 +160,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.intLiteral(int1)
 
         // then
-        val expected = JpqlLiteral.IntLiteral(
-            int1,
-        )
+        val expected =
+            JpqlLiteral.IntLiteral(
+                int1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -171,9 +174,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.longLiteral(long1)
 
         // then
-        val expected = JpqlLiteral.LongLiteral(
-            long1,
-        )
+        val expected =
+            JpqlLiteral.LongLiteral(
+                long1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -184,9 +188,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.floatLiteral(float1)
 
         // then
-        val expected = JpqlLiteral.FloatLiteral(
-            float1,
-        )
+        val expected =
+            JpqlLiteral.FloatLiteral(
+                float1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -197,9 +202,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.doubleLiteral(double1)
 
         // then
-        val expected = JpqlLiteral.DoubleLiteral(
-            double1,
-        )
+        val expected =
+            JpqlLiteral.DoubleLiteral(
+                double1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -210,9 +216,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.booleanLiteral(boolean1)
 
         // then
-        val expected = JpqlLiteral.BooleanLiteral(
-            boolean1,
-        )
+        val expected =
+            JpqlLiteral.BooleanLiteral(
+                boolean1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -223,9 +230,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.charLiteral(char1)
 
         // then
-        val expected = JpqlLiteral.CharLiteral(
-            char1,
-        )
+        val expected =
+            JpqlLiteral.CharLiteral(
+                char1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -236,9 +244,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.stringLiteral(string1)
 
         // then
-        val expected = JpqlLiteral.StringLiteral(
-            string1,
-        )
+        val expected =
+            JpqlLiteral.StringLiteral(
+                string1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -249,9 +258,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.enumLiteral(BookAuthorType.AUTHOR)
 
         // then
-        val expected = JpqlLiteral.EnumLiteral(
-            BookAuthorType.AUTHOR,
-        )
+        val expected =
+            JpqlLiteral.EnumLiteral(
+                BookAuthorType.AUTHOR,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -273,10 +283,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.param<String>(name1)
 
         // then
-        val expected = JpqlParam(
-            name = name1,
-            value = null,
-        )
+        val expected =
+            JpqlParam(
+                name = name1,
+                value = null,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -287,10 +298,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.param(name1, string1)
 
         // then
-        val expected = JpqlParam(
-            name = name1,
-            value = string1,
-        )
+        val expected =
+            JpqlParam(
+                name = name1,
+                value = string1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -301,10 +313,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.plus(intExpression1, intExpression2)
 
         // then
-        val expected = JpqlPlus<Int>(
-            intExpression1,
-            intExpression2,
-        )
+        val expected =
+            JpqlPlus<Int>(
+                intExpression1,
+                intExpression2,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -315,10 +328,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.minus(intExpression1, intExpression2)
 
         // then
-        val expected = JpqlMinus<Int>(
-            intExpression1,
-            intExpression2,
-        )
+        val expected =
+            JpqlMinus<Int>(
+                intExpression1,
+                intExpression2,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -329,10 +343,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.times(intExpression1, intExpression2)
 
         // then
-        val expected = JpqlTimes<Int>(
-            intExpression1,
-            intExpression2,
-        )
+        val expected =
+            JpqlTimes<Int>(
+                intExpression1,
+                intExpression2,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -343,10 +358,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.div(intExpression1, intExpression2)
 
         // then
-        val expected = JpqlDivide<Int>(
-            intExpression1,
-            intExpression2,
-        )
+        val expected =
+            JpqlDivide<Int>(
+                intExpression1,
+                intExpression2,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -357,9 +373,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.abs(intExpression1)
 
         // then
-        val expected = JpqlAbs<Int>(
-            intExpression1,
-        )
+        val expected =
+            JpqlAbs<Int>(
+                intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -370,9 +387,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.ceiling(doubleExpression1)
 
         // then
-        val expected = JpqlCeiling(
-            doubleExpression1,
-        )
+        val expected =
+            JpqlCeiling(
+                doubleExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -383,9 +401,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.exp(doubleExpression1)
 
         // then
-        val expected = JpqlExp(
-            doubleExpression1,
-        )
+        val expected =
+            JpqlExp(
+                doubleExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -396,9 +415,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.floor(doubleExpression1)
 
         // then
-        val expected = JpqlFloor(
-            doubleExpression1,
-        )
+        val expected =
+            JpqlFloor(
+                doubleExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -409,9 +429,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.index(entity1)
 
         // then
-        val expected = JpqlIndex(
-            entity1,
-        )
+        val expected =
+            JpqlIndex(
+                entity1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -422,9 +443,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.ln(doubleExpression1)
 
         // then
-        val expected = JpqlLn(
-            doubleExpression1,
-        )
+        val expected =
+            JpqlLn(
+                doubleExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -435,10 +457,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.mod(intExpression1, intExpression2)
 
         // then
-        val expected = JpqlMod(
-            intExpression1,
-            intExpression2,
-        )
+        val expected =
+            JpqlMod(
+                intExpression1,
+                intExpression2,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -449,10 +472,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.power(doubleExpression1, intExpression1)
 
         // then
-        val expected = JpqlPower(
-            doubleExpression1,
-            intExpression1,
-        )
+        val expected =
+            JpqlPower(
+                doubleExpression1,
+                intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -463,9 +487,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.sign(intExpression1)
 
         // then
-        val expected = JpqlSign(
-            intExpression1,
-        )
+        val expected =
+            JpqlSign(
+                intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -476,9 +501,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.sqrt(intExpression1)
 
         // then
-        val expected = JpqlSqrt(
-            intExpression1,
-        )
+        val expected =
+            JpqlSqrt(
+                intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -489,10 +515,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.round(bigDecimalExpression1, intExpression1)
 
         // then
-        val expected = JpqlRound(
-            bigDecimalExpression1,
-            intExpression1,
-        )
+        val expected =
+            JpqlRound(
+                bigDecimalExpression1,
+                intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -503,9 +530,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.size(path2)
 
         // then
-        val expected = JpqlSize(
-            path2,
-        )
+        val expected =
+            JpqlSize(
+                path2,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -583,10 +611,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.count(distinct, intExpression1)
 
         // then
-        val expected = JpqlCount(
-            distinct,
-            intExpression1,
-        )
+        val expected =
+            JpqlCount(
+                distinct,
+                intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -598,10 +627,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.max(distinct, intExpression1)
 
         // then
-        val expected = JpqlMax(
-            distinct,
-            intExpression1,
-        )
+        val expected =
+            JpqlMax(
+                distinct,
+                intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -613,10 +643,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.min(distinct, intExpression1)
 
         // then
-        val expected = JpqlMin(
-            distinct,
-            intExpression1,
-        )
+        val expected =
+            JpqlMin(
+                distinct,
+                intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -628,10 +659,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.avg(distinct, intExpression1)
 
         // then
-        val expected = JpqlAvg(
-            distinct,
-            intExpression1,
-        )
+        val expected =
+            JpqlAvg(
+                distinct,
+                intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -643,10 +675,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.sum(distinct, intExpression1)
 
         // then
-        val expected = JpqlSum.IntSum(
-            distinct,
-            intExpression1,
-        )
+        val expected =
+            JpqlSum.IntSum(
+                distinct,
+                intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -658,10 +691,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.sum(distinct, longExpression1)
 
         // then
-        val expected = JpqlSum.LongSum(
-            distinct,
-            longExpression1,
-        )
+        val expected =
+            JpqlSum.LongSum(
+                distinct,
+                longExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -673,10 +707,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.sum(distinct, floatExpression1)
 
         // then
-        val expected = JpqlSum.FloatSum(
-            distinct,
-            floatExpression1,
-        )
+        val expected =
+            JpqlSum.FloatSum(
+                distinct,
+                floatExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -688,10 +723,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.sum(distinct, doubleExpression1)
 
         // then
-        val expected = JpqlSum.DoubleSum(
-            distinct,
-            doubleExpression1,
-        )
+        val expected =
+            JpqlSum.DoubleSum(
+                distinct,
+                doubleExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -703,10 +739,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.sum(distinct, bigIntegerExpression1)
 
         // then
-        val expected = JpqlSum.BigIntegerSum(
-            distinct,
-            bigIntegerExpression1,
-        )
+        val expected =
+            JpqlSum.BigIntegerSum(
+                distinct,
+                bigIntegerExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -718,10 +755,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.sum(distinct, bigDecimalExpression1)
 
         // then
-        val expected = JpqlSum.BigDecimalSum(
-            distinct,
-            bigDecimalExpression1,
-        )
+        val expected =
+            JpqlSum.BigDecimalSum(
+                distinct,
+                bigDecimalExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -732,10 +770,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.new(Class1::class, listOf(intExpression1, intExpression2))
 
         // then
-        val expected = JpqlNew(
-            Class1::class,
-            listOf(intExpression1, intExpression2),
-        )
+        val expected =
+            JpqlNew(
+                Class1::class,
+                listOf(intExpression1, intExpression2),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -743,22 +782,26 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun caseWhen() {
         // when
-        val actual = Expressions.caseWhen(
-            whens = mapOf(
-                predicate1 to intExpression1,
-                predicate2 to intExpression2,
-            ),
-            `else` = intExpression3,
-        )
+        val actual =
+            Expressions.caseWhen(
+                whens =
+                    mapOf(
+                        predicate1 to intExpression1,
+                        predicate2 to intExpression2,
+                    ),
+                `else` = intExpression3,
+            )
 
         // then
-        val expected = JpqlCaseWhen(
-            whens = mapOf(
-                predicate1 to intExpression1,
-                predicate2 to intExpression2,
-            ),
-            `else` = intExpression3,
-        )
+        val expected =
+            JpqlCaseWhen(
+                whens =
+                    mapOf(
+                        predicate1 to intExpression1,
+                        predicate2 to intExpression2,
+                    ),
+                `else` = intExpression3,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -766,24 +809,28 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun caseValue() {
         // when
-        val actual = Expressions.caseValue(
-            value = path1,
-            whens = mapOf(
-                longExpression1 to intExpression1,
-                longExpression2 to intExpression2,
-            ),
-            `else` = intExpression3,
-        )
+        val actual =
+            Expressions.caseValue(
+                value = path1,
+                whens =
+                    mapOf(
+                        longExpression1 to intExpression1,
+                        longExpression2 to intExpression2,
+                    ),
+                `else` = intExpression3,
+            )
 
         // then
-        val expected = JpqlCaseValue(
-            value = path1,
-            whens = mapOf(
-                longExpression1 to intExpression1,
-                longExpression2 to intExpression2,
-            ),
-            `else` = intExpression3,
-        )
+        val expected =
+            JpqlCaseValue(
+                value = path1,
+                whens =
+                    mapOf(
+                        longExpression1 to intExpression1,
+                        longExpression2 to intExpression2,
+                    ),
+                `else` = intExpression3,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -791,20 +838,22 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun coalesce() {
         // when
-        val actual = Expressions.coalesce(
-            value = intExpression1,
-            alternate = intExpression2,
-            others = listOf(intExpression3),
-        )
+        val actual =
+            Expressions.coalesce(
+                value = intExpression1,
+                alternate = intExpression2,
+                others = listOf(intExpression3),
+            )
 
         // then
-        val expected = JpqlCoalesce(
-            listOf(
-                intExpression1,
-                intExpression2,
-                intExpression3,
-            ),
-        )
+        val expected =
+            JpqlCoalesce(
+                listOf(
+                    intExpression1,
+                    intExpression2,
+                    intExpression3,
+                ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -812,16 +861,18 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun nullIf() {
         // when
-        val actual = Expressions.nullIf(
-            value = intExpression1,
-            compareValue = intExpression2,
-        )
+        val actual =
+            Expressions.nullIf(
+                value = intExpression1,
+                compareValue = intExpression2,
+            )
 
         // then
-        val expected = JpqlNullIf(
-            value = intExpression1,
-            compareValue = intExpression2,
-        )
+        val expected =
+            JpqlNullIf(
+                value = intExpression1,
+                compareValue = intExpression2,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -832,9 +883,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.type(entity1)
 
         // then
-        val expected = JpqlEntityType(
-            entity1,
-        )
+        val expected =
+            JpqlEntityType(
+                entity1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -845,9 +897,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.type(path1)
 
         // then
-        val expected = JpqlPathType(
-            path1,
-        )
+        val expected =
+            JpqlPathType(
+                path1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -855,20 +908,22 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun concat() {
         // when
-        val actual = Expressions.concat(
-            stringExpression1,
-            stringExpression2,
-            listOf(stringExpression3),
-        )
-
-        // then
-        val expected = JpqlConcat(
-            listOf(
+        val actual =
+            Expressions.concat(
                 stringExpression1,
                 stringExpression2,
-                stringExpression3,
-            ),
-        )
+                listOf(stringExpression3),
+            )
+
+        // then
+        val expected =
+            JpqlConcat(
+                listOf(
+                    stringExpression1,
+                    stringExpression2,
+                    stringExpression3,
+                ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -876,18 +931,20 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun substring() {
         // when
-        val actual = Expressions.substring(
-            stringExpression1,
-            intExpression1,
-            intExpression2,
-        )
+        val actual =
+            Expressions.substring(
+                stringExpression1,
+                intExpression1,
+                intExpression2,
+            )
 
         // then
-        val expected = JpqlSubstring(
-            stringExpression1,
-            intExpression1,
-            intExpression2,
-        )
+        val expected =
+            JpqlSubstring(
+                stringExpression1,
+                intExpression1,
+                intExpression2,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -895,16 +952,18 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun trim() {
         // when
-        val actual = Expressions.trim(
-            charExpression1,
-            stringExpression1,
-        )
+        val actual =
+            Expressions.trim(
+                charExpression1,
+                stringExpression1,
+            )
 
         // then
-        val expected = JpqlTrim(
-            charExpression1,
-            stringExpression1,
-        )
+        val expected =
+            JpqlTrim(
+                charExpression1,
+                stringExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -912,16 +971,18 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun trimLeading() {
         // when
-        val actual = Expressions.trimLeading(
-            charExpression1,
-            stringExpression1,
-        )
+        val actual =
+            Expressions.trimLeading(
+                charExpression1,
+                stringExpression1,
+            )
 
         // then
-        val expected = JpqlTrimLeading(
-            charExpression1,
-            stringExpression1,
-        )
+        val expected =
+            JpqlTrimLeading(
+                charExpression1,
+                stringExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -929,16 +990,18 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun trimTrailing() {
         // when
-        val actual = Expressions.trimTrailing(
-            charExpression1,
-            stringExpression1,
-        )
+        val actual =
+            Expressions.trimTrailing(
+                charExpression1,
+                stringExpression1,
+            )
 
         // then
-        val expected = JpqlTrimTrailing(
-            charExpression1,
-            stringExpression1,
-        )
+        val expected =
+            JpqlTrimTrailing(
+                charExpression1,
+                stringExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -946,16 +1009,18 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun trimBoth() {
         // when
-        val actual = Expressions.trimBoth(
-            charExpression1,
-            stringExpression1,
-        )
+        val actual =
+            Expressions.trimBoth(
+                charExpression1,
+                stringExpression1,
+            )
 
         // then
-        val expected = JpqlTrimBoth(
-            charExpression1,
-            stringExpression1,
-        )
+        val expected =
+            JpqlTrimBoth(
+                charExpression1,
+                stringExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -966,9 +1031,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.upper(stringExpression1)
 
         // then
-        val expected = JpqlUpper(
-            stringExpression1,
-        )
+        val expected =
+            JpqlUpper(
+                stringExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -979,9 +1045,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.lower(stringExpression1)
 
         // then
-        val expected = JpqlLower(
-            stringExpression1,
-        )
+        val expected =
+            JpqlLower(
+                stringExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -992,9 +1059,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.length(stringExpression1)
 
         // then
-        val expected = JpqlLength(
-            stringExpression1,
-        )
+        val expected =
+            JpqlLength(
+                stringExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -1002,18 +1070,20 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun locate() {
         // when
-        val actual = Expressions.locate(
-            substring = stringExpression1,
-            string = stringExpression2,
-            start = intExpression1,
-        )
+        val actual =
+            Expressions.locate(
+                substring = stringExpression1,
+                string = stringExpression2,
+                start = intExpression1,
+            )
 
         // then
-        val expected = JpqlLocate(
-            substring = stringExpression1,
-            string = stringExpression2,
-            start = intExpression1,
-        )
+        val expected =
+            JpqlLocate(
+                substring = stringExpression1,
+                string = stringExpression2,
+                start = intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -1021,18 +1091,20 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun function() {
         // when
-        val actual = Expressions.function(
-            type = Class1::class,
-            name = name1,
-            args = listOf(intExpression1, intExpression2),
-        )
+        val actual =
+            Expressions.function(
+                type = Class1::class,
+                name = name1,
+                args = listOf(intExpression1, intExpression2),
+            )
 
         // then
-        val expected = JpqlFunctionExpression(
-            type = Class1::class,
-            name = name1,
-            args = listOf(intExpression1, intExpression2),
-        )
+        val expected =
+            JpqlFunctionExpression(
+                type = Class1::class,
+                name = name1,
+                args = listOf(intExpression1, intExpression2),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -1040,18 +1112,20 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun customExpression() {
         // when
-        val actual = Expressions.customExpression(
-            type = Class1::class,
-            template = template1,
-            args = listOf(intExpression1, intExpression2),
-        )
+        val actual =
+            Expressions.customExpression(
+                type = Class1::class,
+                template = template1,
+                args = listOf(intExpression1, intExpression2),
+            )
 
         // then
-        val expected = JpqlCustomExpression(
-            type = Class1::class,
-            template = template1,
-            args = listOf(intExpression1, intExpression2),
-        )
+        val expected =
+            JpqlCustomExpression(
+                type = Class1::class,
+                template = template1,
+                args = listOf(intExpression1, intExpression2),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -1059,14 +1133,16 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun subquery() {
         // when
-        val actual = Expressions.subquery(
-            selectQuery1,
-        )
+        val actual =
+            Expressions.subquery(
+                selectQuery1,
+            )
 
         // then
-        val expected = JpqlSubquery(
-            selectQuery1.copy(orderBy = null),
-        )
+        val expected =
+            JpqlSubquery(
+                selectQuery1.copy(orderBy = null),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -1074,16 +1150,18 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun alias() {
         // when
-        val actual = Expressions.alias(
-            intExpression1,
-            intExpression2,
-        )
+        val actual =
+            Expressions.alias(
+                intExpression1,
+                intExpression2,
+            )
 
         // then
-        val expected = JpqlAliasedExpression(
-            intExpression1,
-            intExpression2,
-        )
+        val expected =
+            JpqlAliasedExpression(
+                intExpression1,
+                intExpression2,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -1091,16 +1169,18 @@ class ExpressionsTest : WithAssertions {
     @Test
     fun `alias() with the already aliased expression`() {
         // when
-        val actual = Expressions.alias(
-            JpqlAliasedExpression(intExpression1, intExpression2),
-            intExpression3,
-        )
+        val actual =
+            Expressions.alias(
+                JpqlAliasedExpression(intExpression1, intExpression2),
+                intExpression3,
+            )
 
         // then
-        val expected = JpqlAliasedExpression(
-            intExpression1,
-            intExpression3,
-        )
+        val expected =
+            JpqlAliasedExpression(
+                intExpression1,
+                intExpression3,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -1111,10 +1191,11 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.expression(String::class, alias1)
 
         // then
-        val expected = JpqlExpression(
-            type = String::class,
-            alias = alias1,
-        )
+        val expected =
+            JpqlExpression(
+                type = String::class,
+                alias = alias1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -1125,9 +1206,10 @@ class ExpressionsTest : WithAssertions {
         val actual = Expressions.parentheses(intExpression1)
 
         // then
-        val expected = JpqlExpressionParentheses(
-            intExpression1,
-        )
+        val expected =
+            JpqlExpressionParentheses(
+                intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

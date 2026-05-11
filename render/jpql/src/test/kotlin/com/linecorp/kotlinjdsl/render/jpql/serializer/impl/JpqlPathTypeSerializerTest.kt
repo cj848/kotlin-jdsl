@@ -37,9 +37,10 @@ class JpqlPathTypeSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.type(
-            path1,
-        )
+        val part =
+            Expressions.type(
+                path1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

@@ -24,9 +24,10 @@ class EmptyRenderContextTest : WithAssertions {
     @Test
     fun getValue() {
         // when
-        val actual = catchException {
-            sut.getValue(TestRenderContextElement1)
-        }
+        val actual =
+            catchException {
+                sut.getValue(TestRenderContextElement1)
+            }
 
         // then
         assertThat(actual)

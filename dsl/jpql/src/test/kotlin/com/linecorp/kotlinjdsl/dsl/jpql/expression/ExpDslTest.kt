@@ -14,16 +14,18 @@ class ExpDslTest : WithAssertions {
     @Test
     fun `exp() with a property`() {
         // when
-        val expression = queryPart {
-            exp(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                exp(Book::price)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.exp(
-            value = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.exp(
+                value = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -31,16 +33,18 @@ class ExpDslTest : WithAssertions {
     @Test
     fun `exp() with a expression`() {
         // when
-        val expression = queryPart {
-            exp(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                exp(expression1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.exp(
-            value = expression1,
-        )
+        val expected =
+            Expressions.exp(
+                value = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

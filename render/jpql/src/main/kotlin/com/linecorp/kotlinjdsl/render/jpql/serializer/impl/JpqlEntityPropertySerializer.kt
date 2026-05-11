@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlEntityPropertySerializer : JpqlSerializer<JpqlEntityProperty<*, *>> {
-    override fun handledType(): KClass<JpqlEntityProperty<*, *>> {
-        return JpqlEntityProperty::class
-    }
+    override fun handledType(): KClass<JpqlEntityProperty<*, *>> = JpqlEntityProperty::class
 
-    override fun serialize(part: JpqlEntityProperty<*, *>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlEntityProperty<*, *>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val introspector = context.getValue(JpqlRenderIntrospector)
         val property = introspector.introspect(part.property)
 

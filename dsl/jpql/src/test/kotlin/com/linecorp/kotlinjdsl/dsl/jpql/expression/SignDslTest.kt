@@ -14,16 +14,18 @@ class SignDslTest : WithAssertions {
     @Test
     fun `sign() with a property`() {
         // when
-        val expression = queryPart {
-            sign(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sign(Book::price)
+            }.toExpression()
 
         val actual: Expression<Int> = expression // for type check
 
         // then
-        val expected = Expressions.sign(
-            value = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.sign(
+                value = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -31,16 +33,18 @@ class SignDslTest : WithAssertions {
     @Test
     fun `sign() with a expression`() {
         // when
-        val expression = queryPart {
-            sign(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sign(expression1)
+            }.toExpression()
 
         val actual: Expression<Int> = expression // for type check
 
         // then
-        val expected = Expressions.sign(
-            value = expression1,
-        )
+        val expected =
+            Expressions.sign(
+                value = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

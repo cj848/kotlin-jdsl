@@ -48,8 +48,8 @@ object SelectQueries {
         groupBy: Iterable<Expression<*>>? = null,
         having: Predicate? = null,
         orderBy: Iterable<Sort>? = null,
-    ): SelectQuery<T> {
-        return JpqlSelectQuery(
+    ): SelectQuery<T> =
+        JpqlSelectQuery(
             returnType = returnType,
             distinct = distinct,
             select = select,
@@ -59,7 +59,6 @@ object SelectQueries {
             having = having,
             orderBy = orderBy,
         )
-    }
 
     /**
      * Returns a count query of the [query].
@@ -89,16 +88,17 @@ object SelectQueries {
             return JpqlSelectQuery(
                 returnType = Long::class,
                 distinct = false,
-                select = listOf(
-                    Expressions.count(
-                        distinct = query.distinct,
-                        if (query.distinct) {
-                            query.select.first()
-                        } else {
-                            Expressions.intLiteral(1)
-                        },
+                select =
+                    listOf(
+                        Expressions.count(
+                            distinct = query.distinct,
+                            if (query.distinct) {
+                                query.select.first()
+                            } else {
+                                Expressions.intLiteral(1)
+                            },
+                        ),
                     ),
-                ),
                 from = stripFetch(query.from),
                 where = query.where,
                 groupBy = query.groupBy,
@@ -121,12 +121,10 @@ object SelectQueries {
      * Strips FETCH attribute from joins.
      */
     @Internal
-    fun stripFetch(froms: Iterable<From>): Iterable<From> {
-        return froms.map { stripFetch(it) }
-    }
+    fun stripFetch(froms: Iterable<From>): Iterable<From> = froms.map { stripFetch(it) }
 
-    private fun stripFetch(from: From): From {
-        return when (from) {
+    private fun stripFetch(from: From): From =
+        when (from) {
             is JpqlJoinedEntity -> JpqlJoinedEntity(stripFetch(from.entity) as Entity<*>, stripFetch(from.join) as Join)
             is JpqlInnerFetchJoin<*> -> JpqlInnerJoin(from.entity, from.on)
             is JpqlInnerAssociationFetchJoin<*> -> JpqlInnerAssociationJoin(from.entity, from.association, from.on)
@@ -134,7 +132,6 @@ object SelectQueries {
             is JpqlLeftAssociationFetchJoin<*> -> JpqlLeftAssociationJoin(from.entity, from.association, from.on)
             else -> from
         }
-    }
 
     @SinceJdsl("3.6.0")
     fun <T : Any> selectUnionQuery(
@@ -142,14 +139,13 @@ object SelectQueries {
         left: JpqlQueryable<SelectQuery<T>>,
         right: JpqlQueryable<SelectQuery<T>>,
         orderBy: Iterable<Sort>?,
-    ): SelectQuery<T> {
-        return JpqlSelectQueryUnion(
+    ): SelectQuery<T> =
+        JpqlSelectQueryUnion(
             returnType = returnType,
             left = left,
             right = right,
             orderBy = orderBy,
         )
-    }
 
     @SinceJdsl("3.6.0")
     fun <T : Any> selectUnionAllQuery(
@@ -157,14 +153,13 @@ object SelectQueries {
         left: JpqlQueryable<SelectQuery<T>>,
         right: JpqlQueryable<SelectQuery<T>>,
         orderBy: Iterable<Sort>?,
-    ): SelectQuery<T> {
-        return JpqlSelectQueryUnionAll(
+    ): SelectQuery<T> =
+        JpqlSelectQueryUnionAll(
             returnType = returnType,
             left = left,
             right = right,
             orderBy = orderBy,
         )
-    }
 
     @SinceJdsl("3.6.0")
     fun <T : Any> selectExceptQuery(
@@ -172,14 +167,13 @@ object SelectQueries {
         left: JpqlQueryable<SelectQuery<T>>,
         right: JpqlQueryable<SelectQuery<T>>,
         orderBy: Iterable<Sort>?,
-    ): SelectQuery<T> {
-        return JpqlSelectQueryExcept(
+    ): SelectQuery<T> =
+        JpqlSelectQueryExcept(
             returnType = returnType,
             left = left,
             right = right,
             orderBy = orderBy,
         )
-    }
 
     @SinceJdsl("3.6.0")
     fun <T : Any> selectExceptAllQuery(
@@ -187,14 +181,13 @@ object SelectQueries {
         left: JpqlQueryable<SelectQuery<T>>,
         right: JpqlQueryable<SelectQuery<T>>,
         orderBy: Iterable<Sort>?,
-    ): SelectQuery<T> {
-        return JpqlSelectQueryExceptAll(
+    ): SelectQuery<T> =
+        JpqlSelectQueryExceptAll(
             returnType = returnType,
             left = left,
             right = right,
             orderBy = orderBy,
         )
-    }
 
     @SinceJdsl("3.6.0")
     fun <T : Any> selectIntersectQuery(
@@ -202,14 +195,13 @@ object SelectQueries {
         left: JpqlQueryable<SelectQuery<T>>,
         right: JpqlQueryable<SelectQuery<T>>,
         orderBy: Iterable<Sort>?,
-    ): SelectQuery<T> {
-        return JpqlSelectQueryIntersect(
+    ): SelectQuery<T> =
+        JpqlSelectQueryIntersect(
             returnType = returnType,
             left = left,
             right = right,
             orderBy = orderBy,
         )
-    }
 
     @SinceJdsl("3.6.0")
     fun <T : Any> selectIntersectAllQuery(
@@ -217,12 +209,11 @@ object SelectQueries {
         left: JpqlQueryable<SelectQuery<T>>,
         right: JpqlQueryable<SelectQuery<T>>,
         orderBy: Iterable<Sort>?,
-    ): SelectQuery<T> {
-        return JpqlSelectQueryIntersectAll(
+    ): SelectQuery<T> =
+        JpqlSelectQueryIntersectAll(
             returnType = returnType,
             left = left,
             right = right,
             orderBy = orderBy,
         )
-    }
 }

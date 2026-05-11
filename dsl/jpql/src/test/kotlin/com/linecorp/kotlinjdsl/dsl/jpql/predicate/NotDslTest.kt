@@ -11,24 +11,27 @@ import org.junit.jupiter.api.Test
 import java.math.BigDecimal
 
 class NotDslTest : WithAssertions {
-    private val predicate1 = Predicates.equal(
-        Paths.path(Book::price),
-        Expressions.value(BigDecimal.valueOf(100)),
-    )
+    private val predicate1 =
+        Predicates.equal(
+            Paths.path(Book::price),
+            Expressions.value(BigDecimal.valueOf(100)),
+        )
 
     @Test
     fun not() {
         // when
-        val predicate = queryPart {
-            not(predicate1)
-        }
+        val predicate =
+            queryPart {
+                not(predicate1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.not(
-            predicate1,
-        )
+        val excepted =
+            Predicates.not(
+                predicate1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }

@@ -14,9 +14,8 @@ class KotlinJdslQueryProvider<T : Any>(
     private val queryParams: Map<String, Any?>,
     private val context: RenderContext,
 ) : AbstractJpaQueryProvider() {
-    override fun createQuery(): Query {
-        return JpqlEntityManagerUtils.createQuery(entityManager, query, queryParams, query.returnType, context)
-    }
+    override fun createQuery(): Query =
+        JpqlEntityManagerUtils.createQuery(entityManager, query, queryParams, query.returnType, context)
 
     override fun afterPropertiesSet() {
         // ignore

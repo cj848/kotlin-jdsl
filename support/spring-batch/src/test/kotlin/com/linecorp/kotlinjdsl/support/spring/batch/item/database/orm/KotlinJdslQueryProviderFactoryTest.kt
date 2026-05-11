@@ -54,9 +54,7 @@ class KotlinJdslQueryProviderFactoryTest : WithAssertions {
             return javaClass == other?.javaClass
         }
 
-        override fun hashCode(): Int {
-            return javaClass.hashCode()
-        }
+        override fun hashCode(): Int = javaClass.hashCode()
     }
 
     private object MyJpqlObject : Jpql() {
@@ -65,9 +63,7 @@ class KotlinJdslQueryProviderFactoryTest : WithAssertions {
             return javaClass == other?.javaClass
         }
 
-        override fun hashCode(): Int {
-            return javaClass.hashCode()
-        }
+        override fun hashCode(): Int = javaClass.hashCode()
     }
 
     @BeforeEach
@@ -94,11 +90,12 @@ class KotlinJdslQueryProviderFactoryTest : WithAssertions {
         val actual = sut.create(createSelectQuery1)
 
         // then
-        val expected = KotlinJdslQueryProvider(
-            query = jpql(createSelectQuery1),
-            queryParams = emptyMap(),
-            context = context,
-        )
+        val expected =
+            KotlinJdslQueryProvider(
+                query = jpql(createSelectQuery1),
+                queryParams = emptyMap(),
+                context = context,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -109,11 +106,12 @@ class KotlinJdslQueryProviderFactoryTest : WithAssertions {
         val actual = sut.create(queryParams1, createSelectQuery1)
 
         // then
-        val expected = KotlinJdslQueryProvider(
-            query = jpql(createSelectQuery1),
-            queryParams = queryParams1,
-            context = context,
-        )
+        val expected =
+            KotlinJdslQueryProvider(
+                query = jpql(createSelectQuery1),
+                queryParams = queryParams1,
+                context = context,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -124,11 +122,12 @@ class KotlinJdslQueryProviderFactoryTest : WithAssertions {
         val actual = sut.create(MyJpql, createSelectQuery2)
 
         // then
-        val expected = KotlinJdslQueryProvider(
-            query = jpql(MyJpql, createSelectQuery2),
-            queryParams = emptyMap(),
-            context = context,
-        )
+        val expected =
+            KotlinJdslQueryProvider(
+                query = jpql(MyJpql, createSelectQuery2),
+                queryParams = emptyMap(),
+                context = context,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -139,11 +138,12 @@ class KotlinJdslQueryProviderFactoryTest : WithAssertions {
         val actual = sut.create(MyJpql, queryParams1, createSelectQuery2)
 
         // then
-        val expected = KotlinJdslQueryProvider(
-            query = jpql(MyJpql, createSelectQuery2),
-            queryParams = queryParams1,
-            context = context,
-        )
+        val expected =
+            KotlinJdslQueryProvider(
+                query = jpql(MyJpql, createSelectQuery2),
+                queryParams = queryParams1,
+                context = context,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -154,11 +154,12 @@ class KotlinJdslQueryProviderFactoryTest : WithAssertions {
         val actual = sut.create(MyJpqlObject, createSelectQuery3)
 
         // then
-        val expected = KotlinJdslQueryProvider(
-            query = jpql(MyJpqlObject, createSelectQuery3),
-            queryParams = emptyMap(),
-            context = context,
-        )
+        val expected =
+            KotlinJdslQueryProvider(
+                query = jpql(MyJpqlObject, createSelectQuery3),
+                queryParams = emptyMap(),
+                context = context,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -169,11 +170,12 @@ class KotlinJdslQueryProviderFactoryTest : WithAssertions {
         val actual = sut.create(MyJpqlObject, queryParams1, createSelectQuery3)
 
         // then
-        val expected = KotlinJdslQueryProvider(
-            query = jpql(MyJpqlObject, createSelectQuery3),
-            queryParams = queryParams1,
-            context = context,
-        )
+        val expected =
+            KotlinJdslQueryProvider(
+                query = jpql(MyJpqlObject, createSelectQuery3),
+                queryParams = queryParams1,
+                context = context,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -184,11 +186,12 @@ class KotlinJdslQueryProviderFactoryTest : WithAssertions {
         val actual = sut.create(selectQuery1)
 
         // then
-        val expected = KotlinJdslQueryProvider(
-            query = selectQuery1,
-            queryParams = emptyMap(),
-            context = context,
-        )
+        val expected =
+            KotlinJdslQueryProvider(
+                query = selectQuery1,
+                queryParams = emptyMap(),
+                context = context,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -199,11 +202,12 @@ class KotlinJdslQueryProviderFactoryTest : WithAssertions {
         val actual = sut.create(selectQuery1, queryParams1)
 
         // then
-        val expected = KotlinJdslQueryProvider(
-            query = selectQuery1,
-            queryParams = queryParams1,
-            context = context,
-        )
+        val expected =
+            KotlinJdslQueryProvider(
+                query = selectQuery1,
+                queryParams = queryParams1,
+                context = context,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

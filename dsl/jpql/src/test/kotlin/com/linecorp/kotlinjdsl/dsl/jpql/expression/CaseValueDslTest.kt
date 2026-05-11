@@ -27,19 +27,22 @@ class CaseValueDslTest : WithAssertions {
     @Test
     fun `caseValue() with a bigDecimal and a string`() {
         // when
-        val expression = queryPart {
-            caseValue(path1).`when`(bigDecimal1).then(string1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                caseValue(path1).`when`(bigDecimal1).then(string1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.caseValue(
-            value = path1,
-            whens = mapOf(
-                Expressions.value(bigDecimal1) to Expressions.value(string1),
-            ),
-        )
+        val expected =
+            Expressions.caseValue(
+                value = path1,
+                whens =
+                    mapOf(
+                        Expressions.value(bigDecimal1) to Expressions.value(string1),
+                    ),
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }
@@ -47,19 +50,22 @@ class CaseValueDslTest : WithAssertions {
     @Test
     fun `caseValue() with a bigDecimal expression and a string expression`() {
         // when
-        val expression = queryPart {
-            caseValue(path1).`when`(bigDecimalExpression1).then(stringExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                caseValue(path1).`when`(bigDecimalExpression1).then(stringExpression1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.caseValue(
-            value = path1,
-            whens = mapOf(
-                bigDecimalExpression1 to stringExpression1,
-            ),
-        )
+        val expected =
+            Expressions.caseValue(
+                value = path1,
+                whens =
+                    mapOf(
+                        bigDecimalExpression1 to stringExpression1,
+                    ),
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }
@@ -67,22 +73,27 @@ class CaseValueDslTest : WithAssertions {
     @Test
     fun `caseValue() with bigDecimals and strings`() {
         // when
-        val expression = queryPart {
-            caseValue(path1)
-                .`when`(bigDecimal1).then(string1)
-                .`when`(bigDecimal2).then(string2)
-        }.toExpression()
+        val expression =
+            queryPart {
+                caseValue(path1)
+                    .`when`(bigDecimal1)
+                    .then(string1)
+                    .`when`(bigDecimal2)
+                    .then(string2)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.caseValue(
-            value = path1,
-            whens = mapOf(
-                Expressions.value(bigDecimal1) to Expressions.value(string1),
-                Expressions.value(bigDecimal2) to Expressions.value(string2),
-            ),
-        )
+        val expected =
+            Expressions.caseValue(
+                value = path1,
+                whens =
+                    mapOf(
+                        Expressions.value(bigDecimal1) to Expressions.value(string1),
+                        Expressions.value(bigDecimal2) to Expressions.value(string2),
+                    ),
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }
@@ -90,22 +101,27 @@ class CaseValueDslTest : WithAssertions {
     @Test
     fun `caseValue() with bigDecimal expressions and string expressions`() {
         // when
-        val expression = queryPart {
-            caseValue(path1)
-                .`when`(bigDecimalExpression1).then(stringExpression1)
-                .`when`(bigDecimalExpression2).then(stringExpression2)
-        }.toExpression()
+        val expression =
+            queryPart {
+                caseValue(path1)
+                    .`when`(bigDecimalExpression1)
+                    .then(stringExpression1)
+                    .`when`(bigDecimalExpression2)
+                    .then(stringExpression2)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.caseValue(
-            value = path1,
-            whens = mapOf(
-                bigDecimalExpression1 to stringExpression1,
-                bigDecimalExpression2 to stringExpression2,
-            ),
-        )
+        val expected =
+            Expressions.caseValue(
+                value = path1,
+                whens =
+                    mapOf(
+                        bigDecimalExpression1 to stringExpression1,
+                        bigDecimalExpression2 to stringExpression2,
+                    ),
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }
@@ -113,22 +129,26 @@ class CaseValueDslTest : WithAssertions {
     @Test
     fun `caseValue() with a bigDecimal, a string, and else()`() {
         // when
-        val expression = queryPart {
-            caseValue(path1)
-                .`when`(bigDecimal1).then(string1)
-                .`else`(string2)
-        }.toExpression()
+        val expression =
+            queryPart {
+                caseValue(path1)
+                    .`when`(bigDecimal1)
+                    .then(string1)
+                    .`else`(string2)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.caseValue(
-            value = path1,
-            whens = mapOf(
-                Expressions.value(bigDecimal1) to Expressions.value(string1),
-            ),
-            `else` = Expressions.value(string2),
-        )
+        val expected =
+            Expressions.caseValue(
+                value = path1,
+                whens =
+                    mapOf(
+                        Expressions.value(bigDecimal1) to Expressions.value(string1),
+                    ),
+                `else` = Expressions.value(string2),
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }
@@ -136,22 +156,26 @@ class CaseValueDslTest : WithAssertions {
     @Test
     fun `caseValue() with a bigDecimal expression, a string expression, and else()`() {
         // when
-        val expression = queryPart {
-            caseValue(path1)
-                .`when`(bigDecimalExpression1).then(stringExpression1)
-                .`else`(stringExpression2)
-        }.toExpression()
+        val expression =
+            queryPart {
+                caseValue(path1)
+                    .`when`(bigDecimalExpression1)
+                    .then(stringExpression1)
+                    .`else`(stringExpression2)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.caseValue(
-            value = path1,
-            whens = mapOf(
-                bigDecimalExpression1 to stringExpression1,
-            ),
-            `else` = stringExpression2,
-        )
+        val expected =
+            Expressions.caseValue(
+                value = path1,
+                whens =
+                    mapOf(
+                        bigDecimalExpression1 to stringExpression1,
+                    ),
+                `else` = stringExpression2,
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }

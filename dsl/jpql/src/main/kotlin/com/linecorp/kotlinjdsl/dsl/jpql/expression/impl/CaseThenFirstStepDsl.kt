@@ -10,11 +10,7 @@ import com.linecorp.kotlinjdsl.querymodel.jpql.predicate.Predicate
 internal data class CaseThenFirstStepDsl(
     private val predicate: Predicate,
 ) : CaseThenFirstStep {
-    override fun <T> then(value: T): CaseWhenStep<T & Any> {
-        return CaseDsl(predicate, Expressions.value(value))
-    }
+    override fun <T> then(value: T): CaseWhenStep<T & Any> = CaseDsl(predicate, Expressions.value(value))
 
-    override fun <T : Any> then(value: Expressionable<T>): CaseWhenStep<T> {
-        return CaseDsl(predicate, value.toExpression())
-    }
+    override fun <T : Any> then(value: Expressionable<T>): CaseWhenStep<T> = CaseDsl(predicate, value.toExpression())
 }

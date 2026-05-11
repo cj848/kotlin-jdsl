@@ -38,10 +38,11 @@ class JpqlModSerializerTest {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.mod(
-            value1 = expression1,
-            value2 = expression2,
-        )
+        val part =
+            Expressions.mod(
+                value1 = expression1,
+                value2 = expression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when

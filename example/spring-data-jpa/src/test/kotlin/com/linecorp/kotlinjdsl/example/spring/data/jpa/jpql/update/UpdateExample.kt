@@ -29,15 +29,16 @@ class UpdateExample : WithAssertions {
 
         // when
         employeeRepository.update {
-            val employeeIds = select<Long>(
-                path(EmployeeDepartment::employee)(Employee::employeeId),
-            ).from(
-                entity(Department::class),
-                join(EmployeeDepartment::class)
-                    .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
-            ).where(
-                path(Department::name).like("%03"),
-            ).asSubquery()
+            val employeeIds =
+                select<Long>(
+                    path(EmployeeDepartment::employee)(Employee::employeeId),
+                ).from(
+                    entity(Department::class),
+                    join(EmployeeDepartment::class)
+                        .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
+                ).where(
+                    path(Department::name).like("%03"),
+                ).asSubquery()
 
             update(
                 entity(FullTimeEmployee::class),
@@ -49,16 +50,17 @@ class UpdateExample : WithAssertions {
             )
         }
 
-        val actual = employeeRepository.findAll {
-            selectNew<Row>(
-                path(FullTimeEmployee::employeeId),
-                path(FullTimeEmployee::annualSalary),
-            ).from(
-                entity(FullTimeEmployee::class),
-            ).orderBy(
-                path(FullTimeEmployee::employeeId).asc(),
-            )
-        }
+        val actual =
+            employeeRepository.findAll {
+                selectNew<Row>(
+                    path(FullTimeEmployee::employeeId),
+                    path(FullTimeEmployee::annualSalary),
+                ).from(
+                    entity(FullTimeEmployee::class),
+                ).orderBy(
+                    path(FullTimeEmployee::employeeId).asc(),
+                )
+            }
 
         // then
         assertThat(actual).isEqualTo(
@@ -92,15 +94,16 @@ class UpdateExample : WithAssertions {
 
         // when
         employeeRepository.update {
-            val employeeIds = select<Long>(
-                path(EmployeeDepartment::employee)(Employee::employeeId),
-            ).from(
-                entity(Department::class),
-                join(EmployeeDepartment::class)
-                    .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
-            ).where(
-                path(Department::name).like("%03"),
-            ).asSubquery()
+            val employeeIds =
+                select<Long>(
+                    path(EmployeeDepartment::employee)(Employee::employeeId),
+                ).from(
+                    entity(Department::class),
+                    join(EmployeeDepartment::class)
+                        .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
+                ).where(
+                    path(Department::name).like("%03"),
+                ).asSubquery()
 
             update(
                 entity(Employee::class),
@@ -113,16 +116,17 @@ class UpdateExample : WithAssertions {
             )
         }
 
-        val actual = employeeRepository.findAll {
-            selectNew<Row>(
-                path(Employee::employeeId),
-                path(Employee::nickname),
-            ).from(
-                entity(Employee::class),
-            ).orderBy(
-                path(Employee::employeeId).asc(),
-            )
-        }
+        val actual =
+            employeeRepository.findAll {
+                selectNew<Row>(
+                    path(Employee::employeeId),
+                    path(Employee::nickname),
+                ).from(
+                    entity(Employee::class),
+                ).orderBy(
+                    path(Employee::employeeId).asc(),
+                )
+            }
 
         // then
         assertThat(actual).isEqualTo(

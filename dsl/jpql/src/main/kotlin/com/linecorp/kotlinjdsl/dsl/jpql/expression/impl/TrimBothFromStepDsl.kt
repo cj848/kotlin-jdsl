@@ -9,11 +9,8 @@ import com.linecorp.kotlinjdsl.querymodel.jpql.expression.Expressions
 internal data class TrimBothFromStepDsl(
     private val character: Expression<Char>?,
 ) : TrimFromStep {
-    override fun from(value: String): Expressionable<String> {
-        return TrimBothDsl(character, Expressions.value(value))
-    }
+    override fun from(value: String): Expressionable<String> = TrimBothDsl(character, Expressions.value(value))
 
-    override fun from(value: Expressionable<String>): Expressionable<String> {
-        return TrimBothDsl(character, value.toExpression())
-    }
+    override fun from(value: Expressionable<String>): Expressionable<String> =
+        TrimBothDsl(character, value.toExpression())
 }

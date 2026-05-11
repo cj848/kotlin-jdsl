@@ -9,12 +9,16 @@ import com.linecorp.kotlinjdsl.render.jpql.writer.JpqlWriter
 import kotlin.reflect.KClass
 
 @Internal
-class JpqlCustomExpressionSerializer : JpqlTemplateSerializerSupport(), JpqlSerializer<JpqlCustomExpression<*>> {
-    override fun handledType(): KClass<JpqlCustomExpression<*>> {
-        return JpqlCustomExpression::class
-    }
+class JpqlCustomExpressionSerializer :
+    JpqlTemplateSerializerSupport(),
+    JpqlSerializer<JpqlCustomExpression<*>> {
+    override fun handledType(): KClass<JpqlCustomExpression<*>> = JpqlCustomExpression::class
 
-    override fun serialize(part: JpqlCustomExpression<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlCustomExpression<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         serialize(part.template, part.args, writer, context)
     }
 }

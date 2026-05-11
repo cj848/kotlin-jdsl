@@ -17,17 +17,19 @@ class AliasDslTest : WithAssertions {
     @Test
     fun `as() with a expression and an alias`() {
         // when
-        val expression = queryPart {
-            expression1.`as`(alias1)
-        }
+        val expression =
+            queryPart {
+                expression1.`as`(alias1)
+            }
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.alias(
-            expression1,
-            alias1,
-        )
+        val expected =
+            Expressions.alias(
+                expression1,
+                alias1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -35,17 +37,19 @@ class AliasDslTest : WithAssertions {
     @Test
     fun `alias() with a expression and an alias`() {
         // when
-        val expression = queryPart {
-            expression1.alias(alias1)
-        }
+        val expression =
+            queryPart {
+                expression1.alias(alias1)
+            }
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.alias(
-            expression1,
-            alias1,
-        )
+        val expected =
+            Expressions.alias(
+                expression1,
+                alias1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

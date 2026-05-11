@@ -12,10 +12,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlSelectQueryUnionSerializer : JpqlSerializer<JpqlSelectQueryUnion<*>> {
-    override fun handledType(): KClass<JpqlSelectQueryUnion<*>> =
-        JpqlSelectQueryUnion::class
+    override fun handledType(): KClass<JpqlSelectQueryUnion<*>> = JpqlSelectQueryUnion::class
 
-    override fun serialize(part: JpqlSelectQueryUnion<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlSelectQueryUnion<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         val queryContext = context + JpqlRenderStatement.Select

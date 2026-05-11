@@ -35,9 +35,10 @@ class JpqlUpperSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.upper(
-            stringExpression1,
-        )
+        val part =
+            Expressions.upper(
+                stringExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

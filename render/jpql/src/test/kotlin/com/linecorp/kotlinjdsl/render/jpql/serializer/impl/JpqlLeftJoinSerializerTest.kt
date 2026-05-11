@@ -29,10 +29,11 @@ class JpqlLeftJoinSerializerTest : WithAssertions {
 
     private val entity1 = Entities.entity(Author::class, "author01")
 
-    private val predicate1 = Predicates.equal(
-        Paths.path(entity1, Author::authorId),
-        Paths.path(BookAuthor::authorId),
-    )
+    private val predicate1 =
+        Predicates.equal(
+            Paths.path(entity1, Author::authorId),
+            Paths.path(BookAuthor::authorId),
+        )
 
     @Test
     fun handledType() {
@@ -46,10 +47,11 @@ class JpqlLeftJoinSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Joins.leftJoin(
-            entity1,
-            predicate1,
-        )
+        val part =
+            Joins.leftJoin(
+                entity1,
+                predicate1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

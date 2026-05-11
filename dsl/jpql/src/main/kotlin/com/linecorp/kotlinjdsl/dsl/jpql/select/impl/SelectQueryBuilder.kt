@@ -42,8 +42,8 @@ internal data class SelectQueryBuilder<T : Any>(
         return this
     }
 
-    fun build(): SelectQuery<T> {
-        return SelectQueries.selectQuery(
+    fun build(): SelectQuery<T> =
+        SelectQueries.selectQuery(
             returnType = returnType,
             select = select,
             distinct = distinct,
@@ -53,5 +53,4 @@ internal data class SelectQueryBuilder<T : Any>(
             having = having,
             orderBy = orderBy,
         )
-    }
 }

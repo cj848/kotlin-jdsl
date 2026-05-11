@@ -18,29 +18,32 @@ class EqualDslTest : WithAssertions {
 
     private val bigDecimal1 = BigDecimal.valueOf(100)
 
-    private val subquery1 = Expressions.subquery(
-        SelectQueries.selectQuery(
-            returnType = BigDecimal::class,
-            distinct = false,
-            select = listOf(Paths.path(Book::price)),
-            from = listOf(Entities.entity(Book::class)),
-        ),
-    )
+    private val subquery1 =
+        Expressions.subquery(
+            SelectQueries.selectQuery(
+                returnType = BigDecimal::class,
+                distinct = false,
+                select = listOf(Paths.path(Book::price)),
+                from = listOf(Entities.entity(Book::class)),
+            ),
+        )
 
     @Test
     fun `equal() with a bigDecimal`() {
         // when
-        val predicate = queryPart {
-            expression1.equal(bigDecimal1)
-        }
+        val predicate =
+            queryPart {
+                expression1.equal(bigDecimal1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.equal(
-            expression1,
-            Expressions.value(bigDecimal1),
-        )
+        val excepted =
+            Predicates.equal(
+                expression1,
+                Expressions.value(bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -48,17 +51,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun `equal() with a expression`() {
         // when
-        val predicate = queryPart {
-            expression1.equal(expression2)
-        }
+        val predicate =
+            queryPart {
+                expression1.equal(expression2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.equal(
-            expression1,
-            expression2,
-        )
+        val excepted =
+            Predicates.equal(
+                expression1,
+                expression2,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -66,17 +71,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun equalAll() {
         // when
-        val predicate = queryPart {
-            expression1.equalAll(subquery1)
-        }
+        val predicate =
+            queryPart {
+                expression1.equalAll(subquery1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.equalAll(
-            expression1,
-            subquery1,
-        )
+        val excepted =
+            Predicates.equalAll(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -84,17 +91,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun equalAny() {
         // when
-        val predicate = queryPart {
-            expression1.equalAny(subquery1)
-        }
+        val predicate =
+            queryPart {
+                expression1.equalAny(subquery1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.equalAny(
-            expression1,
-            subquery1,
-        )
+        val excepted =
+            Predicates.equalAny(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -102,17 +111,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun `eq() with a bigDecimal`() {
         // when
-        val predicate = queryPart {
-            expression1.eq(bigDecimal1)
-        }
+        val predicate =
+            queryPart {
+                expression1.eq(bigDecimal1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.equal(
-            expression1,
-            Expressions.value(bigDecimal1),
-        )
+        val excepted =
+            Predicates.equal(
+                expression1,
+                Expressions.value(bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -120,17 +131,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun `eq() with a expression`() {
         // when
-        val predicate = queryPart {
-            expression1.eq(expression2)
-        }
+        val predicate =
+            queryPart {
+                expression1.eq(expression2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.equal(
-            expression1,
-            expression2,
-        )
+        val excepted =
+            Predicates.equal(
+                expression1,
+                expression2,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -138,17 +151,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun eqAll() {
         // when
-        val predicate = queryPart {
-            expression1.eqAll(subquery1)
-        }
+        val predicate =
+            queryPart {
+                expression1.eqAll(subquery1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.equalAll(
-            expression1,
-            subquery1,
-        )
+        val excepted =
+            Predicates.equalAll(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -156,17 +171,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun eqAny() {
         // when
-        val predicate = queryPart {
-            expression1.eqAny(subquery1)
-        }
+        val predicate =
+            queryPart {
+                expression1.eqAny(subquery1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.equalAny(
-            expression1,
-            subquery1,
-        )
+        val excepted =
+            Predicates.equalAny(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -174,17 +191,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun `notEqual() with a bigDecimal`() {
         // when
-        val predicate = queryPart {
-            expression1.notEqual(bigDecimal1)
-        }
+        val predicate =
+            queryPart {
+                expression1.notEqual(bigDecimal1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notEqual(
-            expression1,
-            Expressions.value(bigDecimal1),
-        )
+        val excepted =
+            Predicates.notEqual(
+                expression1,
+                Expressions.value(bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -192,17 +211,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun `notEqual() with a expression`() {
         // when
-        val predicate = queryPart {
-            expression1.notEqual(expression2)
-        }
+        val predicate =
+            queryPart {
+                expression1.notEqual(expression2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notEqual(
-            expression1,
-            expression2,
-        )
+        val excepted =
+            Predicates.notEqual(
+                expression1,
+                expression2,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -210,17 +231,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun notEqualAll() {
         // when
-        val predicate = queryPart {
-            expression1.notEqualAll(subquery1)
-        }
+        val predicate =
+            queryPart {
+                expression1.notEqualAll(subquery1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notEqualAll(
-            expression1,
-            subquery1,
-        )
+        val excepted =
+            Predicates.notEqualAll(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -228,17 +251,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun notEqualAny() {
         // when
-        val predicate = queryPart {
-            expression1.notEqualAny(subquery1)
-        }
+        val predicate =
+            queryPart {
+                expression1.notEqualAny(subquery1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notEqualAny(
-            expression1,
-            subquery1,
-        )
+        val excepted =
+            Predicates.notEqualAny(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -246,17 +271,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun `ne() with a bigDecimal`() {
         // when
-        val predicate = queryPart {
-            expression1.ne(bigDecimal1)
-        }
+        val predicate =
+            queryPart {
+                expression1.ne(bigDecimal1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notEqual(
-            expression1,
-            Expressions.value(bigDecimal1),
-        )
+        val excepted =
+            Predicates.notEqual(
+                expression1,
+                Expressions.value(bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -264,17 +291,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun `ne() with a expression`() {
         // when
-        val predicate = queryPart {
-            expression1.ne(expression2)
-        }
+        val predicate =
+            queryPart {
+                expression1.ne(expression2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notEqual(
-            expression1,
-            expression2,
-        )
+        val excepted =
+            Predicates.notEqual(
+                expression1,
+                expression2,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -282,17 +311,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun neAll() {
         // when
-        val predicate = queryPart {
-            expression1.neAll(subquery1)
-        }
+        val predicate =
+            queryPart {
+                expression1.neAll(subquery1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notEqualAll(
-            expression1,
-            subquery1,
-        )
+        val excepted =
+            Predicates.notEqualAll(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -300,17 +331,19 @@ class EqualDslTest : WithAssertions {
     @Test
     fun neAny() {
         // when
-        val predicate = queryPart {
-            expression1.neAny(subquery1)
-        }
+        val predicate =
+            queryPart {
+                expression1.neAny(subquery1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notEqualAny(
-            expression1,
-            subquery1,
-        )
+        val excepted =
+            Predicates.notEqualAny(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }

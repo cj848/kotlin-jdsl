@@ -38,10 +38,11 @@ class JpqlDivideSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.div(
-            expression1,
-            expression2,
-        )
+        val part =
+            Expressions.div(
+                expression1,
+                expression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when

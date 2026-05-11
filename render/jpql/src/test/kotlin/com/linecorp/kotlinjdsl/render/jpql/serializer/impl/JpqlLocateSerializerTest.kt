@@ -39,10 +39,11 @@ class JpqlLocateSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.locate(
-            substring = stringExpression1,
-            string = stringExpression2,
-        )
+        val part =
+            Expressions.locate(
+                substring = stringExpression1,
+                string = stringExpression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -62,11 +63,12 @@ class JpqlLocateSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the comma, when the start is not null`() {
         // given
-        val part = Expressions.locate(
-            substring = stringExpression1,
-            string = stringExpression2,
-            start = intExpression1,
-        )
+        val part =
+            Expressions.locate(
+                substring = stringExpression1,
+                string = stringExpression2,
+                start = intExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

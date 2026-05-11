@@ -1,12 +1,9 @@
 plugins {
-    alias(rootLibs.plugins.kotlin2.jvm)
     alias(exampleLibs.plugins.spring.boot4)
-    alias(rootLibs.plugins.kotlin2.noarg)
-    alias(rootLibs.plugins.kotlin2.allopen)
-    alias(rootLibs.plugins.kotlin2.spring)
-    alias(rootLibs.plugins.kotlin2.jpa)
-    alias(rootLibs.plugins.ktlint5)
-    alias(rootLibs.plugins.kover)
+    alias(libs.plugins.kotlin.noarg)
+    alias(libs.plugins.kotlin.allopen)
+    alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.kotlin.jpa)
 }
 
 group = "com.linecorp.kotlin-jdsl"
@@ -17,28 +14,23 @@ repositories {
 }
 
 dependencies {
-    @Suppress("VulnerableLibrariesLocal", "RedundantSuppression")
     implementation(exampleLibs.spring.boot4.batch)
     implementation(exampleLibs.spring.boot4.jpa)
     implementation(exampleLibs.spring.boot4.p6spy)
-    implementation("com.linecorp.kotlin-jdsl:example")
-    implementation("com.linecorp.kotlin-jdsl:jpql-dsl")
-    implementation("com.linecorp.kotlin-jdsl:jpql-render")
-    implementation("com.linecorp.kotlin-jdsl:spring-batch6-support")
+    implementation(projects.example)
+    implementation(projects.jpqlDsl)
+    implementation(projects.jpqlRender)
+    implementation(projects.springBatch6Support)
 
     runtimeOnly(exampleLibs.h2)
 
     testImplementation(exampleLibs.spring.boot4.test)
     testImplementation(exampleLibs.spring.batch6.test)
-    testImplementation(rootLibs.mockk)
+    testImplementation(libs.mockk)
 }
 
 kotlin {
     jvmToolchain(17)
-}
-
-tasks.test {
-    useJUnitPlatform()
 }
 
 noArg {
@@ -51,6 +43,7 @@ allOpen {
     annotation("jakarta.persistence.Embeddable")
 }
 
+// Disable bootJar as we usually run tests or use it as a library reference
 tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
     enabled = false
 }

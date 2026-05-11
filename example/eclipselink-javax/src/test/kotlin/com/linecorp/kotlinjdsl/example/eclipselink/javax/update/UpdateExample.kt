@@ -23,26 +23,28 @@ class UpdateExample : WithAssertions {
     @Test
     fun `update author's name with id 1`() {
         // when
-        val updateJpqlQuery = jpql {
-            update(
-                entity(Author::class),
-            ).set(
-                path(Author::name),
-                "Author001",
-            ).where(
-                path(Author::authorId).eq(1L),
-            )
-        }
+        val updateJpqlQuery =
+            jpql {
+                update(
+                    entity(Author::class),
+                ).set(
+                    path(Author::name),
+                    "Author001",
+                ).where(
+                    path(Author::authorId).eq(1L),
+                )
+            }
 
-        val selectJpqlQuery = jpql {
-            select(
-                entity(Author::class),
-            ).from(
-                entity(Author::class),
-            ).where(
-                path(Author::authorId).eq(1L),
-            )
-        }
+        val selectJpqlQuery =
+            jpql {
+                select(
+                    entity(Author::class),
+                ).from(
+                    entity(Author::class),
+                ).where(
+                    path(Author::authorId).eq(1L),
+                )
+            }
 
         val actual: Author
 

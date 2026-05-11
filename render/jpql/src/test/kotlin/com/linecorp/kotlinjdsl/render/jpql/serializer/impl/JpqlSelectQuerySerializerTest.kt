@@ -55,22 +55,25 @@ class JpqlSelectQuerySerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val expressions = listOf(
-            expression1,
-            expression2,
-        )
+        val expressions =
+            listOf(
+                expression1,
+                expression2,
+            )
 
-        val entities = listOf(
-            entity1,
-            entity2,
-        )
+        val entities =
+            listOf(
+                entity1,
+                entity2,
+            )
 
-        val part = SelectQueries.selectQuery(
-            returnType = String::class,
-            distinct = false,
-            select = expressions,
-            from = entities,
-        )
+        val part =
+            SelectQueries.selectQuery(
+                returnType = String::class,
+                distinct = false,
+                select = expressions,
+                from = entities,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -111,22 +114,25 @@ class JpqlSelectQuerySerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the DISTINCT, when the distinct is enabled`() {
         // given
-        val expressions = listOf(
-            expression1,
-            expression2,
-        )
+        val expressions =
+            listOf(
+                expression1,
+                expression2,
+            )
 
-        val entities = listOf(
-            entity1,
-            entity2,
-        )
+        val entities =
+            listOf(
+                entity1,
+                entity2,
+            )
 
-        val part = SelectQueries.selectQuery(
-            returnType = String::class,
-            distinct = true,
-            select = expressions,
-            from = entities,
-        )
+        val part =
+            SelectQueries.selectQuery(
+                returnType = String::class,
+                distinct = true,
+                select = expressions,
+                from = entities,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -169,23 +175,26 @@ class JpqlSelectQuerySerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the WHERE, when the where is not null`() {
         // given
-        val expressions = listOf(
-            expression1,
-            expression2,
-        )
+        val expressions =
+            listOf(
+                expression1,
+                expression2,
+            )
 
-        val entities = listOf(
-            entity1,
-            entity2,
-        )
+        val entities =
+            listOf(
+                entity1,
+                entity2,
+            )
 
-        val part = SelectQueries.selectQuery(
-            returnType = String::class,
-            distinct = false,
-            select = expressions,
-            from = entities,
-            where = predicate1,
-        )
+        val part =
+            SelectQueries.selectQuery(
+                returnType = String::class,
+                distinct = false,
+                select = expressions,
+                from = entities,
+                where = predicate1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -234,28 +243,32 @@ class JpqlSelectQuerySerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the GROUP BY, when the groupBy is not null`() {
         // given
-        val expressions1 = listOf(
-            expression1,
-            expression2,
-        )
+        val expressions1 =
+            listOf(
+                expression1,
+                expression2,
+            )
 
-        val expressions2 = listOf(
-            expression3,
-            expression4,
-        )
+        val expressions2 =
+            listOf(
+                expression3,
+                expression4,
+            )
 
-        val entities = listOf(
-            entity1,
-            entity2,
-        )
+        val entities =
+            listOf(
+                entity1,
+                entity2,
+            )
 
-        val part = SelectQueries.selectQuery(
-            returnType = String::class,
-            distinct = false,
-            select = expressions1,
-            from = entities,
-            groupBy = expressions2,
-        )
+        val part =
+            SelectQueries.selectQuery(
+                returnType = String::class,
+                distinct = false,
+                select = expressions1,
+                from = entities,
+                groupBy = expressions2,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -310,23 +323,26 @@ class JpqlSelectQuerySerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the HAVING, when the having is not null`() {
         // given
-        val expressions = listOf(
-            expression1,
-            expression2,
-        )
+        val expressions =
+            listOf(
+                expression1,
+                expression2,
+            )
 
-        val entities = listOf(
-            entity1,
-            entity2,
-        )
+        val entities =
+            listOf(
+                entity1,
+                entity2,
+            )
 
-        val part = SelectQueries.selectQuery(
-            returnType = String::class,
-            distinct = false,
-            select = expressions,
-            from = entities,
-            having = predicate1,
-        )
+        val part =
+            SelectQueries.selectQuery(
+                returnType = String::class,
+                distinct = false,
+                select = expressions,
+                from = entities,
+                having = predicate1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -375,28 +391,32 @@ class JpqlSelectQuerySerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the ORDER BY, when the orderBy is not null`() {
         // given
-        val expressions = listOf(
-            expression1,
-            expression2,
-        )
+        val expressions =
+            listOf(
+                expression1,
+                expression2,
+            )
 
-        val sorts = listOf(
-            sort1,
-            sort2,
-        )
+        val sorts =
+            listOf(
+                sort1,
+                sort2,
+            )
 
-        val entities = listOf(
-            entity1,
-            entity2,
-        )
+        val entities =
+            listOf(
+                entity1,
+                entity2,
+            )
 
-        val part = SelectQueries.selectQuery(
-            returnType = String::class,
-            distinct = false,
-            select = expressions,
-            from = entities,
-            orderBy = sorts,
-        )
+        val part =
+            SelectQueries.selectQuery(
+                returnType = String::class,
+                distinct = false,
+                select = expressions,
+                from = entities,
+                orderBy = sorts,
+            )
         val context = TestRenderContext(serializer)
 
         // when

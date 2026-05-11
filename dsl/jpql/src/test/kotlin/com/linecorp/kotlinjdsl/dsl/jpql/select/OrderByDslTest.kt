@@ -21,28 +21,30 @@ class OrderByDslTest : WithAssertions {
     @Test
     fun orderBy() {
         // when
-        val select = queryPart {
-            select(
-                expression1,
-            ).from(
-                entity1,
-            ).orderBy(
-                sort1,
-                null,
-                sort2,
-            )
-        }.toQuery()
+        val select =
+            queryPart {
+                select(
+                    expression1,
+                ).from(
+                    entity1,
+                ).orderBy(
+                    sort1,
+                    null,
+                    sort2,
+                )
+            }.toQuery()
 
         val actual: SelectQuery<String> = select // for type check
 
         // then
-        val expected = SelectQueries.selectQuery(
-            returnType = String::class,
-            distinct = false,
-            select = listOf(expression1),
-            from = listOf(entity1),
-            orderBy = listOf(sort1, sort2),
-        )
+        val expected =
+            SelectQueries.selectQuery(
+                returnType = String::class,
+                distinct = false,
+                select = listOf(expression1),
+                from = listOf(entity1),
+                orderBy = listOf(sort1, sort2),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

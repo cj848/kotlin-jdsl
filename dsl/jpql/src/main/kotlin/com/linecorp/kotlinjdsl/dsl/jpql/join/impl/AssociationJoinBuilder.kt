@@ -25,10 +25,9 @@ internal data class AssociationJoinBuilder<T : Any>(
         return this
     }
 
-    fun build(): Join {
-        return when (joinType) {
+    fun build(): Join =
+        when (joinType) {
             JoinType.INNER -> Joins.innerJoin(entity, association, predicate)
             JoinType.LEFT -> Joins.leftJoin(entity, association, predicate)
         }
-    }
 }

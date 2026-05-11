@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlRoundSerializer : JpqlSerializer<JpqlRound<*>> {
-    override fun handledType(): KClass<JpqlRound<*>> {
-        return JpqlRound::class
-    }
+    override fun handledType(): KClass<JpqlRound<*>> = JpqlRound::class
 
-    override fun serialize(part: JpqlRound<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlRound<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("ROUND")

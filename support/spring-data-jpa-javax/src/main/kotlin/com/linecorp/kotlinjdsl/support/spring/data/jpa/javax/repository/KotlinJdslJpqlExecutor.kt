@@ -234,9 +234,7 @@ interface KotlinJdslJpqlExecutor {
      * @return the number of entities updated
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> update(
-        init: Jpql.() -> JpqlQueryable<UpdateQuery<T>>,
-    ): Int
+    fun <T : Any> update(init: Jpql.() -> JpqlQueryable<UpdateQuery<T>>): Int
 
     /**
      * Execute the update query.
@@ -266,9 +264,7 @@ interface KotlinJdslJpqlExecutor {
      * @return the number of entities deleted
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> delete(
-        init: Jpql.() -> JpqlQueryable<DeleteQuery<T>>,
-    ): Int
+    fun <T : Any> delete(init: Jpql.() -> JpqlQueryable<DeleteQuery<T>>): Int
 
     /**
      * Execute the delete query.

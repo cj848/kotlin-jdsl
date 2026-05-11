@@ -9,11 +9,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlLiteralSerializer : JpqlSerializer<JpqlLiteral<*>> {
-    override fun handledType(): KClass<JpqlLiteral<*>> {
-        return JpqlLiteral::class
-    }
+    override fun handledType(): KClass<JpqlLiteral<*>> = JpqlLiteral::class
 
-    override fun serialize(part: JpqlLiteral<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlLiteral<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         when (part) {
             is JpqlLiteral.IntLiteral -> serialize(part, writer)
             is JpqlLiteral.LongLiteral -> serialize(part, writer)
@@ -27,25 +29,40 @@ class JpqlLiteralSerializer : JpqlSerializer<JpqlLiteral<*>> {
         }
     }
 
-    private fun serialize(part: JpqlLiteral.IntLiteral, writer: JpqlWriter) {
+    private fun serialize(
+        part: JpqlLiteral.IntLiteral,
+        writer: JpqlWriter,
+    ) {
         writer.write(part.int.toString())
     }
 
-    private fun serialize(part: JpqlLiteral.LongLiteral, writer: JpqlWriter) {
+    private fun serialize(
+        part: JpqlLiteral.LongLiteral,
+        writer: JpqlWriter,
+    ) {
         writer.write(part.long.toString())
         writer.write("L")
     }
 
-    private fun serialize(part: JpqlLiteral.FloatLiteral, writer: JpqlWriter) {
+    private fun serialize(
+        part: JpqlLiteral.FloatLiteral,
+        writer: JpqlWriter,
+    ) {
         writer.write(part.float.toString())
         writer.write("F")
     }
 
-    private fun serialize(part: JpqlLiteral.DoubleLiteral, writer: JpqlWriter) {
+    private fun serialize(
+        part: JpqlLiteral.DoubleLiteral,
+        writer: JpqlWriter,
+    ) {
         writer.write(part.double.toString())
     }
 
-    private fun serialize(part: JpqlLiteral.BooleanLiteral, writer: JpqlWriter) {
+    private fun serialize(
+        part: JpqlLiteral.BooleanLiteral,
+        writer: JpqlWriter,
+    ) {
         if (part.boolean) {
             writer.write("TRUE")
         } else {
@@ -53,7 +70,10 @@ class JpqlLiteralSerializer : JpqlSerializer<JpqlLiteral<*>> {
         }
     }
 
-    private fun serialize(part: JpqlLiteral.CharLiteral, writer: JpqlWriter) {
+    private fun serialize(
+        part: JpqlLiteral.CharLiteral,
+        writer: JpqlWriter,
+    ) {
         writer.write("'")
         when (part.char) {
             '\'' -> writer.write("''")
@@ -62,7 +82,10 @@ class JpqlLiteralSerializer : JpqlSerializer<JpqlLiteral<*>> {
         writer.write("'")
     }
 
-    private fun serialize(part: JpqlLiteral.StringLiteral, writer: JpqlWriter) {
+    private fun serialize(
+        part: JpqlLiteral.StringLiteral,
+        writer: JpqlWriter,
+    ) {
         val encodedString = part.string.replace("'", "''")
 
         writer.write("'")
@@ -70,7 +93,10 @@ class JpqlLiteralSerializer : JpqlSerializer<JpqlLiteral<*>> {
         writer.write("'")
     }
 
-    private fun serialize(part: JpqlLiteral.EnumLiteral<*>, writer: JpqlWriter) {
+    private fun serialize(
+        part: JpqlLiteral.EnumLiteral<*>,
+        writer: JpqlWriter,
+    ) {
         writer.write(part.enum::class.java.name + "." + part.enum.name)
     }
 

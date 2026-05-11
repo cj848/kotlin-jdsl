@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlNotEqualAnySerializer : JpqlSerializer<JpqlNotEqualAny<*>> {
-    override fun handledType(): KClass<JpqlNotEqualAny<*>> {
-        return JpqlNotEqualAny::class
-    }
+    override fun handledType(): KClass<JpqlNotEqualAny<*>> = JpqlNotEqualAny::class
 
-    override fun serialize(part: JpqlNotEqualAny<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlNotEqualAny<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         delegate.serialize(part.value, writer, context)

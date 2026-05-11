@@ -17,10 +17,9 @@ object DeleteQueries {
     fun <T : Any> deleteQuery(
         entity: Entity<T>,
         where: Predicate? = null,
-    ): DeleteQuery<T> {
-        return JpqlDeleteQuery(
+    ): DeleteQuery<T> =
+        JpqlDeleteQuery(
             entity = entity,
             where = where,
         )
-    }
 }

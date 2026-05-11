@@ -63,17 +63,18 @@ class BatchExampleTest : WithAssertions {
     @Test
     fun `modify the name of authors with id greater than 2`() {
         // given
-        val queryProvider = queryProviderFactory.create(
-            jpql {
-                select(
-                    entity(Author::class),
-                ).from(
-                    entity(Author::class),
-                ).where(
-                    path(Author::authorId).gt(2L),
-                )
-            },
-        )
+        val queryProvider =
+            queryProviderFactory.create(
+                jpql {
+                    select(
+                        entity(Author::class),
+                    ).from(
+                        entity(Author::class),
+                    ).where(
+                        path(Author::authorId).gt(2L),
+                    )
+                },
+            )
 
         val processor = { author: Author ->
             author.apply { name = "Modified$name" }
@@ -98,14 +99,15 @@ class BatchExampleTest : WithAssertions {
     @Test
     fun `10 percentage discount on all books`() {
         // given
-        val queryProvider = queryProviderFactory.create {
-            select(
-                entity(Book::class),
-            ).from(
-                entity(Book::class),
-                fetchJoin(Book::publishers),
-            )
-        }
+        val queryProvider =
+            queryProviderFactory.create {
+                select(
+                    entity(Book::class),
+                ).from(
+                    entity(Book::class),
+                    fetchJoin(Book::publishers),
+                )
+            }
 
         val processor = { book: Book ->
             book.apply { salePrice = BookPrice(salePrice.value * BigDecimal.valueOf(0.9)) }
@@ -135,21 +137,26 @@ class BatchExampleTest : WithAssertions {
         )
     }
 
-    private fun <T : Any> job(queryProvider: JpaQueryProvider, processor: (T) -> T): JobLauncherTestUtils {
+    private fun <T : Any> job(
+        queryProvider: JpaQueryProvider,
+        processor: (T) -> T,
+    ): JobLauncherTestUtils {
         val randomName = UUID.randomUUID().toString()
 
         @Suppress("UNCHECKED_CAST")
-        val job = jobBuilderFactory.get(randomName)
-            .start(
-                stepBuilderFactory.get(randomName)
-                    .chunk<Any, Any>(100)
-                    .reader(createReader(queryProvider))
-                    .processor(createProcessor(processor as (Any) -> Any))
-                    .writer(createWriter())
-                    .transactionManager(transactionManager)
-                    .build(),
-            )
-            .build()
+        val job =
+            jobBuilderFactory
+                .get(randomName)
+                .start(
+                    stepBuilderFactory
+                        .get(randomName)
+                        .chunk<Any, Any>(100)
+                        .reader(createReader(queryProvider))
+                        .processor(createProcessor(processor as (Any) -> Any))
+                        .writer(createWriter())
+                        .transactionManager(transactionManager)
+                        .build(),
+                ).build()
 
         return JobLauncherTestUtils().also {
             it.jobRepository = jobRepository
@@ -158,24 +165,21 @@ class BatchExampleTest : WithAssertions {
         }
     }
 
-    private fun createReader(queryProvider: JpaQueryProvider): JpaPagingItemReader<Any> {
-        return JpaPagingItemReaderBuilder<Any>()
+    private fun createReader(queryProvider: JpaQueryProvider): JpaPagingItemReader<Any> =
+        JpaPagingItemReaderBuilder<Any>()
             .entityManagerFactory(entityManagerFactory)
             .queryProvider(queryProvider)
             .pageSize(100)
             .saveState(false)
             .build()
-    }
 
-    private fun createProcessor(processor: (Any) -> Any): ItemProcessor<Any, Any> {
-        return ItemProcessor { item ->
+    private fun createProcessor(processor: (Any) -> Any): ItemProcessor<Any, Any> =
+        ItemProcessor { item ->
             processor(item)
         }
-    }
 
-    private fun createWriter(): JpaItemWriter<Any> {
-        return JpaItemWriterBuilder<Any>()
+    private fun createWriter(): JpaItemWriter<Any> =
+        JpaItemWriterBuilder<Any>()
             .entityManagerFactory(entityManagerFactory)
             .build()
-    }
 }

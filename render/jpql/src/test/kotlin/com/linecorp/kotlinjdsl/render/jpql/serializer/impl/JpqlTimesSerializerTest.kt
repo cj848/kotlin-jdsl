@@ -38,10 +38,11 @@ class JpqlTimesSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.times(
-            expression1,
-            expression2,
-        )
+        val part =
+            Expressions.times(
+                expression1,
+                expression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when

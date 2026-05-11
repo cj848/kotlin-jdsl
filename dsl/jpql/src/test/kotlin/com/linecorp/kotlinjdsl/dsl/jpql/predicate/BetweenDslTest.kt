@@ -22,18 +22,20 @@ class BetweenDslTest : WithAssertions {
     @Test
     fun `between() with bigDecimals`() {
         // when
-        val predicate = queryPart {
-            expression1.between(bigDecimal1, bigDecimal2)
-        }
+        val predicate =
+            queryPart {
+                expression1.between(bigDecimal1, bigDecimal2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.between(
-            value = expression1,
-            min = Expressions.value(bigDecimal1),
-            max = Expressions.value(bigDecimal2),
-        )
+        val excepted =
+            Predicates.between(
+                value = expression1,
+                min = Expressions.value(bigDecimal1),
+                max = Expressions.value(bigDecimal2),
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -41,18 +43,20 @@ class BetweenDslTest : WithAssertions {
     @Test
     fun `between() with bigDecimal expressions`() {
         // when
-        val predicate = queryPart {
-            expression1.between(bigDecimalExpression1, bigDecimalExpression2)
-        }
+        val predicate =
+            queryPart {
+                expression1.between(bigDecimalExpression1, bigDecimalExpression2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.between(
-            value = expression1,
-            min = bigDecimalExpression1,
-            max = bigDecimalExpression2,
-        )
+        val excepted =
+            Predicates.between(
+                value = expression1,
+                min = bigDecimalExpression1,
+                max = bigDecimalExpression2,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -60,18 +64,20 @@ class BetweenDslTest : WithAssertions {
     @Test
     fun `notBetween() with bigDecimals`() {
         // when
-        val predicate = queryPart {
-            expression1.notBetween(bigDecimal1, bigDecimal2)
-        }
+        val predicate =
+            queryPart {
+                expression1.notBetween(bigDecimal1, bigDecimal2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notBetween(
-            value = expression1,
-            min = Expressions.value(bigDecimal1),
-            max = Expressions.value(bigDecimal2),
-        )
+        val excepted =
+            Predicates.notBetween(
+                value = expression1,
+                min = Expressions.value(bigDecimal1),
+                max = Expressions.value(bigDecimal2),
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -79,18 +85,20 @@ class BetweenDslTest : WithAssertions {
     @Test
     fun `notBetween() with bigDecimal expressions`() {
         // when
-        val predicate = queryPart {
-            expression1.notBetween(bigDecimalExpression1, bigDecimalExpression2)
-        }
+        val predicate =
+            queryPart {
+                expression1.notBetween(bigDecimalExpression1, bigDecimalExpression2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notBetween(
-            value = expression1,
-            min = bigDecimalExpression1,
-            max = bigDecimalExpression2,
-        )
+        val excepted =
+            Predicates.notBetween(
+                value = expression1,
+                min = bigDecimalExpression1,
+                max = bigDecimalExpression2,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }

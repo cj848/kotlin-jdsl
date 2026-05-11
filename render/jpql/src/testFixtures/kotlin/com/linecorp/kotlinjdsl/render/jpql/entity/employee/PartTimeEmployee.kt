@@ -12,11 +12,11 @@ class PartTimeEmployee(
     departments: MutableSet<EmployeeDepartment>,
     val weeklySalary: BigDecimal,
 ) : Employee(
-    employeeId = employeeId,
-    name = name,
-    nickname = nickname,
-    age = age,
-    phone = phone,
-    address = address,
-    departments = departments,
-)
+        employeeId = employeeId,
+        name = name,
+        nickname = nickname,
+        age = age,
+        phone = phone,
+        address = address,
+        departments = departments,
+    )

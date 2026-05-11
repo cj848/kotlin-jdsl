@@ -37,9 +37,10 @@ class JpqlIndexSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.index(
-            entity = entity1,
-        )
+        val part =
+            Expressions.index(
+                entity = entity1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

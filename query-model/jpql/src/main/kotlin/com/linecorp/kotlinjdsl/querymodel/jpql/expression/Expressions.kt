@@ -86,13 +86,12 @@ object Expressions {
      * Creates a parameter expression with a generated name and the value.
      */
     @SinceJdsl("3.0.0")
-    fun <T> value(value: @Exact T): Expression<T & Any> {
-        return if (value == null) {
+    fun <T> value(value: @Exact T): Expression<T & Any> =
+        if (value == null) {
             nullValue()
         } else {
             JpqlValue(value)
         }
-    }
 
     /**
      * Creates a parameter expression with a generated name and null.
@@ -107,50 +106,38 @@ object Expressions {
      * Creates a literal expression with the int.
      */
     @SinceJdsl("3.0.0")
-    fun intLiteral(int: Int): Expression<Int> {
-        return JpqlLiteral.IntLiteral(int)
-    }
+    fun intLiteral(int: Int): Expression<Int> = JpqlLiteral.IntLiteral(int)
 
     /**
      * Creates a literal expression with the long.
      */
     @SinceJdsl("3.0.0")
-    fun longLiteral(long: Long): Expression<Long> {
-        return JpqlLiteral.LongLiteral(long)
-    }
+    fun longLiteral(long: Long): Expression<Long> = JpqlLiteral.LongLiteral(long)
 
     /**
      * Creates a literal expression with the float.
      */
     @SinceJdsl("3.0.0")
-    fun floatLiteral(float: Float): Expression<Float> {
-        return JpqlLiteral.FloatLiteral(float)
-    }
+    fun floatLiteral(float: Float): Expression<Float> = JpqlLiteral.FloatLiteral(float)
 
     /**
      * Creates a literal expression with the double.
      */
     @SinceJdsl("3.0.0")
-    fun doubleLiteral(double: Double): Expression<Double> {
-        return JpqlLiteral.DoubleLiteral(double)
-    }
+    fun doubleLiteral(double: Double): Expression<Double> = JpqlLiteral.DoubleLiteral(double)
 
     /**
      * Creates a literal expression with the boolean.
      */
     @SinceJdsl("3.0.0")
-    fun booleanLiteral(boolean: Boolean): Expression<Boolean> {
-        return JpqlLiteral.BooleanLiteral(boolean)
-    }
+    fun booleanLiteral(boolean: Boolean): Expression<Boolean> = JpqlLiteral.BooleanLiteral(boolean)
 
     /**
      * Creates a literal expression with the char.
      * If the char is '(single quote), it is rendered as ''(two single quotes).
      */
     @SinceJdsl("3.0.0")
-    fun charLiteral(char: Char): Expression<Char> {
-        return JpqlLiteral.CharLiteral(char)
-    }
+    fun charLiteral(char: Char): Expression<Char> = JpqlLiteral.CharLiteral(char)
 
     /**
      * Creates a literal expression with the string.
@@ -158,17 +145,13 @@ object Expressions {
      * For example: literal''s.
      */
     @SinceJdsl("3.0.0")
-    fun stringLiteral(string: String): Expression<String> {
-        return JpqlLiteral.StringLiteral(string)
-    }
+    fun stringLiteral(string: String): Expression<String> = JpqlLiteral.StringLiteral(string)
 
     /**
      * Creates a literal expression with the enum.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Enum<T>> enumLiteral(enum: T): Expression<T> {
-        return JpqlLiteral.EnumLiteral(enum)
-    }
+    fun <T : Enum<T>> enumLiteral(enum: T): Expression<T> = JpqlLiteral.EnumLiteral(enum)
 
     /**
      * Creates a literal expression with null.
@@ -183,18 +166,17 @@ object Expressions {
      * Creates a parameter expression with the name.
      */
     @SinceJdsl("3.0.0")
-    fun <T> param(name: String): Expression<T & Any> {
-        return JpqlParam(name, null)
-    }
+    fun <T> param(name: String): Expression<T & Any> = JpqlParam(name, null)
 
     /**
      * Creates a parameter expression with the name and value.
      * The value can be overridden in rendering.
      */
     @SinceJdsl("3.0.0")
-    fun <T> param(name: String, value: @Exact T): Expression<T & Any> {
-        return JpqlParam(name, value)
-    }
+    fun <T> param(
+        name: String,
+        value: @Exact T,
+    ): Expression<T & Any> = JpqlParam(name, value)
 
     /**
      * Creates an expression that represents the plus of values.
@@ -202,9 +184,10 @@ object Expressions {
      * This is the same as ```value1 + value2```.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Number, S : T> plus(value1: Expression<T>, value2: Expression<S>): Expression<T> {
-        return JpqlPlus(value1, value2)
-    }
+    fun <T : Number, S : T> plus(
+        value1: Expression<T>,
+        value2: Expression<S>,
+    ): Expression<T> = JpqlPlus(value1, value2)
 
     /**
      * Creates an expression that represents the minus of values.
@@ -212,9 +195,10 @@ object Expressions {
      * This is the same as ```value1 - value2```.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Number, S : T> minus(value1: Expression<T>, value2: Expression<S>): Expression<T> {
-        return JpqlMinus(value1, value2)
-    }
+    fun <T : Number, S : T> minus(
+        value1: Expression<T>,
+        value2: Expression<S>,
+    ): Expression<T> = JpqlMinus(value1, value2)
 
     /**
      * Creates an expression that represents the times of values.
@@ -222,9 +206,10 @@ object Expressions {
      * This is the same as ```value1 * value2```.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Number, S : T> times(value1: Expression<T>, value2: Expression<S>): Expression<T> {
-        return JpqlTimes(value1, value2)
-    }
+    fun <T : Number, S : T> times(
+        value1: Expression<T>,
+        value2: Expression<S>,
+    ): Expression<T> = JpqlTimes(value1, value2)
 
     /**
      * Creates an expression that represents the divide of values.
@@ -232,105 +217,91 @@ object Expressions {
      * This is the same as ```value1 / value2```.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Number, S : T> div(value1: Expression<T>, value2: Expression<S>): Expression<T> {
-        return JpqlDivide(value1, value2)
-    }
+    fun <T : Number, S : T> div(
+        value1: Expression<T>,
+        value2: Expression<S>,
+    ): Expression<T> = JpqlDivide(value1, value2)
 
     /**
      * Creates an expression that represents the absolute value.
      */
     @SinceJdsl("3.4.0")
-    fun <T : Number> abs(value: Expression<T>): Expression<T> {
-        return JpqlAbs(value)
-    }
+    fun <T : Number> abs(value: Expression<T>): Expression<T> = JpqlAbs(value)
 
     /**
      * Creates an expression that is enclosed in ceiling.
      */
     @SinceJdsl("3.4.0")
-    fun <T : Number> ceiling(value: Expression<T>): Expression<T> {
-        return JpqlCeiling(value)
-    }
+    fun <T : Number> ceiling(value: Expression<T>): Expression<T> = JpqlCeiling(value)
 
     /**
      * Creates an expression that represents the exponential value.
      */
     @SinceJdsl("3.4.0")
-    fun <T : Number> exp(value: Expression<T>): Expression<Double> {
-        return JpqlExp(value)
-    }
+    fun <T : Number> exp(value: Expression<T>): Expression<Double> = JpqlExp(value)
 
     /**
      * Creates an expression that is enclosed in floor.
      */
     @SinceJdsl("3.4.0")
-    fun <T : Number> floor(value: Expression<T>): Expression<T> {
-        return JpqlFloor(value)
-    }
+    fun <T : Number> floor(value: Expression<T>): Expression<T> = JpqlFloor(value)
 
     /**
      * Creates an expression that represents the index of the value in an ordered list.
      */
     @SinceJdsl("3.4.0")
-    fun <T : Any> index(entity: Entity<T>): Expression<Int> {
-        return JpqlIndex(entity)
-    }
+    fun <T : Any> index(entity: Entity<T>): Expression<Int> = JpqlIndex(entity)
 
     /**
      * Creates an expression that represents the natural logarithm of the value.
      */
     @SinceJdsl("3.4.0")
-    fun <T : Number> ln(value: Expression<T>): Expression<Double> {
-        return JpqlLn(value)
-    }
+    fun <T : Number> ln(value: Expression<T>): Expression<Double> = JpqlLn(value)
 
     /**
      * Creates an expression that represents the mod of values.
      */
     @SinceJdsl("3.4.0")
-    fun mod(value1: Expression<Int>, value2: Expression<Int>): Expression<Int> {
-        return JpqlMod(value1, value2)
-    }
+    fun mod(
+        value1: Expression<Int>,
+        value2: Expression<Int>,
+    ): Expression<Int> = JpqlMod(value1, value2)
 
     /**
      * Create an expression that represents the power of [base] and [exponent].
      */
     @SinceJdsl("3.4.0")
-    fun <T : Number> power(base: Expression<T>, exponent: Expression<T>): Expression<Double> {
-        return JpqlPower(base, exponent)
-    }
+    fun <T : Number> power(
+        base: Expression<T>,
+        exponent: Expression<T>,
+    ): Expression<Double> = JpqlPower(base, exponent)
 
     /**
      * Creates an expression that represents the sign of a numeric value.
      */
     @SinceJdsl("3.4.0")
-    fun <T : Number> sign(value: Expression<T>): Expression<Int> {
-        return JpqlSign(value)
-    }
+    fun <T : Number> sign(value: Expression<T>): Expression<Int> = JpqlSign(value)
 
     /**
      * Creates an expression that represents the square root of the value.
      */
     @SinceJdsl("3.4.0")
-    fun <T : Number> sqrt(value: Expression<T>): Expression<Double> {
-        return JpqlSqrt(value)
-    }
+    fun <T : Number> sqrt(value: Expression<T>): Expression<Double> = JpqlSqrt(value)
 
     /**
      * Creates an expression that represents the rounding of the specified value to a specified scale.
      */
     @SinceJdsl("3.4.0")
-    fun <T : Number> round(value: Expression<T>, scale: Expression<Int>): Expression<T> {
-        return JpqlRound(value, scale)
-    }
+    fun <T : Number> round(
+        value: Expression<T>,
+        scale: Expression<Int>,
+    ): Expression<T> = JpqlRound(value, scale)
 
     /**
      * Creates an expression that represents the number of elements of the collection.
      */
     @SinceJdsl("3.4.0")
-    fun <T, S : Collection<T>> size(path: Path<S>): Expression<Int> {
-        return JpqlSize(path)
-    }
+    fun <T, S : Collection<T>> size(path: Path<S>): Expression<Int> = JpqlSize(path)
 
     /**
      * Creates an expression that represents the current date.
@@ -338,9 +309,7 @@ object Expressions {
      * This is the same as ```CURRENT_DATE```.
      */
     @SinceJdsl("3.4.0")
-    fun currentDate(): Expression<Date> {
-        return JpqlCurrentDate
-    }
+    fun currentDate(): Expression<Date> = JpqlCurrentDate
 
     /**
      * Creates an expression that represents the current time.
@@ -348,9 +317,7 @@ object Expressions {
      * This is the same as ```CURRENT_TIME```.
      */
     @SinceJdsl("3.4.0")
-    fun currentTime(): Expression<Time> {
-        return JpqlCurrentTime
-    }
+    fun currentTime(): Expression<Time> = JpqlCurrentTime
 
     /**
      * Creates an expression that represents the current timestamp.
@@ -358,9 +325,7 @@ object Expressions {
      * This is the same as ```CURRENT_TIMESTAMP```.
      */
     @SinceJdsl("3.4.0")
-    fun currentTimestamp(): Expression<Timestamp> {
-        return JpqlCurrentTimestamp
-    }
+    fun currentTimestamp(): Expression<Timestamp> = JpqlCurrentTimestamp
 
     /**
      * Creates an expression that represents the local date.
@@ -368,9 +333,7 @@ object Expressions {
      * This is the same as ```LOCAL DATE```.
      */
     @SinceJdsl("3.4.0")
-    fun localDate(): Expression<LocalDate> {
-        return JpqlLocalDate
-    }
+    fun localDate(): Expression<LocalDate> = JpqlLocalDate
 
     /**
      * Creates an expression that represents the local time.
@@ -378,9 +341,7 @@ object Expressions {
      * This is the same as ```LOCAL TIME```.
      */
     @SinceJdsl("3.4.0")
-    fun localTime(): Expression<LocalTime> {
-        return JpqlLocalTime
-    }
+    fun localTime(): Expression<LocalTime> = JpqlLocalTime
 
     /**
      * Creates an expression that represents the local datetime.
@@ -388,9 +349,7 @@ object Expressions {
      * This is the same as ```LOCAL DATETIME```.
      */
     @SinceJdsl("3.4.0")
-    fun localDateTime(): Expression<LocalDateTime> {
-        return JpqlLocalDateTime
-    }
+    fun localDateTime(): Expression<LocalDateTime> = JpqlLocalDateTime
 
     /**
      * Creates an expression that represents the count of non-null values.
@@ -398,9 +357,10 @@ object Expressions {
      * If there are no matching rows, it returns 0.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> count(distinct: Boolean, expr: Expression<T>): Expression<Long> {
-        return JpqlCount(distinct, expr)
-    }
+    fun <T : Any> count(
+        distinct: Boolean,
+        expr: Expression<T>,
+    ): Expression<Long> = JpqlCount(distinct, expr)
 
     /**
      * Creates an expression that represents the maximum value.
@@ -408,9 +368,10 @@ object Expressions {
      * If there are no matching rows, or if all expressions are null, it returns null.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<*>> max(distinct: Boolean, expr: Expression<T>): Expression<T> {
-        return JpqlMax(distinct, expr)
-    }
+    fun <T : Comparable<*>> max(
+        distinct: Boolean,
+        expr: Expression<T>,
+    ): Expression<T> = JpqlMax(distinct, expr)
 
     /**
      * Creates an expression that represents the minimum value.
@@ -418,9 +379,10 @@ object Expressions {
      * If there are no matching rows, or if all expressions are null, it returns null.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Comparable<*>> min(distinct: Boolean, expr: Expression<T>): Expression<T> {
-        return JpqlMin(distinct, expr)
-    }
+    fun <T : Comparable<*>> min(
+        distinct: Boolean,
+        expr: Expression<T>,
+    ): Expression<T> = JpqlMin(distinct, expr)
 
     /**
      * Creates an expression that represents the average value.
@@ -428,9 +390,10 @@ object Expressions {
      * If there are no matching rows, or if all expressions are null, it returns null.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Number> avg(distinct: Boolean, expr: Expression<T>): Expression<Double> {
-        return JpqlAvg(distinct, expr)
-    }
+    fun <T : Number> avg(
+        distinct: Boolean,
+        expr: Expression<T>,
+    ): Expression<Double> = JpqlAvg(distinct, expr)
 
     /**
      * Creates an expression that represents the sum of values.
@@ -439,9 +402,10 @@ object Expressions {
      */
     @JvmName("sum1")
     @SinceJdsl("3.0.0")
-    fun sum(distinct: Boolean, expr: Expression<Int>): Expression<Long> {
-        return JpqlSum.IntSum(distinct, expr)
-    }
+    fun sum(
+        distinct: Boolean,
+        expr: Expression<Int>,
+    ): Expression<Long> = JpqlSum.IntSum(distinct, expr)
 
     /**
      * Creates an expression that represents the sum of values.
@@ -450,9 +414,10 @@ object Expressions {
      */
     @JvmName("sum2")
     @SinceJdsl("3.0.0")
-    fun sum(distinct: Boolean, expr: Expression<Long>): Expression<Long> {
-        return JpqlSum.LongSum(distinct, expr)
-    }
+    fun sum(
+        distinct: Boolean,
+        expr: Expression<Long>,
+    ): Expression<Long> = JpqlSum.LongSum(distinct, expr)
 
     /**
      * Creates an expression that represents the sum of values.
@@ -461,9 +426,10 @@ object Expressions {
      */
     @JvmName("sum3")
     @SinceJdsl("3.0.0")
-    fun sum(distinct: Boolean, expr: Expression<Float>): Expression<Double> {
-        return JpqlSum.FloatSum(distinct, expr)
-    }
+    fun sum(
+        distinct: Boolean,
+        expr: Expression<Float>,
+    ): Expression<Double> = JpqlSum.FloatSum(distinct, expr)
 
     /**
      * Creates an expression that represents the sum of values.
@@ -472,9 +438,10 @@ object Expressions {
      */
     @JvmName("sum4")
     @SinceJdsl("3.0.0")
-    fun sum(distinct: Boolean, expr: Expression<Double>): Expression<Double> {
-        return JpqlSum.DoubleSum(distinct, expr)
-    }
+    fun sum(
+        distinct: Boolean,
+        expr: Expression<Double>,
+    ): Expression<Double> = JpqlSum.DoubleSum(distinct, expr)
 
     /**
      * Creates an expression that represents the sum of values.
@@ -483,9 +450,10 @@ object Expressions {
      */
     @JvmName("sum5")
     @SinceJdsl("3.0.0")
-    fun sum(distinct: Boolean, expr: Expression<BigInteger>): Expression<BigInteger> {
-        return JpqlSum.BigIntegerSum(distinct, expr)
-    }
+    fun sum(
+        distinct: Boolean,
+        expr: Expression<BigInteger>,
+    ): Expression<BigInteger> = JpqlSum.BigIntegerSum(distinct, expr)
 
     /**
      * Creates an expression that represents the sum of values.
@@ -494,17 +462,19 @@ object Expressions {
      */
     @JvmName("sum6")
     @SinceJdsl("3.0.0")
-    fun sum(distinct: Boolean, expr: Expression<BigDecimal>): Expression<BigDecimal> {
-        return JpqlSum.BigDecimalSum(distinct, expr)
-    }
+    fun sum(
+        distinct: Boolean,
+        expr: Expression<BigDecimal>,
+    ): Expression<BigDecimal> = JpqlSum.BigDecimalSum(distinct, expr)
 
     /**
      * Creates an expression that represents the DTO projection.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> new(type: KClass<T>, args: Iterable<Expression<*>>): Expression<T> {
-        return JpqlNew(type, args)
-    }
+    fun <T : Any> new(
+        type: KClass<T>,
+        args: Iterable<Expression<*>>,
+    ): Expression<T> = JpqlNew(type, args)
 
     /**
      * Creates an expression that represents the result for the first predicate that is true.
@@ -514,12 +484,11 @@ object Expressions {
     fun <T : Any> caseWhen(
         whens: Map<Predicate, Expression<T>>,
         `else`: Expression<T>? = null,
-    ): Expression<T> {
-        return JpqlCaseWhen(
+    ): Expression<T> =
+        JpqlCaseWhen(
             whens = whens,
             `else` = `else`,
         )
-    }
 
     /**
      * Creates an expression that represents the result for the first value = compareValue comparison that is true.
@@ -530,13 +499,12 @@ object Expressions {
         value: Path<T>,
         whens: Map<Expression<T>, Expression<V>>,
         `else`: Expression<V>? = null,
-    ): Expression<V> {
-        return JpqlCaseValue(
+    ): Expression<V> =
+        JpqlCaseValue(
             value = value,
             whens = whens,
             `else` = `else`,
         )
-    }
 
     /**
      * Creates an expression that represents the first non-null value in the values,
@@ -548,10 +516,11 @@ object Expressions {
         alternate: Expression<T>,
         others: Iterable<Expression<T>>,
     ): Expression<T> {
-        val expr = listOf(
-            value,
-            alternate,
-        ) + others
+        val expr =
+            listOf(
+                value,
+                alternate,
+            ) + others
 
         return JpqlCoalesce(expr)
     }
@@ -562,9 +531,10 @@ object Expressions {
      * This is the same as ```CASE WHEN left = right THEN NULL ELSE left END```.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> nullIf(value: Expression<T>, compareValue: Expression<T>): Expression<T> {
-        return JpqlNullIf(value, compareValue)
-    }
+    fun <T : Any> nullIf(
+        value: Expression<T>,
+        compareValue: Expression<T>,
+    ): Expression<T> = JpqlNullIf(value, compareValue)
 
     /**
      * Creates an expression that represents the type of the entity.
@@ -583,9 +553,7 @@ object Expressions {
      * ```
      */
     @SinceJdsl("3.0.0")
-    fun type(entity: Entity<*>): Expression<KClass<*>> {
-        return JpqlEntityType(entity)
-    }
+    fun type(entity: Entity<*>): Expression<KClass<*>> = JpqlEntityType(entity)
 
     /**
      * Creates an expression that represents the type of the path.
@@ -604,9 +572,7 @@ object Expressions {
      * ```
      */
     @SinceJdsl("3.0.0")
-    fun type(path: Path<*>): Expression<KClass<*>> {
-        return JpqlPathType(path)
-    }
+    fun type(path: Path<*>): Expression<KClass<*>> = JpqlPathType(path)
 
     /**
      * Creates an expression that represents the concatenation of two or more string values.
@@ -617,10 +583,11 @@ object Expressions {
         value2: Expression<String>,
         others: Iterable<Expression<String>>,
     ): Expression<String> {
-        val values = listOf(
-            value1,
-            value2,
-        ) + others
+        val values =
+            listOf(
+                value1,
+                value2,
+            ) + others
 
         return JpqlConcat(values)
     }
@@ -635,9 +602,7 @@ object Expressions {
         value: Expression<String>,
         start: Expression<Int>,
         length: Expression<Int>? = null,
-    ): Expression<String> {
-        return JpqlSubstring(value, start, length)
-    }
+    ): Expression<String> = JpqlSubstring(value, start, length)
 
     /**
      * Creates an expression that represents a string with the specified characters all trimmed
@@ -648,9 +613,7 @@ object Expressions {
     fun trim(
         character: Expression<Char>? = null,
         value: Expression<String>,
-    ): Expression<String> {
-        return JpqlTrim(character, value)
-    }
+    ): Expression<String> = JpqlTrim(character, value)
 
     /**
      * Creates an expression that represents a string with the specified characters all trimmed
@@ -661,9 +624,7 @@ object Expressions {
     fun trimLeading(
         character: Expression<Char>? = null,
         value: Expression<String>,
-    ): Expression<String> {
-        return JpqlTrimLeading(character, value)
-    }
+    ): Expression<String> = JpqlTrimLeading(character, value)
 
     /**
      * Creates an expression that represents a string with the specified characters all trimmed
@@ -674,9 +635,7 @@ object Expressions {
     fun trimTrailing(
         character: Expression<Char>? = null,
         value: Expression<String>,
-    ): Expression<String> {
-        return JpqlTrimTrailing(character, value)
-    }
+    ): Expression<String> = JpqlTrimTrailing(character, value)
 
     /**
      * Creates an expression that represents a string with the specified characters all trimmed
@@ -687,33 +646,25 @@ object Expressions {
     fun trimBoth(
         character: Expression<Char>? = null,
         value: Expression<String>,
-    ): Expression<String> {
-        return JpqlTrimBoth(character, value)
-    }
+    ): Expression<String> = JpqlTrimBoth(character, value)
 
     /**
      * Creates an expression that represents the string in uppercase.
      */
     @SinceJdsl("3.0.0")
-    fun upper(value: Expression<String>): Expression<String> {
-        return JpqlUpper(value)
-    }
+    fun upper(value: Expression<String>): Expression<String> = JpqlUpper(value)
 
     /**
      * Creates an expression that represents the string in lowercase.
      */
     @SinceJdsl("3.0.0")
-    fun lower(value: Expression<String>): Expression<String> {
-        return JpqlLower(value)
-    }
+    fun lower(value: Expression<String>): Expression<String> = JpqlLower(value)
 
     /**
      * Creates an expression that represents the length of the string as an integer.
      */
     @SinceJdsl("3.0.0")
-    fun length(value: Expression<String>): Expression<Int> {
-        return JpqlLength(value)
-    }
+    fun length(value: Expression<String>): Expression<Int> = JpqlLength(value)
 
     /**
      * Creates an expression that represents the position of the first occurrence of a substring in a string.
@@ -725,41 +676,43 @@ object Expressions {
         substring: Expression<String>,
         string: Expression<String>,
         start: Expression<Int>? = null,
-    ): Expression<Int> {
-        return JpqlLocate(substring, string, start)
-    }
+    ): Expression<Int> = JpqlLocate(substring, string, start)
 
     /**
      * Creates an expression that represents the casting of a value to a different type.
      */
     @SinceJdsl("3.6.0")
-    fun <T : Any> cast(value: Expression<*>, type: KClass<T>): Expression<T> {
-        return JpqlCast(value, type)
-    }
+    fun <T : Any> cast(
+        value: Expression<*>,
+        type: KClass<T>,
+    ): Expression<T> = JpqlCast(value, type)
 
     /**
      * Creates an expression that returns the leftmost count characters from a string.
      */
     @SinceJdsl("3.6.0")
-    fun left(value: Expression<String>, len: Expression<Int>): Expression<String> {
-        return JpqlLeft(value, len)
-    }
+    fun left(
+        value: Expression<String>,
+        len: Expression<Int>,
+    ): Expression<String> = JpqlLeft(value, len)
 
     /**
      * Creates an expression that returns the leftmost count characters from a string.
      */
     @SinceJdsl("3.6.0")
-    fun left(value: Expression<String>, len: Int): Expression<String> {
-        return left(value, intLiteral(len))
-    }
+    fun left(
+        value: Expression<String>,
+        len: Int,
+    ): Expression<String> = left(value, intLiteral(len))
 
     /**
      * Creates an expression that returns the rightmost count characters from a string.
      */
     @SinceJdsl("3.6.0")
-    fun right(value: Expression<String>, len: Expression<Int>): Expression<String> {
-        return JpqlRight(value, len)
-    }
+    fun right(
+        value: Expression<String>,
+        len: Expression<Int>,
+    ): Expression<String> = JpqlRight(value, len)
 
     /**
      * Creates an expression that replaces all occurrences of a search string with a replacement string.
@@ -769,17 +722,17 @@ object Expressions {
         value: Expression<String>,
         substring: Expression<String>,
         replacement: Expression<String>,
-    ): Expression<String> {
-        return JpqlReplace(value, substring, replacement)
-    }
+    ): Expression<String> = JpqlReplace(value, substring, replacement)
 
     /**
      * Creates an expression that represents predefined database functions and user-defined database functions.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> function(type: KClass<T>, name: String, args: Iterable<Expression<*>>): Expression<T> {
-        return JpqlFunctionExpression(type, name, args)
-    }
+    fun <T : Any> function(
+        type: KClass<T>,
+        name: String,
+        args: Iterable<Expression<*>>,
+    ): Expression<T> = JpqlFunctionExpression(type, name, args)
 
     /**
      * Creates an expression that represents the user-defined expression.
@@ -801,29 +754,28 @@ object Expressions {
         type: KClass<T>,
         template: String,
         args: Iterable<Expression<*>>,
-    ): Expression<T> {
-        return JpqlCustomExpression(type, template, args)
-    }
+    ): Expression<T> = JpqlCustomExpression(type, template, args)
 
     /**
      * Creates a subquery with the select query.
      */
     @SinceJdsl("3.0.0")
     fun <T : Any> subquery(selectQuery: SelectQuery<T>): Subquery<T> {
-        val trimmed = if (selectQuery is JpqlSelectQuery) {
-            JpqlSelectQuery(
-                returnType = selectQuery.returnType,
-                select = selectQuery.select,
-                distinct = selectQuery.distinct,
-                from = selectQuery.from,
-                where = selectQuery.where,
-                groupBy = selectQuery.groupBy,
-                having = selectQuery.having,
-                orderBy = null,
-            )
-        } else {
-            selectQuery
-        }
+        val trimmed =
+            if (selectQuery is JpqlSelectQuery) {
+                JpqlSelectQuery(
+                    returnType = selectQuery.returnType,
+                    select = selectQuery.select,
+                    distinct = selectQuery.distinct,
+                    from = selectQuery.from,
+                    where = selectQuery.where,
+                    groupBy = selectQuery.groupBy,
+                    having = selectQuery.having,
+                    orderBy = null,
+                )
+            } else {
+                selectQuery
+            }
 
         return JpqlSubquery(
             selectQuery = trimmed,
@@ -837,13 +789,15 @@ object Expressions {
      * @see expression for creating an alias expression.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> alias(expr: Expression<T>, alias: Expression<T>): Expression<T> {
-        return if (expr is JpqlAliasedExpression) {
+    fun <T : Any> alias(
+        expr: Expression<T>,
+        alias: Expression<T>,
+    ): Expression<T> =
+        if (expr is JpqlAliasedExpression) {
             JpqlAliasedExpression(expr.expr, alias)
         } else {
             JpqlAliasedExpression(expr, alias)
         }
-    }
 
     /**
      * Creates an expression to reference.
@@ -852,31 +806,26 @@ object Expressions {
      * @see alias for aliasing an expression.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> expression(type: KClass<T>, alias: String): Expression<T> {
-        return JpqlExpression(type, alias)
-    }
+    fun <T : Any> expression(
+        type: KClass<T>,
+        alias: String,
+    ): Expression<T> = JpqlExpression(type, alias)
 
     /**
      * Creates an expression that is enclosed in parentheses.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> parentheses(expr: Expression<T>): Expression<T> {
-        return JpqlExpressionParentheses(expr)
-    }
+    fun <T : Any> parentheses(expr: Expression<T>): Expression<T> = JpqlExpressionParentheses(expr)
 
     /**
      * Creates an expression that represents the id of the entity.
      */
     @SinceJdsl("3.6.0")
-    fun <ID : Any> id(entity: Expressionable<*>): Expression<ID> {
-        return JpqlId(entity)
-    }
+    fun <ID : Any> id(entity: Expressionable<*>): Expression<ID> = JpqlId(entity)
 
     /**
      * Creates an expression that represents the version of the entity.
      */
     @SinceJdsl("3.6.0")
-    fun <VERSION : Any> version(expr: Expressionable<*>): Expression<VERSION> {
-        return JpqlVersion(expr)
-    }
+    fun <VERSION : Any> version(expr: Expressionable<*>): Expression<VERSION> = JpqlVersion(expr)
 }

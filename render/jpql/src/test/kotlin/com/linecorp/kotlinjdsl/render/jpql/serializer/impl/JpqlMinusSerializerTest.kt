@@ -38,10 +38,11 @@ class JpqlMinusSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.minus(
-            expression1,
-            expression2,
-        )
+        val part =
+            Expressions.minus(
+                expression1,
+                expression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when

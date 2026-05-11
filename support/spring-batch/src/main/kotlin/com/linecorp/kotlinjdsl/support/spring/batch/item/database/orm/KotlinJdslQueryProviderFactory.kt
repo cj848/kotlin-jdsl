@@ -16,9 +16,7 @@ class KotlinJdslQueryProviderFactory(
     /**
      * Creates a [KotlinJdslQueryProvider] from a select query.
      */
-    fun <T : Any> create(
-        init: Jpql.() -> JpqlQueryable<SelectQuery<T>>,
-    ): KotlinJdslQueryProvider<T> {
+    fun <T : Any> create(init: Jpql.() -> JpqlQueryable<SelectQuery<T>>): KotlinJdslQueryProvider<T> {
         val query = jpql(init)
 
         return KotlinJdslQueryProvider(query, emptyMap(), context)
@@ -89,11 +87,8 @@ class KotlinJdslQueryProviderFactory(
     /**
      * Creates a [KotlinJdslQueryProvider] from a select query.
      */
-    fun <T : Any> create(
-        query: SelectQuery<T>,
-    ): KotlinJdslQueryProvider<T> {
-        return KotlinJdslQueryProvider(query, emptyMap(), context)
-    }
+    fun <T : Any> create(query: SelectQuery<T>): KotlinJdslQueryProvider<T> =
+        KotlinJdslQueryProvider(query, emptyMap(), context)
 
     /**
      * Creates a [KotlinJdslQueryProvider] from a select query.
@@ -101,7 +96,5 @@ class KotlinJdslQueryProviderFactory(
     fun <T : Any> create(
         query: SelectQuery<T>,
         queryParams: Map<String, Any?>,
-    ): KotlinJdslQueryProvider<T> {
-        return KotlinJdslQueryProvider(query, queryParams, context)
-    }
+    ): KotlinJdslQueryProvider<T> = KotlinJdslQueryProvider(query, queryParams, context)
 }

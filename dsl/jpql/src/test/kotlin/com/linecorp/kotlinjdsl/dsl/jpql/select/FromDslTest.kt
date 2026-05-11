@@ -20,36 +20,40 @@ class FromDslTest : WithAssertions {
 
     private val expression1 = Paths.path(Book::isbn)
 
-    private val join1 = Joins.innerJoin(
-        entity = Entities.entity(BookAuthor::class),
-        association = Paths.path(Book::authors),
-    )
+    private val join1 =
+        Joins.innerJoin(
+            entity = Entities.entity(BookAuthor::class),
+            association = Paths.path(Book::authors),
+        )
 
-    private val join2 = Joins.innerJoin(
-        entity = Entities.entity(BookPublisher::class),
-        association = Paths.path(Book::publisher),
-    )
+    private val join2 =
+        Joins.innerJoin(
+            entity = Entities.entity(BookPublisher::class),
+            association = Paths.path(Book::publisher),
+        )
 
     @Test
     fun `from() with an entity`() {
         // when
-        val select = queryPart {
-            select(
-                expression1,
-            ).from(
-                entity1,
-            )
-        }.toQuery()
+        val select =
+            queryPart {
+                select(
+                    expression1,
+                ).from(
+                    entity1,
+                )
+            }.toQuery()
 
         val actual: SelectQuery<Isbn> = select // for type check
 
         // then
-        val expected = SelectQueries.selectQuery(
-            returnType = Isbn::class,
-            distinct = false,
-            select = listOf(expression1),
-            from = listOf(entity1),
-        )
+        val expected =
+            SelectQueries.selectQuery(
+                returnType = Isbn::class,
+                distinct = false,
+                select = listOf(expression1),
+                from = listOf(entity1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -57,34 +61,37 @@ class FromDslTest : WithAssertions {
     @Test
     fun `from() with froms`() {
         // when
-        val select = queryPart {
-            select(
-                expression1,
-            ).from(
-                entity1,
-                null,
-                entity2,
-                null,
-                join1,
-                null,
-                join2,
-            )
-        }.toQuery()
+        val select =
+            queryPart {
+                select(
+                    expression1,
+                ).from(
+                    entity1,
+                    null,
+                    entity2,
+                    null,
+                    join1,
+                    null,
+                    join2,
+                )
+            }.toQuery()
 
         val actual: SelectQuery<Isbn> = select // for type check
 
         // then
-        val expected = SelectQueries.selectQuery(
-            returnType = Isbn::class,
-            distinct = false,
-            select = listOf(expression1),
-            from = listOf(
-                entity1,
-                entity2,
-                join1,
-                join2,
-            ),
-        )
+        val expected =
+            SelectQueries.selectQuery(
+                returnType = Isbn::class,
+                distinct = false,
+                select = listOf(expression1),
+                from =
+                    listOf(
+                        entity1,
+                        entity2,
+                        join1,
+                        join2,
+                    ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

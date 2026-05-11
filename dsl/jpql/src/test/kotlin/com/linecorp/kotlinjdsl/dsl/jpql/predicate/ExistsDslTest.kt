@@ -13,28 +13,31 @@ import org.assertj.core.api.WithAssertions
 import org.junit.jupiter.api.Test
 
 class ExistsDslTest : WithAssertions {
-    private val subquery1 = Expressions.subquery(
-        SelectQueries.selectQuery(
-            returnType = Isbn::class,
-            distinct = false,
-            select = listOf(Paths.path(Book::isbn)),
-            from = listOf(Entities.entity(Book::class)),
-        ),
-    )
+    private val subquery1 =
+        Expressions.subquery(
+            SelectQueries.selectQuery(
+                returnType = Isbn::class,
+                distinct = false,
+                select = listOf(Paths.path(Book::isbn)),
+                from = listOf(Entities.entity(Book::class)),
+            ),
+        )
 
     @Test
     fun exists() {
         // when
-        val predicate = queryPart {
-            exists(subquery1)
-        }
+        val predicate =
+            queryPart {
+                exists(subquery1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.exists(
-            subquery1,
-        )
+        val excepted =
+            Predicates.exists(
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -42,16 +45,18 @@ class ExistsDslTest : WithAssertions {
     @Test
     fun notExists() {
         // when
-        val predicate = queryPart {
-            notExists(subquery1)
-        }
+        val predicate =
+            queryPart {
+                notExists(subquery1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notExists(
-            subquery1,
-        )
+        val excepted =
+            Predicates.notExists(
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }

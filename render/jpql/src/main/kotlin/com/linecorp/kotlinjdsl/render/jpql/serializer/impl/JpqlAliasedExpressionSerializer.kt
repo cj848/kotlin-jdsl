@@ -12,11 +12,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlAliasedExpressionSerializer : JpqlSerializer<JpqlAliasedExpression<*>> {
-    override fun handledType(): KClass<JpqlAliasedExpression<*>> {
-        return JpqlAliasedExpression::class
-    }
+    override fun handledType(): KClass<JpqlAliasedExpression<*>> = JpqlAliasedExpression::class
 
-    override fun serialize(part: JpqlAliasedExpression<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlAliasedExpression<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         val statement = context.getValue(JpqlRenderStatement)

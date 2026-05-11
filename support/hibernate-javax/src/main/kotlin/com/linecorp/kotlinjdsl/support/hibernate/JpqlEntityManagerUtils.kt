@@ -60,23 +60,24 @@ internal object JpqlEntityManagerUtils {
         query: String,
         queryParams: Map<String, Any?>,
         returnType: Class<T>,
-    ): TypedQuery<T> {
-        return entityManager.createQuery(query, returnType).apply {
+    ): TypedQuery<T> =
+        entityManager.createQuery(query, returnType).apply {
             setParams(this, queryParams)
         }
-    }
 
     private fun createQuery(
         entityManager: EntityManager,
         query: String,
         queryParams: Map<String, Any?>,
-    ): Query {
-        return entityManager.createQuery(query).apply {
+    ): Query =
+        entityManager.createQuery(query).apply {
             setParams(this, queryParams)
         }
-    }
 
-    private fun setParams(query: Query, params: Map<String, Any?>) {
+    private fun setParams(
+        query: Query,
+        params: Map<String, Any?>,
+    ) {
         val parameterNameSet = query.parameters.map { it.name }.toHashSet()
 
         params.forEach { (name, value) ->

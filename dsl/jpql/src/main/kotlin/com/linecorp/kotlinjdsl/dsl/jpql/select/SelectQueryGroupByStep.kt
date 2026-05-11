@@ -6,7 +6,9 @@ import com.linecorp.kotlinjdsl.querymodel.jpql.expression.Expressionable
 import com.linecorp.kotlinjdsl.querymodel.jpql.select.SelectQuery
 
 @SinceJdsl("3.0.0")
-interface SelectQueryGroupByStep<T : Any> : SelectQueryHavingStep<T>, JpqlQueryable<SelectQuery<T>> {
+interface SelectQueryGroupByStep<T : Any> :
+    SelectQueryHavingStep<T>,
+    JpqlQueryable<SelectQuery<T>> {
     /**
      * Creates a group by clause in a select query.
      */

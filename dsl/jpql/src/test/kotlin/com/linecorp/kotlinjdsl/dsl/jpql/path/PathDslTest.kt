@@ -20,16 +20,18 @@ class PathDslTest : WithAssertions {
     @Test
     fun `path() with a property`() {
         // when
-        val path = queryPart {
-            path(FullTimeEmployee::address)
-        }
+        val path =
+            queryPart {
+                path(FullTimeEmployee::address)
+            }
 
         val actual: Path<EmployeeAddress> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            FullTimeEmployee::address,
-        )
+        val excepted =
+            Paths.path(
+                FullTimeEmployee::address,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -37,16 +39,18 @@ class PathDslTest : WithAssertions {
     @Test
     fun `path() with a getter`() {
         // when
-        val path = queryPart {
-            path(FullTimeEmployee::getMonthlySalary)
-        }
+        val path =
+            queryPart {
+                path(FullTimeEmployee::getMonthlySalary)
+            }
 
         val actual: Path<BigDecimal> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            FullTimeEmployee::getMonthlySalary,
-        )
+        val excepted =
+            Paths.path(
+                FullTimeEmployee::getMonthlySalary,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -54,17 +58,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `path() with a entity and a property`() {
         // when
-        val path = queryPart {
-            entity1.path(FullTimeEmployee::address)
-        }
+        val path =
+            queryPart {
+                entity1.path(FullTimeEmployee::address)
+            }
 
         val actual: Path<EmployeeAddress> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            entity1,
-            FullTimeEmployee::address,
-        )
+        val excepted =
+            Paths.path(
+                entity1,
+                FullTimeEmployee::address,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -72,17 +78,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `path() with a entity and a getter`() {
         // when
-        val path = queryPart {
-            entity1.path(FullTimeEmployee::getMonthlySalary)
-        }
+        val path =
+            queryPart {
+                entity1.path(FullTimeEmployee::getMonthlySalary)
+            }
 
         val actual: Path<BigDecimal> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            entity1,
-            FullTimeEmployee::getMonthlySalary,
-        )
+        val excepted =
+            Paths.path(
+                entity1,
+                FullTimeEmployee::getMonthlySalary,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -90,17 +98,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `path() with a path and a property`() {
         // when
-        val path = queryPart {
-            path1.path(FullTimeEmployee::address)
-        }
+        val path =
+            queryPart {
+                path1.path(FullTimeEmployee::address)
+            }
 
         val actual: Path<EmployeeAddress> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            path1,
-            FullTimeEmployee::address,
-        )
+        val excepted =
+            Paths.path(
+                path1,
+                FullTimeEmployee::address,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -108,17 +118,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `path() with a path and a getter`() {
         // when
-        val path = queryPart {
-            path1.path(FullTimeEmployee::getMonthlySalary)
-        }
+        val path =
+            queryPart {
+                path1.path(FullTimeEmployee::getMonthlySalary)
+            }
 
         val actual: Path<BigDecimal> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            path1,
-            FullTimeEmployee::getMonthlySalary,
-        )
+        val excepted =
+            Paths.path(
+                path1,
+                FullTimeEmployee::getMonthlySalary,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -126,17 +138,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `path() with a entity and a property of super class`() {
         // when
-        val path = queryPart {
-            entity1.path(Employee::address)
-        }
+        val path =
+            queryPart {
+                entity1.path(Employee::address)
+            }
 
         val actual: Path<EmployeeAddress> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            entity1,
-            Employee::address,
-        )
+        val excepted =
+            Paths.path(
+                entity1,
+                Employee::address,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -144,17 +158,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `path() with a entity and a getter of super class`() {
         // when
-        val path = queryPart {
-            entity1.path(Employee::getDisplayName)
-        }
+        val path =
+            queryPart {
+                entity1.path(Employee::getDisplayName)
+            }
 
         val actual: Path<String> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            entity1,
-            Employee::getDisplayName,
-        )
+        val excepted =
+            Paths.path(
+                entity1,
+                Employee::getDisplayName,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -162,17 +178,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `path() with a path and a property of super class`() {
         // when
-        val path = queryPart {
-            path1.path(Employee::address)
-        }
+        val path =
+            queryPart {
+                path1.path(Employee::address)
+            }
 
         val actual: Path<EmployeeAddress> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            path1,
-            Employee::address,
-        )
+        val excepted =
+            Paths.path(
+                path1,
+                Employee::address,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -180,17 +198,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `path() with a path and a getter of super class`() {
         // when
-        val path = queryPart {
-            path1.path(Employee::getDisplayName)
-        }
+        val path =
+            queryPart {
+                path1.path(Employee::getDisplayName)
+            }
 
         val actual: Path<String> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            path1,
-            Employee::getDisplayName,
-        )
+        val excepted =
+            Paths.path(
+                path1,
+                Employee::getDisplayName,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -198,17 +218,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `invoke() with a entity and a property`() {
         // when
-        val path = queryPart {
-            entity1(FullTimeEmployee::address)
-        }
+        val path =
+            queryPart {
+                entity1(FullTimeEmployee::address)
+            }
 
         val actual: Path<EmployeeAddress> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            entity1,
-            FullTimeEmployee::address,
-        )
+        val excepted =
+            Paths.path(
+                entity1,
+                FullTimeEmployee::address,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -216,17 +238,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `invoke() with a entity and a getter`() {
         // when
-        val path = queryPart {
-            entity1(FullTimeEmployee::getMonthlySalary)
-        }
+        val path =
+            queryPart {
+                entity1(FullTimeEmployee::getMonthlySalary)
+            }
 
         val actual: Path<BigDecimal> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            entity1,
-            FullTimeEmployee::getMonthlySalary,
-        )
+        val excepted =
+            Paths.path(
+                entity1,
+                FullTimeEmployee::getMonthlySalary,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -234,17 +258,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `invoke() with a path and a property`() {
         // when
-        val path = queryPart {
-            path1(FullTimeEmployee::address)
-        }
+        val path =
+            queryPart {
+                path1(FullTimeEmployee::address)
+            }
 
         val actual: Path<EmployeeAddress> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            path1,
-            FullTimeEmployee::address,
-        )
+        val excepted =
+            Paths.path(
+                path1,
+                FullTimeEmployee::address,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -252,17 +278,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `invoke() with a path and a getter`() {
         // when
-        val path = queryPart {
-            path1(FullTimeEmployee::getMonthlySalary)
-        }
+        val path =
+            queryPart {
+                path1(FullTimeEmployee::getMonthlySalary)
+            }
 
         val actual: Path<BigDecimal> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            path1,
-            FullTimeEmployee::getMonthlySalary,
-        )
+        val excepted =
+            Paths.path(
+                path1,
+                FullTimeEmployee::getMonthlySalary,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -270,17 +298,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `invoke() with a entity and a property of super class`() {
         // when
-        val path = queryPart {
-            entity1(Employee::address)
-        }
+        val path =
+            queryPart {
+                entity1(Employee::address)
+            }
 
         val actual: Path<EmployeeAddress> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            entity1,
-            Employee::address,
-        )
+        val excepted =
+            Paths.path(
+                entity1,
+                Employee::address,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -288,17 +318,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `invoke() with a entity and a getter of super class`() {
         // when
-        val path = queryPart {
-            entity1(Employee::getDisplayName)
-        }
+        val path =
+            queryPart {
+                entity1(Employee::getDisplayName)
+            }
 
         val actual: Path<String> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            entity1,
-            Employee::getDisplayName,
-        )
+        val excepted =
+            Paths.path(
+                entity1,
+                Employee::getDisplayName,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -306,17 +338,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `invoke() with a path and a property of super class`() {
         // when
-        val path = queryPart {
-            path1(Employee::address)
-        }
+        val path =
+            queryPart {
+                path1(Employee::address)
+            }
 
         val actual: Path<EmployeeAddress> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            path1,
-            Employee::address,
-        )
+        val excepted =
+            Paths.path(
+                path1,
+                Employee::address,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -324,17 +358,19 @@ class PathDslTest : WithAssertions {
     @Test
     fun `invoke() with a path and a getter of super class`() {
         // when
-        val path = queryPart {
-            path1(Employee::getDisplayName)
-        }
+        val path =
+            queryPart {
+                path1(Employee::getDisplayName)
+            }
 
         val actual: Path<String> = path // for type check
 
         // then
-        val excepted = Paths.path(
-            path1,
-            Employee::getDisplayName,
-        )
+        val excepted =
+            Paths.path(
+                path1,
+                Employee::getDisplayName,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }

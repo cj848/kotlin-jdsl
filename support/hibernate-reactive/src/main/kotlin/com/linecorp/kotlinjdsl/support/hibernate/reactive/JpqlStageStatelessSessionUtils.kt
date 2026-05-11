@@ -56,23 +56,24 @@ internal object JpqlStageStatelessSessionUtils {
         query: String,
         queryParams: Map<String, Any?>,
         returnType: Class<T>,
-    ): Stage.SelectionQuery<T> {
-        return session.createQuery(query, returnType).apply {
+    ): Stage.SelectionQuery<T> =
+        session.createQuery(query, returnType).apply {
             setParams(this, queryParams)
         }
-    }
 
     private fun <T : Any> createQuery(
         session: Stage.StatelessSession,
         query: String,
         queryParams: Map<String, Any?>,
-    ): Stage.Query<T> {
-        return session.createQuery<T>(query).apply {
+    ): Stage.Query<T> =
+        session.createQuery<T>(query).apply {
             setParams(this, queryParams)
         }
-    }
 
-    private fun <T> setParams(query: Stage.SelectionQuery<T>, params: Map<String, Any?>) {
+    private fun <T> setParams(
+        query: Stage.SelectionQuery<T>,
+        params: Map<String, Any?>,
+    ) {
         params.forEach { (name, value) ->
             try {
                 query.setParameter(name, value)
@@ -84,7 +85,10 @@ internal object JpqlStageStatelessSessionUtils {
         }
     }
 
-    private fun <T> setParams(query: Stage.Query<T>, params: Map<String, Any?>) {
+    private fun <T> setParams(
+        query: Stage.Query<T>,
+        params: Map<String, Any?>,
+    ) {
         params.forEach { (name, value) ->
             try {
                 query.setParameter(name, value)

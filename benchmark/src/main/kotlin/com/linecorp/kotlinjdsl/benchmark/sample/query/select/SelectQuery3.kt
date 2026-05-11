@@ -5,24 +5,25 @@ import com.linecorp.kotlinjdsl.dsl.jpql.jpql
 import com.linecorp.kotlinjdsl.querymodel.jpql.select.SelectQuery
 
 object SelectQuery3 : () -> SelectQuery<*> {
-    override fun invoke(): SelectQuery<*> {
-        data class DerivedEntity(
-            val employeeId: Long,
-            val count: Long,
-        )
-
-        return jpql {
-            val subquery = select<DerivedEntity>(
-                path(Employee::employeeId).`as`(expression("employeeId")),
-                count(Employee::employeeId).`as`(expression("count")),
-            ).from(
-                entity(Employee::class),
-                join(Employee::departments),
-            ).groupBy(
-                path(Employee::employeeId),
-            ).having(
-                count(Employee::employeeId).greaterThan(1L),
+    override fun invoke(): SelectQuery<*> =
+        jpql {
+            data class DerivedEntity(
+                val employeeId: Long,
+                val count: Long,
             )
+
+            val subquery =
+                select<DerivedEntity>(
+                    path(Employee::employeeId).`as`(expression("employeeId")),
+                    count(Employee::employeeId).`as`(expression("count")),
+                ).from(
+                    entity(Employee::class),
+                    join(Employee::departments),
+                ).groupBy(
+                    path(Employee::employeeId),
+                ).having(
+                    count(Employee::employeeId).greaterThan(1L),
+                )
 
             select(
                 count(DerivedEntity::employeeId),
@@ -30,5 +31,4 @@ object SelectQuery3 : () -> SelectQuery<*> {
                 subquery.asEntity(),
             )
         }
-    }
 }

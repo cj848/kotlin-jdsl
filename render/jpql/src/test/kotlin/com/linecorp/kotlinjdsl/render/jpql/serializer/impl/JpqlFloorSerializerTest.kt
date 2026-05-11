@@ -37,9 +37,10 @@ class JpqlFloorSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.floor(
-            value = expression1,
-        )
+        val part =
+            Expressions.floor(
+                value = expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

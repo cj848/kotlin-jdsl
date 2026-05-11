@@ -6,4 +6,6 @@ import com.linecorp.kotlinjdsl.example.spring.data.jpa.javax.jpql.entity.publish
 import com.linecorp.kotlinjdsl.support.spring.data.jpa.javax.repository.KotlinJdslJpqlExecutor
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface PublisherRepository : JpaRepository<Publisher, Long>, KotlinJdslJpqlExecutor
+interface PublisherRepository :
+    JpaRepository<Publisher, Long>,
+    KotlinJdslJpqlExecutor

@@ -6,4 +6,6 @@ import com.linecorp.kotlinjdsl.example.spring.data.jpa.jpql.entity.department.De
 import com.linecorp.kotlinjdsl.support.spring.data.jpa.repository.KotlinJdslJpqlExecutor
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface DepartmentRepository : JpaRepository<Department, Long>, KotlinJdslJpqlExecutor
+interface DepartmentRepository :
+    JpaRepository<Department, Long>,
+    KotlinJdslJpqlExecutor

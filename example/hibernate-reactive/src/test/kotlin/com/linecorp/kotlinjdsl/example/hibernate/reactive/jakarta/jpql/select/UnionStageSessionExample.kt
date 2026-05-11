@@ -25,36 +25,41 @@ class UnionStageSessionExample : WithAssertions {
     @Test
     fun unionBooksByPriceAndSalePrice() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(
-                Expressions.expression(
-                    Isbn::class,
-                    aliasName,
-                ),
-            )
-            union(
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-                ),
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+        val query =
+            jpql {
+                val isbnPath =
+                    path(Book::isbn).`as`(
+                        Expressions.expression(
+                            Isbn::class,
+                            aliasName,
+                        ),
+                    )
+                union(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                    ),
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
-        val actual = sessionFactory.withSession {
-            it.createQuery(query, context).resultList
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withSession {
+                    it.createQuery(query, context).resultList
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).containsExactly(
@@ -66,36 +71,41 @@ class UnionStageSessionExample : WithAssertions {
     @Test
     fun unionAllBooksByPriceAndSalePrice() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(
-                Expressions.expression(
-                    Isbn::class,
-                    aliasName,
-                ),
-            )
-            unionAll(
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-                ),
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+        val query =
+            jpql {
+                val isbnPath =
+                    path(Book::isbn).`as`(
+                        Expressions.expression(
+                            Isbn::class,
+                            aliasName,
+                        ),
+                    )
+                unionAll(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                    ),
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
-        val actual = sessionFactory.withSession {
-            it.createQuery(query, context).resultList
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withSession {
+                    it.createQuery(query, context).resultList
+                }.toCompletableFuture()
+                .get()
 
         // Then
         assertThat(actual).containsExactly(
@@ -108,35 +118,40 @@ class UnionStageSessionExample : WithAssertions {
     @Test
     fun unionBooksByPriceAndSalePriceWithNewDsl() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(
-                Expressions.expression(
-                    Isbn::class,
-                    aliasName,
-                ),
-            )
-            select(
-                isbnPath,
-            ).from(
-                entity(Book::class),
-            ).where(
-                path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-            ).union(
+        val query =
+            jpql {
+                val isbnPath =
+                    path(Book::isbn).`as`(
+                        Expressions.expression(
+                            Isbn::class,
+                            aliasName,
+                        ),
+                    )
                 select(
                     isbnPath,
                 ).from(
                     entity(Book::class),
                 ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                ).union(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
-        val actual = sessionFactory.withSession {
-            it.createQuery(query, context).resultList
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withSession {
+                    it.createQuery(query, context).resultList
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).containsExactly(
@@ -148,35 +163,40 @@ class UnionStageSessionExample : WithAssertions {
     @Test
     fun unionAllBooksByPriceAndSalePriceWithNewDsl() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(
-                Expressions.expression(
-                    Isbn::class,
-                    aliasName,
-                ),
-            )
-            select(
-                isbnPath,
-            ).from(
-                entity(Book::class),
-            ).where(
-                path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-            ).unionAll(
+        val query =
+            jpql {
+                val isbnPath =
+                    path(Book::isbn).`as`(
+                        Expressions.expression(
+                            Isbn::class,
+                            aliasName,
+                        ),
+                    )
                 select(
                     isbnPath,
                 ).from(
                     entity(Book::class),
                 ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                ).unionAll(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
-        val actual = sessionFactory.withSession {
-            it.createQuery(query, context).resultList
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withSession {
+                    it.createQuery(query, context).resultList
+                }.toCompletableFuture()
+                .get()
 
         // Then
         assertThat(actual).containsExactly(

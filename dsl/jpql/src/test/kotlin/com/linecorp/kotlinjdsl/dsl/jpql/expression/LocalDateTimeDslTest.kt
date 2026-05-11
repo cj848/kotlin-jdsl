@@ -11,9 +11,10 @@ class LocalDateTimeDslTest {
     @Test
     fun localDateTime() {
         // when
-        val expression = queryPart {
-            localDateTime()
-        }.toExpression()
+        val expression =
+            queryPart {
+                localDateTime()
+            }.toExpression()
 
         val actual: Expression<LocalDateTime> = expression // for type check
 

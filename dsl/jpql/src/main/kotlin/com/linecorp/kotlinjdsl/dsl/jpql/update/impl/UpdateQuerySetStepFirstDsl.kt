@@ -11,11 +11,13 @@ import com.linecorp.kotlinjdsl.querymodel.jpql.path.Pathable
 internal data class UpdateQuerySetStepFirstDsl<T : Any>(
     private val entity: Entity<T>,
 ) : UpdateQuerySetFirstStep<T> {
-    override fun <V : Any, S : V?> set(path: Pathable<V>, value: S): UpdateQuerySetStep<T> {
-        return UpdateQueryDsl(entity, path.toPath(), Expressions.value(value))
-    }
+    override fun <V : Any, S : V?> set(
+        path: Pathable<V>,
+        value: S,
+    ): UpdateQuerySetStep<T> = UpdateQueryDsl(entity, path.toPath(), Expressions.value(value))
 
-    override fun <V : Any> set(path: Pathable<V>, value: Expressionable<V>): UpdateQuerySetStep<T> {
-        return UpdateQueryDsl(entity, path.toPath(), value.toExpression())
-    }
+    override fun <V : Any> set(
+        path: Pathable<V>,
+        value: Expressionable<V>,
+    ): UpdateQuerySetStep<T> = UpdateQueryDsl(entity, path.toPath(), value.toExpression())
 }

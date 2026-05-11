@@ -37,10 +37,11 @@ class JpqlMaxSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.max(
-            distinct = false,
-            expression1,
-        )
+        val part =
+            Expressions.max(
+                distinct = false,
+                expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -57,10 +58,11 @@ class JpqlMaxSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the DISTINCT, when the distinct is enabled`() {
         // given
-        val part = Expressions.max(
-            distinct = true,
-            expression1,
-        )
+        val part =
+            Expressions.max(
+                distinct = true,
+                expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

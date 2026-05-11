@@ -13,11 +13,13 @@ internal data class SelectQueryFromStepDsl<T : Any>(
     private val distinct: Boolean,
     private val select: Iterable<Expression<*>>,
 ) : SelectQueryFromStep<T> {
-    override fun from(entity: Entityable<*>): SelectQueryWhereStep<T> {
-        return SelectQueryDsl(returnType, distinct, select, listOf(entity.toEntity()))
-    }
+    override fun from(entity: Entityable<*>): SelectQueryWhereStep<T> =
+        SelectQueryDsl(returnType, distinct, select, listOf(entity.toEntity()))
 
-    override fun from(entity: Entityable<*>, vararg froms: Fromable?): SelectQueryWhereStep<T> {
+    override fun from(
+        entity: Entityable<*>,
+        vararg froms: Fromable?,
+    ): SelectQueryWhereStep<T> {
         val from = listOf(entity.toEntity()) + froms.mapNotNull { it?.toFrom() }
 
         return SelectQueryDsl(returnType, distinct, select, from)

@@ -34,13 +34,14 @@ class CombinedRenderContextTest : WithAssertions {
 
     @BeforeEach
     fun setUp() {
-        sut = CombinedRenderContext(
+        sut =
             CombinedRenderContext(
-                element1,
-                element2,
-            ),
-            element3,
-        )
+                CombinedRenderContext(
+                    element1,
+                    element2,
+                ),
+                element3,
+            )
     }
 
     @Test
@@ -143,12 +144,13 @@ class CombinedRenderContextTest : WithAssertions {
         assertThat(actual[TestRenderContextElement4]).isNull()
         assertThat(actual[TestRenderContextElement5]).isNull()
 
-        actual = sut
-            .minusKey(TestRenderContextElement1)
-            .minusKey(TestRenderContextElement2)
-            .minusKey(TestRenderContextElement3)
-            .minusKey(TestRenderContextElement4)
-            .minusKey(TestRenderContextElement5)
+        actual =
+            sut
+                .minusKey(TestRenderContextElement1)
+                .minusKey(TestRenderContextElement2)
+                .minusKey(TestRenderContextElement3)
+                .minusKey(TestRenderContextElement4)
+                .minusKey(TestRenderContextElement5)
 
         assertThat(actual[TestRenderContextElement1]).isNull()
         assertThat(actual[TestRenderContextElement2]).isNull()

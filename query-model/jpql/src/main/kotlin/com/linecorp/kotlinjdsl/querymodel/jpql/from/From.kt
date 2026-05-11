@@ -4,4 +4,6 @@ import com.linecorp.kotlinjdsl.SinceJdsl
 import com.linecorp.kotlinjdsl.querymodel.QueryPart
 
 @SinceJdsl("3.0.0")
-interface From : Fromable, QueryPart
+interface From :
+    Fromable,
+    QueryPart

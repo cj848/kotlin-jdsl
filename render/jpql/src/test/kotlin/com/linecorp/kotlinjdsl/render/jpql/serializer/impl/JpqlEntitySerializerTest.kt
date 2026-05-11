@@ -30,9 +30,10 @@ internal class JpqlEntitySerializerTest : WithAssertions {
     @MockK
     private lateinit var introspector: JpqlRenderIntrospector
 
-    private val entityDescription1 = object : JpqlEntityDescription {
-        override val name = "entityName1"
-    }
+    private val entityDescription1 =
+        object : JpqlEntityDescription {
+            override val name = "entityName1"
+        }
 
     private val alias1 = "alias1"
 

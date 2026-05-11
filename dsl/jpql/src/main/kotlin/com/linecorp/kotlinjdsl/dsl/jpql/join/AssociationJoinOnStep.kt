@@ -5,7 +5,9 @@ import com.linecorp.kotlinjdsl.querymodel.jpql.join.Joinable
 import com.linecorp.kotlinjdsl.querymodel.jpql.predicate.Predicatable
 
 @SinceJdsl("3.0.0")
-interface AssociationJoinOnStep<T : Any> : AssociationJoinAsStep<T>, Joinable {
+interface AssociationJoinOnStep<T : Any> :
+    AssociationJoinAsStep<T>,
+    Joinable {
     /**
      * Creates an on operator in a join clause.
      */

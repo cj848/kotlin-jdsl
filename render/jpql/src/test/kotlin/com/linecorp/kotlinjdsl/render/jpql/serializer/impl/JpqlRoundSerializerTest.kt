@@ -38,10 +38,11 @@ class JpqlRoundSerializerTest {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.round(
-            value = expression1,
-            scale = expression2,
-        )
+        val part =
+            Expressions.round(
+                value = expression1,
+                scale = expression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when

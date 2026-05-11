@@ -37,11 +37,12 @@ class JpqlCoalesceSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val coalesce = Expressions.coalesce(
-            expression1,
-            expression2,
-            listOf(expression3),
-        )
+        val coalesce =
+            Expressions.coalesce(
+                expression1,
+                expression2,
+                listOf(expression3),
+            )
         val context = TestRenderContext(serializer)
 
         // when

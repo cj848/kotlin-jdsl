@@ -14,17 +14,19 @@ class AvgDslTest : WithAssertions {
     @Test
     fun `avg() with a property`() {
         // when
-        val expression = queryPart {
-            avg(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                avg(Book::price)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.avg(
-            distinct = false,
-            expr = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.avg(
+                distinct = false,
+                expr = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -32,17 +34,19 @@ class AvgDslTest : WithAssertions {
     @Test
     fun `avg() with a expression`() {
         // when
-        val expression = queryPart {
-            avg(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                avg(expression1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.avg(
-            distinct = false,
-            expr = expression1,
-        )
+        val expected =
+            Expressions.avg(
+                distinct = false,
+                expr = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -50,17 +54,19 @@ class AvgDslTest : WithAssertions {
     @Test
     fun `avgDistinct() with a property`() {
         // when
-        val expression = queryPart {
-            avgDistinct(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                avgDistinct(Book::price)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.avg(
-            distinct = true,
-            expr = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.avg(
+                distinct = true,
+                expr = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -68,17 +74,19 @@ class AvgDslTest : WithAssertions {
     @Test
     fun `avgDistinct() with a expression`() {
         // when
-        val expression = queryPart {
-            avgDistinct(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                avgDistinct(expression1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.avg(
-            distinct = true,
-            expr = expression1,
-        )
+        val expected =
+            Expressions.avg(
+                distinct = true,
+                expr = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

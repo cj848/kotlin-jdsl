@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlConcatSerializer : JpqlSerializer<JpqlConcat> {
-    override fun handledType(): KClass<JpqlConcat> {
-        return JpqlConcat::class
-    }
+    override fun handledType(): KClass<JpqlConcat> = JpqlConcat::class
 
-    override fun serialize(part: JpqlConcat, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlConcat,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("CONCAT")

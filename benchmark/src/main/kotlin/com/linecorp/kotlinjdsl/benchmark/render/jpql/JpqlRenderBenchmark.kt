@@ -39,7 +39,5 @@ class JpqlRenderBenchmark {
     }
 
     @Benchmark
-    fun benchmark(): JpqlRendered {
-        return sut.render(query, context)
-    }
+    fun benchmark(): JpqlRendered = sut.render(query, context)
 }

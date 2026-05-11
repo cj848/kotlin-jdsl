@@ -18,15 +18,17 @@ interface RenderContext {
      * If there is no value, an exception is thrown.
      */
     @SinceJdsl("3.0.0")
-    fun <E : Element> getValue(key: Key<E>): E {
-        return get(key) ?: throw IllegalStateException("Key $key is missing in the context.")
-    }
+    fun <E : Element> getValue(key: Key<E>): E =
+        get(key) ?: throw IllegalStateException("Key $key is missing in the context.")
 
     /**
      * Folds the context with the initial value and the operation.
      */
     @SinceJdsl("3.0.0")
-    fun <R> fold(initial: R, operation: (R, Element) -> R): R
+    fun <R> fold(
+        initial: R,
+        operation: (R, Element) -> R,
+    ): R
 
     /**
      * Combines this context with the context.
@@ -78,16 +80,16 @@ interface RenderContext {
             }
         }
 
-        override fun <R> fold(initial: R, operation: (R, Element) -> R): R {
-            return operation(initial, this)
-        }
+        override fun <R> fold(
+            initial: R,
+            operation: (R, Element) -> R,
+        ): R = operation(initial, this)
 
-        override fun minusKey(key: Key<*>): RenderContext {
-            return if (this.key == key) {
+        override fun minusKey(key: Key<*>): RenderContext =
+            if (this.key == key) {
                 EmptyRenderContext
             } else {
                 this
             }
-        }
     }
 }

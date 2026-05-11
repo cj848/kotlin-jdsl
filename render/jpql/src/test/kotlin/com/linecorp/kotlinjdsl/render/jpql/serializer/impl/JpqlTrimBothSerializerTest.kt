@@ -36,9 +36,10 @@ class JpqlTrimBothSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the BOTH and the FROM, when the character is null`() {
         // given
-        val part = Expressions.trimBoth(
-            value = stringExpression1,
-        )
+        val part =
+            Expressions.trimBoth(
+                value = stringExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -59,10 +60,11 @@ class JpqlTrimBothSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the BOTH, the character and the FROM, when the character is not null`() {
         // given
-        val part = Expressions.trimBoth(
-            character = charExpression1,
-            value = stringExpression1,
-        )
+        val part =
+            Expressions.trimBoth(
+                character = charExpression1,
+                value = stringExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

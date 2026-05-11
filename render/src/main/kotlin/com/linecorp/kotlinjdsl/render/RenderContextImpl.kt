@@ -10,8 +10,14 @@ abstract class AbstractRenderContextElement(
 @SinceJdsl("3.0.0")
 object EmptyRenderContext : RenderContext {
     override fun <E : RenderContext.Element> get(key: RenderContext.Key<E>): E? = null
-    override fun <R> fold(initial: R, operation: (R, RenderContext.Element) -> R): R = initial
+
+    override fun <R> fold(
+        initial: R,
+        operation: (R, RenderContext.Element) -> R,
+    ): R = initial
+
     override fun plus(context: RenderContext): RenderContext = context
+
     override fun minusKey(key: RenderContext.Key<*>): RenderContext = this
 
     override fun toString(): String = "EmptyRenderContext"
@@ -39,9 +45,10 @@ internal class CombinedRenderContext(
         }
     }
 
-    override fun <R> fold(initial: R, operation: (R, RenderContext.Element) -> R): R {
-        return operation(left.fold(initial, operation), element)
-    }
+    override fun <R> fold(
+        initial: R,
+        operation: (R, RenderContext.Element) -> R,
+    ): R = operation(left.fold(initial, operation), element)
 
     override fun minusKey(key: RenderContext.Key<*>): RenderContext {
         if (element[key] != null) {
@@ -66,9 +73,7 @@ internal class CombinedRenderContext(
         }
     }
 
-    private fun contains(element: RenderContext.Element): Boolean {
-        return get(element.key) == element
-    }
+    private fun contains(element: RenderContext.Element): Boolean = get(element.key) == element
 
     private fun containsAll(context: CombinedRenderContext): Boolean {
         var cur = context
@@ -83,15 +88,11 @@ internal class CombinedRenderContext(
         }
     }
 
-    override fun equals(other: Any?): Boolean {
-        return this === other || other is CombinedRenderContext && other.size() == size() && other.containsAll(this)
-    }
+    override fun equals(other: Any?): Boolean =
+        this === other || (other is CombinedRenderContext && other.size() == size() && other.containsAll(this))
 
-    override fun hashCode(): Int {
-        return left.hashCode() + element.hashCode()
-    }
+    override fun hashCode(): Int = left.hashCode() + element.hashCode()
 
-    override fun toString(): String {
-        return "[" + fold("") { acc, element -> if (acc.isEmpty()) element.toString() else "$acc, $element" } + "]"
-    }
+    override fun toString(): String =
+        "[" + fold("") { acc, element -> if (acc.isEmpty()) element.toString() else "$acc, $element" } + "]"
 }

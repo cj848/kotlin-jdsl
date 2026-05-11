@@ -36,9 +36,10 @@ class JpqlTrimSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.trim(
-            value = stringExpression1,
-        )
+        val part =
+            Expressions.trim(
+                value = stringExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -55,10 +56,11 @@ class JpqlTrimSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the character and the FROM, when the character is not null`() {
         // given
-        val part = Expressions.trim(
-            character = charExpression1,
-            value = stringExpression1,
-        )
+        val part =
+            Expressions.trim(
+                character = charExpression1,
+                value = stringExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

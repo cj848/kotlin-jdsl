@@ -1,14 +1,13 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    alias(rootLibs.plugins.kotlin2.jvm)
-    alias(rootLibs.plugins.kotlin2.spring)
-    alias(rootLibs.plugins.kotlin2.jpa)
-    alias(rootLibs.plugins.spring.boot4)
-    alias(rootLibs.plugins.spring.dependency.management)
-    alias(rootLibs.plugins.ktlint5)
-    alias(rootLibs.plugins.kover)
-    alias(rootLibs.plugins.nexus.publish)
-    `maven-publish`
-    signing
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.kotlin.jpa)
+    alias(libs.plugins.spring.boot4)
+    alias(libs.plugins.spring.dependency.management)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.kover)
 }
 
 group = "com.linecorp.kotlin-jdsl"
@@ -19,29 +18,34 @@ repositories {
 }
 
 dependencies {
-    compileOnly(rootLibs.spring.boot4.starter.data.jpa)
-    compileOnly(rootLibs.spring.batch6.infrastructure)
-    compileOnly(rootLibs.jakarta.persistence32.api)
-    compileOnly(rootLibs.slf4j)
+    compileOnly(libs.spring.boot4.starter.data.jpa)
+    compileOnly(libs.spring.batch6.infrastructure)
+    compileOnly(libs.jakarta.persistence32.api)
+    compileOnly(libs.slf4j)
 
-    // Core Dependencies (from included build)
-    implementation("com.linecorp.kotlin-jdsl:kotlin-jdsl:${project.version}")
-    implementation("com.linecorp.kotlin-jdsl:jpql-dsl:${project.version}")
-    implementation("com.linecorp.kotlin-jdsl:jpql-query-model:${project.version}")
-    implementation("com.linecorp.kotlin-jdsl:jpql-render:${project.version}")
+    // Core Dependencies
+    implementation(projects.jpqlDsl)
+    implementation(projects.jpqlQueryModel)
+    implementation(projects.jpqlRender)
 
-    testImplementation(rootLibs.spring.boot4.starter.data.jpa)
-    testImplementation(rootLibs.spring.batch6.infrastructure)
-    testImplementation(rootLibs.jakarta.persistence32.api)
-    testImplementation(rootLibs.junit6)
-    testImplementation(rootLibs.junit6.platform.engine)
-    testImplementation(rootLibs.junit6.platform.launcher)
-    testImplementation(rootLibs.mockk)
-    testImplementation(rootLibs.assertJ)
+    testImplementation(libs.spring.boot4.starter.data.jpa)
+    testImplementation(libs.spring.batch6.infrastructure)
+    testImplementation(libs.jakarta.persistence32.api)
+    testImplementation(libs.junit6)
+    testImplementation(libs.junit6.platform.engine)
+    testImplementation(libs.junit6.platform.launcher)
+    testImplementation(libs.mockk)
+    testImplementation(libs.assertJ)
 }
 
 kotlin {
     jvmToolchain(17)
+}
+
+tasks.withType<KotlinCompile> {
+    compilerOptions {
+        freeCompilerArgs.add("-Xallow-kotlin-package")
+    }
 }
 
 tasks.test {
@@ -55,78 +59,4 @@ tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
 
 tasks.named<Jar>("jar") {
     archiveClassifier.set("")
-}
-
-java {
-    withSourcesJar()
-    withJavadocJar()
-}
-
-signing {
-    val signingKeyId: String? by project
-    val signingKey: String? by project
-    val signingPassword: String? by project
-
-    // Only sign if keys are present (avoid failure in local dev)
-    if (signingKeyId != null) {
-        useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
-        sign(publishing.publications)
-    }
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-
-            pom {
-                name.set(artifactId)
-                description.set(
-                    "Kotlin library that makes it easy to build and execute queries without generated metamodel.",
-                )
-                url.set("https://github.com/line/kotlin-jdsl")
-
-                licenses {
-                    license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
-
-                developers {
-                    developer {
-                        name.set("LY Corporation")
-                        email.set("dl_oss_dev@linecorp.com")
-                        url.set("https://engineering.linecorp.com/en/")
-                    }
-                    developer {
-                        id.set("shouwn")
-                        name.set("jonghyon.s")
-                        email.set("jonghyon.s@linecorp.com")
-                    }
-                }
-
-                scm {
-                    connection.set("scm:git@github.com:line/kotlin-jdsl.git")
-                    developerConnection.set("scm:git:ssh://github.com:line/kotlin-jdsl.git")
-                    url.set("https://github.com/line/kotlin-jdsl")
-                }
-            }
-        }
-    }
-}
-
-nexusPublishing {
-    repositories {
-        sonatype {
-            nexusUrl = uri("https://ossrh-staging-api.central.sonatype.com/service/local/")
-            snapshotRepositoryUrl = uri("https://central.sonatype.com/repository/maven-snapshots/")
-
-            val sonatypeUsername: String? by project
-            val sonatypePassword: String? by project
-
-            username = sonatypeUsername
-            password = sonatypePassword
-        }
-    }
 }

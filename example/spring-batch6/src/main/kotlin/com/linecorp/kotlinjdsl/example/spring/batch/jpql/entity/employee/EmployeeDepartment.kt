@@ -31,11 +31,9 @@ class EmployeeDepartment(
     override fun equals(other: Any?): Boolean =
         Objects.equals(employeeDepartmentId, (other as? EmployeeDepartment)?.employeeDepartmentId)
 
-    override fun hashCode(): Int =
-        Objects.hashCode(employeeDepartmentId)
+    override fun hashCode(): Int = Objects.hashCode(employeeDepartmentId)
 
-    override fun toString(): String =
-        "EmployeeDepartment(employeeDepartmentId=$employeeDepartmentId)"
+    override fun toString(): String = "EmployeeDepartment(employeeDepartmentId=$employeeDepartmentId)"
 
     @CompositeId
     data class EmployeeDepartmentId(

@@ -10,10 +10,6 @@ data class EmployeeSalary(
     val value: BigDecimal,
 )
 
-fun EmployeeSalary(int: Int): EmployeeSalary {
-    return EmployeeSalary(BigDecimal.valueOf(int.toLong()).setScale(2))
-}
+fun EmployeeSalary(int: Int): EmployeeSalary = EmployeeSalary(BigDecimal.valueOf(int.toLong()).setScale(2))
 
-fun EmployeeSalary(double: Double): EmployeeSalary {
-    return EmployeeSalary(BigDecimal.valueOf(double).setScale(2))
-}
+fun EmployeeSalary(double: Double): EmployeeSalary = EmployeeSalary(BigDecimal.valueOf(double).setScale(2))

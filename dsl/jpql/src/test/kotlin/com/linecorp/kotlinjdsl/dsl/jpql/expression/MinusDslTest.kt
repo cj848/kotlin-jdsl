@@ -17,27 +17,31 @@ class MinusDslTest : WithAssertions {
     @Test
     fun `minus() with a property and a bigDecimal`() {
         // when
-        val expression1 = queryPart {
-            path(Book::price).minus(bigDecimal1)
-        }
+        val expression1 =
+            queryPart {
+                path(Book::price).minus(bigDecimal1)
+            }
 
-        val expression2 = queryPart {
-            minus(path(Book::price), bigDecimal1)
-        }
+        val expression2 =
+            queryPart {
+                minus(path(Book::price), bigDecimal1)
+            }
 
         val actual1: Expression<BigDecimal> = expression1 // for type check
         val actual2: Expression<BigDecimal> = expression2 // for type check
 
         // then
-        val expected1 = Expressions.minus(
-            value1 = Paths.path(Book::price),
-            value2 = Expressions.value(bigDecimal1),
-        )
+        val expected1 =
+            Expressions.minus(
+                value1 = Paths.path(Book::price),
+                value2 = Expressions.value(bigDecimal1),
+            )
 
-        val expected2 = Expressions.minus(
-            value1 = Expressions.parentheses(Paths.path(Book::price)),
-            value2 = Expressions.parentheses(Expressions.value(bigDecimal1)),
-        )
+        val expected2 =
+            Expressions.minus(
+                value1 = Expressions.parentheses(Paths.path(Book::price)),
+                value2 = Expressions.parentheses(Expressions.value(bigDecimal1)),
+            )
 
         assertThat(actual1).isEqualTo(expected1)
         assertThat(actual2).isEqualTo(expected2)
@@ -46,27 +50,31 @@ class MinusDslTest : WithAssertions {
     @Test
     fun `minus() with a property and a bigDecimal expression`() {
         // when
-        val expression1 = queryPart {
-            path(Book::price).minus(bigDecimalExpression1)
-        }
+        val expression1 =
+            queryPart {
+                path(Book::price).minus(bigDecimalExpression1)
+            }
 
-        val expression2 = queryPart {
-            minus(path(Book::price), bigDecimalExpression1)
-        }
+        val expression2 =
+            queryPart {
+                minus(path(Book::price), bigDecimalExpression1)
+            }
 
         val actual1: Expression<BigDecimal> = expression1 // for type check
         val actual2: Expression<BigDecimal> = expression2 // for type check
 
         // then
-        val expected1 = Expressions.minus(
-            value1 = Paths.path(Book::price),
-            value2 = bigDecimalExpression1,
-        )
+        val expected1 =
+            Expressions.minus(
+                value1 = Paths.path(Book::price),
+                value2 = bigDecimalExpression1,
+            )
 
-        val expected2 = Expressions.minus(
-            value1 = Expressions.parentheses(Paths.path(Book::price)),
-            value2 = Expressions.parentheses(bigDecimalExpression1),
-        )
+        val expected2 =
+            Expressions.minus(
+                value1 = Expressions.parentheses(Paths.path(Book::price)),
+                value2 = Expressions.parentheses(bigDecimalExpression1),
+            )
 
         assertThat(actual1).isEqualTo(expected1)
         assertThat(actual2).isEqualTo(expected2)

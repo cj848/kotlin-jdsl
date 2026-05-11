@@ -19,17 +19,19 @@ object Entities {
      * The entity is identified and referenced by its alias.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any> entity(type: KClass<T>, alias: String = type.simpleName!!): Entity<T> {
-        return JpqlEntity(type, alias)
-    }
+    fun <T : Any> entity(
+        type: KClass<T>,
+        alias: String = type.simpleName!!,
+    ): Entity<T> = JpqlEntity(type, alias)
 
     /**
      * Creates an entity with downcasting.
      */
     @SinceJdsl("3.0.0")
-    fun <T : Any, S : T> treat(entity: Entity<T>, type: KClass<S>): Entity<S> {
-        return JpqlEntityTreat(entity, type)
-    }
+    fun <T : Any, S : T> treat(
+        entity: Entity<T>,
+        type: KClass<S>,
+    ): Entity<S> = JpqlEntityTreat(entity, type)
 
     /**
      * Creates a derived entity with the select query and alias.
@@ -39,20 +41,21 @@ object Entities {
         selectQuery: SelectQuery<T>,
         alias: String = selectQuery.returnType.simpleName!!,
     ): Entity<T> {
-        val trimmed = if (selectQuery is JpqlSelectQuery) {
-            JpqlSelectQuery(
-                returnType = selectQuery.returnType,
-                select = selectQuery.select,
-                distinct = selectQuery.distinct,
-                from = SelectQueries.stripFetch(selectQuery.from),
-                where = selectQuery.where,
-                groupBy = selectQuery.groupBy,
-                having = selectQuery.having,
-                orderBy = null,
-            )
-        } else {
-            selectQuery
-        }
+        val trimmed =
+            if (selectQuery is JpqlSelectQuery) {
+                JpqlSelectQuery(
+                    returnType = selectQuery.returnType,
+                    select = selectQuery.select,
+                    distinct = selectQuery.distinct,
+                    from = SelectQueries.stripFetch(selectQuery.from),
+                    where = selectQuery.where,
+                    groupBy = selectQuery.groupBy,
+                    having = selectQuery.having,
+                    orderBy = null,
+                )
+            } else {
+                selectQuery
+            }
 
         return JpqlDerivedEntity(
             selectQuery = trimmed,

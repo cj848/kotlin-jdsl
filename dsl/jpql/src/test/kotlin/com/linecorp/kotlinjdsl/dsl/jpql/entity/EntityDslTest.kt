@@ -13,16 +13,18 @@ class EntityDslTest : WithAssertions {
     @Test
     fun `entity() with a class`() {
         // when
-        val entity = queryPart {
-            entity(Book::class)
-        }
+        val entity =
+            queryPart {
+                entity(Book::class)
+            }
 
         val actual: Entity<Book> = entity // for type check
 
         // then
-        val expected = Entities.entity(
-            Book::class,
-        )
+        val expected =
+            Entities.entity(
+                Book::class,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -30,17 +32,19 @@ class EntityDslTest : WithAssertions {
     @Test
     fun `entity() with a class and an alias`() {
         // when
-        val entity = queryPart {
-            entity(Book::class, alias1)
-        }
+        val entity =
+            queryPart {
+                entity(Book::class, alias1)
+            }
 
         val actual: Entity<Book> = entity // for type check
 
         // then
-        val expected = Entities.entity(
-            Book::class,
-            alias1,
-        )
+        val expected =
+            Entities.entity(
+                Book::class,
+                alias1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

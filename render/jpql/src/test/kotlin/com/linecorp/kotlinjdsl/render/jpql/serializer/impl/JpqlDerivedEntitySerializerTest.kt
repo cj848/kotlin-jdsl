@@ -29,12 +29,13 @@ class JpqlDerivedEntitySerializerTest : WithAssertions {
     @MockK
     private lateinit var serializer: JpqlRenderSerializer
 
-    private val selectQuery1 = SelectQueries.selectQuery(
-        returnType = String::class,
-        distinct = false,
-        select = listOf(Paths.path(Book::title)),
-        from = listOf(Entities.entity(Book::class)),
-    )
+    private val selectQuery1 =
+        SelectQueries.selectQuery(
+            returnType = String::class,
+            distinct = false,
+            select = listOf(Paths.path(Book::title)),
+            from = listOf(Entities.entity(Book::class)),
+        )
 
     private val alias1 = "alias1"
 
@@ -61,10 +62,11 @@ class JpqlDerivedEntitySerializerTest : WithAssertions {
         clause: JpqlRenderClause,
     ) {
         // given
-        val part = Entities.derivedEntity(
-            selectQuery = selectQuery1,
-            alias = alias1,
-        )
+        val part =
+            Entities.derivedEntity(
+                selectQuery = selectQuery1,
+                alias = alias1,
+            )
         val context = TestRenderContext(serializer, statement, clause)
 
         // when
@@ -95,10 +97,11 @@ class JpqlDerivedEntitySerializerTest : WithAssertions {
         clause: JpqlRenderClause,
     ) {
         // given
-        val part = Entities.derivedEntity(
-            selectQuery = selectQuery1,
-            alias = alias1,
-        )
+        val part =
+            Entities.derivedEntity(
+                selectQuery = selectQuery1,
+                alias = alias1,
+            )
         val context = TestRenderContext(serializer, statement, clause)
 
         // when

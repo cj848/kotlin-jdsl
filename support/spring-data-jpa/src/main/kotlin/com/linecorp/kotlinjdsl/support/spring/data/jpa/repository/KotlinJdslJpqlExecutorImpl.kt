@@ -43,18 +43,14 @@ open class KotlinJdslJpqlExecutorImpl(
         offset: Int?,
         limit: Int?,
         init: Jpql.() -> JpqlQueryable<SelectQuery<T>>,
-    ): List<T?> {
-        return findAll(Jpql, offset = offset, limit = limit, init)
-    }
+    ): List<T?> = findAll(Jpql, offset = offset, limit = limit, init)
 
     override fun <T : Any, DSL : JpqlDsl> findAll(
         dsl: JpqlDsl.Constructor<DSL>,
         offset: Int?,
         limit: Int?,
         init: DSL.() -> JpqlQueryable<SelectQuery<T>>,
-    ): List<T?> {
-        return findAll(dsl.newInstance(), offset = offset, limit = limit, init)
-    }
+    ): List<T?> = findAll(dsl.newInstance(), offset = offset, limit = limit, init)
 
     override fun <T : Any, DSL : JpqlDsl> findAll(
         dsl: DSL,
@@ -71,17 +67,13 @@ open class KotlinJdslJpqlExecutorImpl(
     override fun <T : Any> findAll(
         pageable: Pageable,
         init: Jpql.() -> JpqlQueryable<SelectQuery<T>>,
-    ): List<T?> {
-        return findAll(Jpql, pageable, init)
-    }
+    ): List<T?> = findAll(Jpql, pageable, init)
 
     override fun <T : Any, DSL : JpqlDsl> findAll(
         dsl: JpqlDsl.Constructor<DSL>,
         pageable: Pageable,
         init: DSL.() -> JpqlQueryable<SelectQuery<T>>,
-    ): List<T?> {
-        return findAll(dsl.newInstance(), pageable, init)
-    }
+    ): List<T?> = findAll(dsl.newInstance(), pageable, init)
 
     override fun <T : Any, DSL : JpqlDsl> findAll(
         dsl: DSL,
@@ -96,17 +88,13 @@ open class KotlinJdslJpqlExecutorImpl(
     override fun <T : Any> findPage(
         pageable: Pageable,
         init: Jpql.() -> JpqlQueryable<SelectQuery<T>>,
-    ): Page<T?> {
-        return findPage(Jpql, pageable, init)
-    }
+    ): Page<T?> = findPage(Jpql, pageable, init)
 
     override fun <T : Any, DSL : JpqlDsl> findPage(
         dsl: JpqlDsl.Constructor<DSL>,
         pageable: Pageable,
         init: DSL.() -> JpqlQueryable<SelectQuery<T>>,
-    ): Page<T?> {
-        return findPage(dsl.newInstance(), pageable, init)
-    }
+    ): Page<T?> = findPage(dsl.newInstance(), pageable, init)
 
     override fun <T : Any, DSL : JpqlDsl> findPage(
         dsl: DSL,
@@ -122,18 +110,14 @@ open class KotlinJdslJpqlExecutorImpl(
         pageable: Pageable,
         init: Jpql.() -> JpqlQueryable<SelectQuery<T>>,
         countInit: Jpql.() -> JpqlQueryable<SelectQuery<Long>>,
-    ): Page<T?> {
-        return findPage(Jpql, pageable, init, countInit)
-    }
+    ): Page<T?> = findPage(Jpql, pageable, init, countInit)
 
     override fun <T : Any, DSL : JpqlDsl> findPage(
         dsl: JpqlDsl.Constructor<DSL>,
         pageable: Pageable,
         init: DSL.() -> JpqlQueryable<SelectQuery<T>>,
         countInit: DSL.() -> JpqlQueryable<SelectQuery<Long>>,
-    ): Page<T?> {
-        return findPage(dsl.newInstance(), pageable, init, countInit)
-    }
+    ): Page<T?> = findPage(dsl.newInstance(), pageable, init, countInit)
 
     override fun <T : Any, DSL : JpqlDsl> findPage(
         dsl: DSL,
@@ -150,17 +134,13 @@ open class KotlinJdslJpqlExecutorImpl(
     override fun <T : Any> findSlice(
         pageable: Pageable,
         init: Jpql.() -> JpqlQueryable<SelectQuery<T>>,
-    ): Slice<T?> {
-        return findSlice(Jpql, pageable, init)
-    }
+    ): Slice<T?> = findSlice(Jpql, pageable, init)
 
     override fun <T : Any, DSL : JpqlDsl> findSlice(
         dsl: JpqlDsl.Constructor<DSL>,
         pageable: Pageable,
         init: DSL.() -> JpqlQueryable<SelectQuery<T>>,
-    ): Slice<T?> {
-        return findSlice(dsl.newInstance(), pageable, init)
-    }
+    ): Slice<T?> = findSlice(dsl.newInstance(), pageable, init)
 
     override fun <T : Any, DSL : JpqlDsl> findSlice(
         dsl: DSL,
@@ -176,18 +156,14 @@ open class KotlinJdslJpqlExecutorImpl(
         offset: Int?,
         limit: Int?,
         init: Jpql.() -> JpqlQueryable<SelectQuery<T>>,
-    ): Stream<T?> {
-        return findStream(Jpql, offset = offset, limit = limit, init)
-    }
+    ): Stream<T?> = findStream(Jpql, offset = offset, limit = limit, init)
 
     override fun <T : Any, DSL : JpqlDsl> findStream(
         dsl: JpqlDsl.Constructor<DSL>,
         offset: Int?,
         limit: Int?,
         init: DSL.() -> JpqlQueryable<SelectQuery<T>>,
-    ): Stream<T?> {
-        return findStream(dsl.newInstance(), offset = offset, limit = limit, init)
-    }
+    ): Stream<T?> = findStream(dsl.newInstance(), offset = offset, limit = limit, init)
 
     override fun <T : Any, DSL : JpqlDsl> findStream(
         dsl: DSL,
@@ -204,17 +180,13 @@ open class KotlinJdslJpqlExecutorImpl(
     override fun <T : Any> findStream(
         pageable: Pageable,
         init: Jpql.() -> JpqlQueryable<SelectQuery<T>>,
-    ): Stream<T?> {
-        return findStream(Jpql, pageable, init)
-    }
+    ): Stream<T?> = findStream(Jpql, pageable, init)
 
     override fun <T : Any, DSL : JpqlDsl> findStream(
         dsl: JpqlDsl.Constructor<DSL>,
         pageable: Pageable,
         init: DSL.() -> JpqlQueryable<SelectQuery<T>>,
-    ): Stream<T?> {
-        return findStream(dsl.newInstance(), pageable, init)
-    }
+    ): Stream<T?> = findStream(dsl.newInstance(), pageable, init)
 
     override fun <T : Any, DSL : JpqlDsl> findStream(
         dsl: DSL,
@@ -227,19 +199,13 @@ open class KotlinJdslJpqlExecutorImpl(
     }
 
     @Transactional
-    override fun <T : Any> update(
-        init: Jpql.() -> JpqlQueryable<UpdateQuery<T>>,
-    ): Int {
-        return update(Jpql, init)
-    }
+    override fun <T : Any> update(init: Jpql.() -> JpqlQueryable<UpdateQuery<T>>): Int = update(Jpql, init)
 
     @Transactional
     override fun <T : Any, DSL : JpqlDsl> update(
         dsl: JpqlDsl.Constructor<DSL>,
         init: DSL.() -> JpqlQueryable<UpdateQuery<T>>,
-    ): Int {
-        return update(dsl.newInstance(), init)
-    }
+    ): Int = update(dsl.newInstance(), init)
 
     @Transactional
     override fun <T : Any, DSL : JpqlDsl> update(
@@ -253,19 +219,13 @@ open class KotlinJdslJpqlExecutorImpl(
     }
 
     @Transactional
-    override fun <T : Any> delete(
-        init: Jpql.() -> JpqlQueryable<DeleteQuery<T>>,
-    ): Int {
-        return delete(Jpql, init)
-    }
+    override fun <T : Any> delete(init: Jpql.() -> JpqlQueryable<DeleteQuery<T>>): Int = delete(Jpql, init)
 
     @Transactional
     override fun <T : Any, DSL : JpqlDsl> delete(
         dsl: JpqlDsl.Constructor<DSL>,
         init: DSL.() -> JpqlQueryable<DeleteQuery<T>>,
-    ): Int {
-        return delete(dsl.newInstance(), init)
-    }
+    ): Int = delete(dsl.newInstance(), init)
 
     @Transactional
     override fun <T : Any, DSL : JpqlDsl> delete(
@@ -283,42 +243,36 @@ open class KotlinJdslJpqlExecutorImpl(
         returnType: KClass<T>,
         offset: Int?,
         limit: Int?,
-    ): TypedQuery<T> {
-        return JpqlEntityManagerUtils.createQuery(entityManager, query, returnType, renderContext).apply {
+    ): TypedQuery<T> =
+        JpqlEntityManagerUtils.createQuery(entityManager, query, returnType, renderContext).apply {
             setMetadata(this, metadata)
             offset?.let { setFirstResult(it) }
             limit?.let { setMaxResults(it) }
         }
-    }
 
-    private fun createJpaQuery(
-        query: JpqlQuery<*>,
-    ): Query {
-        return JpqlEntityManagerUtils.createQuery(entityManager, query, renderContext).apply {
+    private fun createJpaQuery(query: JpqlQuery<*>): Query =
+        JpqlEntityManagerUtils.createQuery(entityManager, query, renderContext).apply {
             setMetadata(this, metadata)
         }
-    }
 
-    private fun createJpaCountQuery(
-        countQuery: JpqlQuery<*>,
-    ): TypedQuery<Long> {
-        return JpqlEntityManagerUtils
+    private fun createJpaCountQuery(countQuery: JpqlQuery<*>): TypedQuery<Long> =
+        JpqlEntityManagerUtils
             .createCountQuery(entityManager, countQuery, renderContext)
             .apply { setMetadataForCount(this, metadata) }
-    }
 
     private fun <T : Any> createJpaEnhancedQuery(
         query: JpqlQuery<*>,
         returnType: KClass<T>,
         sort: Sort,
     ): EnhancedTypedQuery<T> {
-        val enhancedQuery = JpqlEntityManagerUtils.createEnhancedQuery(
-            entityManager,
-            query,
-            returnType,
-            sort,
-            renderContext,
-        )
+        val enhancedQuery =
+            JpqlEntityManagerUtils.createEnhancedQuery(
+                entityManager,
+                query,
+                returnType,
+                sort,
+                renderContext,
+            )
 
         return EnhancedTypedQuery(
             enhancedQuery.sortedQuery.apply { setMetadata(this, metadata) },
@@ -328,26 +282,38 @@ open class KotlinJdslJpqlExecutorImpl(
         }
     }
 
-    private fun setMetadata(query: Query, metadata: CrudMethodMetadata?) {
+    private fun setMetadata(
+        query: Query,
+        metadata: CrudMethodMetadata?,
+    ) {
         if (metadata == null) return
 
         setLockMode(query, metadata.lockModeType)
         setQueryHints(query, metadata.queryHints)
     }
 
-    private fun setMetadataForCount(query: Query, metadata: CrudMethodMetadata?) {
+    private fun setMetadataForCount(
+        query: Query,
+        metadata: CrudMethodMetadata?,
+    ) {
         if (metadata == null) return
 
         setQueryHints(query, metadata.queryHintsForCount)
     }
 
-    private fun setLockMode(query: Query, lockMode: LockModeType?) {
+    private fun setLockMode(
+        query: Query,
+        lockMode: LockModeType?,
+    ) {
         if (lockMode != null) {
             query.lockMode = lockMode
         }
     }
 
-    private fun setQueryHints(query: Query, hints: QueryHints?) {
+    private fun setQueryHints(
+        query: Query,
+        hints: QueryHints?,
+    ) {
         hints?.forEach { name, value ->
             query.setHint(name, value)
         }

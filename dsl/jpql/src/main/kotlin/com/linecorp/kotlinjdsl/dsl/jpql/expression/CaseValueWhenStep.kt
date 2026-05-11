@@ -4,7 +4,9 @@ import com.linecorp.kotlinjdsl.SinceJdsl
 import com.linecorp.kotlinjdsl.querymodel.jpql.expression.Expressionable
 
 @SinceJdsl("3.0.0")
-interface CaseValueWhenStep<T : Any, V : Any> : CaseValueElseStep<T, V>, Expressionable<V> {
+interface CaseValueWhenStep<T : Any, V : Any> :
+    CaseValueElseStep<T, V>,
+    Expressionable<V> {
     /**
      * Creates a when operator in a case expression.
      */

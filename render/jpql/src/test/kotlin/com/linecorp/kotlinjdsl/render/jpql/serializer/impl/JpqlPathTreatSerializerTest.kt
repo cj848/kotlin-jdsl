@@ -30,9 +30,10 @@ class JpqlPathTreatSerializerTest : WithAssertions {
     @MockK
     private lateinit var serializer: JpqlRenderSerializer
 
-    private val entityDescription1 = object : JpqlEntityDescription {
-        override val name = "entityName1"
-    }
+    private val entityDescription1 =
+        object : JpqlEntityDescription {
+            override val name = "entityName1"
+        }
 
     private val path1 = Paths.path(EmployeeDepartment::employee)
 
@@ -50,10 +51,11 @@ class JpqlPathTreatSerializerTest : WithAssertions {
         // given
         every { introspector.introspect(any<KClass<*>>()) } returns entityDescription1
 
-        val part = Paths.treat(
-            path1,
-            FullTimeEmployee::class,
-        )
+        val part =
+            Paths.treat(
+                path1,
+                FullTimeEmployee::class,
+            )
         val context = TestRenderContext(introspector, serializer)
 
         // when

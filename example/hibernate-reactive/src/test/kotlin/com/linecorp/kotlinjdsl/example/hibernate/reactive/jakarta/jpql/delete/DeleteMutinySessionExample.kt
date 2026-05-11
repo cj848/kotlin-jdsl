@@ -22,28 +22,35 @@ class DeleteMutinySessionExample : WithAssertions {
     @Test
     fun `delete all books published after June 2023`() {
         // when
-        val deleteQuery = jpql {
-            deleteFrom(
-                entity(Book::class),
-            ).where(
-                path(Book::publishDate).ge(OffsetDateTime.parse("2023-06-01T00:00:00+09:00")),
-            )
-        }
+        val deleteQuery =
+            jpql {
+                deleteFrom(
+                    entity(Book::class),
+                ).where(
+                    path(Book::publishDate).ge(OffsetDateTime.parse("2023-06-01T00:00:00+09:00")),
+                )
+            }
 
-        val selectQuery = jpql {
-            select(
-                entity(Book::class),
-            ).from(
-                entity(Book::class),
-            )
-        }
+        val selectQuery =
+            jpql {
+                select(
+                    entity(Book::class),
+                ).from(
+                    entity(Book::class),
+                )
+            }
 
-        val actual = sessionFactory.withTransaction { session, tx ->
-            tx.markForRollback()
+        val actual =
+            sessionFactory
+                .withTransaction { session, tx ->
+                    tx.markForRollback()
 
-            session.createMutationQuery(deleteQuery, context).executeUpdate()
-                .chain { _ -> session.createQuery(selectQuery, context).resultList }
-        }.await().indefinitely()
+                    session
+                        .createMutationQuery(deleteQuery, context)
+                        .executeUpdate()
+                        .chain { _ -> session.createQuery(selectQuery, context).resultList }
+                }.await()
+                .indefinitely()
 
         // then
         assertThat(actual.map { it.isbn }).isEqualTo(
@@ -60,38 +67,46 @@ class DeleteMutinySessionExample : WithAssertions {
     @Test
     fun `delete the employees from department 03`() {
         // when
-        val deleteQuery = jpql {
-            val employeeIds = select<Long>(
-                path(EmployeeDepartment::employee)(Employee::employeeId),
-            ).from(
-                entity(Department::class),
-                join(EmployeeDepartment::class)
-                    .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
-            ).where(
-                path(Department::name).like("%03"),
-            ).asSubquery()
+        val deleteQuery =
+            jpql {
+                val employeeIds =
+                    select<Long>(
+                        path(EmployeeDepartment::employee)(Employee::employeeId),
+                    ).from(
+                        entity(Department::class),
+                        join(EmployeeDepartment::class)
+                            .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
+                    ).where(
+                        path(Department::name).like("%03"),
+                    ).asSubquery()
 
-            deleteFrom(
-                entity(Employee::class),
-            ).where(
-                path(Employee::employeeId).`in`(employeeIds),
-            )
-        }
+                deleteFrom(
+                    entity(Employee::class),
+                ).where(
+                    path(Employee::employeeId).`in`(employeeIds),
+                )
+            }
 
-        val selectQuery = jpql {
-            select(
-                entity(Employee::class),
-            ).from(
-                entity(Employee::class),
-            )
-        }
+        val selectQuery =
+            jpql {
+                select(
+                    entity(Employee::class),
+                ).from(
+                    entity(Employee::class),
+                )
+            }
 
-        val actual = sessionFactory.withTransaction { session, tx ->
-            tx.markForRollback()
+        val actual =
+            sessionFactory
+                .withTransaction { session, tx ->
+                    tx.markForRollback()
 
-            session.createMutationQuery(deleteQuery, context).executeUpdate()
-                .chain { _ -> session.createQuery(selectQuery, context).resultList }
-        }.await().indefinitely()
+                    session
+                        .createMutationQuery(deleteQuery, context)
+                        .executeUpdate()
+                        .chain { _ -> session.createQuery(selectQuery, context).resultList }
+                }.await()
+                .indefinitely()
 
         // then
         assertThat(actual.map { it.employeeId }).isEqualTo(

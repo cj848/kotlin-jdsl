@@ -6,7 +6,9 @@ import org.junit.jupiter.params.provider.ArgumentsProvider
 import org.junit.jupiter.params.support.AnnotationConsumer
 import java.util.stream.Stream
 
-internal class StatementClauseArgumentsProvider : ArgumentsProvider, AnnotationConsumer<StatementClauseSource> {
+internal class StatementClauseArgumentsProvider :
+    ArgumentsProvider,
+    AnnotationConsumer<StatementClauseSource> {
     private lateinit var includes: LinkedHashSet<StatementClauseArguments>
     private lateinit var excludes: LinkedHashSet<StatementClauseArguments>
 
@@ -16,15 +18,19 @@ internal class StatementClauseArgumentsProvider : ArgumentsProvider, AnnotationC
     }
 
     private fun initializeIncludes(includes: Array<StatementClause>) {
-        this.includes = allStatementClauses.filter {
-            includes.any { include -> it.isConsideredAs(include) }
-        }.toCollection(LinkedHashSet())
+        this.includes =
+            allStatementClauses
+                .filter {
+                    includes.any { include -> it.isConsideredAs(include) }
+                }.toCollection(LinkedHashSet())
     }
 
     private fun initializeExcludes(excludes: Array<StatementClause>) {
-        this.excludes = allStatementClauses.filter {
-            excludes.any { exclude -> it.isConsideredAs(exclude) }
-        }.toCollection(LinkedHashSet())
+        this.excludes =
+            allStatementClauses
+                .filter {
+                    excludes.any { exclude -> it.isConsideredAs(exclude) }
+                }.toCollection(LinkedHashSet())
     }
 
     private fun StatementClauseArguments.isConsideredAs(argument: StatementClause): Boolean {
@@ -58,8 +64,9 @@ internal class StatementClauseArgumentsProvider : ArgumentsProvider, AnnotationC
 private val allStatements = JpqlRenderStatement::class.sealedSubclasses
 private val allClauses = JpqlRenderClause::class.sealedSubclasses
 
-private val allStatementClauses = allStatements.flatMap { statement ->
-    allClauses.map { clause ->
-        StatementClauseArguments(statement, clause)
+private val allStatementClauses =
+    allStatements.flatMap { statement ->
+        allClauses.map { clause ->
+            StatementClauseArguments(statement, clause)
+        }
     }
-}

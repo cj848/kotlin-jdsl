@@ -38,9 +38,10 @@ class JpqlNotSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Predicates.not(
-            predicate1,
-        )
+        val part =
+            Predicates.not(
+                predicate1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

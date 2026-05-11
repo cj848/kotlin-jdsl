@@ -18,11 +18,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlInSerializer : JpqlSerializer<JpqlIn<*>> {
-    override fun handledType(): KClass<JpqlIn<*>> {
-        return JpqlIn::class
-    }
+    override fun handledType(): KClass<JpqlIn<*>> = JpqlIn::class
 
-    override fun serialize(part: JpqlIn<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlIn<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         if (IterableUtils.isEmpty(part.compareValues)) {
@@ -63,24 +65,26 @@ class JpqlInSerializer : JpqlSerializer<JpqlIn<*>> {
      * (e.g. extracting an ID from an Entity) and therefore cannot be safely grouped into a single raw value collection.
      */
     private fun Expression<*>.isBasicType(): Boolean =
-        this is JpqlValue<*> && (
-            when (this.value) {
-                is String,
-                // Number includes int, long, float, double, BigInteger, BigDecimal, etc.
-                is Number,
-                is Boolean,
-                is Char,
-                is UUID,
-                is Enum<*>,
-                // Temporal includes LocalDate, LocalDateTime, etc.
-                is Temporal,
-                // Date includes Date, Time, Timestamp
-                is Date,
-                is Calendar,
-                is ByteArray,
-                is CharArray,
-                -> true
-                else -> false
-            }
+        this is JpqlValue<*> &&
+            (
+                when (this.value) {
+                    is String,
+                    // Number includes int, long, float, double, BigInteger, BigDecimal, etc.
+                    is Number,
+                    is Boolean,
+                    is Char,
+                    is UUID,
+                    is Enum<*>,
+                    // Temporal includes LocalDate, LocalDateTime, etc.
+                    is Temporal,
+                    // Date includes Date, Time, Timestamp
+                    is Date,
+                    is Calendar,
+                    is ByteArray,
+                    is CharArray,
+                    -> true
+
+                    else -> false
+                }
             )
 }

@@ -14,16 +14,18 @@ class IsEmptyDslTest : WithAssertions {
     @Test
     fun isEmpty() {
         // when
-        val predicate = queryPart {
-            path1.isEmpty()
-        }
+        val predicate =
+            queryPart {
+                path1.isEmpty()
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.isEmpty(
-            path1,
-        )
+        val excepted =
+            Predicates.isEmpty(
+                path1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -31,16 +33,18 @@ class IsEmptyDslTest : WithAssertions {
     @Test
     fun isNotEmpty() {
         // when
-        val predicate = queryPart {
-            path1.isNotEmpty()
-        }
+        val predicate =
+            queryPart {
+                path1.isNotEmpty()
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.isNotEmpty(
-            path1,
-        )
+        val excepted =
+            Predicates.isNotEmpty(
+                path1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }

@@ -23,10 +23,9 @@ internal data class FetchJoinBuilder<T : Any>(
         return this
     }
 
-    fun build(): Join {
-        return when (joinType) {
+    fun build(): Join =
+        when (joinType) {
             JoinType.INNER -> Joins.innerFetchJoin(entity, predicate!!)
             JoinType.LEFT -> Joins.leftFetchJoin(entity, predicate!!)
         }
-    }
 }

@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlAvgSerializer : JpqlSerializer<JpqlAvg<*>> {
-    override fun handledType(): KClass<JpqlAvg<*>> {
-        return JpqlAvg::class
-    }
+    override fun handledType(): KClass<JpqlAvg<*>> = JpqlAvg::class
 
-    override fun serialize(part: JpqlAvg<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlAvg<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("AVG")

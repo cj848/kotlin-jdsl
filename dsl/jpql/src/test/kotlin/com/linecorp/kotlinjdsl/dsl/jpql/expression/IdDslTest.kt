@@ -15,16 +15,18 @@ class IdDslTest : WithAssertions {
     @Test
     fun `id() with a class`() {
         // when
-        val expression = queryPart {
-            id<Isbn>(Book::class)
-        }.toExpression()
+        val expression =
+            queryPart {
+                id<Isbn>(Book::class)
+            }.toExpression()
 
         val actual: Expression<Isbn> = expression // for type check
 
         // then
-        val expected = Expressions.id<Isbn>(
-            entity,
-        )
+        val expected =
+            Expressions.id<Isbn>(
+                entity,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -32,16 +34,18 @@ class IdDslTest : WithAssertions {
     @Test
     fun `id() with an entity path`() {
         // when
-        val expression = queryPart {
-            id<Isbn>(entity)
-        }.toExpression()
+        val expression =
+            queryPart {
+                id<Isbn>(entity)
+            }.toExpression()
 
         val actual: Expression<Isbn> = expression // for type check
 
         // then
-        val expected = Expressions.id<Isbn>(
-            entity,
-        )
+        val expected =
+            Expressions.id<Isbn>(
+                entity,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

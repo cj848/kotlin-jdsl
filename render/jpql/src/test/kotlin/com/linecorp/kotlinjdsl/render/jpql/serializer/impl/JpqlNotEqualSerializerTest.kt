@@ -37,10 +37,11 @@ class JpqlNotEqualSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Predicates.notEqual(
-            expression1,
-            expression2,
-        )
+        val part =
+            Predicates.notEqual(
+                expression1,
+                expression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when

@@ -20,11 +20,10 @@ object UpdateQueries {
         entity: Entity<T>,
         set: Map<Path<*>, Expression<*>>,
         where: Predicate? = null,
-    ): UpdateQuery<T> {
-        return JpqlUpdateQuery(
+    ): UpdateQuery<T> =
+        JpqlUpdateQuery(
             entity = entity,
             set = set,
             where = where,
         )
-    }
 }

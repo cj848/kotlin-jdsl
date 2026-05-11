@@ -39,9 +39,10 @@ class JpqlEntityTypeSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.type(
-            entity1,
-        )
+        val part =
+            Expressions.type(
+                entity1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

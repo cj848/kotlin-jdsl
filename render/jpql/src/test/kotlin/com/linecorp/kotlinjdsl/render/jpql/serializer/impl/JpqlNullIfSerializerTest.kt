@@ -38,10 +38,11 @@ class JpqlNullIfSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.nullIf(
-            expression1,
-            expression2,
-        )
+        val part =
+            Expressions.nullIf(
+                expression1,
+                expression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when

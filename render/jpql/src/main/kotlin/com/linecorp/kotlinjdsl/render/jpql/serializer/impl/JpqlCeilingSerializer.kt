@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlCeilingSerializer : JpqlSerializer<JpqlCeiling<*>> {
-    override fun handledType(): KClass<JpqlCeiling<*>> {
-        return JpqlCeiling::class
-    }
+    override fun handledType(): KClass<JpqlCeiling<*>> = JpqlCeiling::class
 
-    override fun serialize(part: JpqlCeiling<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlCeiling<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("CEILING")

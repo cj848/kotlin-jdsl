@@ -5,7 +5,10 @@ import com.linecorp.kotlinjdsl.querymodel.QueryPart
 import com.linecorp.kotlinjdsl.querymodel.jpql.from.From
 
 @SinceJdsl("3.0.0")
-interface Join : From, Joinable, QueryPart {
+interface Join :
+    From,
+    Joinable,
+    QueryPart {
     @SinceJdsl("3.0.0")
     val joinType: JoinType
 
@@ -13,5 +16,6 @@ interface Join : From, Joinable, QueryPart {
     val fetch: Boolean
 
     override fun toJoin(): Join = this
+
     override fun toFrom(): From = this
 }

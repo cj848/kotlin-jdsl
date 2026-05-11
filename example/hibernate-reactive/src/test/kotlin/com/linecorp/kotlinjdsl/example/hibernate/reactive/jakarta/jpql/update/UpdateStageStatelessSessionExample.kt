@@ -27,44 +27,52 @@ class UpdateStageStatelessSessionExample : WithAssertions {
         )
 
         // when
-        val updateQuery = jpql {
-            val employeeIds = select<Long>(
-                path(EmployeeDepartment::employee)(Employee::employeeId),
-            ).from(
-                entity(Department::class),
-                join(EmployeeDepartment::class)
-                    .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
-            ).where(
-                path(Department::name).like("%03"),
-            ).asSubquery()
+        val updateQuery =
+            jpql {
+                val employeeIds =
+                    select<Long>(
+                        path(EmployeeDepartment::employee)(Employee::employeeId),
+                    ).from(
+                        entity(Department::class),
+                        join(EmployeeDepartment::class)
+                            .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
+                    ).where(
+                        path(Department::name).like("%03"),
+                    ).asSubquery()
 
-            update(
-                entity(FullTimeEmployee::class),
-            ).set(
-                path(FullTimeEmployee::annualSalary)(EmployeeSalary::value),
-                path(FullTimeEmployee::annualSalary)(EmployeeSalary::value).times(BigDecimal.valueOf(1.1)),
-            ).where(
-                path(FullTimeEmployee::employeeId).`in`(employeeIds),
-            )
-        }
+                update(
+                    entity(FullTimeEmployee::class),
+                ).set(
+                    path(FullTimeEmployee::annualSalary)(EmployeeSalary::value),
+                    path(FullTimeEmployee::annualSalary)(EmployeeSalary::value).times(BigDecimal.valueOf(1.1)),
+                ).where(
+                    path(FullTimeEmployee::employeeId).`in`(employeeIds),
+                )
+            }
 
-        val selectQuery = jpql {
-            selectNew<Row>(
-                path(FullTimeEmployee::employeeId),
-                path(FullTimeEmployee::annualSalary),
-            ).from(
-                entity(FullTimeEmployee::class),
-            ).orderBy(
-                path(FullTimeEmployee::employeeId).asc(),
-            )
-        }
+        val selectQuery =
+            jpql {
+                selectNew<Row>(
+                    path(FullTimeEmployee::employeeId),
+                    path(FullTimeEmployee::annualSalary),
+                ).from(
+                    entity(FullTimeEmployee::class),
+                ).orderBy(
+                    path(FullTimeEmployee::employeeId).asc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessTransaction { session, tx ->
-            tx.markForRollback()
+        val actual =
+            sessionFactory
+                .withStatelessTransaction { session, tx ->
+                    tx.markForRollback()
 
-            session.createQuery(updateQuery, context).executeUpdate()
-                .thenCompose { session.createQuery(selectQuery, context).resultList }
-        }.toCompletableFuture().get()
+                    session
+                        .createQuery(updateQuery, context)
+                        .executeUpdate()
+                        .thenCompose { session.createQuery(selectQuery, context).resultList }
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(
@@ -97,45 +105,53 @@ class UpdateStageStatelessSessionExample : WithAssertions {
         )
 
         // when
-        val updateQuery = jpql {
-            val employeeIds = select<Long>(
-                path(EmployeeDepartment::employee)(Employee::employeeId),
-            ).from(
-                entity(Department::class),
-                join(EmployeeDepartment::class)
-                    .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
-            ).where(
-                path(Department::name).like("%03"),
-            ).asSubquery()
+        val updateQuery =
+            jpql {
+                val employeeIds =
+                    select<Long>(
+                        path(EmployeeDepartment::employee)(Employee::employeeId),
+                    ).from(
+                        entity(Department::class),
+                        join(EmployeeDepartment::class)
+                            .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
+                    ).where(
+                        path(Department::name).like("%03"),
+                    ).asSubquery()
 
-            update(
-                entity(Employee::class),
-            ).set(
-                path(Employee::nickname),
-                path(Employee::name),
-            ).whereAnd(
-                path(Employee::nickname).isNull(),
-                path(Employee::employeeId).`in`(employeeIds),
-            )
-        }
+                update(
+                    entity(Employee::class),
+                ).set(
+                    path(Employee::nickname),
+                    path(Employee::name),
+                ).whereAnd(
+                    path(Employee::nickname).isNull(),
+                    path(Employee::employeeId).`in`(employeeIds),
+                )
+            }
 
-        val selectQuery = jpql {
-            selectNew<Row>(
-                path(Employee::employeeId),
-                path(Employee::nickname),
-            ).from(
-                entity(Employee::class),
-            ).orderBy(
-                path(Employee::employeeId).asc(),
-            )
-        }
+        val selectQuery =
+            jpql {
+                selectNew<Row>(
+                    path(Employee::employeeId),
+                    path(Employee::nickname),
+                ).from(
+                    entity(Employee::class),
+                ).orderBy(
+                    path(Employee::employeeId).asc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessTransaction { session, tx ->
-            tx.markForRollback()
+        val actual =
+            sessionFactory
+                .withStatelessTransaction { session, tx ->
+                    tx.markForRollback()
 
-            session.createQuery(updateQuery, context).executeUpdate()
-                .thenCompose { session.createQuery(selectQuery, context).resultList }
-        }.toCompletableFuture().get()
+                    session
+                        .createQuery(updateQuery, context)
+                        .executeUpdate()
+                        .thenCompose { session.createQuery(selectQuery, context).resultList }
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(

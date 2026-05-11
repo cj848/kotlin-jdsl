@@ -36,9 +36,10 @@ class JpqlTrimLeadingSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the LEADING and the FROM, when the character is null`() {
         // given
-        val part = Expressions.trimLeading(
-            value = stringExpression1,
-        )
+        val part =
+            Expressions.trimLeading(
+                value = stringExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -59,10 +60,11 @@ class JpqlTrimLeadingSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the LEADING, the character and the FROM, when the character is not null`() {
         // given
-        val part = Expressions.trimLeading(
-            character = charExpression1,
-            value = stringExpression1,
-        )
+        val part =
+            Expressions.trimLeading(
+                character = charExpression1,
+                value = stringExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

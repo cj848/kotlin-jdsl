@@ -34,9 +34,10 @@ class JpqlPathPropertySerializerTest : WithAssertions {
 
     private val property1 = Isbn::value
 
-    private val propertyDescription1 = object : JpqlPropertyDescription {
-        override val name = property1.name
-    }
+    private val propertyDescription1 =
+        object : JpqlPropertyDescription {
+            override val name = property1.name
+        }
 
     @Test
     fun handledType() {
@@ -52,10 +53,11 @@ class JpqlPathPropertySerializerTest : WithAssertions {
         // given
         every { introspector.introspect(any<KCallable<*>>()) } returns propertyDescription1
 
-        val part = Paths.path(
-            path1,
-            property1,
-        )
+        val part =
+            Paths.path(
+                path1,
+                property1,
+            )
         val context = TestRenderContext(introspector, serializer)
 
         // when

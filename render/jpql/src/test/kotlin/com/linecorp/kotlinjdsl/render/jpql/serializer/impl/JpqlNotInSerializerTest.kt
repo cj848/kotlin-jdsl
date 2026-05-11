@@ -42,16 +42,18 @@ class JpqlNotInSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val expressions = listOf(
-            expression2,
-            expression3,
-            expression4,
-        )
+        val expressions =
+            listOf(
+                expression2,
+                expression3,
+                expression4,
+            )
 
-        val part = Predicates.notIn(
-            expression1,
-            expressions,
-        )
+        val part =
+            Predicates.notIn(
+                expression1,
+                expressions,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -74,10 +76,11 @@ class JpqlNotInSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws 0 = 1, when the compareValues is empty`() {
         // Given
-        val part = Predicates.notIn(
-            expression1,
-            emptyList(),
-        )
+        val part =
+            Predicates.notIn(
+                expression1,
+                emptyList(),
+            )
         val context = TestRenderContext(serializer)
 
         // When

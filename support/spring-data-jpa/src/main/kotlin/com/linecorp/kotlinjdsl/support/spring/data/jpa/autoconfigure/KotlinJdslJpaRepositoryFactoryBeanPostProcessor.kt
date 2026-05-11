@@ -9,14 +9,19 @@ import org.springframework.beans.factory.config.BeanPostProcessor
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean
 
 @SinceJdsl("3.0.0")
-open class KotlinJdslJpaRepositoryFactoryBeanPostProcessor : BeanPostProcessor, BeanFactoryAware {
+open class KotlinJdslJpaRepositoryFactoryBeanPostProcessor :
+    BeanPostProcessor,
+    BeanFactoryAware {
     private lateinit var beanFactory: BeanFactory
 
     override fun setBeanFactory(beanFactory: BeanFactory) {
         this.beanFactory = beanFactory
     }
 
-    override fun postProcessBeforeInitialization(bean: Any, beanName: String): Any? {
+    override fun postProcessBeforeInitialization(
+        bean: Any,
+        beanName: String,
+    ): Any? {
         if (bean is JpaRepositoryFactoryBean<*, *, *> && bean.hasJdsl()) {
             bean.setCustomImplementation(KotlinJdslJpqlExecutorProxy(beanFactory))
         }
@@ -24,8 +29,7 @@ open class KotlinJdslJpaRepositoryFactoryBeanPostProcessor : BeanPostProcessor, 
         return super.postProcessAfterInitialization(bean, beanName)
     }
 
-    private fun JpaRepositoryFactoryBean<*, *, *>.hasJdsl(): Boolean {
-        return this.objectType.interfaces
+    private fun JpaRepositoryFactoryBean<*, *, *>.hasJdsl(): Boolean =
+        this.objectType.interfaces
             .any { it == KotlinJdslJpqlExecutor::class.java }
-    }
 }

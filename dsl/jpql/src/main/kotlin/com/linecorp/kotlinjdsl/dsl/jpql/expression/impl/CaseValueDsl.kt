@@ -14,7 +14,6 @@ internal data class CaseValueDsl<T : Any, V : Any>(
 ) : CaseValueWhenStep<T, V>,
     CaseValueThenStep<T, V>,
     CaseValueElseStep<T, V> {
-
     internal constructor(
         value: Path<T>,
         compareValue: Expression<T>,
@@ -59,7 +58,5 @@ internal data class CaseValueDsl<T : Any, V : Any>(
         return this
     }
 
-    override fun toExpression(): Expression<V> {
-        return builder.build()
-    }
+    override fun toExpression(): Expression<V> = builder.build()
 }

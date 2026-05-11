@@ -37,10 +37,11 @@ class JpqlSubstringSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.substring(
-            value = stringExpression1,
-            start = intExpression1,
-        )
+        val part =
+            Expressions.substring(
+                value = stringExpression1,
+                start = intExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -60,11 +61,12 @@ class JpqlSubstringSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the comma, when the length is not null`() {
         // given
-        val part = Expressions.substring(
-            value = stringExpression1,
-            start = intExpression1,
-            length = intExpression2,
-        )
+        val part =
+            Expressions.substring(
+                value = stringExpression1,
+                start = intExpression1,
+                length = intExpression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when

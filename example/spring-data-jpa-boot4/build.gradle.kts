@@ -1,12 +1,9 @@
 plugins {
-    alias(rootLibs.plugins.kotlin2.jvm)
     alias(exampleLibs.plugins.spring.boot4)
-    alias(rootLibs.plugins.kotlin2.noarg)
-    alias(rootLibs.plugins.kotlin2.allopen)
-    alias(rootLibs.plugins.kotlin2.spring)
-    alias(rootLibs.plugins.kotlin2.jpa)
-    alias(rootLibs.plugins.ktlint5)
-    alias(rootLibs.plugins.kover)
+    alias(libs.plugins.kotlin.noarg)
+    alias(libs.plugins.kotlin.allopen)
+    alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.kotlin.jpa)
 }
 
 group = "com.linecorp.kotlin-jdsl"
@@ -19,15 +16,15 @@ repositories {
 dependencies {
     implementation(exampleLibs.spring.boot4.jpa)
     implementation(exampleLibs.spring.boot4.p6spy)
-    implementation("com.linecorp.kotlin-jdsl:example")
-    implementation("com.linecorp.kotlin-jdsl:jpql-dsl")
-    implementation("com.linecorp.kotlin-jdsl:jpql-render")
-    implementation("com.linecorp.kotlin-jdsl:spring-data-jpa-boot4-support")
+    implementation(projects.example)
+    implementation(projects.jpqlDsl)
+    implementation(projects.jpqlRender)
+    implementation(projects.springDataJpaBoot4Support)
 
     runtimeOnly(exampleLibs.h2)
 
     testImplementation(exampleLibs.spring.boot4.test)
-    testImplementation(rootLibs.mockk)
+    testImplementation(libs.mockk)
 }
 
 kotlin {
@@ -42,10 +39,6 @@ allOpen {
     annotation("com.linecorp.kotlinjdsl.example.spring.data.jpa.jpql.annotation.CompositeId")
     annotation("jakarta.persistence.Entity")
     annotation("jakarta.persistence.Embeddable")
-}
-
-tasks.test {
-    useJUnitPlatform()
 }
 
 // Disable bootJar as we usually run tests or use it as a library reference

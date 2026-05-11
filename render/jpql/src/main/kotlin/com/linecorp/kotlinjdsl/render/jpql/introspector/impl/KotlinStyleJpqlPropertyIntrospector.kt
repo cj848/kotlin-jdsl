@@ -12,13 +12,12 @@ import kotlin.reflect.KProperty1
  */
 @Internal
 class KotlinStyleJpqlPropertyIntrospector : JpqlPropertyIntrospector() {
-    override fun introspect(property: KCallable<*>): JpqlPropertyDescription? {
-        return when (property) {
+    override fun introspect(property: KCallable<*>): JpqlPropertyDescription? =
+        when (property) {
             is KProperty1<*, *> -> KotlinStyleProperty(property.name)
             is KFunction1<*, *> -> KotlinStyleProperty(resolvePropertyName(property))
             else -> null
         }
-    }
 
     private fun resolvePropertyName(getter: KFunction1<*, *>): String =
         if (getter.name.startsWith("is")) {

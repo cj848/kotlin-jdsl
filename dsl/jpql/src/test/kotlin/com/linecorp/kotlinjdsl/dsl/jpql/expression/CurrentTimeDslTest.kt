@@ -11,9 +11,10 @@ class CurrentTimeDslTest : WithAssertions {
     @Test
     fun currentTime() {
         // when
-        val expression = queryPart {
-            currentTime()
-        }.toExpression()
+        val expression =
+            queryPart {
+                currentTime()
+            }.toExpression()
 
         val actual: Expression<Time> = expression // for type check
 

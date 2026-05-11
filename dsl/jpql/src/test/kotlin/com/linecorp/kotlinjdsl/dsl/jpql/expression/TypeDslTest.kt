@@ -19,16 +19,18 @@ class TypeDslTest : WithAssertions {
     @Test
     fun `type() with entity`() {
         // when
-        val expression = queryPart {
-            type(entity1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                type(entity1)
+            }.toExpression()
 
         val actual: Expression<KClass<*>> = expression // for type check
 
         // then
-        val expected = Expressions.type(
-            entity1,
-        )
+        val expected =
+            Expressions.type(
+                entity1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -36,16 +38,18 @@ class TypeDslTest : WithAssertions {
     @Test
     fun `type() with path`() {
         // when
-        val expression = queryPart {
-            type(path1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                type(path1)
+            }.toExpression()
 
         val actual: Expression<KClass<*>> = expression // for type check
 
         // then
-        val expected = Expressions.type(
-            path1,
-        )
+        val expected =
+            Expressions.type(
+                path1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

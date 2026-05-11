@@ -17,42 +17,47 @@ class WhereDslTest : WithAssertions {
 
     private val path1 = Paths.path(Book::price)
 
-    private val predicate1 = Predicates.equal(
-        Paths.path(Book::price),
-        Expressions.value(BigDecimal.valueOf(100)),
-    )
+    private val predicate1 =
+        Predicates.equal(
+            Paths.path(Book::price),
+            Expressions.value(BigDecimal.valueOf(100)),
+        )
 
-    private val predicate2 = Predicates.equal(
-        Paths.path(Book::salePrice),
-        Expressions.value(BigDecimal.valueOf(200)),
-    )
+    private val predicate2 =
+        Predicates.equal(
+            Paths.path(Book::salePrice),
+            Expressions.value(BigDecimal.valueOf(200)),
+        )
 
     private val bigDecimal1 = BigDecimal.valueOf(100)
 
     @Test
     fun `where() with a predicate`() {
         // when
-        val update = queryPart {
-            update(
-                entity1,
-            ).set(
-                path1,
-                bigDecimal1,
-            ).where(
-                predicate1,
-            )
-        }.toQuery()
+        val update =
+            queryPart {
+                update(
+                    entity1,
+                ).set(
+                    path1,
+                    bigDecimal1,
+                ).where(
+                    predicate1,
+                )
+            }.toQuery()
 
         val actual: UpdateQuery<Book> = update // for type check
 
         // then
-        val expected = UpdateQueries.updateQuery(
-            entity = entity1,
-            set = mapOf(
-                path1 to Expressions.value(bigDecimal1),
-            ),
-            where = predicate1,
-        )
+        val expected =
+            UpdateQueries.updateQuery(
+                entity = entity1,
+                set =
+                    mapOf(
+                        path1 to Expressions.value(bigDecimal1),
+                    ),
+                where = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -60,34 +65,38 @@ class WhereDslTest : WithAssertions {
     @Test
     fun `whereAnd() with predicates`() {
         // when
-        val update = queryPart {
-            update(
-                entity1,
-            ).set(
-                path1,
-                bigDecimal1,
-            ).whereAnd(
-                predicate1,
-                null,
-                predicate2,
-            )
-        }.toQuery()
+        val update =
+            queryPart {
+                update(
+                    entity1,
+                ).set(
+                    path1,
+                    bigDecimal1,
+                ).whereAnd(
+                    predicate1,
+                    null,
+                    predicate2,
+                )
+            }.toQuery()
 
         val actual: UpdateQuery<Book> = update // for type check
 
         // then
-        val expected = UpdateQueries.updateQuery(
-            entity = entity1,
-            set = mapOf(
-                path1 to Expressions.value(bigDecimal1),
-            ),
-            where = Predicates.and(
-                listOf(
-                    Predicates.parentheses(predicate1),
-                    Predicates.parentheses(predicate2),
-                ),
-            ),
-        )
+        val expected =
+            UpdateQueries.updateQuery(
+                entity = entity1,
+                set =
+                    mapOf(
+                        path1 to Expressions.value(bigDecimal1),
+                    ),
+                where =
+                    Predicates.and(
+                        listOf(
+                            Predicates.parentheses(predicate1),
+                            Predicates.parentheses(predicate2),
+                        ),
+                    ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -95,34 +104,38 @@ class WhereDslTest : WithAssertions {
     @Test
     fun `whereOr() with predicates`() {
         // when
-        val update = queryPart {
-            update(
-                entity1,
-            ).set(
-                path1,
-                bigDecimal1,
-            ).whereOr(
-                predicate1,
-                null,
-                predicate2,
-            )
-        }.toQuery()
+        val update =
+            queryPart {
+                update(
+                    entity1,
+                ).set(
+                    path1,
+                    bigDecimal1,
+                ).whereOr(
+                    predicate1,
+                    null,
+                    predicate2,
+                )
+            }.toQuery()
 
         val actual: UpdateQuery<Book> = update // for type check
 
         // then
-        val expected = UpdateQueries.updateQuery(
-            entity = entity1,
-            set = mapOf(
-                path1 to Expressions.value(bigDecimal1),
-            ),
-            where = Predicates.or(
-                listOf(
-                    Predicates.parentheses(predicate1),
-                    Predicates.parentheses(predicate2),
-                ),
-            ),
-        )
+        val expected =
+            UpdateQueries.updateQuery(
+                entity = entity1,
+                set =
+                    mapOf(
+                        path1 to Expressions.value(bigDecimal1),
+                    ),
+                where =
+                    Predicates.or(
+                        listOf(
+                            Predicates.parentheses(predicate1),
+                            Predicates.parentheses(predicate2),
+                        ),
+                    ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

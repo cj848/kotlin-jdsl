@@ -104,8 +104,9 @@ class JpqlEntityManagerUtilsTest : WithAssertions {
         every { stringTypedQueryParam2.name } returns renderedParam2.first
 
         // when
-        val actual = JpqlEntityManagerUtils
-            .createQuery(entityManager, query1, mapOf(queryParam1, queryParam2), String::class, context)
+        val actual =
+            JpqlEntityManagerUtils
+                .createQuery(entityManager, query1, mapOf(queryParam1, queryParam2), String::class, context)
 
         // then
         assertThat(actual).isEqualTo(stringTypedQuery1)
@@ -163,8 +164,9 @@ class JpqlEntityManagerUtilsTest : WithAssertions {
         every { stringTypedQueryParam2.name } returns renderedParam2.first
 
         // when
-        val actual = JpqlEntityManagerUtils
-            .createQuery(entityManager, query1, mapOf(queryParam1, queryParam2), context)
+        val actual =
+            JpqlEntityManagerUtils
+                .createQuery(entityManager, query1, mapOf(queryParam1, queryParam2), context)
 
         // then
         assertThat(actual).isEqualTo(stringTypedQuery1)

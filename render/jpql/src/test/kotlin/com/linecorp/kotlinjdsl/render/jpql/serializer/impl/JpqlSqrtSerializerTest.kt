@@ -37,9 +37,10 @@ class JpqlSqrtSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.sqrt(
-            value = expression1,
-        )
+        val part =
+            Expressions.sqrt(
+                value = expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

@@ -37,9 +37,10 @@ class JpqlExpressionParenthesesSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.parentheses(
-            expression1,
-        )
+        val part =
+            Expressions.parentheses(
+                expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

@@ -13,11 +13,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlSelectQuerySerializer : JpqlSerializer<JpqlSelectQuery<*>> {
-    override fun handledType(): KClass<JpqlSelectQuery<*>> {
-        return JpqlSelectQuery::class
-    }
+    override fun handledType(): KClass<JpqlSelectQuery<*>> = JpqlSelectQuery::class
 
-    override fun serialize(part: JpqlSelectQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlSelectQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val newContext = context + JpqlRenderStatement.Select
 
         writeSelect(part, writer, newContext)
@@ -28,7 +30,11 @@ class JpqlSelectQuerySerializer : JpqlSerializer<JpqlSelectQuery<*>> {
         writeOrderBy(part, writer, newContext)
     }
 
-    private fun writeSelect(part: JpqlSelectQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    private fun writeSelect(
+        part: JpqlSelectQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val select = part.select
         val distinct = part.distinct
         val delegate = context.getValue(JpqlRenderSerializer)
@@ -48,7 +54,11 @@ class JpqlSelectQuerySerializer : JpqlSerializer<JpqlSelectQuery<*>> {
         }
     }
 
-    private fun writeFrom(part: JpqlSelectQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    private fun writeFrom(
+        part: JpqlSelectQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val from = part.from
         val delegate = context.getValue(JpqlRenderSerializer)
 
@@ -63,7 +73,11 @@ class JpqlSelectQuerySerializer : JpqlSerializer<JpqlSelectQuery<*>> {
         }
     }
 
-    private fun writeWhere(part: JpqlSelectQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    private fun writeWhere(
+        part: JpqlSelectQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val where = part.where ?: return
         val delegate = context.getValue(JpqlRenderSerializer)
 
@@ -76,7 +90,11 @@ class JpqlSelectQuerySerializer : JpqlSerializer<JpqlSelectQuery<*>> {
         delegate.serialize(where, writer, newContext)
     }
 
-    private fun writeGroupBy(part: JpqlSelectQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    private fun writeGroupBy(
+        part: JpqlSelectQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val groupBy = part.groupBy?.takeIf { IterableUtils.isNotEmpty(it) } ?: return
         val delegate = context.getValue(JpqlRenderSerializer)
 
@@ -91,7 +109,11 @@ class JpqlSelectQuerySerializer : JpqlSerializer<JpqlSelectQuery<*>> {
         }
     }
 
-    private fun writeHaving(part: JpqlSelectQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    private fun writeHaving(
+        part: JpqlSelectQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val having = part.having ?: return
         val delegate = context.getValue(JpqlRenderSerializer)
 
@@ -104,7 +126,11 @@ class JpqlSelectQuerySerializer : JpqlSerializer<JpqlSelectQuery<*>> {
         delegate.serialize(having, writer, newContext)
     }
 
-    private fun writeOrderBy(part: JpqlSelectQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    private fun writeOrderBy(
+        part: JpqlSelectQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val orderBy = part.orderBy?.takeIf { IterableUtils.isNotEmpty(it) } ?: return
         val delegate = context.getValue(JpqlRenderSerializer)
 

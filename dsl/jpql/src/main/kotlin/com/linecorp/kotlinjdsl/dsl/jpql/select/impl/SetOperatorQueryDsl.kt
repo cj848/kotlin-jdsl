@@ -9,7 +9,8 @@ import kotlin.reflect.KClass
 @PublishedApi
 internal class SetOperatorQueryDsl<T : Any>(
     private val builder: SetOperatorSelectQueryBuilder<T>,
-) : SelectQueryOrderByStep<T>, JpqlQueryable<SelectQuery<T>> {
+) : SelectQueryOrderByStep<T>,
+    JpqlQueryable<SelectQuery<T>> {
     constructor(
         returnType: KClass<T>,
         leftQuery: JpqlQueryable<SelectQuery<T>>,
@@ -24,7 +25,5 @@ internal class SetOperatorQueryDsl<T : Any>(
         return this
     }
 
-    override fun toQuery(): SelectQuery<T> {
-        return builder.build()
-    }
+    override fun toQuery(): SelectQuery<T> = builder.build()
 }

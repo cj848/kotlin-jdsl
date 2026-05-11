@@ -31,10 +31,11 @@ class JpqlInnerAssociationFetchJoinSerializerTest : WithAssertions {
 
     private val path1 = Paths.path(entity1, Book::authors)
 
-    private val predicate1 = Predicates.equal(
-        Paths.path(entity1, Book::title),
-        Expressions.value("Book01"),
-    )
+    private val predicate1 =
+        Predicates.equal(
+            Paths.path(entity1, Book::title),
+            Expressions.value("Book01"),
+        )
 
     @Test
     fun handledType() {
@@ -48,10 +49,11 @@ class JpqlInnerAssociationFetchJoinSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Joins.innerFetchJoin(
-            entity1,
-            path1,
-        )
+        val part =
+            Joins.innerFetchJoin(
+                entity1,
+                path1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -72,11 +74,12 @@ class JpqlInnerAssociationFetchJoinSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the ON, when the predicate is not null`() {
         // given
-        val part = Joins.innerFetchJoin(
-            entity1,
-            path1,
-            predicate1,
-        )
+        val part =
+            Joins.innerFetchJoin(
+                entity1,
+                path1,
+                predicate1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

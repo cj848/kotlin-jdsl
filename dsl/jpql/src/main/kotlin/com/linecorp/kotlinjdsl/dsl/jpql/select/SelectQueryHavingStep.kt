@@ -6,7 +6,9 @@ import com.linecorp.kotlinjdsl.querymodel.jpql.predicate.Predicatable
 import com.linecorp.kotlinjdsl.querymodel.jpql.select.SelectQuery
 
 @SinceJdsl("3.0.0")
-interface SelectQueryHavingStep<T : Any> : SelectQueryOrderByStep<T>, JpqlQueryable<SelectQuery<T>> {
+interface SelectQueryHavingStep<T : Any> :
+    SelectQueryOrderByStep<T>,
+    JpqlQueryable<SelectQuery<T>> {
     /**
      * Creates a having clause in a select query.
      */

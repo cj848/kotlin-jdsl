@@ -37,9 +37,10 @@ class JpqlSignSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.sign(
-            value = expression1,
-        )
+        val part =
+            Expressions.sign(
+                value = expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

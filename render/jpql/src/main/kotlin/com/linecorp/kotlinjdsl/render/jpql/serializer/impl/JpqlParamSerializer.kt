@@ -9,11 +9,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlParamSerializer : JpqlSerializer<JpqlParam<*>> {
-    override fun handledType(): KClass<JpqlParam<*>> {
-        return JpqlParam::class
-    }
+    override fun handledType(): KClass<JpqlParam<*>> = JpqlParam::class
 
-    override fun serialize(part: JpqlParam<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlParam<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         writer.writeParam(part.name, part.value)
     }
 }

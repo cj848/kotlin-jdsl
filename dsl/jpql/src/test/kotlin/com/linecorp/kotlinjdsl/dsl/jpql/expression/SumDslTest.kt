@@ -29,17 +29,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a int property`() {
         // when
-        val expression = queryPart {
-            sum(Class1::int1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(Class1::int1)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = Paths.path(Class1::int1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = Paths.path(Class1::int1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -47,17 +49,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a int expression`() {
         // when
-        val expression = queryPart {
-            sum(intExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(intExpression1)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = intExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -65,17 +69,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a int property`() {
         // when
-        val expression = queryPart {
-            sumDistinct(Class1::int1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(Class1::int1)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = Paths.path(Class1::int1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = Paths.path(Class1::int1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -83,17 +89,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a int expression`() {
         // when
-        val expression = queryPart {
-            sumDistinct(intExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(intExpression1)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = intExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = intExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -101,17 +109,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a long property`() {
         // when
-        val expression = queryPart {
-            sum(Class1::long1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(Class1::long1)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = Paths.path(Class1::long1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = Paths.path(Class1::long1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -119,17 +129,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a long expression`() {
         // when
-        val expression = queryPart {
-            sum(longExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(longExpression1)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = longExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = longExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -137,17 +149,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a long property`() {
         // when
-        val expression = queryPart {
-            sumDistinct(Class1::long1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(Class1::long1)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = Paths.path(Class1::long1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = Paths.path(Class1::long1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -155,17 +169,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a long expression`() {
         // when
-        val expression = queryPart {
-            sumDistinct(longExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(longExpression1)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = longExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = longExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -173,17 +189,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a float property`() {
         // when
-        val expression = queryPart {
-            sum(Class1::float1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(Class1::float1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = Paths.path(Class1::float1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = Paths.path(Class1::float1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -191,17 +209,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a float expression`() {
         // when
-        val expression = queryPart {
-            sum(floatExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(floatExpression1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = floatExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = floatExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -209,17 +229,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a float property`() {
         // when
-        val expression = queryPart {
-            sumDistinct(Class1::float1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(Class1::float1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = Paths.path(Class1::float1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = Paths.path(Class1::float1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -227,17 +249,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a float expression`() {
         // when
-        val expression = queryPart {
-            sumDistinct(floatExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(floatExpression1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = floatExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = floatExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -245,17 +269,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a double property`() {
         // when
-        val expression = queryPart {
-            sum(Class1::double1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(Class1::double1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = Paths.path(Class1::double1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = Paths.path(Class1::double1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -263,17 +289,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a double expression`() {
         // when
-        val expression = queryPart {
-            sum(doubleExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(doubleExpression1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = doubleExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = doubleExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -281,17 +309,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a double property`() {
         // when
-        val expression = queryPart {
-            sumDistinct(Class1::double1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(Class1::double1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = Paths.path(Class1::double1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = Paths.path(Class1::double1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -299,17 +329,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a double expression`() {
         // when
-        val expression = queryPart {
-            sumDistinct(doubleExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(doubleExpression1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = doubleExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = doubleExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -317,17 +349,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a bigInteger property`() {
         // when
-        val expression = queryPart {
-            sum(Class1::bigInteger1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(Class1::bigInteger1)
+            }.toExpression()
 
         val actual: Expression<BigInteger> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = Paths.path(Class1::bigInteger1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = Paths.path(Class1::bigInteger1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -335,17 +369,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a bigInteger expression`() {
         // when
-        val expression = queryPart {
-            sum(bigIntegerExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(bigIntegerExpression1)
+            }.toExpression()
 
         val actual: Expression<BigInteger> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = bigIntegerExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = bigIntegerExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -353,17 +389,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a bigInteger property`() {
         // when
-        val expression = queryPart {
-            sumDistinct(Class1::bigInteger1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(Class1::bigInteger1)
+            }.toExpression()
 
         val actual: Expression<BigInteger> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = Paths.path(Class1::bigInteger1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = Paths.path(Class1::bigInteger1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -371,17 +409,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a bigInteger expression`() {
         // when
-        val expression = queryPart {
-            sumDistinct(bigIntegerExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(bigIntegerExpression1)
+            }.toExpression()
 
         val actual: Expression<BigInteger> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = bigIntegerExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = bigIntegerExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -389,17 +429,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a bigDecimal property`() {
         // when
-        val expression = queryPart {
-            sum(Class1::bigDecimal1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(Class1::bigDecimal1)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = Paths.path(Class1::bigDecimal1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = Paths.path(Class1::bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -407,17 +449,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sum() with a bigDecimal expression`() {
         // when
-        val expression = queryPart {
-            sum(bigDecimalExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sum(bigDecimalExpression1)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = false,
-            expr = bigDecimalExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = false,
+                expr = bigDecimalExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -425,17 +469,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a bigDecimal property`() {
         // when
-        val expression = queryPart {
-            sumDistinct(Class1::bigDecimal1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(Class1::bigDecimal1)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = Paths.path(Class1::bigDecimal1),
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = Paths.path(Class1::bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -443,17 +489,19 @@ class SumDslTest : WithAssertions {
     @Test
     fun `sumDistinct() with a bigDecimal expression`() {
         // when
-        val expression = queryPart {
-            sumDistinct(bigDecimalExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sumDistinct(bigDecimalExpression1)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.sum(
-            distinct = true,
-            expr = bigDecimalExpression1,
-        )
+        val expected =
+            Expressions.sum(
+                distinct = true,
+                expr = bigDecimalExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

@@ -26,14 +26,15 @@ class JpqlNotExistsSerializerTest : WithAssertions {
     @MockK
     private lateinit var serializer: JpqlRenderSerializer
 
-    private val subquery1 = Expressions.subquery(
-        SelectQueries.selectQuery(
-            returnType = String::class,
-            distinct = false,
-            select = listOf(Paths.path(Book::title)),
-            from = listOf(Entities.entity(Book::class)),
-        ),
-    )
+    private val subquery1 =
+        Expressions.subquery(
+            SelectQueries.selectQuery(
+                returnType = String::class,
+                distinct = false,
+                select = listOf(Paths.path(Book::title)),
+                from = listOf(Entities.entity(Book::class)),
+            ),
+        )
 
     @Test
     fun handledType() {
@@ -47,9 +48,10 @@ class JpqlNotExistsSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Predicates.notExists(
-            subquery1,
-        )
+        val part =
+            Predicates.notExists(
+                subquery1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

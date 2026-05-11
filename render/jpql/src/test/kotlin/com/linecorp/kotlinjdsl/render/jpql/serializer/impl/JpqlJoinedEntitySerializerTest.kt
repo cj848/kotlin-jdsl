@@ -42,12 +42,13 @@ class JpqlJoinedEntitySerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val parts = Froms.reduce(
-            listOf(
-                entity1,
-                join1,
-            ),
-        )
+        val parts =
+            Froms.reduce(
+                listOf(
+                    entity1,
+                    join1,
+                ),
+            )
         val context = TestRenderContext(serializer)
 
         // when

@@ -14,17 +14,19 @@ class CountDslTest : WithAssertions {
     @Test
     fun `count() with a property`() {
         // when
-        val expression = queryPart {
-            count(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                count(Book::price)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.count(
-            distinct = false,
-            expr = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.count(
+                distinct = false,
+                expr = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -32,17 +34,19 @@ class CountDslTest : WithAssertions {
     @Test
     fun `count() with a expression`() {
         // when
-        val expression = queryPart {
-            count(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                count(expression1)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.count(
-            distinct = false,
-            expr = expression1,
-        )
+        val expected =
+            Expressions.count(
+                distinct = false,
+                expr = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -50,17 +54,19 @@ class CountDslTest : WithAssertions {
     @Test
     fun `countDistinct() with a property`() {
         // when
-        val expression = queryPart {
-            countDistinct(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                countDistinct(Book::price)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.count(
-            distinct = true,
-            expr = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.count(
+                distinct = true,
+                expr = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -68,17 +74,19 @@ class CountDslTest : WithAssertions {
     @Test
     fun `countDistinct() with a expression`() {
         // when
-        val expression = queryPart {
-            countDistinct(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                countDistinct(expression1)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.count(
-            distinct = true,
-            expr = expression1,
-        )
+        val expected =
+            Expressions.count(
+                distinct = true,
+                expr = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

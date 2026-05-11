@@ -9,11 +9,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlExpressionSerializer : JpqlSerializer<JpqlExpression<*>> {
-    override fun handledType(): KClass<JpqlExpression<*>> {
-        return JpqlExpression::class
-    }
+    override fun handledType(): KClass<JpqlExpression<*>> = JpqlExpression::class
 
-    override fun serialize(part: JpqlExpression<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlExpression<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         writer.write(part.alias)
     }
 }

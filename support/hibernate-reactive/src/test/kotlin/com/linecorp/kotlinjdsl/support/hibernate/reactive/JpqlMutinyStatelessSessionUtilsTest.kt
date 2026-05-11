@@ -85,8 +85,9 @@ class JpqlMutinyStatelessSessionUtilsTest : WithAssertions {
         every { mutinyQuery1.setParameter(any<String>(), any()) } returns mutinyQuery1
 
         // when
-        val actual = JpqlMutinyStatelessSessionUtils
-            .createQuery(session, query1, mapOf(queryParam1, queryParam2), String::class, context)
+        val actual =
+            JpqlMutinyStatelessSessionUtils
+                .createQuery(session, query1, mapOf(queryParam1, queryParam2), String::class, context)
 
         // then
         assertThat(actual).isEqualTo(mutinyQuery1)
@@ -132,8 +133,9 @@ class JpqlMutinyStatelessSessionUtilsTest : WithAssertions {
         every { mutinyQuery1.setParameter(any<String>(), any()) } returns mutinyQuery1
 
         // when
-        val actual = JpqlMutinyStatelessSessionUtils
-            .createQuery<String>(session, query1, mapOf(queryParam1, queryParam2), context)
+        val actual =
+            JpqlMutinyStatelessSessionUtils
+                .createQuery<String>(session, query1, mapOf(queryParam1, queryParam2), context)
 
         // then
         assertThat(actual).isEqualTo(mutinyQuery1)

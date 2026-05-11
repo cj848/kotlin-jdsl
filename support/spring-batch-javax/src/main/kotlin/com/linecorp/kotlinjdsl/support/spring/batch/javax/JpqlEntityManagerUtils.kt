@@ -27,13 +27,15 @@ internal object JpqlEntityManagerUtils {
         entityManager: EntityManager,
         rendered: JpqlRendered,
         resultClass: KClass<T>,
-    ): TypedQuery<T> {
-        return entityManager.createQuery(rendered.query, resultClass.java).apply {
+    ): TypedQuery<T> =
+        entityManager.createQuery(rendered.query, resultClass.java).apply {
             setParams(this, rendered.params)
         }
-    }
 
-    private fun setParams(query: Query, params: JpqlRenderedParams) {
+    private fun setParams(
+        query: Query,
+        params: JpqlRenderedParams,
+    ) {
         val parameterNameSet = query.parameters.map { it.name }.toHashSet()
 
         params.forEach { (name, value) ->

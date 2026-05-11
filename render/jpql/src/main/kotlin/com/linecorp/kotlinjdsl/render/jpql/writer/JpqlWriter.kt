@@ -54,5 +54,8 @@ interface JpqlWriter {
      * Writes a named parameter with a name.
      */
     @SinceJdsl("3.0.0")
-    fun writeParam(name: String, value: Any?)
+    fun writeParam(
+        name: String,
+        value: Any?,
+    )
 }

@@ -1,6 +1,6 @@
 [versions]
-spring-boot3 = "3.5.11"
-spring-boot4 = "4.0.3"
+spring-boot3 = "3.5.14"
+spring-boot4 = "4.0.6"
 
 [libraries]
 # log
@@ -22,22 +22,22 @@ spring-boot4-p6spy = { module = "com.github.gavlyukovskiy:p6spy-spring-boot-star
 spring-boot4-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot4" }
 
 # spring
-spring-batch5-test = { module = "org.springframework.batch:spring-batch-test", version = "5.2.4" }
-spring-batch6-test = { module = "org.springframework.batch:spring-batch-test", version = "6.0.2" }
+spring-batch5-test = { module = "org.springframework.batch:spring-batch-test", version = "5.2.5" }
+spring-batch6-test = { module = "org.springframework.batch:spring-batch-test", version = "6.0.3" }
 
 # hibernate
-hibernate7-core = { module = "org.hibernate:hibernate-core", version = "7.2.5.Final" }
+hibernate7-core = { module = "org.hibernate:hibernate-core", version = "7.3.4.Final" }
 
 # hibernate-reactive
-hibernate-reactive4-core = { module = "org.hibernate.reactive:hibernate-reactive-core", version = "4.2.4.Final" }
+hibernate-reactive4-core = { module = "org.hibernate.reactive:hibernate-reactive-core", version = "4.3.3.Final" }
 
 # eclipse-link
-eclipselink4 = { module = "org.eclipse.persistence:org.eclipse.persistence.jpa", version = "4.0.9" }
+eclipselink4 = { module = "org.eclipse.persistence:org.eclipse.persistence.jpa", version = "5.0.0" }
 
 # vertx
-vertx-jdbc-client = { module = "io.vertx:vertx-jdbc-client", version = "5.0.8" }
-vertx-jdbc-client4 = { module = "io.vertx:vertx-jdbc-client", version = "4.5.25" }
-agroal-pool = { module = "io.agroal:agroal-pool", version = "3.0" }
+vertx-jdbc-client = { module = "io.vertx:vertx-jdbc-client", version = "5.0.12" }
+vertx-jdbc-client4 = { module = "io.vertx:vertx-jdbc-client", version = "4.5.27" }
+agroal-pool = { module = "io.agroal:agroal-pool", version = "3.1" }
 
 h2 = { module = "com.h2database:h2", version = "2.4.240" }
 

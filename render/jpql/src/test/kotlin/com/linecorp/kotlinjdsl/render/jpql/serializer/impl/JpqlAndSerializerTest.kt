@@ -40,15 +40,17 @@ class JpqlAndSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val predicates = listOf(
-            predicate1,
-            predicate2,
-            predicate3,
-        )
+        val predicates =
+            listOf(
+                predicate1,
+                predicate2,
+                predicate3,
+            )
 
-        val part = Predicates.and(
-            predicates,
-        )
+        val part =
+            Predicates.and(
+                predicates,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -66,9 +68,10 @@ class JpqlAndSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws 1 = 1, when the predicates is empty`() {
         // given
-        val part = Predicates.and(
-            emptyList(),
-        )
+        val part =
+            Predicates.and(
+                emptyList(),
+            )
         val context = TestRenderContext(serializer)
 
         // when

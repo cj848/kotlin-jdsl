@@ -24,10 +24,11 @@ class JpqlRenderIntrospector(
      */
     @SinceJdsl("3.0.0")
     operator fun plus(introspector: JpqlIntrospector): JpqlRenderIntrospector {
-        val combinedIntrospector = CombinedJpqlIntrospector(
-            primary = this.introspector,
-            secondary = introspector,
-        )
+        val combinedIntrospector =
+            CombinedJpqlIntrospector(
+                primary = this.introspector,
+                secondary = introspector,
+            )
 
         return JpqlRenderIntrospector(combinedIntrospector)
     }
@@ -36,37 +37,29 @@ class JpqlRenderIntrospector(
      * Introspects the KClass to get the entity information.
      */
     @SinceJdsl("3.0.0")
-    fun introspect(clazz: KClass<*>): JpqlEntityDescription {
-        return getCachedDescription(clazz)
-    }
+    fun introspect(clazz: KClass<*>): JpqlEntityDescription = getCachedDescription(clazz)
 
     /**
      * Introspects the KCallable to get the property information.
      */
     @SinceJdsl("3.1.0")
-    fun introspect(property: KCallable<*>): JpqlPropertyDescription {
-        return getCachedDescription(property)
-    }
+    fun introspect(property: KCallable<*>): JpqlPropertyDescription = getCachedDescription(property)
 
-    private fun getCachedDescription(clazz: KClass<*>): JpqlEntityDescription {
-        return entityLookupCache.computeIfAbsent(clazz) {
+    private fun getCachedDescription(clazz: KClass<*>): JpqlEntityDescription =
+        entityLookupCache.computeIfAbsent(clazz) {
             getDescription(it)
         }
-    }
 
-    private fun getCachedDescription(property: KCallable<*>): JpqlPropertyDescription {
-        return propertyLookupCache.computeIfAbsent(property) {
+    private fun getCachedDescription(property: KCallable<*>): JpqlPropertyDescription =
+        propertyLookupCache.computeIfAbsent(property) {
             getDescription(it)
         }
-    }
 
-    private fun getDescription(clazz: KClass<*>): JpqlEntityDescription {
-        return introspector.introspect(clazz)
+    private fun getDescription(clazz: KClass<*>): JpqlEntityDescription =
+        introspector.introspect(clazz)
             ?: throw IllegalStateException("There is no description for ${clazz.java.name}")
-    }
 
-    private fun getDescription(property: KCallable<*>): JpqlPropertyDescription {
-        return introspector.introspect(property)
+    private fun getDescription(property: KCallable<*>): JpqlPropertyDescription =
+        introspector.introspect(property)
             ?: throw IllegalStateException("There is no description for ${property.name}")
-    }
 }

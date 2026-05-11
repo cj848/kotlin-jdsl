@@ -11,11 +11,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlOrSerializer : JpqlSerializer<JpqlOr> {
-    override fun handledType(): KClass<JpqlOr> {
-        return JpqlOr::class
-    }
+    override fun handledType(): KClass<JpqlOr> = JpqlOr::class
 
-    override fun serialize(part: JpqlOr, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlOr,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         if (IterableUtils.isEmpty(part.predicates)) {

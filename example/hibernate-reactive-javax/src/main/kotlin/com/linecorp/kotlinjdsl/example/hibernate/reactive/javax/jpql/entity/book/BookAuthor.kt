@@ -26,14 +26,11 @@ class BookAuthor(
 
     private val bookAuthorId get() = BookAuthorId(book.isbn, authorId)
 
-    override fun equals(other: Any?): Boolean =
-        Objects.equals(bookAuthorId, (other as? BookAuthor)?.bookAuthorId)
+    override fun equals(other: Any?): Boolean = Objects.equals(bookAuthorId, (other as? BookAuthor)?.bookAuthorId)
 
-    override fun hashCode(): Int =
-        Objects.hashCode(bookAuthorId)
+    override fun hashCode(): Int = Objects.hashCode(bookAuthorId)
 
-    override fun toString(): String =
-        "BookAuthor(bookAuthorId=$bookAuthorId)"
+    override fun toString(): String = "BookAuthor(bookAuthorId=$bookAuthorId)"
 
     @CompositeId
     data class BookAuthorId(

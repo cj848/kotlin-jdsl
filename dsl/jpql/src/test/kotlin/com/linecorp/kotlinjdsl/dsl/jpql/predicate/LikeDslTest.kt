@@ -21,17 +21,19 @@ class LikeDslTest : WithAssertions {
     @Test
     fun `like() with a string`() {
         // when
-        val predicate = queryPart {
-            expression1.like(string1)
-        }
+        val predicate =
+            queryPart {
+                expression1.like(string1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.like(
-            value = expression1,
-            pattern = Expressions.value(string1),
-        )
+        val excepted =
+            Predicates.like(
+                value = expression1,
+                pattern = Expressions.value(string1),
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -39,18 +41,20 @@ class LikeDslTest : WithAssertions {
     @Test
     fun `like() with a string and a char`() {
         // when
-        val predicate = queryPart {
-            expression1.like(string1, escape = char1)
-        }
+        val predicate =
+            queryPart {
+                expression1.like(string1, escape = char1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.like(
-            value = expression1,
-            pattern = Expressions.value(string1),
-            escape = Expressions.value(char1),
-        )
+        val excepted =
+            Predicates.like(
+                value = expression1,
+                pattern = Expressions.value(string1),
+                escape = Expressions.value(char1),
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -58,17 +62,19 @@ class LikeDslTest : WithAssertions {
     @Test
     fun `like() with a string expression`() {
         // when
-        val predicate = queryPart {
-            expression1.like(stringExpression1)
-        }
+        val predicate =
+            queryPart {
+                expression1.like(stringExpression1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.like(
-            value = expression1,
-            pattern = stringExpression1,
-        )
+        val excepted =
+            Predicates.like(
+                value = expression1,
+                pattern = stringExpression1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -76,18 +82,20 @@ class LikeDslTest : WithAssertions {
     @Test
     fun `like() with a string expression and a char expression`() {
         // when
-        val predicate = queryPart {
-            expression1.like(string1, escape = char1)
-        }
+        val predicate =
+            queryPart {
+                expression1.like(string1, escape = char1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.like(
-            value = expression1,
-            pattern = stringExpression1,
-            escape = charExpression1,
-        )
+        val excepted =
+            Predicates.like(
+                value = expression1,
+                pattern = stringExpression1,
+                escape = charExpression1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -95,17 +103,19 @@ class LikeDslTest : WithAssertions {
     @Test
     fun `notLike() with a string`() {
         // when
-        val predicate = queryPart {
-            expression1.notLike(string1)
-        }
+        val predicate =
+            queryPart {
+                expression1.notLike(string1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notLike(
-            value = expression1,
-            pattern = Expressions.value(string1),
-        )
+        val excepted =
+            Predicates.notLike(
+                value = expression1,
+                pattern = Expressions.value(string1),
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -113,18 +123,20 @@ class LikeDslTest : WithAssertions {
     @Test
     fun `notLike() with a string and a char`() {
         // when
-        val predicate = queryPart {
-            expression1.notLike(string1, escape = char1)
-        }
+        val predicate =
+            queryPart {
+                expression1.notLike(string1, escape = char1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notLike(
-            value = expression1,
-            pattern = Expressions.value(string1),
-            escape = Expressions.value(char1),
-        )
+        val excepted =
+            Predicates.notLike(
+                value = expression1,
+                pattern = Expressions.value(string1),
+                escape = Expressions.value(char1),
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -132,17 +144,19 @@ class LikeDslTest : WithAssertions {
     @Test
     fun `notLike() with a string expression`() {
         // when
-        val predicate = queryPart {
-            expression1.notLike(stringExpression1)
-        }
+        val predicate =
+            queryPart {
+                expression1.notLike(stringExpression1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notLike(
-            value = expression1,
-            pattern = stringExpression1,
-        )
+        val excepted =
+            Predicates.notLike(
+                value = expression1,
+                pattern = stringExpression1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -150,18 +164,20 @@ class LikeDslTest : WithAssertions {
     @Test
     fun `notLike() with a string expression and a char expression`() {
         // when
-        val predicate = queryPart {
-            expression1.notLike(string1, escape = char1)
-        }
+        val predicate =
+            queryPart {
+                expression1.notLike(string1, escape = char1)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.notLike(
-            value = expression1,
-            pattern = stringExpression1,
-            escape = charExpression1,
-        )
+        val excepted =
+            Predicates.notLike(
+                value = expression1,
+                pattern = stringExpression1,
+                escape = charExpression1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }

@@ -1,14 +1,10 @@
 package com.linecorp.kotlinjdsl.example.spring.data.jpa.jpql.select
 
-import com.linecorp.kotlinjdsl.dsl.jpql.Jpql
 import com.linecorp.kotlinjdsl.example.spring.data.jpa.jpql.entity.author.Author
 import com.linecorp.kotlinjdsl.example.spring.data.jpa.jpql.entity.book.Book
-import com.linecorp.kotlinjdsl.example.spring.data.jpa.jpql.entity.book.BookAuthor
 import com.linecorp.kotlinjdsl.example.spring.data.jpa.jpql.entity.book.Isbn
 import com.linecorp.kotlinjdsl.example.spring.data.jpa.jpql.repository.author.AuthorRepository
 import com.linecorp.kotlinjdsl.example.spring.data.jpa.jpql.repository.book.BookRepository
-import com.linecorp.kotlinjdsl.querymodel.jpql.JpqlQueryable
-import com.linecorp.kotlinjdsl.querymodel.jpql.select.SelectQuery
 import org.assertj.core.api.WithAssertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

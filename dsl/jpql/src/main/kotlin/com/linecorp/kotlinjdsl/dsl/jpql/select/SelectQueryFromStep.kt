@@ -16,5 +16,8 @@ interface SelectQueryFromStep<T : Any> {
      * Creates a from clause in a select query.
      */
     @SinceJdsl("3.0.0")
-    fun from(entity: Entityable<*>, vararg froms: Fromable?): SelectQueryWhereStep<T>
+    fun from(
+        entity: Entityable<*>,
+        vararg froms: Fromable?,
+    ): SelectQueryWhereStep<T>
 }

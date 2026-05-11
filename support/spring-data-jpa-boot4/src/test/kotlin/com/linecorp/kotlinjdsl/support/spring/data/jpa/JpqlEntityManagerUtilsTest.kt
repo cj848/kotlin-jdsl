@@ -1,8 +1,5 @@
-@file:OptIn(Internal::class)
-
 package com.linecorp.kotlinjdsl.support.spring.data.jpa
 
-import com.linecorp.kotlinjdsl.Internal
 import com.linecorp.kotlinjdsl.querymodel.jpql.JpqlQuery
 import com.linecorp.kotlinjdsl.querymodel.jpql.select.SelectQueries
 import com.linecorp.kotlinjdsl.querymodel.jpql.select.SelectQuery

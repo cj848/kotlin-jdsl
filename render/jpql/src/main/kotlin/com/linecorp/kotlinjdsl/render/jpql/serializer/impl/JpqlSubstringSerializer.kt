@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlSubstringSerializer : JpqlSerializer<JpqlSubstring> {
-    override fun handledType(): KClass<JpqlSubstring> {
-        return JpqlSubstring::class
-    }
+    override fun handledType(): KClass<JpqlSubstring> = JpqlSubstring::class
 
-    override fun serialize(part: JpqlSubstring, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlSubstring,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("SUBSTRING")

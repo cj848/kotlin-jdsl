@@ -38,9 +38,10 @@ class JpqlPredicateParenthesesSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Predicates.parentheses(
-            predicate1,
-        )
+        val part =
+            Predicates.parentheses(
+                predicate1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

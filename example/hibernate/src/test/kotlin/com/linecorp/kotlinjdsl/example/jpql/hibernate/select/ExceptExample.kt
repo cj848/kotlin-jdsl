@@ -32,27 +32,28 @@ class ExceptExample : WithAssertions {
     @Test
     fun exceptBooksByPriceAndSalePrice() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(Expressions.expression(Isbn::class, aliasName))
-            except(
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-                ),
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+        val query =
+            jpql {
+                val isbnPath = path(Book::isbn).`as`(Expressions.expression(Isbn::class, aliasName))
+                except(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                    ),
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
         val typedQuery: TypedQuery<Isbn> = entityManager.createQuery(query, context)
         val actual: List<Isbn> = typedQuery.resultList
@@ -78,27 +79,28 @@ class ExceptExample : WithAssertions {
     @Disabled("H2 database does not support EXCEPT ALL - only EXCEPT is supported")
     fun exceptAllBooksByPriceAndSalePrice() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(Expressions.expression(Isbn::class, aliasName))
-            exceptAll(
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-                ),
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+        val query =
+            jpql {
+                val isbnPath = path(Book::isbn).`as`(Expressions.expression(Isbn::class, aliasName))
+                exceptAll(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                    ),
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
         val typedQuery: TypedQuery<Isbn> = entityManager.createQuery(query, context)
         val actual: List<Isbn> = typedQuery.resultList
@@ -112,26 +114,27 @@ class ExceptExample : WithAssertions {
     @Test
     fun exceptBooksByPriceAndSalePriceWithNewDsl() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(Expressions.expression(Isbn::class, aliasName))
-            select(
-                isbnPath,
-            ).from(
-                entity(Book::class),
-            ).where(
-                path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-            ).except(
+        val query =
+            jpql {
+                val isbnPath = path(Book::isbn).`as`(Expressions.expression(Isbn::class, aliasName))
                 select(
                     isbnPath,
                 ).from(
                     entity(Book::class),
                 ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                ).except(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
         val typedQuery: TypedQuery<Isbn> = entityManager.createQuery(query, context)
         val actual: List<Isbn> = typedQuery.resultList
@@ -157,26 +160,27 @@ class ExceptExample : WithAssertions {
     @Disabled("H2 database does not support EXCEPT ALL - only EXCEPT is supported")
     fun exceptAllBooksByPriceAndSalePriceWithNewDsl() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(Expressions.expression(Isbn::class, aliasName))
-            select(
-                isbnPath,
-            ).from(
-                entity(Book::class),
-            ).where(
-                path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-            ).exceptAll(
+        val query =
+            jpql {
+                val isbnPath = path(Book::isbn).`as`(Expressions.expression(Isbn::class, aliasName))
                 select(
                     isbnPath,
                 ).from(
                     entity(Book::class),
                 ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                ).exceptAll(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
         val typedQuery: TypedQuery<Isbn> = entityManager.createQuery(query, context)
         val actual: List<Isbn> = typedQuery.resultList

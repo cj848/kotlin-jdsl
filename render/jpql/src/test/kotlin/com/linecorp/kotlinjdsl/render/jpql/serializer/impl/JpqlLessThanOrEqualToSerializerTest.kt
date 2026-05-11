@@ -37,10 +37,11 @@ class JpqlLessThanOrEqualToSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Predicates.lessThanOrEqualTo(
-            expression1,
-            expression2,
-        )
+        val part =
+            Predicates.lessThanOrEqualTo(
+                expression1,
+                expression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when

@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlUpperSerializer : JpqlSerializer<JpqlUpper> {
-    override fun handledType(): KClass<JpqlUpper> {
-        return JpqlUpper::class
-    }
+    override fun handledType(): KClass<JpqlUpper> = JpqlUpper::class
 
-    override fun serialize(part: JpqlUpper, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlUpper,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("UPPER")

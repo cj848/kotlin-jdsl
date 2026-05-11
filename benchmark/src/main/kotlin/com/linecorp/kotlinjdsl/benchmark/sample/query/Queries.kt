@@ -9,16 +9,15 @@ import com.linecorp.kotlinjdsl.benchmark.sample.query.update.UpdateQuery1
 import com.linecorp.kotlinjdsl.querymodel.jpql.JpqlQuery
 
 object Queries {
-    private val queries = listOf(
-        SelectQuery1(), // 0
-        SelectQuery2(), // 1
-        SelectQuery3(), // 2
-        SelectQuery4(), // 3
-        UpdateQuery1(), // 4
-        DeleteQuery1(), // 5
-    )
+    private val queries =
+        listOf(
+            SelectQuery1(), // 0
+            SelectQuery2(), // 1
+            SelectQuery3(), // 2
+            SelectQuery4(), // 3
+            UpdateQuery1(), // 4
+            DeleteQuery1(), // 5
+        )
 
-    fun get(index: Int): JpqlQuery<*> {
-        return queries[index]
-    }
+    fun get(index: Int): JpqlQuery<*> = queries[index]
 }

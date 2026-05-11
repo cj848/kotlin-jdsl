@@ -14,17 +14,19 @@ class TreatDslTest : WithAssertions {
     @Test
     fun treat() {
         // when
-        val entity = queryPart {
-            entity1.treat(FullTimeEmployee::class)
-        }
+        val entity =
+            queryPart {
+                entity1.treat(FullTimeEmployee::class)
+            }
 
         val actual: Entity<FullTimeEmployee> = entity // for type check
 
         // then
-        val expected = Entities.treat(
-            entity1,
-            FullTimeEmployee::class,
-        )
+        val expected =
+            Entities.treat(
+                entity1,
+                FullTimeEmployee::class,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

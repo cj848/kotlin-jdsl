@@ -13,24 +13,27 @@ import java.math.BigDecimal
 class DeleteQueriesTest : WithAssertions {
     private val entity1 = Entities.entity(Book::class)
 
-    private val predicate1 = Predicates.equal(
-        Paths.path(Book::price),
-        Expressions.value(BigDecimal.valueOf(100)),
-    )
+    private val predicate1 =
+        Predicates.equal(
+            Paths.path(Book::price),
+            Expressions.value(BigDecimal.valueOf(100)),
+        )
 
     @Test
     fun deleteQuery() {
         // when
-        val actual = DeleteQueries.deleteQuery(
-            entity = entity1,
-            where = predicate1,
-        )
+        val actual =
+            DeleteQueries.deleteQuery(
+                entity = entity1,
+                where = predicate1,
+            )
 
         // then
-        val expected = JpqlDeleteQuery(
-            entity = entity1,
-            where = predicate1,
-        )
+        val expected =
+            JpqlDeleteQuery(
+                entity = entity1,
+                where = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

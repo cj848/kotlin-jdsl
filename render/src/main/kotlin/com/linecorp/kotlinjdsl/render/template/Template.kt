@@ -10,8 +10,9 @@ class Template(
         private val argumentNumberRegex = Regex("\\{(\\d+)}")
 
         fun compile(template: String): Template {
-            var match: MatchResult? = argumentNumberRegex.find(template)
-                ?: return Template(listOf(TemplateElement.String(template)))
+            var match: MatchResult? =
+                argumentNumberRegex.find(template)
+                    ?: return Template(listOf(TemplateElement.String(template)))
 
             val elements = mutableListOf<TemplateElement>()
             val length = template.length

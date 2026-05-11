@@ -18,27 +18,30 @@ class GreaterThanDslTest : WithAssertions {
 
     private val bigDecimalExpression1 = Expressions.value(bigDecimal1)
 
-    private val subquery1 = Expressions.subquery(
-        SelectQueries.selectQuery(
-            returnType = BigDecimal::class,
-            distinct = false,
-            select = listOf(Paths.path(Book::price)),
-            from = listOf(Entities.entity(Book::class)),
-        ),
-    )
+    private val subquery1 =
+        Expressions.subquery(
+            SelectQueries.selectQuery(
+                returnType = BigDecimal::class,
+                distinct = false,
+                select = listOf(Paths.path(Book::price)),
+                from = listOf(Entities.entity(Book::class)),
+            ),
+        )
 
     @Test
     fun `greaterThan() with a bigDecimal`() {
         // when
-        val actual = queryPart {
-            expression1.greaterThan(bigDecimal1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.greaterThan(bigDecimal1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThan(
-            expression1,
-            Expressions.value(bigDecimal1),
-        )
+        val expected =
+            Predicates.greaterThan(
+                expression1,
+                Expressions.value(bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -46,15 +49,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun `greaterThan() with a bigDecimal expression`() {
         // when
-        val actual = queryPart {
-            expression1.greaterThan(bigDecimalExpression1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.greaterThan(bigDecimalExpression1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThan(
-            expression1,
-            bigDecimalExpression1,
-        )
+        val expected =
+            Predicates.greaterThan(
+                expression1,
+                bigDecimalExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -62,15 +67,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun `greaterThan() with a bigDecimal and the inclusive`() {
         // when
-        val actual = queryPart {
-            expression1.greaterThan(bigDecimal1, inclusive = true)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.greaterThan(bigDecimal1, inclusive = true)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanOrEqualTo(
-            expression1,
-            Expressions.value(bigDecimal1),
-        )
+        val expected =
+            Predicates.greaterThanOrEqualTo(
+                expression1,
+                Expressions.value(bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -78,15 +85,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun `greaterThan() with a bigDecimal expression and the inclusive`() {
         // when
-        val actual = queryPart {
-            expression1.greaterThan(bigDecimalExpression1, inclusive = true)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.greaterThan(bigDecimalExpression1, inclusive = true)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanOrEqualTo(
-            expression1,
-            bigDecimalExpression1,
-        )
+        val expected =
+            Predicates.greaterThanOrEqualTo(
+                expression1,
+                bigDecimalExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -94,15 +103,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun greaterThanAll() {
         // when
-        val actual = queryPart {
-            expression1.greaterThanAll(subquery1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.greaterThanAll(subquery1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanAll(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.greaterThanAll(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -110,15 +121,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun `greaterThanAll() with the inclusive`() {
         // when
-        val actual = queryPart {
-            expression1.greaterThanAll(subquery1, inclusive = true)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.greaterThanAll(subquery1, inclusive = true)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanOrEqualToAll(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.greaterThanOrEqualToAll(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -126,15 +139,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun greaterThanAny() {
         // when
-        val actual = queryPart {
-            expression1.greaterThanAny(subquery1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.greaterThanAny(subquery1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanAny(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.greaterThanAny(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -142,15 +157,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun `greaterThanAny() with the inclusive`() {
         // when
-        val actual = queryPart {
-            expression1.greaterThanAny(subquery1, inclusive = true)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.greaterThanAny(subquery1, inclusive = true)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanOrEqualToAny(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.greaterThanOrEqualToAny(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -158,15 +175,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun `gt() with a bigDecimal`() {
         // when
-        val actual = queryPart {
-            expression1.gt(bigDecimal1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.gt(bigDecimal1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThan(
-            expression1,
-            Expressions.value(bigDecimal1),
-        )
+        val expected =
+            Predicates.greaterThan(
+                expression1,
+                Expressions.value(bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -174,15 +193,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun `gt() with a bigDecimal expression`() {
         // when
-        val actual = queryPart {
-            expression1.gt(bigDecimalExpression1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.gt(bigDecimalExpression1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThan(
-            expression1,
-            bigDecimalExpression1,
-        )
+        val expected =
+            Predicates.greaterThan(
+                expression1,
+                bigDecimalExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -190,15 +211,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun `gt() with a bigDecimal and the inclusive`() {
         // when
-        val actual = queryPart {
-            expression1.gt(bigDecimal1, inclusive = true)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.gt(bigDecimal1, inclusive = true)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanOrEqualTo(
-            expression1,
-            Expressions.value(bigDecimal1),
-        )
+        val expected =
+            Predicates.greaterThanOrEqualTo(
+                expression1,
+                Expressions.value(bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -206,15 +229,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun `gt() with a bigDecimal expression and the inclusive`() {
         // when
-        val actual = queryPart {
-            expression1.gt(bigDecimalExpression1, inclusive = true)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.gt(bigDecimalExpression1, inclusive = true)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanOrEqualTo(
-            expression1,
-            bigDecimalExpression1,
-        )
+        val expected =
+            Predicates.greaterThanOrEqualTo(
+                expression1,
+                bigDecimalExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -222,15 +247,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun gtAll() {
         // when
-        val actual = queryPart {
-            expression1.gtAll(subquery1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.gtAll(subquery1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanAll(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.greaterThanAll(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -238,15 +265,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun `gtAll() with the inclusive`() {
         // when
-        val actual = queryPart {
-            expression1.gtAll(subquery1, inclusive = true)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.gtAll(subquery1, inclusive = true)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanOrEqualToAll(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.greaterThanOrEqualToAll(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -254,15 +283,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun gtAny() {
         // when
-        val actual = queryPart {
-            expression1.gtAny(subquery1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.gtAny(subquery1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanAny(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.greaterThanAny(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -270,15 +301,17 @@ class GreaterThanDslTest : WithAssertions {
     @Test
     fun `gtAny() with the inclusive`() {
         // when
-        val actual = queryPart {
-            expression1.gtAny(subquery1, inclusive = true)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.gtAny(subquery1, inclusive = true)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.greaterThanOrEqualToAny(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.greaterThanOrEqualToAny(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

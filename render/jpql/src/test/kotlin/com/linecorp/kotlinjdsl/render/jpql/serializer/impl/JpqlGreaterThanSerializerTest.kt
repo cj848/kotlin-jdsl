@@ -37,10 +37,11 @@ class JpqlGreaterThanSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Predicates.greaterThan(
-            expression1,
-            expression2,
-        )
+        val part =
+            Predicates.greaterThan(
+                expression1,
+                expression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when

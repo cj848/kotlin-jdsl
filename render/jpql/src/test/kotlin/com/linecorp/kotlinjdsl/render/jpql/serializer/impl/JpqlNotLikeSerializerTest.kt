@@ -41,10 +41,11 @@ class JpqlNotLikeSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Predicates.notLike(
-            stringExpression1,
-            stringExpression2,
-        )
+        val part =
+            Predicates.notLike(
+                stringExpression1,
+                stringExpression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -63,11 +64,12 @@ class JpqlNotLikeSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the ESCAPE, when the escape is not null`() {
         // given
-        val part = Predicates.notLike(
-            stringExpression1,
-            stringExpression2,
-            charExpression1,
-        )
+        val part =
+            Predicates.notLike(
+                stringExpression1,
+                stringExpression2,
+                charExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

@@ -23,13 +23,19 @@ internal data class UpdateQueryDsl<T : Any>(
     constructor(entity: Entity<T>, path: Path<*>, value: Expression<*>) : this(UpdateQueryBuilder(entity, path, value))
     constructor(entity: Entity<T>, map: Map<Path<*>, Expression<*>>) : this(UpdateQueryBuilder(entity, map))
 
-    override fun <V : Any, S : V?> set(path: Pathable<V>, value: S): UpdateQuerySetStep<T> {
+    override fun <V : Any, S : V?> set(
+        path: Pathable<V>,
+        value: S,
+    ): UpdateQuerySetStep<T> {
         builder.set(path.toPath(), Expressions.value(value))
 
         return this
     }
 
-    override fun <V : Any> set(path: Pathable<V>, value: Expressionable<V>): UpdateQuerySetStep<T> {
+    override fun <V : Any> set(
+        path: Pathable<V>,
+        value: Expressionable<V>,
+    ): UpdateQuerySetStep<T> {
         builder.set(path.toPath(), value.toExpression())
 
         return this
@@ -55,7 +61,5 @@ internal data class UpdateQueryDsl<T : Any>(
         return this
     }
 
-    override fun toQuery(): UpdateQuery<T> {
-        return builder.build()
-    }
+    override fun toQuery(): UpdateQuery<T> = builder.build()
 }

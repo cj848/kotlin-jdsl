@@ -15,16 +15,18 @@ class FloorDslTest : WithAssertions {
     @Test
     fun `floor() with a property`() {
         // when
-        val expression = queryPart {
-            floor(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                floor(Book::price)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.floor(
-            value = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.floor(
+                value = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -32,16 +34,18 @@ class FloorDslTest : WithAssertions {
     @Test
     fun `floor() with a expression`() {
         // when
-        val expression = queryPart {
-            floor(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                floor(expression1)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.floor(
-            value = expression1,
-        )
+        val expected =
+            Expressions.floor(
+                value = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

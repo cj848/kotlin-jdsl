@@ -25,36 +25,41 @@ class IntersectMutinySessionExample : WithAssertions {
     @Test
     fun intersectBooksByPriceAndSalePrice() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(
-                Expressions.expression(
-                    Isbn::class,
-                    aliasName,
-                ),
-            )
-            intersect(
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-                ),
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+        val query =
+            jpql {
+                val isbnPath =
+                    path(Book::isbn).`as`(
+                        Expressions.expression(
+                            Isbn::class,
+                            aliasName,
+                        ),
+                    )
+                intersect(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                    ),
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
-        val actual = sessionFactory.withSession {
-            it.createQuery(query, context).resultList
-        }.await().indefinitely()
+        val actual =
+            sessionFactory
+                .withSession {
+                    it.createQuery(query, context).resultList
+                }.await()
+                .indefinitely()
 
         // then
         assertThat(actual).containsExactly(
@@ -77,36 +82,41 @@ class IntersectMutinySessionExample : WithAssertions {
     @Disabled("H2 database does not support INTERSECT ALL - only INTERSECT is supported")
     fun intersectAllBooksByPriceAndSalePrice() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(
-                Expressions.expression(
-                    Isbn::class,
-                    aliasName,
-                ),
-            )
-            intersectAll(
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-                ),
-                select(
-                    isbnPath,
-                ).from(
-                    entity(Book::class),
-                ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+        val query =
+            jpql {
+                val isbnPath =
+                    path(Book::isbn).`as`(
+                        Expressions.expression(
+                            Isbn::class,
+                            aliasName,
+                        ),
+                    )
+                intersectAll(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                    ),
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
-        val actual = sessionFactory.withSession {
-            it.createQuery(query, context).resultList
-        }.await().indefinitely()
+        val actual =
+            sessionFactory
+                .withSession {
+                    it.createQuery(query, context).resultList
+                }.await()
+                .indefinitely()
 
         // Then
         assertThat(actual).containsExactly(
@@ -117,35 +127,40 @@ class IntersectMutinySessionExample : WithAssertions {
     @Test
     fun intersectBooksByPriceAndSalePriceWithNewDsl() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(
-                Expressions.expression(
-                    Isbn::class,
-                    aliasName,
-                ),
-            )
-            select(
-                isbnPath,
-            ).from(
-                entity(Book::class),
-            ).where(
-                path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-            ).intersect(
+        val query =
+            jpql {
+                val isbnPath =
+                    path(Book::isbn).`as`(
+                        Expressions.expression(
+                            Isbn::class,
+                            aliasName,
+                        ),
+                    )
                 select(
                     isbnPath,
                 ).from(
                     entity(Book::class),
                 ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                ).intersect(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
-        val actual = sessionFactory.withSession {
-            it.createQuery(query, context).resultList
-        }.await().indefinitely()
+        val actual =
+            sessionFactory
+                .withSession {
+                    it.createQuery(query, context).resultList
+                }.await()
+                .indefinitely()
 
         // then
         assertThat(actual).containsExactly(
@@ -168,35 +183,40 @@ class IntersectMutinySessionExample : WithAssertions {
     @Disabled("H2 database does not support INTERSECT ALL - only INTERSECT is supported")
     fun intersectAllBooksByPriceAndSalePriceWithNewDsl() {
         // When
-        val query = jpql {
-            val isbnPath = path(Book::isbn).`as`(
-                Expressions.expression(
-                    Isbn::class,
-                    aliasName,
-                ),
-            )
-            select(
-                isbnPath,
-            ).from(
-                entity(Book::class),
-            ).where(
-                path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
-            ).intersectAll(
+        val query =
+            jpql {
+                val isbnPath =
+                    path(Book::isbn).`as`(
+                        Expressions.expression(
+                            Isbn::class,
+                            aliasName,
+                        ),
+                    )
                 select(
                     isbnPath,
                 ).from(
                     entity(Book::class),
                 ).where(
-                    path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
-                ),
-            ).orderBy(
-                Sorts.asc(isbnPath),
-            )
-        }
+                    path(Book::price)(BookPrice::value).lessThan(3.toBigDecimal()),
+                ).intersectAll(
+                    select(
+                        isbnPath,
+                    ).from(
+                        entity(Book::class),
+                    ).where(
+                        path(Book::salePrice)(BookPrice::value).lessThan(2.toBigDecimal()),
+                    ),
+                ).orderBy(
+                    Sorts.asc(isbnPath),
+                )
+            }
 
-        val actual = sessionFactory.withSession {
-            it.createQuery(query, context).resultList
-        }.await().indefinitely()
+        val actual =
+            sessionFactory
+                .withSession {
+                    it.createQuery(query, context).resultList
+                }.await()
+                .indefinitely()
 
         // Then
         assertThat(actual).containsExactly(

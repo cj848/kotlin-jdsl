@@ -29,7 +29,10 @@ internal data class UpdateQueryBuilder<T : Any>(
         set = map.toMutableMap(),
     )
 
-    fun <V : Any> set(path: Path<V>, value: Expression<V>): UpdateQueryBuilder<T> {
+    fun <V : Any> set(
+        path: Path<V>,
+        value: Expression<V>,
+    ): UpdateQueryBuilder<T> {
         set[path] = value
 
         return this
@@ -47,11 +50,10 @@ internal data class UpdateQueryBuilder<T : Any>(
         return this
     }
 
-    fun build(): UpdateQuery<T> {
-        return UpdateQueries.updateQuery(
+    fun build(): UpdateQuery<T> =
+        UpdateQueries.updateQuery(
             entity = entity,
             set = set,
             where = where,
         )
-    }
 }

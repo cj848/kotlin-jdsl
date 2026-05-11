@@ -20,27 +20,20 @@ class Book(
     @Id
     @Column(name = "isbn")
     val isbn: String,
-
     @Column(name = "title")
     var title: String,
-
     @Column(name = "image_url")
     var imageUrl: String,
-
     @Embedded
     @AttributeOverride(name = "value", column = Column(name = "price"))
     var price: BookPrice,
-
     @Embedded
     @AttributeOverride(name = "value", column = Column(name = "sale_price"))
     var salePrice: BookPrice,
-
     @Column(name = "publish_date")
     var publishDate: OffsetDateTime,
-
     @OneToMany(mappedBy = "book", cascade = [CascadeType.ALL], orphanRemoval = true)
     val authors: MutableSet<BookAuthor>,
-
     @OneToOne(mappedBy = "book", cascade = [CascadeType.ALL], orphanRemoval = true)
     val publisher: BookPublisher,
 ) {
@@ -50,6 +43,7 @@ class Book(
     }
 
     override fun equals(other: Any?): Boolean = Objects.equals(isbn, (other as? Book)?.isbn)
+
     override fun hashCode(): Int = Objects.hashCode(isbn)
 
     override fun toString(): String = "Book(isbn=$isbn)"

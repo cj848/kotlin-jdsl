@@ -36,9 +36,10 @@ class JpqlTrimTrailingSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the TRAILING and the FROM, when the character is null`() {
         // given
-        val part = Expressions.trimTrailing(
-            value = stringExpression1,
-        )
+        val part =
+            Expressions.trimTrailing(
+                value = stringExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -59,10 +60,11 @@ class JpqlTrimTrailingSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the TRAILING, the character and the FROM, when the character is not null`() {
         // given
-        val part = Expressions.trimTrailing(
-            character = charExpression1,
-            value = stringExpression1,
-        )
+        val part =
+            Expressions.trimTrailing(
+                character = charExpression1,
+                value = stringExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

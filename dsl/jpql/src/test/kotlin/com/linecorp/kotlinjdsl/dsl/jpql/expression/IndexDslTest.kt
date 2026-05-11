@@ -14,16 +14,18 @@ class IndexDslTest : WithAssertions {
     @Test
     fun `index() with a class`() {
         // when
-        val expression = queryPart {
-            index(BookAuthor::class)
-        }.toExpression()
+        val expression =
+            queryPart {
+                index(BookAuthor::class)
+            }.toExpression()
 
         val actual: Expression<Int> = expression // for type check
 
         // then
-        val expected = Expressions.index(
-            entity = Entities.entity(BookAuthor::class),
-        )
+        val expected =
+            Expressions.index(
+                entity = Entities.entity(BookAuthor::class),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -31,16 +33,18 @@ class IndexDslTest : WithAssertions {
     @Test
     fun `index() with a expression`() {
         // when
-        val expression = queryPart {
-            index(entity1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                index(entity1)
+            }.toExpression()
 
         val actual: Expression<Int> = expression // for type check
 
         // then
-        val expected = Expressions.index(
-            entity = entity1,
-        )
+        val expected =
+            Expressions.index(
+                entity = entity1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

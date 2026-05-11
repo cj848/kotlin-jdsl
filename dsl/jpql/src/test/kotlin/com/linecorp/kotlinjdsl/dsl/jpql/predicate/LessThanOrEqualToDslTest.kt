@@ -18,27 +18,30 @@ class LessThanOrEqualToDslTest : WithAssertions {
 
     private val bigDecimalExpression1 = Expressions.value(bigDecimal1)
 
-    private val subquery1 = Expressions.subquery(
-        SelectQueries.selectQuery(
-            returnType = BigDecimal::class,
-            distinct = false,
-            select = listOf(Paths.path(Book::price)),
-            from = listOf(Entities.entity(Book::class)),
-        ),
-    )
+    private val subquery1 =
+        Expressions.subquery(
+            SelectQueries.selectQuery(
+                returnType = BigDecimal::class,
+                distinct = false,
+                select = listOf(Paths.path(Book::price)),
+                from = listOf(Entities.entity(Book::class)),
+            ),
+        )
 
     @Test
     fun `lessThanOrEqualTo() with a bigDecimal`() {
         // when
-        val actual = queryPart {
-            expression1.lessThanOrEqualTo(bigDecimal1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.lessThanOrEqualTo(bigDecimal1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.lessThanOrEqualTo(
-            expression1,
-            Expressions.value(bigDecimal1),
-        )
+        val expected =
+            Predicates.lessThanOrEqualTo(
+                expression1,
+                Expressions.value(bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -46,15 +49,17 @@ class LessThanOrEqualToDslTest : WithAssertions {
     @Test
     fun `lessThanOrEqualTo() with a bigDecimal expression`() {
         // when
-        val actual = queryPart {
-            expression1.lessThanOrEqualTo(bigDecimalExpression1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.lessThanOrEqualTo(bigDecimalExpression1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.lessThanOrEqualTo(
-            expression1,
-            bigDecimalExpression1,
-        )
+        val expected =
+            Predicates.lessThanOrEqualTo(
+                expression1,
+                bigDecimalExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -62,15 +67,17 @@ class LessThanOrEqualToDslTest : WithAssertions {
     @Test
     fun lessThanOrEqualToAll() {
         // when
-        val actual = queryPart {
-            expression1.lessThanOrEqualToAll(subquery1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.lessThanOrEqualToAll(subquery1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.lessThanOrEqualToAll(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.lessThanOrEqualToAll(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -78,15 +85,17 @@ class LessThanOrEqualToDslTest : WithAssertions {
     @Test
     fun lessThanOrEqualToAny() {
         // when
-        val actual = queryPart {
-            expression1.lessThanOrEqualToAny(subquery1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.lessThanOrEqualToAny(subquery1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.lessThanOrEqualToAny(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.lessThanOrEqualToAny(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -94,15 +103,17 @@ class LessThanOrEqualToDslTest : WithAssertions {
     @Test
     fun `le() with a bigDecimal`() {
         // when
-        val actual = queryPart {
-            expression1.le(bigDecimal1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.le(bigDecimal1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.lessThanOrEqualTo(
-            expression1,
-            Expressions.value(bigDecimal1),
-        )
+        val expected =
+            Predicates.lessThanOrEqualTo(
+                expression1,
+                Expressions.value(bigDecimal1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -110,15 +121,17 @@ class LessThanOrEqualToDslTest : WithAssertions {
     @Test
     fun `le() with a bigDecimal expression`() {
         // when
-        val actual = queryPart {
-            expression1.le(bigDecimalExpression1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.le(bigDecimalExpression1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.lessThanOrEqualTo(
-            expression1,
-            bigDecimalExpression1,
-        )
+        val expected =
+            Predicates.lessThanOrEqualTo(
+                expression1,
+                bigDecimalExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -126,15 +139,17 @@ class LessThanOrEqualToDslTest : WithAssertions {
     @Test
     fun leAll() {
         // when
-        val actual = queryPart {
-            expression1.leAll(subquery1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.leAll(subquery1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.lessThanOrEqualToAll(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.lessThanOrEqualToAll(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -142,15 +157,17 @@ class LessThanOrEqualToDslTest : WithAssertions {
     @Test
     fun leAny() {
         // when
-        val actual = queryPart {
-            expression1.leAny(subquery1)
-        }.toPredicate()
+        val actual =
+            queryPart {
+                expression1.leAny(subquery1)
+            }.toPredicate()
 
         // then
-        val expected = Predicates.lessThanOrEqualToAny(
-            expression1,
-            subquery1,
-        )
+        val expected =
+            Predicates.lessThanOrEqualToAny(
+                expression1,
+                subquery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

@@ -15,16 +15,18 @@ class CeilingDslTest : WithAssertions {
     @Test
     fun `ceiling() with a property`() {
         // when
-        val expression = queryPart {
-            ceiling(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                ceiling(Book::price)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.ceiling(
-            value = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.ceiling(
+                value = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -32,16 +34,18 @@ class CeilingDslTest : WithAssertions {
     @Test
     fun `ceiling() with a expression`() {
         // when
-        val expression = queryPart {
-            ceiling(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                ceiling(expression1)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.ceiling(
-            value = expression1,
-        )
+        val expected =
+            Expressions.ceiling(
+                value = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

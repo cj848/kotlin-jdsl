@@ -1,8 +1,5 @@
-@file:OptIn(Internal::class)
-
 package com.linecorp.kotlinjdsl.support.spring.data.jpa.javax
 
-import com.linecorp.kotlinjdsl.Internal
 import com.linecorp.kotlinjdsl.querymodel.jpql.JpqlQuery
 import com.linecorp.kotlinjdsl.querymodel.jpql.select.SelectQueries
 import com.linecorp.kotlinjdsl.querymodel.jpql.select.SelectQuery
@@ -136,8 +133,9 @@ class JpqlEntityManagerUtilsTest : WithAssertions {
         every { stringTypedQueryParam2.name } returns renderedParam2.first
 
         // when
-        val actual = JpqlEntityManagerUtils
-            .createQuery(entityManager, query1, mapOf(queryParam1, queryParam2), String::class, context)
+        val actual =
+            JpqlEntityManagerUtils
+                .createQuery(entityManager, query1, mapOf(queryParam1, queryParam2), String::class, context)
 
         // then
         assertThat(actual).isEqualTo(stringTypedQuery1)
@@ -195,8 +193,9 @@ class JpqlEntityManagerUtilsTest : WithAssertions {
         every { stringTypedQueryParam2.name } returns renderedParam2.first
 
         // when
-        val actual = JpqlEntityManagerUtils
-            .createQuery(entityManager, query1, mapOf(queryParam1, queryParam2), context)
+        val actual =
+            JpqlEntityManagerUtils
+                .createQuery(entityManager, query1, mapOf(queryParam1, queryParam2), context)
 
         // then
         assertThat(actual).isEqualTo(stringTypedQuery1)
@@ -272,8 +271,9 @@ class JpqlEntityManagerUtilsTest : WithAssertions {
         every { longTypedQueryParam2.name } returns renderedParam2.first
 
         // when
-        val actual = JpqlEntityManagerUtils
-            .createEnhancedQuery(entityManager, selectQuery1, String::class, sort1, context)
+        val actual =
+            JpqlEntityManagerUtils
+                .createEnhancedQuery(entityManager, selectQuery1, String::class, sort1, context)
 
         // then
         assertThat(actual.sortedQuery).isEqualTo(stringTypedQuery1)
@@ -325,8 +325,9 @@ class JpqlEntityManagerUtilsTest : WithAssertions {
         every { longTypedQueryParam2.name } returns renderedParam2.first
 
         // when
-        val actual = JpqlEntityManagerUtils
-            .createEnhancedQuery(entityManager, query1, String::class, sort1, context)
+        val actual =
+            JpqlEntityManagerUtils
+                .createEnhancedQuery(entityManager, query1, String::class, sort1, context)
 
         // then
         assertThat(actual.sortedQuery).isEqualTo(stringTypedQuery1)

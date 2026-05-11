@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlSignSerializer : JpqlSerializer<JpqlSign<*>> {
-    override fun handledType(): KClass<JpqlSign<*>> {
-        return JpqlSign::class
-    }
+    override fun handledType(): KClass<JpqlSign<*>> = JpqlSign::class
 
-    override fun serialize(part: JpqlSign<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlSign<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("SIGN")

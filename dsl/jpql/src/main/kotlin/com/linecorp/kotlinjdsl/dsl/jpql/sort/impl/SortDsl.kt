@@ -23,7 +23,5 @@ internal data class SortDsl(
         return this
     }
 
-    override fun toSort(): Sort {
-        return builder.build()
-    }
+    override fun toSort(): Sort = builder.build()
 }

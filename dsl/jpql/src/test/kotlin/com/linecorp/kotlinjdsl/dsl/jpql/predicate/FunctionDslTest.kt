@@ -19,20 +19,22 @@ class FunctionDslTest : WithAssertions {
     @Test
     fun `function() with strings`() {
         // when
-        val predicate = queryPart {
-            function(Boolean::class, name1, string1, string2)
-        }
+        val predicate =
+            queryPart {
+                function(Boolean::class, name1, string1, string2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val expected = Predicates.function(
-            name1,
-            listOf(
-                Expressions.value(string1),
-                Expressions.value(string2),
-            ),
-        )
+        val expected =
+            Predicates.function(
+                name1,
+                listOf(
+                    Expressions.value(string1),
+                    Expressions.value(string2),
+                ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -40,20 +42,22 @@ class FunctionDslTest : WithAssertions {
     @Test
     fun `function() with string expressions`() {
         // when
-        val predicate = queryPart {
-            function(Boolean::class, name1, stringExpression1, stringExpression2)
-        }
+        val predicate =
+            queryPart {
+                function(Boolean::class, name1, stringExpression1, stringExpression2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val expected = Predicates.function(
-            name1,
-            listOf(
-                stringExpression1,
-                stringExpression2,
-            ),
-        )
+        val expected =
+            Predicates.function(
+                name1,
+                listOf(
+                    stringExpression1,
+                    stringExpression2,
+                ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -61,20 +65,22 @@ class FunctionDslTest : WithAssertions {
     @Test
     fun `function() with a string and a string expression`() {
         // when
-        val predicate = queryPart {
-            function(Boolean::class, name1, string1, stringExpression2)
-        }
+        val predicate =
+            queryPart {
+                function(Boolean::class, name1, string1, stringExpression2)
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val expected = Predicates.function(
-            name1,
-            listOf(
-                Expressions.value(string1),
-                stringExpression2,
-            ),
-        )
+        val expected =
+            Predicates.function(
+                name1,
+                listOf(
+                    Expressions.value(string1),
+                    stringExpression2,
+                ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

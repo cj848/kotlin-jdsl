@@ -38,9 +38,10 @@ class JpqlSortSerializerTest : WithAssertions {
     @Test
     fun `serialize() can draw the asc`() {
         // given
-        val part = Sorts.asc(
-            expression1,
-        )
+        val part =
+            Sorts.asc(
+                expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -57,9 +58,10 @@ class JpqlSortSerializerTest : WithAssertions {
     @Test
     fun `serialize() can draw the desc`() {
         // given
-        val part = Sorts.desc(
-            expression1,
-        )
+        val part =
+            Sorts.desc(
+                expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -76,10 +78,11 @@ class JpqlSortSerializerTest : WithAssertions {
     @Test
     fun `serialize() can draw the asc and nullsFirst`() {
         // given
-        val part = Sorts.asc(
-            expression1,
-            Sort.NullOrder.FIRST,
-        )
+        val part =
+            Sorts.asc(
+                expression1,
+                Sort.NullOrder.FIRST,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -98,10 +101,11 @@ class JpqlSortSerializerTest : WithAssertions {
     @Test
     fun `serialize() can draw the asc and nullsLast`() {
         // given
-        val part = Sorts.asc(
-            expression1,
-            Sort.NullOrder.LAST,
-        )
+        val part =
+            Sorts.asc(
+                expression1,
+                Sort.NullOrder.LAST,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -120,10 +124,11 @@ class JpqlSortSerializerTest : WithAssertions {
     @Test
     fun `serialize() can draw the desc and nullsFirst`() {
         // given
-        val part = Sorts.desc(
-            expression1,
-            Sort.NullOrder.FIRST,
-        )
+        val part =
+            Sorts.desc(
+                expression1,
+                Sort.NullOrder.FIRST,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -142,10 +147,11 @@ class JpqlSortSerializerTest : WithAssertions {
     @Test
     fun `serialize() can draw the desc and nullsLast`() {
         // given
-        val part = Sorts.desc(
-            expression1,
-            Sort.NullOrder.LAST,
-        )
+        val part =
+            Sorts.desc(
+                expression1,
+                Sort.NullOrder.LAST,
+            )
         val context = TestRenderContext(serializer)
 
         // when

@@ -23,22 +23,26 @@ class SelectStageStatelessSessionExample : WithAssertions {
     @Test
     fun `the most prolific author`() {
         // when
-        val query = jpql {
-            select(
-                path(Author::authorId),
-            ).from(
-                entity(Author::class),
-                join(BookAuthor::class).on(path(Author::authorId).equal(path(BookAuthor::authorId))),
-            ).groupBy(
-                path(Author::authorId),
-            ).orderBy(
-                count(Author::authorId).desc(),
-            )
-        }
+        val query =
+            jpql {
+                select(
+                    path(Author::authorId),
+                ).from(
+                    entity(Author::class),
+                    join(BookAuthor::class).on(path(Author::authorId).equal(path(BookAuthor::authorId))),
+                ).groupBy(
+                    path(Author::authorId),
+                ).orderBy(
+                    count(Author::authorId).desc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).setMaxResults(1).singleResult
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).setMaxResults(1).singleResult
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(1L)
@@ -47,22 +51,26 @@ class SelectStageStatelessSessionExample : WithAssertions {
     @Test
     fun `authors who haven't written a book`() {
         // when
-        val query = jpql {
-            select(
-                path(Author::authorId),
-            ).from(
-                entity(Author::class),
-                leftJoin(BookAuthor::class).on(path(Author::authorId).equal(path(BookAuthor::authorId))),
-            ).where(
-                path(BookAuthor::authorId).isNull(),
-            ).orderBy(
-                path(Author::authorId).asc(),
-            )
-        }
+        val query =
+            jpql {
+                select(
+                    path(Author::authorId),
+                ).from(
+                    entity(Author::class),
+                    leftJoin(BookAuthor::class).on(path(Author::authorId).equal(path(BookAuthor::authorId))),
+                ).where(
+                    path(BookAuthor::authorId).isNull(),
+                ).orderBy(
+                    path(Author::authorId).asc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).resultList
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).resultList
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(listOf(4L))
@@ -71,22 +79,26 @@ class SelectStageStatelessSessionExample : WithAssertions {
     @Test
     fun `the book with the most authors`() {
         // when
-        val query = jpql {
-            select(
-                path(Book::isbn),
-            ).from(
-                entity(Book::class),
-                join(Book::authors),
-            ).groupBy(
-                path(Book::isbn),
-            ).orderBy(
-                count(Book::isbn).desc(),
-            )
-        }
+        val query =
+            jpql {
+                select(
+                    path(Book::isbn),
+                ).from(
+                    entity(Book::class),
+                    join(Book::authors),
+                ).groupBy(
+                    path(Book::isbn),
+                ).orderBy(
+                    count(Book::isbn).desc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).setMaxResults(1).singleResult
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).setMaxResults(1).singleResult
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(Isbn("01"))
@@ -95,20 +107,24 @@ class SelectStageStatelessSessionExample : WithAssertions {
     @Test
     fun `the most expensive book`() {
         // when
-        val query = jpql {
-            select(
-                path(Book::isbn),
-            ).from(
-                entity(Book::class),
-            ).orderBy(
-                path(Book::salePrice).desc(),
-                path(Book::isbn).asc(),
-            )
-        }
+        val query =
+            jpql {
+                select(
+                    path(Book::isbn),
+                ).from(
+                    entity(Book::class),
+                ).orderBy(
+                    path(Book::salePrice).desc(),
+                    path(Book::isbn).asc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).setMaxResults(1).singleResult
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).setMaxResults(1).singleResult
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(Isbn("10"))
@@ -117,20 +133,24 @@ class SelectStageStatelessSessionExample : WithAssertions {
     @Test
     fun `the most recently published book`() {
         // when
-        val query = jpql {
-            select(
-                path(Book::isbn),
-            ).from(
-                entity(Book::class),
-            ).orderBy(
-                path(Book::publishDate).desc(),
-                path(Book::isbn).asc(),
-            )
-        }
+        val query =
+            jpql {
+                select(
+                    path(Book::isbn),
+                ).from(
+                    entity(Book::class),
+                ).orderBy(
+                    path(Book::publishDate).desc(),
+                    path(Book::isbn).asc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).setMaxResults(1).singleResult
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).setMaxResults(1).singleResult
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(Isbn("12"))
@@ -139,24 +159,28 @@ class SelectStageStatelessSessionExample : WithAssertions {
     @Test
     fun `books published between January and June 2023`() {
         // when
-        val query = jpql {
-            select(
-                path(Book::isbn),
-            ).from(
-                entity(Book::class),
-            ).where(
-                path(Book::publishDate).between(
-                    OffsetDateTime.parse("2023-01-01T00:00:00+09:00"),
-                    OffsetDateTime.parse("2023-06-30T23:59:59+09:00"),
-                ),
-            ).orderBy(
-                path(Book::isbn).asc(),
-            )
-        }
+        val query =
+            jpql {
+                select(
+                    path(Book::isbn),
+                ).from(
+                    entity(Book::class),
+                ).where(
+                    path(Book::publishDate).between(
+                        OffsetDateTime.parse("2023-01-01T00:00:00+09:00"),
+                        OffsetDateTime.parse("2023-06-30T23:59:59+09:00"),
+                    ),
+                ).orderBy(
+                    path(Book::isbn).asc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).resultList
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).resultList
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(
@@ -174,19 +198,23 @@ class SelectStageStatelessSessionExample : WithAssertions {
     @Test
     fun `the book with the biggest discounts`() {
         // when
-        val query = jpql {
-            select(
-                path(Book::isbn),
-            ).from(
-                entity(Book::class),
-            ).orderBy(
-                path(Book::price)(BookPrice::value).minus(path(Book::salePrice)(BookPrice::value)).desc(),
-            )
-        }
+        val query =
+            jpql {
+                select(
+                    path(Book::isbn),
+                ).from(
+                    entity(Book::class),
+                ).orderBy(
+                    path(Book::price)(BookPrice::value).minus(path(Book::salePrice)(BookPrice::value)).desc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).setMaxResults(1).singleResult
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).setMaxResults(1).singleResult
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(Isbn("12"))
@@ -195,21 +223,25 @@ class SelectStageStatelessSessionExample : WithAssertions {
     @Test
     fun `employees without a nickname`() {
         // when
-        val query = jpql {
-            select(
-                path(Employee::employeeId),
-            ).from(
-                entity(Employee::class),
-            ).where(
-                path(Employee::nickname).isNull(),
-            ).orderBy(
-                path(Employee::employeeId).asc(),
-            )
-        }
+        val query =
+            jpql {
+                select(
+                    path(Employee::employeeId),
+                ).from(
+                    entity(Employee::class),
+                ).where(
+                    path(Employee::nickname).isNull(),
+                ).orderBy(
+                    path(Employee::employeeId).asc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).resultList
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).resultList
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(
@@ -242,23 +274,27 @@ class SelectStageStatelessSessionExample : WithAssertions {
         )
 
         // when
-        val query = jpql {
-            selectNew<Row>(
-                path(EmployeeDepartment::departmentId),
-                count(Employee::employeeId),
-            ).from(
-                entity(Employee::class),
-                join(Employee::departments),
-            ).groupBy(
-                path(EmployeeDepartment::departmentId),
-            ).orderBy(
-                path(EmployeeDepartment::departmentId).asc(),
-            )
-        }
+        val query =
+            jpql {
+                selectNew<Row>(
+                    path(EmployeeDepartment::departmentId),
+                    count(Employee::employeeId),
+                ).from(
+                    entity(Employee::class),
+                    join(Employee::departments),
+                ).groupBy(
+                    path(EmployeeDepartment::departmentId),
+                ).orderBy(
+                    path(EmployeeDepartment::departmentId).asc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).resultList
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).resultList
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(
@@ -273,30 +309,35 @@ class SelectStageStatelessSessionExample : WithAssertions {
     @Test
     fun `the number of employees who belong to more than one department`() {
         // when
-        val query = jpql {
-            val subquery = select(
-                path(Employee::employeeId),
-            ).from(
-                entity(Employee::class),
-                join(Employee::departments),
-            ).groupBy(
-                path(Employee::employeeId),
-            ).having(
-                count(Employee::employeeId).greaterThan(1L),
-            ).asSubquery()
+        val query =
+            jpql {
+                val subquery =
+                    select(
+                        path(Employee::employeeId),
+                    ).from(
+                        entity(Employee::class),
+                        join(Employee::departments),
+                    ).groupBy(
+                        path(Employee::employeeId),
+                    ).having(
+                        count(Employee::employeeId).greaterThan(1L),
+                    ).asSubquery()
 
-            select(
-                count(Employee::employeeId),
-            ).from(
-                entity(Employee::class),
-            ).where(
-                path(Employee::employeeId).`in`(subquery),
-            )
-        }
+                select(
+                    count(Employee::employeeId),
+                ).from(
+                    entity(Employee::class),
+                ).where(
+                    path(Employee::employeeId).`in`(subquery),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).resultList
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).resultList
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(listOf(7L))
@@ -305,19 +346,23 @@ class SelectStageStatelessSessionExample : WithAssertions {
     @Test
     fun `id of book`() {
         // when
-        val query = jpql {
-            select(
-                id(Book::class),
-            ).from(
-                entity(Book::class),
-            ).orderBy(
-                path(Book::isbn).asc(),
-            )
-        }
+        val query =
+            jpql {
+                select(
+                    id(Book::class),
+                ).from(
+                    entity(Book::class),
+                ).orderBy(
+                    path(Book::isbn).asc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).resultList
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).resultList
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(
@@ -341,19 +386,23 @@ class SelectStageStatelessSessionExample : WithAssertions {
     @Test
     fun `version of book`() {
         // when
-        val query = jpql {
-            select(
-                version(Book::class),
-            ).from(
-                entity(Book::class),
-            ).orderBy(
-                path(Book::isbn).asc(),
-            )
-        }
+        val query =
+            jpql {
+                select(
+                    version(Book::class),
+                ).from(
+                    entity(Book::class),
+                ).orderBy(
+                    path(Book::isbn).asc(),
+                )
+            }
 
-        val actual = sessionFactory.withStatelessSession {
-            it.createQuery(query, context).resultList
-        }.toCompletableFuture().get()
+        val actual =
+            sessionFactory
+                .withStatelessSession {
+                    it.createQuery(query, context).resultList
+                }.toCompletableFuture()
+                .get()
 
         // then
         assertThat(actual).isEqualTo(

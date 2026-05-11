@@ -14,16 +14,18 @@ class VersionDslTest : WithAssertions {
     @Test
     fun `version() with a class`() {
         // when
-        val expression = queryPart {
-            version<Long>(Book::class)
-        }.toExpression()
+        val expression =
+            queryPart {
+                version<Long>(Book::class)
+            }.toExpression()
 
         val actual: Expression<Any> = expression // for type check
 
         // then
-        val expected = Expressions.version<Long>(
-            entity,
-        )
+        val expected =
+            Expressions.version<Long>(
+                entity,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -31,16 +33,18 @@ class VersionDslTest : WithAssertions {
     @Test
     fun `version() with an entity path`() {
         // when
-        val expression = queryPart {
-            version<Long>(entity)
-        }.toExpression()
+        val expression =
+            queryPart {
+                version<Long>(entity)
+            }.toExpression()
 
         val actual: Expression<Any> = expression // for type check
 
         // then
-        val expected = Expressions.version<Long>(
-            entity,
-        )
+        val expected =
+            Expressions.version<Long>(
+                entity,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

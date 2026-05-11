@@ -25,12 +25,13 @@ class JpqlSubquerySerializerTest : WithAssertions {
     @MockK
     private lateinit var serializer: JpqlRenderSerializer
 
-    private val selectQuery1 = SelectQueries.selectQuery(
-        returnType = String::class,
-        distinct = false,
-        select = listOf(Paths.path(Book::title)),
-        from = listOf(Entities.entity(Book::class)),
-    )
+    private val selectQuery1 =
+        SelectQueries.selectQuery(
+            returnType = String::class,
+            distinct = false,
+            select = listOf(Paths.path(Book::title)),
+            from = listOf(Entities.entity(Book::class)),
+        )
 
     @Test
     fun handledType() {
@@ -44,9 +45,10 @@ class JpqlSubquerySerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.subquery(
-            selectQuery1,
-        )
+        val part =
+            Expressions.subquery(
+                selectQuery1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

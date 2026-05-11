@@ -31,9 +31,10 @@ class JpqlEntityTreatSerializerTest : WithAssertions {
     @MockK
     private lateinit var introspector: JpqlRenderIntrospector
 
-    private val entityDescription1 = object : JpqlEntityDescription {
-        override val name = "entityName1"
-    }
+    private val entityDescription1 =
+        object : JpqlEntityDescription {
+            override val name = "entityName1"
+        }
 
     private val alias1 = "alias1"
 
@@ -61,10 +62,11 @@ class JpqlEntityTreatSerializerTest : WithAssertions {
         // given
         every { introspector.introspect(any<KClass<*>>()) } returns entityDescription1
 
-        val part = Entities.treat(
-            entity1,
-            FullTimeEmployee::class,
-        )
+        val part =
+            Entities.treat(
+                entity1,
+                FullTimeEmployee::class,
+            )
         val context = TestRenderContext(introspector, statement, clause)
 
         // when
@@ -96,10 +98,11 @@ class JpqlEntityTreatSerializerTest : WithAssertions {
         // given
         every { introspector.introspect(any<KClass<*>>()) } returns entityDescription1
 
-        val part = Entities.treat(
-            entity1,
-            FullTimeEmployee::class,
-        )
+        val part =
+            Entities.treat(
+                entity1,
+                FullTimeEmployee::class,
+            )
         val context = TestRenderContext(introspector, statement, clause)
 
         // when

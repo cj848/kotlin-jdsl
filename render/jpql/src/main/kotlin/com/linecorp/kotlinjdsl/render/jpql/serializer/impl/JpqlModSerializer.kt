@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlModSerializer : JpqlSerializer<JpqlMod> {
-    override fun handledType(): KClass<JpqlMod> {
-        return JpqlMod::class
-    }
+    override fun handledType(): KClass<JpqlMod> = JpqlMod::class
 
-    override fun serialize(part: JpqlMod, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlMod,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("MOD")

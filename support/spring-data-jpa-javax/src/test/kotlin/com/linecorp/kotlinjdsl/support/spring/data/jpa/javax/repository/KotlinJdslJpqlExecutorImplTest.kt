@@ -162,39 +162,43 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
     private val queryHint2 = "queryHintName2" to "queryHintValue2"
     private val queryHint3 = "queryHintName3" to "queryHintValue3"
 
-    private val queryHints1 = object : QueryHints {
-        override fun withFetchGraphs(em: EntityManager): QueryHints = throw UnsupportedOperationException()
-        override fun forCounts(): QueryHints = throw UnsupportedOperationException()
+    private val queryHints1 =
+        object : QueryHints {
+            override fun withFetchGraphs(em: EntityManager): QueryHints = throw UnsupportedOperationException()
 
-        override fun forEach(action: BiConsumer<String, Any>) {
-            listOf(
-                queryHint1,
-                queryHint2,
-                queryHint3,
-            ).forEach { (name, value) ->
-                action.accept(name, value)
+            override fun forCounts(): QueryHints = throw UnsupportedOperationException()
+
+            override fun forEach(action: BiConsumer<String, Any>) {
+                listOf(
+                    queryHint1,
+                    queryHint2,
+                    queryHint3,
+                ).forEach { (name, value) ->
+                    action.accept(name, value)
+                }
             }
         }
-    }
 
     private val queryHintForCount1 = "queryHintForCountName1" to "queryHintForCountValue1"
     private val queryHintForCount2 = "queryHintForCountName2" to "queryHintForCountValue2"
     private val queryHintForCount3 = "queryHintForCountName3" to "queryHintForCountValue3"
 
-    private val queryHintsForCount1 = object : QueryHints {
-        override fun withFetchGraphs(em: EntityManager): QueryHints = throw UnsupportedOperationException()
-        override fun forCounts(): QueryHints = throw UnsupportedOperationException()
+    private val queryHintsForCount1 =
+        object : QueryHints {
+            override fun withFetchGraphs(em: EntityManager): QueryHints = throw UnsupportedOperationException()
 
-        override fun forEach(action: BiConsumer<String, Any>) {
-            listOf(
-                queryHintForCount1,
-                queryHintForCount2,
-                queryHintForCount3,
-            ).forEach { (name, value) ->
-                action.accept(name, value)
+            override fun forCounts(): QueryHints = throw UnsupportedOperationException()
+
+            override fun forEach(action: BiConsumer<String, Any>) {
+                listOf(
+                    queryHintForCount1,
+                    queryHintForCount2,
+                    queryHintForCount3,
+                ).forEach { (name, value) ->
+                    action.accept(name, value)
+                }
             }
         }
-    }
 
     private val sort1 = Sort.by("property1")
     private val pageable1 = PageRequest.of(1, 10, sort1)
@@ -223,9 +227,7 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
             return javaClass == other?.javaClass
         }
 
-        override fun hashCode(): Int {
-            return javaClass.hashCode()
-        }
+        override fun hashCode(): Int = javaClass.hashCode()
     }
 
     private object MyJpqlObject : Jpql() {
@@ -234,9 +236,7 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
             return javaClass == other?.javaClass
         }
 
-        override fun hashCode(): Int {
-            return javaClass.hashCode()
-        }
+        override fun hashCode(): Int = javaClass.hashCode()
     }
 
     @BeforeEach
@@ -409,7 +409,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery1.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery1
         every { stringTypedQuery1.setLockMode(any()) } returns stringTypedQuery1
@@ -447,7 +451,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery2.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery2
         every { stringTypedQuery2.setLockMode(any()) } returns stringTypedQuery2
@@ -485,7 +493,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery3.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery3
         every { stringTypedQuery3.setLockMode(any()) } returns stringTypedQuery3
@@ -523,7 +535,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery1.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery1
         every { stringTypedQuery1.setLockMode(any()) } returns stringTypedQuery1
@@ -576,7 +592,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery2.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery2
         every { stringTypedQuery2.setLockMode(any()) } returns stringTypedQuery2
@@ -629,7 +649,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery3.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery3
         every { stringTypedQuery3.setLockMode(any()) } returns stringTypedQuery3
@@ -682,7 +706,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery1.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery1
         every {
@@ -738,7 +766,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery2.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery2
         every {
@@ -794,7 +826,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery3.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery3
         every {
@@ -853,7 +889,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery1.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery1
         every { stringTypedQuery1.setLockMode(any()) } returns stringTypedQuery1
@@ -894,7 +934,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery2.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery2
         every { stringTypedQuery2.setLockMode(any()) } returns stringTypedQuery2
@@ -935,7 +979,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery3.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery3
         every { stringTypedQuery3.setLockMode(any()) } returns stringTypedQuery3
@@ -1081,7 +1129,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery1.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery1
         every { stringTypedQuery1.setLockMode(any()) } returns stringTypedQuery1
@@ -1119,7 +1171,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery2.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery2
         every { stringTypedQuery2.setLockMode(any()) } returns stringTypedQuery2
@@ -1157,7 +1213,11 @@ class KotlinJdslJpqlExecutorImplTest : WithAssertions {
         every { selectQuery3.returnType } returns String::class
         every {
             JpqlEntityManagerUtils.createEnhancedQuery(
-                any(), any<SelectQuery<String>>(), any<KClass<*>>(), any(), any(),
+                any(),
+                any<SelectQuery<String>>(),
+                any<KClass<*>>(),
+                any(),
+                any(),
             )
         } returns enhancedTypedQuery3
         every { stringTypedQuery3.setLockMode(any()) } returns stringTypedQuery3

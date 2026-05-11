@@ -11,11 +11,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlInnerAssociationJoinSerializer : JpqlSerializer<JpqlInnerAssociationJoin<*>> {
-    override fun handledType(): KClass<JpqlInnerAssociationJoin<*>> {
-        return JpqlInnerAssociationJoin::class
-    }
+    override fun handledType(): KClass<JpqlInnerAssociationJoin<*>> = JpqlInnerAssociationJoin::class
 
-    override fun serialize(part: JpqlInnerAssociationJoin<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlInnerAssociationJoin<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("INNER JOIN")

@@ -39,17 +39,19 @@ class JpqlFunctionExpressionSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val expressions = listOf(
-            expression1,
-            expression2,
-            expression3,
-        )
+        val expressions =
+            listOf(
+                expression1,
+                expression2,
+                expression3,
+            )
 
-        val part = Expressions.function(
-            String::class,
-            functionName1,
-            expressions,
-        )
+        val part =
+            Expressions.function(
+                String::class,
+                functionName1,
+                expressions,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -74,11 +76,12 @@ class JpqlFunctionExpressionSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws only the function name, when the args is empty`() {
         // given
-        val part = Expressions.function(
-            String::class,
-            functionName1,
-            emptyList(),
-        )
+        val part =
+            Expressions.function(
+                String::class,
+                functionName1,
+                emptyList(),
+            )
         val context = TestRenderContext(serializer)
 
         // when

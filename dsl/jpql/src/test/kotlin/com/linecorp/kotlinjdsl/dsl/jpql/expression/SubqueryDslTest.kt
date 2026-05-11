@@ -11,26 +11,29 @@ import org.assertj.core.api.WithAssertions
 import org.junit.jupiter.api.Test
 
 class SubqueryDslTest : WithAssertions {
-    private val selectQuery1 = SelectQueries.selectQuery(
-        returnType = String::class,
-        distinct = false,
-        select = listOf(Paths.path(Book::title)),
-        from = listOf(Entities.entity(Book::class)),
-    )
+    private val selectQuery1 =
+        SelectQueries.selectQuery(
+            returnType = String::class,
+            distinct = false,
+            select = listOf(Paths.path(Book::title)),
+            from = listOf(Entities.entity(Book::class)),
+        )
 
     @Test
     fun asSubquery() {
         // when
-        val subquery = queryPart {
-            selectQuery1.asSubquery()
-        }
+        val subquery =
+            queryPart {
+                selectQuery1.asSubquery()
+            }
 
         val actual: Subquery<String> = subquery
 
         // then
-        val expected = Expressions.subquery(
-            selectQuery1,
-        )
+        val expected =
+            Expressions.subquery(
+                selectQuery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

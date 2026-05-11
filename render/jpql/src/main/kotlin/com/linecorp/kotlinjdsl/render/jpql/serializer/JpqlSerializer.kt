@@ -42,5 +42,9 @@ interface JpqlSerializer<T : QueryPart> {
      * @see JpqlRenderIntrospector
      */
     @SinceJdsl("3.0.0")
-    fun serialize(part: T, writer: JpqlWriter, context: RenderContext)
+    fun serialize(
+        part: T,
+        writer: JpqlWriter,
+        context: RenderContext,
+    )
 }

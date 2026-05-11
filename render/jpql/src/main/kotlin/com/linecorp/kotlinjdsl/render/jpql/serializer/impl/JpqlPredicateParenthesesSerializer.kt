@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlPredicateParenthesesSerializer : JpqlSerializer<JpqlPredicateParentheses> {
-    override fun handledType(): KClass<JpqlPredicateParentheses> {
-        return JpqlPredicateParentheses::class
-    }
+    override fun handledType(): KClass<JpqlPredicateParentheses> = JpqlPredicateParentheses::class
 
-    override fun serialize(part: JpqlPredicateParentheses, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlPredicateParentheses,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.writeParentheses {

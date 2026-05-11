@@ -14,16 +14,18 @@ class LowerDslTest : WithAssertions {
     @Test
     fun `lower() with a string`() {
         // when
-        val expression = queryPart {
-            lower(string1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                lower(string1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.lower(
-            Expressions.value(string1),
-        )
+        val expected =
+            Expressions.lower(
+                Expressions.value(string1),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -31,16 +33,18 @@ class LowerDslTest : WithAssertions {
     @Test
     fun `lower() with a string expression`() {
         // when
-        val expression = queryPart {
-            lower(stringExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                lower(stringExpression1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.lower(
-            stringExpression1,
-        )
+        val expected =
+            Expressions.lower(
+                stringExpression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

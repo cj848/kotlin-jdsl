@@ -14,16 +14,18 @@ class SqrtDslTest : WithAssertions {
     @Test
     fun `sqrt() with a property`() {
         // when
-        val expression = queryPart {
-            sqrt(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sqrt(Book::price)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.sqrt(
-            value = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.sqrt(
+                value = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -31,16 +33,18 @@ class SqrtDslTest : WithAssertions {
     @Test
     fun `sqrt() with a expression`() {
         // when
-        val expression = queryPart {
-            sqrt(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                sqrt(expression1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.sqrt(
-            value = expression1,
-        )
+        val expected =
+            Expressions.sqrt(
+                value = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

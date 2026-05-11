@@ -10,7 +10,8 @@ import com.linecorp.kotlinjdsl.querymodel.jpql.join.JoinType
 data class JpqlJoinedEntity internal constructor(
     val entity: Entity<*>,
     val join: Join,
-) : Entity<Any>, Join {
+) : Entity<Any>,
+    Join {
     override val alias: String get() = entity.alias
 
     override val joinType: JoinType get() = join.joinType

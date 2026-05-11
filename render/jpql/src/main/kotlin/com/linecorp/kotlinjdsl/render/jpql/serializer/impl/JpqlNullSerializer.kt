@@ -9,11 +9,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlNullSerializer : JpqlSerializer<JpqlNull> {
-    override fun handledType(): KClass<JpqlNull> {
-        return JpqlNull::class
-    }
+    override fun handledType(): KClass<JpqlNull> = JpqlNull::class
 
-    override fun serialize(part: JpqlNull, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlNull,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         writer.write("NULL")
     }
 }

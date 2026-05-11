@@ -19,32 +19,37 @@ class UpdateQueriesTest : WithAssertions {
     private val expression1 = Expressions.value(BigDecimal.valueOf(100))
     private val expression2 = Expressions.value(BigDecimal.valueOf(200))
 
-    private val predicate1 = Predicates.equal(
-        Paths.path(Book::price),
-        Expressions.value(BigDecimal.valueOf(100)),
-    )
+    private val predicate1 =
+        Predicates.equal(
+            Paths.path(Book::price),
+            Expressions.value(BigDecimal.valueOf(100)),
+        )
 
     @Test
     fun updateQuery() {
         // when
-        val actual = UpdateQueries.updateQuery(
-            entity = entity1,
-            set = mapOf(
-                path1 to expression1,
-                path2 to expression2,
-            ),
-            where = predicate1,
-        )
+        val actual =
+            UpdateQueries.updateQuery(
+                entity = entity1,
+                set =
+                    mapOf(
+                        path1 to expression1,
+                        path2 to expression2,
+                    ),
+                where = predicate1,
+            )
 
         // then
-        val expected = JpqlUpdateQuery(
-            entity = entity1,
-            set = mapOf(
-                path1 to expression1,
-                path2 to expression2,
-            ),
-            where = predicate1,
-        )
+        val expected =
+            JpqlUpdateQuery(
+                entity = entity1,
+                set =
+                    mapOf(
+                        path1 to expression1,
+                        path2 to expression2,
+                    ),
+                where = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

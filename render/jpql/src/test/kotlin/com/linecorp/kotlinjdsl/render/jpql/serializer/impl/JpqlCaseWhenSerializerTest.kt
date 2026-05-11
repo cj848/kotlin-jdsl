@@ -43,14 +43,16 @@ class JpqlCaseWhenSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val predicateAndExpressions = mapOf(
-            predicate1 to expression1,
-            predicate2 to expression2,
-        )
+        val predicateAndExpressions =
+            mapOf(
+                predicate1 to expression1,
+                predicate2 to expression2,
+            )
 
-        val part = Expressions.caseWhen(
-            whens = predicateAndExpressions,
-        )
+        val part =
+            Expressions.caseWhen(
+                whens = predicateAndExpressions,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -83,15 +85,17 @@ class JpqlCaseWhenSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the ELSE, when the else is not null`() {
         // given
-        val predicateAndExpressions = mapOf(
-            predicate1 to expression1,
-            predicate2 to expression2,
-        )
+        val predicateAndExpressions =
+            mapOf(
+                predicate1 to expression1,
+                predicate2 to expression2,
+            )
 
-        val part = Expressions.caseWhen(
-            whens = predicateAndExpressions,
-            `else` = expression3,
-        )
+        val part =
+            Expressions.caseWhen(
+                whens = predicateAndExpressions,
+                `else` = expression3,
+            )
         val context = TestRenderContext(serializer)
 
         // when

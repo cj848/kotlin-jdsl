@@ -18,20 +18,23 @@ class NewDslTest : WithAssertions {
     @Test
     fun `new() with strings`() {
         // when
-        val expression = queryPart {
-            new(Row::class, string1, string2)
-        }.toExpression()
+        val expression =
+            queryPart {
+                new(Row::class, string1, string2)
+            }.toExpression()
 
         val actual: Expression<Row> = expression // for type check
 
         // then
-        val expected = Expressions.new(
-            type = Row::class,
-            args = listOf(
-                Expressions.value(string1),
-                Expressions.value(string2),
-            ),
-        )
+        val expected =
+            Expressions.new(
+                type = Row::class,
+                args =
+                    listOf(
+                        Expressions.value(string1),
+                        Expressions.value(string2),
+                    ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -39,20 +42,23 @@ class NewDslTest : WithAssertions {
     @Test
     fun `new() with string expressions`() {
         // when
-        val expression = queryPart {
-            new(Row::class, stringExpression1, stringExpression2)
-        }.toExpression()
+        val expression =
+            queryPart {
+                new(Row::class, stringExpression1, stringExpression2)
+            }.toExpression()
 
         val actual: Expression<Row> = expression // for type check
 
         // then
-        val expected = Expressions.new(
-            type = Row::class,
-            args = listOf(
-                stringExpression1,
-                stringExpression2,
-            ),
-        )
+        val expected =
+            Expressions.new(
+                type = Row::class,
+                args =
+                    listOf(
+                        stringExpression1,
+                        stringExpression2,
+                    ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -60,20 +66,23 @@ class NewDslTest : WithAssertions {
     @Test
     fun `new() with a string and a string expression`() {
         // when
-        val expression = queryPart {
-            new(Row::class, string1, stringExpression2)
-        }.toExpression()
+        val expression =
+            queryPart {
+                new(Row::class, string1, stringExpression2)
+            }.toExpression()
 
         val actual: Expression<Row> = expression // for type check
 
         // then
-        val expected = Expressions.new(
-            type = Row::class,
-            args = listOf(
-                Expressions.value(string1),
-                stringExpression2,
-            ),
-        )
+        val expected =
+            Expressions.new(
+                type = Row::class,
+                args =
+                    listOf(
+                        Expressions.value(string1),
+                        stringExpression2,
+                    ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

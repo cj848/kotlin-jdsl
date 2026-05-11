@@ -20,12 +20,13 @@ class DefaultJpqlWriterTest : WithAssertions {
     @Test
     fun `constructor() has all params, when the params is not empty`() {
         // given
-        val sut = DefaultJpqlWriter(
-            mapOf(
-                paramKey1 to paramValue1,
-                paramKey2 to paramValue2,
-            ),
-        )
+        val sut =
+            DefaultJpqlWriter(
+                mapOf(
+                    paramKey1 to paramValue1,
+                    paramKey2 to paramValue2,
+                ),
+            )
 
         // when
         val actualParam = sut.getParams()
@@ -318,13 +319,14 @@ class DefaultJpqlWriterTest : WithAssertions {
     @Test
     fun `writeParam() prints the param with an auto increment from initial param, when there are an initial param`() {
         // given
-        val sut = DefaultJpqlWriter(
-            mapOf(
-                "param5" to paramValue1,
-                "param3" to paramValue2,
-                "param1" to paramValue3,
-            ),
-        )
+        val sut =
+            DefaultJpqlWriter(
+                mapOf(
+                    "param5" to paramValue1,
+                    "param3" to paramValue2,
+                    "param1" to paramValue3,
+                ),
+            )
 
         // when
         sut.writeParam("param5", null)
@@ -350,13 +352,14 @@ class DefaultJpqlWriterTest : WithAssertions {
     @Test
     fun `writeParam() cannot override an initial params, when an initial params exist`() {
         // given
-        val sut = DefaultJpqlWriter(
-            mapOf(
-                "paramA" to paramValue1,
-                "paramB" to paramValue2,
-                "paramC" to null,
-            ),
-        )
+        val sut =
+            DefaultJpqlWriter(
+                mapOf(
+                    "paramA" to paramValue1,
+                    "paramB" to paramValue2,
+                    "paramC" to null,
+                ),
+            )
 
         // when
         sut.writeParam("paramA", null)

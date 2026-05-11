@@ -25,9 +25,7 @@ object Joins {
     fun <T : Any> innerJoin(
         entity: Entity<T>,
         predicate: Predicate,
-    ): Join {
-        return JpqlInnerJoin(entity, predicate)
-    }
+    ): Join = JpqlInnerJoin(entity, predicate)
 
     /**
      * Creates an association join with the entity and path.
@@ -37,9 +35,7 @@ object Joins {
         entity: Entity<T>,
         association: Path<*>,
         predicate: Predicate? = null,
-    ): Join {
-        return JpqlInnerAssociationJoin(entity, association, predicate)
-    }
+    ): Join = JpqlInnerAssociationJoin(entity, association, predicate)
 
     /**
      * Creates a join with the entity.
@@ -48,9 +44,7 @@ object Joins {
     fun <T : Any> leftJoin(
         entity: Entity<T>,
         predicate: Predicate,
-    ): Join {
-        return JpqlLeftJoin(entity, predicate)
-    }
+    ): Join = JpqlLeftJoin(entity, predicate)
 
     /**
      * Creates an association join with the entity and path.
@@ -60,9 +54,7 @@ object Joins {
         entity: Entity<T>,
         association: Path<*>,
         predicate: Predicate? = null,
-    ): Join {
-        return JpqlLeftAssociationJoin(entity, association, predicate)
-    }
+    ): Join = JpqlLeftAssociationJoin(entity, association, predicate)
 
     /**
      * Creates a fetch join with the entity.
@@ -71,9 +63,7 @@ object Joins {
     fun <T : Any> innerFetchJoin(
         entity: Entity<T>,
         predicate: Predicate,
-    ): Join {
-        return JpqlInnerFetchJoin(entity, predicate)
-    }
+    ): Join = JpqlInnerFetchJoin(entity, predicate)
 
     /**
      * Creates an association fetch join with the entity and path.
@@ -83,9 +73,7 @@ object Joins {
         entity: Entity<T>,
         association: Path<*>,
         predicate: Predicate? = null,
-    ): Join {
-        return JpqlInnerAssociationFetchJoin(entity, association, predicate)
-    }
+    ): Join = JpqlInnerAssociationFetchJoin(entity, association, predicate)
 
     /**
      * Creates a fetch join with the entity.
@@ -94,9 +82,7 @@ object Joins {
     fun <T : Any> leftFetchJoin(
         entity: Entity<T>,
         predicate: Predicate,
-    ): Join {
-        return JpqlLeftFetchJoin(entity, predicate)
-    }
+    ): Join = JpqlLeftFetchJoin(entity, predicate)
 
     /**
      * Creates an association fetch join with the entity and path.
@@ -106,7 +92,5 @@ object Joins {
         entity: Entity<T>,
         association: Path<*>,
         predicate: Predicate? = null,
-    ): Join {
-        return JpqlLeftAssociationFetchJoin(entity, association, predicate)
-    }
+    ): Join = JpqlLeftAssociationFetchJoin(entity, association, predicate)
 }

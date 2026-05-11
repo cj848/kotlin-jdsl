@@ -12,11 +12,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlUpdateQuerySerializer : JpqlSerializer<JpqlUpdateQuery<*>> {
-    override fun handledType(): KClass<JpqlUpdateQuery<*>> {
-        return JpqlUpdateQuery::class
-    }
+    override fun handledType(): KClass<JpqlUpdateQuery<*>> = JpqlUpdateQuery::class
 
-    override fun serialize(part: JpqlUpdateQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlUpdateQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val newContext = context + JpqlRenderStatement.Update
 
         writeUpdate(part, writer, newContext)
@@ -24,7 +26,11 @@ class JpqlUpdateQuerySerializer : JpqlSerializer<JpqlUpdateQuery<*>> {
         writeWhere(part, writer, newContext)
     }
 
-    private fun writeUpdate(part: JpqlUpdateQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    private fun writeUpdate(
+        part: JpqlUpdateQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val entity = part.entity
         val delegate = context.getValue(JpqlRenderSerializer)
 
@@ -36,7 +42,11 @@ class JpqlUpdateQuerySerializer : JpqlSerializer<JpqlUpdateQuery<*>> {
         delegate.serialize(entity, writer, newContext)
     }
 
-    private fun writeSet(part: JpqlUpdateQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    private fun writeSet(
+        part: JpqlUpdateQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val set = part.set
         val delegate = context.getValue(JpqlRenderSerializer)
 
@@ -57,7 +67,11 @@ class JpqlUpdateQuerySerializer : JpqlSerializer<JpqlUpdateQuery<*>> {
         }
     }
 
-    private fun writeWhere(part: JpqlUpdateQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    private fun writeWhere(
+        part: JpqlUpdateQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val where = part.where ?: return
         val delegate = context.getValue(JpqlRenderSerializer)
 

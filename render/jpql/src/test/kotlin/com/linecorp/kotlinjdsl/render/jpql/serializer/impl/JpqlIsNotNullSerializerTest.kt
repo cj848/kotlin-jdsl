@@ -37,9 +37,10 @@ internal class JpqlIsNotNullSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Predicates.isNotNull(
-            expression1,
-        )
+        val part =
+            Predicates.isNotNull(
+                expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

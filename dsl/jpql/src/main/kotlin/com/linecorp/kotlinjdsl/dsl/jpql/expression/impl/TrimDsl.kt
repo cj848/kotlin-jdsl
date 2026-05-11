@@ -9,10 +9,9 @@ internal data class TrimDsl(
     private val character: Expression<Char>?,
     private val value: Expression<String>,
 ) : Expressionable<String> {
-    override fun toExpression(): Expression<String> {
-        return Expressions.trim(
+    override fun toExpression(): Expression<String> =
+        Expressions.trim(
             character = character,
             value = value,
         )
-    }
 }

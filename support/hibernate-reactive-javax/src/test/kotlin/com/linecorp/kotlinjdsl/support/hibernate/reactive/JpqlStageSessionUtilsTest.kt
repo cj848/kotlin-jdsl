@@ -85,8 +85,9 @@ class JpqlStageSessionUtilsTest : WithAssertions {
         every { stageQuery1.setParameter(any<String>(), any()) } returns stageQuery1
 
         // when
-        val actual = JpqlStageSessionUtils
-            .createQuery(session, query1, mapOf(queryParam1, queryParam2), String::class, context)
+        val actual =
+            JpqlStageSessionUtils
+                .createQuery(session, query1, mapOf(queryParam1, queryParam2), String::class, context)
 
         // then
         assertThat(actual).isEqualTo(stageQuery1)
@@ -132,8 +133,9 @@ class JpqlStageSessionUtilsTest : WithAssertions {
         every { stageQuery1.setParameter(any<String>(), any()) } returns stageQuery1
 
         // when
-        val actual = JpqlStageSessionUtils
-            .createQuery<String>(session, query1, mapOf(queryParam1, queryParam2), context)
+        val actual =
+            JpqlStageSessionUtils
+                .createQuery<String>(session, query1, mapOf(queryParam1, queryParam2), context)
 
         // then
         assertThat(actual).isEqualTo(stageQuery1)

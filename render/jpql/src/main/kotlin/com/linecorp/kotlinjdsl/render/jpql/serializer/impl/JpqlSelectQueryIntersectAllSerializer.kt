@@ -14,6 +14,7 @@ import com.linecorp.kotlinjdsl.render.jpql.writer.JpqlWriter
 @SinceJdsl("3.6.0")
 class JpqlSelectQueryIntersectAllSerializer : JpqlSerializer<JpqlSelectQueryIntersectAll<*>> {
     override fun handledType() = JpqlSelectQueryIntersectAll::class
+
     override fun serialize(
         part: JpqlSelectQueryIntersectAll<*>,
         writer: JpqlWriter,

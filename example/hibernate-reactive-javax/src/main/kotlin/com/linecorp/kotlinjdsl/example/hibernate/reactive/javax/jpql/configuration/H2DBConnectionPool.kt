@@ -15,8 +15,8 @@ class H2DBConnectionPool : DefaultSqlClientPool() {
         connectOptions: SqlConnectOptions,
         poolOptions: PoolOptions,
         vertx: Vertx,
-    ): Pool {
-        return JDBCPool.pool(
+    ): Pool =
+        JDBCPool.pool(
             vertx,
             JDBCConnectOptions()
                 .setJdbcUrl(connectOptions.host)
@@ -25,5 +25,4 @@ class H2DBConnectionPool : DefaultSqlClientPool() {
                 .setDatabase(connectOptions.database),
             poolOptions,
         )
-    }
 }

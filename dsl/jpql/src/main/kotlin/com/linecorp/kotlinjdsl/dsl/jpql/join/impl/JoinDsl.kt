@@ -14,7 +14,6 @@ internal data class JoinDsl<T : Any>(
     private val builder: JoinBuilder<T>,
 ) : JoinOnStep<T>,
     JoinAsStep<T> {
-
     constructor(entity: Entity<T>, joinType: JoinType) : this(JoinBuilder(entity, joinType))
 
     override fun on(predicate: Predicatable): JoinAsStep<T> {
@@ -35,11 +34,7 @@ internal data class JoinDsl<T : Any>(
         return this
     }
 
-    override fun toJoin(): Join {
-        return builder.build()
-    }
+    override fun toJoin(): Join = builder.build()
 
-    override fun toFrom(): From {
-        return builder.build()
-    }
+    override fun toFrom(): From = builder.build()
 }

@@ -161,43 +161,44 @@ class JpqlRenderContext private constructor(
     }
 
     private fun setup(module: JpqlRenderModule) {
-        val setupContext = object : JpqlRenderModule.SetupContext {
-            override fun addSerializer(serializer: JpqlSerializer<*>) {
-                serializers.add(serializer)
-            }
+        val setupContext =
+            object : JpqlRenderModule.SetupContext {
+                override fun addSerializer(serializer: JpqlSerializer<*>) {
+                    serializers.add(serializer)
+                }
 
-            override fun addAllSerializer(vararg serializers: JpqlSerializer<*>) {
-                this@JpqlRenderContext.serializers.addAll(serializers)
-            }
+                override fun addAllSerializer(vararg serializers: JpqlSerializer<*>) {
+                    this@JpqlRenderContext.serializers.addAll(serializers)
+                }
 
-            override fun addAllSerializer(serializers: Iterable<JpqlSerializer<*>>) {
-                this@JpqlRenderContext.serializers.addAll(serializers)
-            }
+                override fun addAllSerializer(serializers: Iterable<JpqlSerializer<*>>) {
+                    this@JpqlRenderContext.serializers.addAll(serializers)
+                }
 
-            override fun prependSerializerModifier(serializerModifier: JpqlSerializerModifier) {
-                serializerModifiers.add(0, serializerModifier)
-            }
+                override fun prependSerializerModifier(serializerModifier: JpqlSerializerModifier) {
+                    serializerModifiers.add(0, serializerModifier)
+                }
 
-            override fun appendSerializerModifier(serializerModifier: JpqlSerializerModifier) {
-                serializerModifiers.add(serializerModifier)
-            }
+                override fun appendSerializerModifier(serializerModifier: JpqlSerializerModifier) {
+                    serializerModifiers.add(serializerModifier)
+                }
 
-            override fun prependIntrospector(introspector: JpqlIntrospector) {
-                introspectors.add(0, introspector)
-            }
+                override fun prependIntrospector(introspector: JpqlIntrospector) {
+                    introspectors.add(0, introspector)
+                }
 
-            override fun appendIntrospector(introspector: JpqlIntrospector) {
-                introspectors.add(introspector)
-            }
+                override fun appendIntrospector(introspector: JpqlIntrospector) {
+                    introspectors.add(introspector)
+                }
 
-            override fun prependIntrospectorModifier(introspectorModifier: JpqlIntrospectorModifier) {
-                introspectorModifiers.add(0, introspectorModifier)
-            }
+                override fun prependIntrospectorModifier(introspectorModifier: JpqlIntrospectorModifier) {
+                    introspectorModifiers.add(0, introspectorModifier)
+                }
 
-            override fun appendIntrospectorModifier(introspectorModifier: JpqlIntrospectorModifier) {
-                introspectorModifiers.add(introspectorModifier)
+                override fun appendIntrospectorModifier(introspectorModifier: JpqlIntrospectorModifier) {
+                    introspectorModifiers.add(introspectorModifier)
+                }
             }
-        }
 
         module.setupModule(setupContext)
     }
@@ -210,9 +211,10 @@ class JpqlRenderContext private constructor(
     }
 
     private fun createRenderIntrospector(): JpqlRenderIntrospector {
-        var introspector = introspectors.reduce { acc, introspector ->
-            CombinedJpqlIntrospector(acc, introspector)
-        }
+        var introspector =
+            introspectors.reduce { acc, introspector ->
+                CombinedJpqlIntrospector(acc, introspector)
+            }
 
         introspectorModifiers.forEach {
             introspector = it.modifyIntrospector(introspector)
@@ -239,37 +241,30 @@ class JpqlRenderContext private constructor(
      * Returns a new [JpqlRenderContext] with the module.
      */
     @SinceJdsl("3.0.0")
-    fun registerModule(module: JpqlRenderModule): JpqlRenderContext {
-        return JpqlRenderContext(this.modules + module)
-    }
+    fun registerModule(module: JpqlRenderModule): JpqlRenderContext = JpqlRenderContext(this.modules + module)
 
     /**
      * Returns a new [JpqlRenderContext] with the module.
      */
     @SinceJdsl("3.0.0")
-    fun registerModules(vararg modules: JpqlRenderModule): JpqlRenderContext {
-        return JpqlRenderContext(this.modules.toList() + modules.toList())
-    }
+    fun registerModules(vararg modules: JpqlRenderModule): JpqlRenderContext =
+        JpqlRenderContext(this.modules.toList() + modules.toList())
 
     /**
      * Returns a new [JpqlRenderContext] with the module.
      */
     @SinceJdsl("3.0.0")
-    fun registerModules(modules: Iterable<JpqlRenderModule>): JpqlRenderContext {
-        return JpqlRenderContext(this.modules.toList() + modules.toList())
-    }
+    fun registerModules(modules: Iterable<JpqlRenderModule>): JpqlRenderContext =
+        JpqlRenderContext(this.modules.toList() + modules.toList())
 
-    override fun <E : RenderContext.Element> get(key: RenderContext.Key<E>): E? {
-        return delegate[key]
-    }
+    override fun <E : RenderContext.Element> get(key: RenderContext.Key<E>): E? = delegate[key]
 
-    override fun <R> fold(initial: R, operation: (R, RenderContext.Element) -> R): R {
-        return delegate.fold(initial, operation)
-    }
+    override fun <R> fold(
+        initial: R,
+        operation: (R, RenderContext.Element) -> R,
+    ): R = delegate.fold(initial, operation)
 
-    override fun minusKey(key: RenderContext.Key<*>): RenderContext {
-        return delegate.minusKey(key)
-    }
+    override fun minusKey(key: RenderContext.Key<*>): RenderContext = delegate.minusKey(key)
 }
 
 private class DefaultModule : JpqlRenderModule {

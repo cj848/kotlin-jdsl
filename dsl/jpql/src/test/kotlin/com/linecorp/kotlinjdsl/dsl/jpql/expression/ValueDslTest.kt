@@ -12,16 +12,18 @@ class ValueDslTest : WithAssertions {
     @Test
     fun `value int`() {
         // when
-        val expression = queryPart {
-            value(int1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                value(int1)
+            }.toExpression()
 
         val actual: Expression<Int> = expression // for type check
 
         // then
-        val expected = Expressions.value(
-            int1,
-        )
+        val expected =
+            Expressions.value(
+                int1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -29,9 +31,10 @@ class ValueDslTest : WithAssertions {
     @Test
     fun nullValue() {
         // when
-        val expression = queryPart {
-            nullValue<Int>()
-        }.toExpression()
+        val expression =
+            queryPart {
+                nullValue<Int>()
+            }.toExpression()
 
         val actual: Expression<Int> = expression // for type check
 

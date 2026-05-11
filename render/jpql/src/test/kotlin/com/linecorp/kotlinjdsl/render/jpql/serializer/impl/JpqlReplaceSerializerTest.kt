@@ -37,11 +37,12 @@ internal class JpqlReplaceSerializerTest {
     @Test
     fun `serialize should write REPLACE`() {
         // given
-        val expression = Expressions.replace(
-            Expressions.value("abc"),
-            Expressions.value("a"),
-            Expressions.value("b"),
-        ) as JpqlReplace
+        val expression =
+            Expressions.replace(
+                Expressions.value("abc"),
+                Expressions.value("a"),
+                Expressions.value("b"),
+            ) as JpqlReplace
 
         every { context.getValue(JpqlRenderSerializer) } returns serializer
 

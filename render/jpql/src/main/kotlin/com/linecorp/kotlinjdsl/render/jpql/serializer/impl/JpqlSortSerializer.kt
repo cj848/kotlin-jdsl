@@ -11,11 +11,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlSortSerializer : JpqlSerializer<JpqlSort> {
-    override fun handledType(): KClass<JpqlSort> {
-        return JpqlSort::class
-    }
+    override fun handledType(): KClass<JpqlSort> = JpqlSort::class
 
-    override fun serialize(part: JpqlSort, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlSort,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         delegate.serialize(part.expr, writer, context)

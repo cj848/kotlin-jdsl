@@ -53,12 +53,13 @@ class JpqlSelectQueryExceptSerializerTest : WithAssertions {
         // given
         val leftQuery = mockk<SelectQuery<String>>()
         val rightQuery = mockk<SelectQuery<String>>()
-        val part = SelectQueries.selectExceptQuery(
-            String::class,
-            leftQuery,
-            rightQuery,
-            orderBy = null,
-        ) as JpqlSelectQueryExcept
+        val part =
+            SelectQueries.selectExceptQuery(
+                String::class,
+                leftQuery,
+                rightQuery,
+                orderBy = null,
+            ) as JpqlSelectQueryExcept
         val queryContext = initialContext + JpqlRenderStatement.Select
         every { leftQuery.toQuery() } returns leftQuery
         every { rightQuery.toQuery() } returns rightQuery
@@ -82,12 +83,13 @@ class JpqlSelectQueryExceptSerializerTest : WithAssertions {
         every { leftQuery.toQuery() } returns leftQuery
         every { rightQuery.toQuery() } returns rightQuery
         val sort = mockk<Sort>()
-        val part = SelectQueries.selectExceptQuery(
-            returnType = String::class,
-            left = leftQuery,
-            right = rightQuery,
-            orderBy = listOf(sort),
-        ) as JpqlSelectQueryExcept
+        val part =
+            SelectQueries.selectExceptQuery(
+                returnType = String::class,
+                left = leftQuery,
+                right = rightQuery,
+                orderBy = listOf(sort),
+            ) as JpqlSelectQueryExcept
         val queryContext = initialContext + JpqlRenderStatement.Select
         val orderByContext = queryContext + JpqlRenderClause.OrderBy
         // when

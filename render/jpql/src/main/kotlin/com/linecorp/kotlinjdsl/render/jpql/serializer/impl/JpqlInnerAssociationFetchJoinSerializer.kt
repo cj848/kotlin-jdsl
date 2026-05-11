@@ -11,11 +11,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlInnerAssociationFetchJoinSerializer : JpqlSerializer<JpqlInnerAssociationFetchJoin<*>> {
-    override fun handledType(): KClass<JpqlInnerAssociationFetchJoin<*>> {
-        return JpqlInnerAssociationFetchJoin::class
-    }
+    override fun handledType(): KClass<JpqlInnerAssociationFetchJoin<*>> = JpqlInnerAssociationFetchJoin::class
 
-    override fun serialize(part: JpqlInnerAssociationFetchJoin<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlInnerAssociationFetchJoin<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("INNER JOIN FETCH")

@@ -47,10 +47,11 @@ class JpqlInSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws 0 = 1, when the compareValues is empty`() {
         // Given
-        val part = Predicates.`in`(
-            expression1,
-            emptyList(),
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                emptyList(),
+            )
         val context = TestRenderContext(serializer)
 
         // When
@@ -65,25 +66,28 @@ class JpqlInSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws a single parameter, when the compareValues are Number types`() {
         // Given
-        val expressions = listOf(
-            expression2,
-            expression3,
-            expression4,
-        )
+        val expressions =
+            listOf(
+                expression2,
+                expression3,
+                expression4,
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
-        val singleParam = Expressions.value(
-            listOf(
-                BigDecimal.valueOf(100),
-                BigDecimal.valueOf(200),
-                BigDecimal.valueOf(300),
-            ),
-        )
+        val singleParam =
+            Expressions.value(
+                listOf(
+                    BigDecimal.valueOf(100),
+                    BigDecimal.valueOf(200),
+                    BigDecimal.valueOf(300),
+                ),
+            )
 
         // When
         sut.serialize(part as JpqlIn<*>, writer, context)
@@ -103,23 +107,26 @@ class JpqlInSerializerTest : WithAssertions {
     fun `serialize() draws a single parameter, when the compareValues are String types`() {
         // Given
         val expression1 = Paths.path(Book::title)
-        val expressions = listOf(
-            Expressions.value("Book1"),
-            Expressions.value("Book2"),
-        )
+        val expressions =
+            listOf(
+                Expressions.value("Book1"),
+                Expressions.value("Book2"),
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
-        val singleParam = Expressions.value(
-            listOf(
-                "Book1",
-                "Book2",
-            ),
-        )
+        val singleParam =
+            Expressions.value(
+                listOf(
+                    "Book1",
+                    "Book2",
+                ),
+            )
 
         // When
         sut.serialize(part as JpqlIn<*>, writer, context)
@@ -142,23 +149,26 @@ class JpqlInSerializerTest : WithAssertions {
         val date1 = OffsetDateTime.now()
         val date2 = OffsetDateTime.now().plusSeconds(1)
 
-        val expressions = listOf(
-            Expressions.value(date1),
-            Expressions.value(date2),
-        )
+        val expressions =
+            listOf(
+                Expressions.value(date1),
+                Expressions.value(date2),
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
-        val singleParam = Expressions.value(
-            listOf(
-                date1,
-                date2,
-            ),
-        )
+        val singleParam =
+            Expressions.value(
+                listOf(
+                    date1,
+                    date2,
+                ),
+            )
 
         // When
         sut.serialize(part as JpqlIn<*>, writer, context)
@@ -181,23 +191,26 @@ class JpqlInSerializerTest : WithAssertions {
         val enum1 = BookStatus.IN_STOCK
         val enum2 = BookStatus.SOLD_OUT
 
-        val expressions = listOf(
-            Expressions.value(enum1),
-            Expressions.value(enum2),
-        )
+        val expressions =
+            listOf(
+                Expressions.value(enum1),
+                Expressions.value(enum2),
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
-        val singleParam = Expressions.value(
-            listOf(
-                enum1,
-                enum2,
-            ),
-        )
+        val singleParam =
+            Expressions.value(
+                listOf(
+                    enum1,
+                    enum2,
+                ),
+            )
 
         // When
         sut.serialize(part as JpqlIn<*>, writer, context)
@@ -220,23 +233,26 @@ class JpqlInSerializerTest : WithAssertions {
         val boolean1 = true
         val boolean2 = false
 
-        val expressions = listOf(
-            Expressions.value(boolean1),
-            Expressions.value(boolean2),
-        )
+        val expressions =
+            listOf(
+                Expressions.value(boolean1),
+                Expressions.value(boolean2),
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
-        val singleParam = Expressions.value(
-            listOf(
-                boolean1,
-                boolean2,
-            ),
-        )
+        val singleParam =
+            Expressions.value(
+                listOf(
+                    boolean1,
+                    boolean2,
+                ),
+            )
 
         // When
         sut.serialize(part as JpqlIn<*>, writer, context)
@@ -259,23 +275,26 @@ class JpqlInSerializerTest : WithAssertions {
         val uuid1 = UUID.randomUUID()
         val uuid2 = UUID.randomUUID()
 
-        val expressions = listOf(
-            Expressions.value(uuid1),
-            Expressions.value(uuid2),
-        )
+        val expressions =
+            listOf(
+                Expressions.value(uuid1),
+                Expressions.value(uuid2),
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
-        val singleParam = Expressions.value(
-            listOf(
-                uuid1,
-                uuid2,
-            ),
-        )
+        val singleParam =
+            Expressions.value(
+                listOf(
+                    uuid1,
+                    uuid2,
+                ),
+            )
 
         // When
         sut.serialize(part as JpqlIn<*>, writer, context)
@@ -298,23 +317,26 @@ class JpqlInSerializerTest : WithAssertions {
         val date1 = Date()
         val date2 = Date(date1.time + 1000)
 
-        val expressions = listOf(
-            Expressions.value(date1),
-            Expressions.value(date2),
-        )
+        val expressions =
+            listOf(
+                Expressions.value(date1),
+                Expressions.value(date2),
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
-        val singleParam = Expressions.value(
-            listOf(
-                date1,
-                date2,
-            ),
-        )
+        val singleParam =
+            Expressions.value(
+                listOf(
+                    date1,
+                    date2,
+                ),
+            )
 
         // When
         sut.serialize(part as JpqlIn<*>, writer, context)
@@ -337,23 +359,26 @@ class JpqlInSerializerTest : WithAssertions {
         val char1 = 'A'
         val char2 = 'B'
 
-        val expressions = listOf(
-            Expressions.value(char1),
-            Expressions.value(char2),
-        )
+        val expressions =
+            listOf(
+                Expressions.value(char1),
+                Expressions.value(char2),
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
-        val singleParam = Expressions.value(
-            listOf(
-                char1,
-                char2,
-            ),
-        )
+        val singleParam =
+            Expressions.value(
+                listOf(
+                    char1,
+                    char2,
+                ),
+            )
 
         // When
         sut.serialize(part as JpqlIn<*>, writer, context)
@@ -376,23 +401,26 @@ class JpqlInSerializerTest : WithAssertions {
         val calendar1 = Calendar.getInstance().apply { set(2020, Calendar.JANUARY, 1) }
         val calendar2 = Calendar.getInstance().apply { set(2021, Calendar.FEBRUARY, 15) }
 
-        val expressions = listOf(
-            Expressions.value(calendar1),
-            Expressions.value(calendar2),
-        )
+        val expressions =
+            listOf(
+                Expressions.value(calendar1),
+                Expressions.value(calendar2),
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
-        val singleParam = Expressions.value(
-            listOf(
-                calendar1,
-                calendar2,
-            ),
-        )
+        val singleParam =
+            Expressions.value(
+                listOf(
+                    calendar1,
+                    calendar2,
+                ),
+            )
 
         // When
         sut.serialize(part as JpqlIn<*>, writer, context)
@@ -415,23 +443,26 @@ class JpqlInSerializerTest : WithAssertions {
         val bytes1 = byteArrayOf(1, 2, 3)
         val bytes2 = byteArrayOf(4, 5, 6)
 
-        val expressions = listOf(
-            Expressions.value(bytes1),
-            Expressions.value(bytes2),
-        )
+        val expressions =
+            listOf(
+                Expressions.value(bytes1),
+                Expressions.value(bytes2),
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
-        val singleParam = Expressions.value(
-            listOf(
-                bytes1,
-                bytes2,
-            ),
-        )
+        val singleParam =
+            Expressions.value(
+                listOf(
+                    bytes1,
+                    bytes2,
+                ),
+            )
 
         // When
         sut.serialize(part as JpqlIn<*>, writer, context)
@@ -454,23 +485,26 @@ class JpqlInSerializerTest : WithAssertions {
         val chars1 = charArrayOf('A', 'B', 'C')
         val chars2 = charArrayOf('D', 'E', 'F')
 
-        val expressions = listOf(
-            Expressions.value(chars1),
-            Expressions.value(chars2),
-        )
+        val expressions =
+            listOf(
+                Expressions.value(chars1),
+                Expressions.value(chars2),
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
-        val singleParam = Expressions.value(
-            listOf(
-                chars1,
-                chars2,
-            ),
-        )
+        val singleParam =
+            Expressions.value(
+                listOf(
+                    chars1,
+                    chars2,
+                ),
+            )
 
         // When
         sut.serialize(part as JpqlIn<*>, writer, context)
@@ -490,15 +524,17 @@ class JpqlInSerializerTest : WithAssertions {
     fun `serialize() draws parameters, when the compareValues contain ByteArray and non-basic types`() {
         // Given
         val bytes = byteArrayOf(1, 2, 3)
-        val expressions = listOf(
-            Expressions.value(bytes),
-            expression1,
-        )
+        val expressions =
+            listOf(
+                Expressions.value(bytes),
+                expression1,
+            )
 
-        val part = Predicates.`in`(
-            Paths.path(Book::coverImageBytes),
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                Paths.path(Book::coverImageBytes),
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
         // When
@@ -520,14 +556,16 @@ class JpqlInSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws parameters, when the compareValues are not basic types`() {
         // Given
-        val expressions = listOf(
-            expression1,
-        )
+        val expressions =
+            listOf(
+                expression1,
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
         // When
@@ -548,15 +586,17 @@ class JpqlInSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws parameters, when the compareValues contain non-basic types`() {
         // Given
-        val expressions = listOf(
-            expression2,
-            expression1,
-        )
+        val expressions =
+            listOf(
+                expression2,
+                expression1,
+            )
 
-        val part = Predicates.`in`(
-            expression1,
-            compareValues = expressions,
-        )
+        val part =
+            Predicates.`in`(
+                expression1,
+                compareValues = expressions,
+            )
         val context = TestRenderContext(serializer)
 
         // When

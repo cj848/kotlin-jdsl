@@ -11,11 +11,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlLeftJoinSerializer : JpqlSerializer<JpqlLeftJoin<*>> {
-    override fun handledType(): KClass<JpqlLeftJoin<*>> {
-        return JpqlLeftJoin::class
-    }
+    override fun handledType(): KClass<JpqlLeftJoin<*>> = JpqlLeftJoin::class
 
-    override fun serialize(part: JpqlLeftJoin<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlLeftJoin<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
         writer.write("LEFT JOIN")
         writer.write(" ")

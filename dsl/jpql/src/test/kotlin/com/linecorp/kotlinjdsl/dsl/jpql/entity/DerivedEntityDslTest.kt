@@ -10,28 +10,31 @@ import org.assertj.core.api.WithAssertions
 import org.junit.jupiter.api.Test
 
 class DerivedEntityDslTest : WithAssertions {
-    private val selectQuery1 = SelectQueries.selectQuery(
-        returnType = String::class,
-        distinct = false,
-        select = listOf(Paths.path(Book::title)),
-        from = listOf(Entities.entity(Book::class)),
-    )
+    private val selectQuery1 =
+        SelectQueries.selectQuery(
+            returnType = String::class,
+            distinct = false,
+            select = listOf(Paths.path(Book::title)),
+            from = listOf(Entities.entity(Book::class)),
+        )
 
     private val alias1 = "alias1"
 
     @Test
     fun asEntity() {
         // when
-        val entity = queryPart {
-            selectQuery1.asEntity()
-        }
+        val entity =
+            queryPart {
+                selectQuery1.asEntity()
+            }
 
         val actual: Entity<String> = entity
 
         // then
-        val expected = Entities.derivedEntity(
-            selectQuery1,
-        )
+        val expected =
+            Entities.derivedEntity(
+                selectQuery1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -39,17 +42,19 @@ class DerivedEntityDslTest : WithAssertions {
     @Test
     fun `asEntity() with an alias`() {
         // when
-        val entity = queryPart {
-            selectQuery1.asEntity(alias1)
-        }
+        val entity =
+            queryPart {
+                selectQuery1.asEntity(alias1)
+            }
 
         val actual: Entity<String> = entity
 
         // then
-        val expected = Entities.derivedEntity(
-            selectQuery1,
-            alias1,
-        )
+        val expected =
+            Entities.derivedEntity(
+                selectQuery1,
+                alias1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

@@ -37,9 +37,10 @@ class JpqlSizeSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.size(
-            path = expression1,
-        )
+        val part =
+            Expressions.size(
+                path = expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

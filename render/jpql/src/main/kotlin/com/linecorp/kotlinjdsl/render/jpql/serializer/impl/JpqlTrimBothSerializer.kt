@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlTrimBothSerializer : JpqlSerializer<JpqlTrimBoth> {
-    override fun handledType(): KClass<JpqlTrimBoth> {
-        return JpqlTrimBoth::class
-    }
+    override fun handledType(): KClass<JpqlTrimBoth> = JpqlTrimBoth::class
 
-    override fun serialize(part: JpqlTrimBoth, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlTrimBoth,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("TRIM")

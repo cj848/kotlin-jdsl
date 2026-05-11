@@ -56,23 +56,24 @@ internal object JpqlMutinySessionUtils {
         query: String,
         queryParams: Map<String, Any?>,
         returnType: Class<T>,
-    ): Mutiny.SelectionQuery<T> {
-        return session.createQuery(query, returnType).apply {
+    ): Mutiny.SelectionQuery<T> =
+        session.createQuery(query, returnType).apply {
             setParams(this, queryParams)
         }
-    }
 
     private fun createMutationQuery(
         session: Mutiny.Session,
         query: String,
         queryParams: Map<String, Any?>,
-    ): Mutiny.MutationQuery {
-        return session.createMutationQuery(query).apply {
+    ): Mutiny.MutationQuery =
+        session.createMutationQuery(query).apply {
             setParams(this, queryParams)
         }
-    }
 
-    private fun <T> setParams(query: Mutiny.SelectionQuery<T>, params: Map<String, Any?>) {
+    private fun <T> setParams(
+        query: Mutiny.SelectionQuery<T>,
+        params: Map<String, Any?>,
+    ) {
         params.forEach { (name, value) ->
             try {
                 query.setParameter(name, value)
@@ -84,7 +85,10 @@ internal object JpqlMutinySessionUtils {
         }
     }
 
-    private fun setParams(query: Mutiny.MutationQuery, params: Map<String, Any?>) {
+    private fun setParams(
+        query: Mutiny.MutationQuery,
+        params: Map<String, Any?>,
+    ) {
         params.forEach { (name, value) ->
             try {
                 query.setParameter(name, value)

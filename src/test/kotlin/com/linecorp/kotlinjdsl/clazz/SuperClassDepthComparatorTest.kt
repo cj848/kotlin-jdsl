@@ -33,7 +33,10 @@ class SuperClassDepthComparatorTest : WithAssertions {
     }
 
     private open class SuperSuperType
+
     private open class SuperType : SuperSuperType()
+
     private open class TargetType : SuperType()
+
     private open class SubType : TargetType()
 }

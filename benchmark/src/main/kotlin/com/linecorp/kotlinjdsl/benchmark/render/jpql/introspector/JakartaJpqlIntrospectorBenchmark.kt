@@ -35,7 +35,5 @@ class JakartaJpqlIntrospectorBenchmark {
     }
 
     @Benchmark
-    fun benchmark(): JpqlEntityDescription? {
-        return sut.introspect(entityClass)
-    }
+    fun benchmark(): JpqlEntityDescription? = sut.introspect(entityClass)
 }

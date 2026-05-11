@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlCaseWhenSerializer : JpqlSerializer<JpqlCaseWhen<*>> {
-    override fun handledType(): KClass<JpqlCaseWhen<*>> {
-        return JpqlCaseWhen::class
-    }
+    override fun handledType(): KClass<JpqlCaseWhen<*>> = JpqlCaseWhen::class
 
-    override fun serialize(part: JpqlCaseWhen<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlCaseWhen<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("CASE")

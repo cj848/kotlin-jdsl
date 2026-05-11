@@ -51,10 +51,11 @@ class JpqlAliasedExpressionSerializerTest : WithAssertions {
         clause: JpqlRenderClause,
     ) {
         // given
-        val part = Expressions.alias(
-            expression1,
-            expression2,
-        )
+        val part =
+            Expressions.alias(
+                expression1,
+                expression2,
+            )
         val context = TestRenderContext(serializer, statement, clause)
 
         // when
@@ -81,10 +82,11 @@ class JpqlAliasedExpressionSerializerTest : WithAssertions {
         clause: JpqlRenderClause,
     ) {
         // given
-        val part = Expressions.alias(
-            expression1,
-            expression2,
-        )
+        val part =
+            Expressions.alias(
+                expression1,
+                expression2,
+            )
         val context = TestRenderContext(serializer, statement, clause)
 
         // when

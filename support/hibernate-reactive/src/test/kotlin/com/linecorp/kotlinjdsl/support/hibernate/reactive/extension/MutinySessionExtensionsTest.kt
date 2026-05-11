@@ -111,7 +111,10 @@ class MutinySessionExtensionsTest : WithAssertions {
         // given
         every {
             JpqlMutinySessionUtils.createMutationQuery(
-                any(), any<UpdateQuery<String>>(), any<Map<String, Any?>>(), any(),
+                any(),
+                any<UpdateQuery<String>>(),
+                any<Map<String, Any?>>(),
+                any(),
             )
         } returns mutationQuery1
 
@@ -149,7 +152,10 @@ class MutinySessionExtensionsTest : WithAssertions {
         // given
         every {
             JpqlMutinySessionUtils.createMutationQuery(
-                any(), any<DeleteQuery<String>>(), any<Map<String, Any?>>(), any(),
+                any(),
+                any<DeleteQuery<String>>(),
+                any<Map<String, Any?>>(),
+                any(),
             )
         } returns mutationQuery1
 

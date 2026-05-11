@@ -6,8 +6,8 @@ import com.linecorp.kotlinjdsl.dsl.jpql.jpql
 import com.linecorp.kotlinjdsl.querymodel.jpql.select.SelectQuery
 
 object SelectQuery2 : () -> SelectQuery<*> {
-    override fun invoke(): SelectQuery<*> {
-        return jpql {
+    override fun invoke(): SelectQuery<*> =
+        jpql {
             select(
                 path(Author::authorId),
             ).from(
@@ -19,5 +19,4 @@ object SelectQuery2 : () -> SelectQuery<*> {
                 count(Author::authorId).desc(),
             )
         }
-    }
 }

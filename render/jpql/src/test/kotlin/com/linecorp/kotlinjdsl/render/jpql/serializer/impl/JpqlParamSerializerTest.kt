@@ -33,10 +33,11 @@ class JpqlParamSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.param(
-            paramName1,
-            paramValue1,
-        )
+        val part =
+            Expressions.param(
+                paramName1,
+                paramValue1,
+            )
         val context = TestRenderContext()
 
         // when

@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @SinceJdsl("3.6.0")
 class JpqlLeftSerializer : JpqlSerializer<JpqlLeft> {
-    override fun handledType(): KClass<JpqlLeft> {
-        return JpqlLeft::class
-    }
+    override fun handledType(): KClass<JpqlLeft> = JpqlLeft::class
 
-    override fun serialize(part: JpqlLeft, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlLeft,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("LEFT")

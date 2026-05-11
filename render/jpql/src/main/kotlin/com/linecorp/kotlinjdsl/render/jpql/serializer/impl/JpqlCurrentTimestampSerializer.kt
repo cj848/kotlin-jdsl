@@ -9,11 +9,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlCurrentTimestampSerializer : JpqlSerializer<JpqlCurrentTimestamp> {
-    override fun handledType(): KClass<JpqlCurrentTimestamp> {
-        return JpqlCurrentTimestamp::class
-    }
+    override fun handledType(): KClass<JpqlCurrentTimestamp> = JpqlCurrentTimestamp::class
 
-    override fun serialize(part: JpqlCurrentTimestamp, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlCurrentTimestamp,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         writer.write("CURRENT_TIMESTAMP")
     }
 }

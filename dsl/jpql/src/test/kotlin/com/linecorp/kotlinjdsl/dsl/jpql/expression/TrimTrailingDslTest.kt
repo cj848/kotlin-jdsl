@@ -16,16 +16,18 @@ class TrimTrailingDslTest : WithAssertions {
     @Test
     fun `trimTrailing() without a char, from() with a string`() {
         // when
-        val expression = queryPart {
-            trimTrailing().from(string1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                trimTrailing().from(string1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.trimTrailing(
-            value = stringExpression1,
-        )
+        val expected =
+            Expressions.trimTrailing(
+                value = stringExpression1,
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }
@@ -33,16 +35,18 @@ class TrimTrailingDslTest : WithAssertions {
     @Test
     fun `trimTrailing() without a char, from() with a string expression`() {
         // when
-        val expression = queryPart {
-            trimTrailing().from(stringExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                trimTrailing().from(stringExpression1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.trimTrailing(
-            value = stringExpression1,
-        )
+        val expected =
+            Expressions.trimTrailing(
+                value = stringExpression1,
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }
@@ -50,17 +54,19 @@ class TrimTrailingDslTest : WithAssertions {
     @Test
     fun `trimTrailing() with a char, from() with a string`() {
         // when
-        val expression = queryPart {
-            trimTrailing(char1).from(string1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                trimTrailing(char1).from(string1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.trimTrailing(
-            character = charExpression1,
-            value = stringExpression1,
-        )
+        val expected =
+            Expressions.trimTrailing(
+                character = charExpression1,
+                value = stringExpression1,
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }
@@ -68,17 +74,19 @@ class TrimTrailingDslTest : WithAssertions {
     @Test
     fun `trimTrailing() with a char, from() with a string expression`() {
         // when
-        val expression = queryPart {
-            trimTrailing(char1).from(stringExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                trimTrailing(char1).from(stringExpression1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.trimTrailing(
-            character = charExpression1,
-            value = stringExpression1,
-        )
+        val expected =
+            Expressions.trimTrailing(
+                character = charExpression1,
+                value = stringExpression1,
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }
@@ -86,17 +94,19 @@ class TrimTrailingDslTest : WithAssertions {
     @Test
     fun `trimTrailing() with a char expression, from() with a string`() {
         // when
-        val expression = queryPart {
-            trimTrailing(charExpression1).from(string1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                trimTrailing(charExpression1).from(string1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.trimTrailing(
-            character = charExpression1,
-            value = stringExpression1,
-        )
+        val expected =
+            Expressions.trimTrailing(
+                character = charExpression1,
+                value = stringExpression1,
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }
@@ -104,17 +114,19 @@ class TrimTrailingDslTest : WithAssertions {
     @Test
     fun `trimTrailing() with a char expression, from() with a string expression`() {
         // when
-        val expression = queryPart {
-            trimTrailing(charExpression1).from(stringExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                trimTrailing(charExpression1).from(stringExpression1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.trimTrailing(
-            character = charExpression1,
-            value = stringExpression1,
-        )
+        val expected =
+            Expressions.trimTrailing(
+                character = charExpression1,
+                value = stringExpression1,
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }

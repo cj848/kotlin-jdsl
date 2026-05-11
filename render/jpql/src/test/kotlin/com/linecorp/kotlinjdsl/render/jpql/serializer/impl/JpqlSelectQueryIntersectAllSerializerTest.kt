@@ -53,12 +53,13 @@ class JpqlSelectQueryIntersectAllSerializerTest : WithAssertions {
         // given
         val leftQuery = mockk<SelectQuery<String>>()
         val rightQuery = mockk<SelectQuery<String>>()
-        val part = SelectQueries.selectIntersectAllQuery(
-            String::class,
-            leftQuery,
-            rightQuery,
-            orderBy = null,
-        ) as JpqlSelectQueryIntersectAll
+        val part =
+            SelectQueries.selectIntersectAllQuery(
+                String::class,
+                leftQuery,
+                rightQuery,
+                orderBy = null,
+            ) as JpqlSelectQueryIntersectAll
         val queryContext = initialContext + JpqlRenderStatement.Select
         every { leftQuery.toQuery() } returns leftQuery
         every { rightQuery.toQuery() } returns rightQuery
@@ -82,12 +83,13 @@ class JpqlSelectQueryIntersectAllSerializerTest : WithAssertions {
         every { leftQuery.toQuery() } returns leftQuery
         every { rightQuery.toQuery() } returns rightQuery
         val sort = mockk<Sort>()
-        val part = SelectQueries.selectIntersectAllQuery(
-            returnType = String::class,
-            left = leftQuery,
-            right = rightQuery,
-            orderBy = listOf(sort),
-        ) as JpqlSelectQueryIntersectAll
+        val part =
+            SelectQueries.selectIntersectAllQuery(
+                returnType = String::class,
+                left = leftQuery,
+                right = rightQuery,
+                orderBy = listOf(sort),
+            ) as JpqlSelectQueryIntersectAll
         val queryContext = initialContext + JpqlRenderStatement.Select
         val orderByContext = queryContext + JpqlRenderClause.OrderBy
 

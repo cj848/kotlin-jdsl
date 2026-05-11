@@ -9,12 +9,16 @@ import com.linecorp.kotlinjdsl.render.jpql.writer.JpqlWriter
 import kotlin.reflect.KClass
 
 @Internal
-class JpqlCustomPredicateSerializer : JpqlTemplateSerializerSupport(), JpqlSerializer<JpqlCustomPredicate> {
-    override fun handledType(): KClass<JpqlCustomPredicate> {
-        return JpqlCustomPredicate::class
-    }
+class JpqlCustomPredicateSerializer :
+    JpqlTemplateSerializerSupport(),
+    JpqlSerializer<JpqlCustomPredicate> {
+    override fun handledType(): KClass<JpqlCustomPredicate> = JpqlCustomPredicate::class
 
-    override fun serialize(part: JpqlCustomPredicate, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlCustomPredicate,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         serialize(part.template, part.args, writer, context)
     }
 }

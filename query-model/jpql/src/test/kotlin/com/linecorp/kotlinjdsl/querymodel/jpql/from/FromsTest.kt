@@ -23,15 +23,16 @@ class FromsTest : WithAssertions {
     @Test
     fun reduce() {
         // when
-        val actual = Froms.reduce(
-            listOf(
-                entity1,
-                join1,
-                join2,
-                entity2,
-                entity3,
-            ),
-        )
+        val actual =
+            Froms.reduce(
+                listOf(
+                    entity1,
+                    join1,
+                    join2,
+                    entity2,
+                    entity3,
+                ),
+            )
 
         // then
         assertThat(actual).isEqualTo(

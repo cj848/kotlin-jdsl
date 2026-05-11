@@ -33,7 +33,5 @@ internal data class DeleteQueryDsl<T : Any>(
         return this
     }
 
-    override fun toQuery(): DeleteQuery<T> {
-        return builder.build()
-    }
+    override fun toQuery(): DeleteQuery<T> = builder.build()
 }

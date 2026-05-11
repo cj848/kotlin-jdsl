@@ -21,7 +21,9 @@ import kotlin.reflect.KProperty1
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
 
-internal class JpqlSerializerExtension : InvocationInterceptor, BeforeEachCallback {
+internal class JpqlSerializerExtension :
+    InvocationInterceptor,
+    BeforeEachCallback {
     override fun interceptTestMethod(
         invocation: InvocationInterceptor.Invocation<Void>,
         invocationContext: ReflectiveInvocationContext<Method>,

@@ -28,21 +28,23 @@ class DeleteExample : WithAssertions {
     @Test
     fun `delete all books published after June 2023`() {
         // when
-        val deleteQuery = jpql {
-            deleteFrom(
-                entity(Book::class),
-            ).where(
-                path(Book::publishDate).ge(OffsetDateTime.parse("2023-06-01T00:00:00+09:00")),
-            )
-        }
+        val deleteQuery =
+            jpql {
+                deleteFrom(
+                    entity(Book::class),
+                ).where(
+                    path(Book::publishDate).ge(OffsetDateTime.parse("2023-06-01T00:00:00+09:00")),
+                )
+            }
 
-        val selectQuery = jpql {
-            select(
-                path(Book::isbn),
-            ).from(
-                entity(Book::class),
-            )
-        }
+        val selectQuery =
+            jpql {
+                select(
+                    path(Book::isbn),
+                ).from(
+                    entity(Book::class),
+                )
+            }
 
         val actual: List<Isbn>
 
@@ -70,31 +72,34 @@ class DeleteExample : WithAssertions {
     @Test
     fun `remove the employees from department 03`() {
         // when
-        val deleteQuery = jpql {
-            val employeeIds = select<Long>(
-                path(EmployeeDepartment::employee)(Employee::employeeId),
-            ).from(
-                entity(Department::class),
-                join(EmployeeDepartment::class)
-                    .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
-            ).where(
-                path(Department::name).like("%03"),
-            ).asSubquery()
+        val deleteQuery =
+            jpql {
+                val employeeIds =
+                    select<Long>(
+                        path(EmployeeDepartment::employee)(Employee::employeeId),
+                    ).from(
+                        entity(Department::class),
+                        join(EmployeeDepartment::class)
+                            .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
+                    ).where(
+                        path(Department::name).like("%03"),
+                    ).asSubquery()
 
-            deleteFrom(
-                entity(Employee::class),
-            ).where(
-                path(Employee::employeeId).`in`(employeeIds),
-            )
-        }
+                deleteFrom(
+                    entity(Employee::class),
+                ).where(
+                    path(Employee::employeeId).`in`(employeeIds),
+                )
+            }
 
-        val selectQuery = jpql {
-            select(
-                path(Employee::employeeId),
-            ).from(
-                entity(Employee::class),
-            )
-        }
+        val selectQuery =
+            jpql {
+                select(
+                    path(Employee::employeeId),
+                ).from(
+                    entity(Employee::class),
+                )
+            }
 
         val actual: List<Long>
 

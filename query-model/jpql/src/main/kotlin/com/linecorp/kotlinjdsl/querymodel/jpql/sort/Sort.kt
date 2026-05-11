@@ -4,7 +4,9 @@ import com.linecorp.kotlinjdsl.SinceJdsl
 import com.linecorp.kotlinjdsl.querymodel.QueryPart
 
 @SinceJdsl("3.0.0")
-interface Sort : Sortable, QueryPart {
+interface Sort :
+    Sortable,
+    QueryPart {
     override fun toSort(): Sort = this
 
     enum class Order {

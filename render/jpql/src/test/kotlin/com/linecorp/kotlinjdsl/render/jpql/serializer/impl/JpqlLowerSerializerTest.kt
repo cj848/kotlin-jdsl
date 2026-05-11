@@ -35,9 +35,10 @@ class JpqlLowerSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.lower(
-            stringExpression1,
-        )
+        val part =
+            Expressions.lower(
+                stringExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

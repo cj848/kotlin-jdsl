@@ -10,11 +10,17 @@ interface UpdateQuerySetFirstStep<T : Any> {
      * Creates a set clause in an update query.
      */
     @SinceJdsl("3.0.0")
-    fun <V : Any, S : V?> set(path: Pathable<V>, value: S): UpdateQuerySetStep<T>
+    fun <V : Any, S : V?> set(
+        path: Pathable<V>,
+        value: S,
+    ): UpdateQuerySetStep<T>
 
     /**
      * Creates a set clause in an update query.
      */
     @SinceJdsl("3.0.0")
-    fun <V : Any> set(path: Pathable<V>, value: Expressionable<V>): UpdateQuerySetStep<T>
+    fun <V : Any> set(
+        path: Pathable<V>,
+        value: Expressionable<V>,
+    ): UpdateQuerySetStep<T>
 }

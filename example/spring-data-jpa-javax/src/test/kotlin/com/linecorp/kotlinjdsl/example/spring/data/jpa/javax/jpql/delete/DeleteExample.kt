@@ -52,15 +52,16 @@ class DeleteExample : WithAssertions {
     fun `delete the employees from department 03`() {
         // when
         employeeRepository.delete {
-            val employeeIds = select<Long>(
-                path(EmployeeDepartment::employee)(Employee::employeeId),
-            ).from(
-                entity(Department::class),
-                join(EmployeeDepartment::class)
-                    .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
-            ).where(
-                path(Department::name).like("%03"),
-            ).asSubquery()
+            val employeeIds =
+                select<Long>(
+                    path(EmployeeDepartment::employee)(Employee::employeeId),
+                ).from(
+                    entity(Department::class),
+                    join(EmployeeDepartment::class)
+                        .on(path(Department::departmentId).equal(path(EmployeeDepartment::departmentId))),
+                ).where(
+                    path(Department::name).like("%03"),
+                ).asSubquery()
 
             deleteFrom(
                 entity(Employee::class),

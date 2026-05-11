@@ -15,16 +15,18 @@ class AbsDslTest : WithAssertions {
     @Test
     fun `abs() with a property`() {
         // when
-        val expression = queryPart {
-            abs(Book::price)
-        }.toExpression()
+        val expression =
+            queryPart {
+                abs(Book::price)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.abs(
-            value = Paths.path(Book::price),
-        )
+        val expected =
+            Expressions.abs(
+                value = Paths.path(Book::price),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -32,16 +34,18 @@ class AbsDslTest : WithAssertions {
     @Test
     fun `abs() with a expression`() {
         // when
-        val expression = queryPart {
-            abs(expression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                abs(expression1)
+            }.toExpression()
 
         val actual: Expression<BigDecimal> = expression // for type check
 
         // then
-        val expected = Expressions.abs(
-            value = expression1,
-        )
+        val expected =
+            Expressions.abs(
+                value = expression1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

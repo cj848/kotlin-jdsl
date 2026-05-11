@@ -56,23 +56,24 @@ internal object JpqlStageSessionUtils {
         query: String,
         queryParams: Map<String, Any?>,
         returnType: Class<T>,
-    ): Stage.SelectionQuery<T> {
-        return session.createQuery(query, returnType).apply {
+    ): Stage.SelectionQuery<T> =
+        session.createQuery(query, returnType).apply {
             setParams(this, queryParams)
         }
-    }
 
     private fun createMutationQuery(
         session: Stage.Session,
         query: String,
         queryParams: Map<String, Any?>,
-    ): Stage.MutationQuery {
-        return session.createMutationQuery(query).apply {
+    ): Stage.MutationQuery =
+        session.createMutationQuery(query).apply {
             setParams(this, queryParams)
         }
-    }
 
-    private fun <T> setParams(query: Stage.SelectionQuery<T>, params: Map<String, Any?>) {
+    private fun <T> setParams(
+        query: Stage.SelectionQuery<T>,
+        params: Map<String, Any?>,
+    ) {
         params.forEach { (name, value) ->
             try {
                 query.setParameter(name, value)
@@ -84,7 +85,10 @@ internal object JpqlStageSessionUtils {
         }
     }
 
-    private fun setParams(query: Stage.MutationQuery, params: Map<String, Any?>) {
+    private fun setParams(
+        query: Stage.MutationQuery,
+        params: Map<String, Any?>,
+    ) {
         params.forEach { (name, value) ->
             try {
                 query.setParameter(name, value)

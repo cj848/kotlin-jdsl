@@ -12,18 +12,24 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlDeleteQuerySerializer : JpqlSerializer<JpqlDeleteQuery<*>> {
-    override fun handledType(): KClass<JpqlDeleteQuery<*>> {
-        return JpqlDeleteQuery::class
-    }
+    override fun handledType(): KClass<JpqlDeleteQuery<*>> = JpqlDeleteQuery::class
 
-    override fun serialize(part: JpqlDeleteQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlDeleteQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val newContext = context + JpqlRenderStatement.Delete
 
         writeDelete(part, writer, newContext)
         writeWhere(part, writer, newContext)
     }
 
-    private fun writeDelete(part: JpqlDeleteQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    private fun writeDelete(
+        part: JpqlDeleteQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val entity = part.entity
         val delegate = context.getValue(JpqlRenderSerializer)
 
@@ -37,7 +43,11 @@ class JpqlDeleteQuerySerializer : JpqlSerializer<JpqlDeleteQuery<*>> {
         delegate.serialize(entity, writer, newContext)
     }
 
-    private fun writeWhere(part: JpqlDeleteQuery<*>, writer: JpqlWriter, context: RenderContext) {
+    private fun writeWhere(
+        part: JpqlDeleteQuery<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val where = part.where ?: return
         val delegate = context.getValue(JpqlRenderSerializer)
 

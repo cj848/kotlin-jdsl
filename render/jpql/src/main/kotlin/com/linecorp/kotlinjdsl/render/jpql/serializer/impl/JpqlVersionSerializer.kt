@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlVersionSerializer : JpqlSerializer<JpqlVersion<*>> {
-    override fun handledType(): KClass<JpqlVersion<*>> {
-        return JpqlVersion::class
-    }
+    override fun handledType(): KClass<JpqlVersion<*>> = JpqlVersion::class
 
-    override fun serialize(part: JpqlVersion<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlVersion<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("VERSION")

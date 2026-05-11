@@ -38,10 +38,11 @@ class JpqlPowerSerializerTest {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.power(
-            base = expression1,
-            exponent = expression2,
-        )
+        val part =
+            Expressions.power(
+                base = expression1,
+                exponent = expression2,
+            )
         val context = TestRenderContext(serializer)
 
         // when

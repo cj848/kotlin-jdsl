@@ -31,10 +31,11 @@ class JpqlExpressionSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.expression(
-            String::class,
-            alias1,
-        )
+        val part =
+            Expressions.expression(
+                String::class,
+                alias1,
+            )
         val context = TestRenderContext()
 
         // when

@@ -15,10 +15,9 @@ internal data class DeleteQueryBuilder<T : Any>(
         return this
     }
 
-    fun build(): DeleteQuery<T> {
-        return DeleteQueries.deleteQuery(
+    fun build(): DeleteQuery<T> =
+        DeleteQueries.deleteQuery(
             entity = entity,
             where = where,
         )
-    }
 }

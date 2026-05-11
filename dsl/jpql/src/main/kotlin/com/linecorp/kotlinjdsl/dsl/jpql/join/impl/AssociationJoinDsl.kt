@@ -16,7 +16,6 @@ internal data class AssociationJoinDsl<T : Any>(
     private val builder: AssociationJoinBuilder<T>,
 ) : AssociationJoinOnStep<T>,
     AssociationJoinAsStep<T> {
-
     constructor(
         entity: Entity<T>,
         association: Path<*>,
@@ -47,11 +46,7 @@ internal data class AssociationJoinDsl<T : Any>(
         return this
     }
 
-    override fun toJoin(): Join {
-        return builder.build()
-    }
+    override fun toJoin(): Join = builder.build()
 
-    override fun toFrom(): From {
-        return builder.build()
-    }
+    override fun toFrom(): From = builder.build()
 }

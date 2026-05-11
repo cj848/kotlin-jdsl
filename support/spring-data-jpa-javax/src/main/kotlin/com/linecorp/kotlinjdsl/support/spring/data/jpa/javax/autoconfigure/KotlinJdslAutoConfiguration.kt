@@ -28,15 +28,16 @@ open class KotlinJdslAutoConfiguration {
         serializers: List<JpqlSerializer<*>>,
         introspectors: List<JpqlIntrospector>,
     ): JpqlRenderContext {
-        val userDefinedModule = object : JpqlRenderModule {
-            override fun setupModule(context: JpqlRenderModule.SetupContext) {
-                context.addAllSerializer(serializers.reversed())
+        val userDefinedModule =
+            object : JpqlRenderModule {
+                override fun setupModule(context: JpqlRenderModule.SetupContext) {
+                    context.addAllSerializer(serializers.reversed())
 
-                introspectors.reversed().forEach {
-                    context.prependIntrospector(it)
+                    introspectors.reversed().forEach {
+                        context.prependIntrospector(it)
+                    }
                 }
             }
-        }
 
         return JpqlRenderContext()
             .registerModules(userDefinedModule)

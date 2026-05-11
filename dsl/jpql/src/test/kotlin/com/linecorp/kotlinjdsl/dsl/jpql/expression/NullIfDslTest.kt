@@ -18,17 +18,19 @@ class NullIfDslTest : WithAssertions {
     @Test
     fun `nullIf() with a string`() {
         // when
-        val expression = queryPart {
-            nullIf(expression1, string1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                nullIf(expression1, string1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.nullIf(
-            value = expression1,
-            compareValue = Expressions.value(string1),
-        )
+        val expected =
+            Expressions.nullIf(
+                value = expression1,
+                compareValue = Expressions.value(string1),
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }
@@ -36,17 +38,19 @@ class NullIfDslTest : WithAssertions {
     @Test
     fun `nullIf() with a string expression`() {
         // when
-        val expression = queryPart {
-            nullIf(expression1, stringExpression1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                nullIf(expression1, stringExpression1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.nullIf(
-            value = expression1,
-            compareValue = stringExpression1,
-        )
+        val expected =
+            Expressions.nullIf(
+                value = expression1,
+                compareValue = stringExpression1,
+            )
 
         assertThat(actual.toExpression()).isEqualTo(expected)
     }

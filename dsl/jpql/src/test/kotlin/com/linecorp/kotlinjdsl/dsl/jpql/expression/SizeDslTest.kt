@@ -14,16 +14,18 @@ class SizeDslTest : WithAssertions {
     @Test
     fun `size() with property`() {
         // when
-        val expression = queryPart {
-            size(Employee::departments)
-        }.toExpression()
+        val expression =
+            queryPart {
+                size(Employee::departments)
+            }.toExpression()
 
         val actual: Expression<Int> = expression // for type check
 
         // then
-        val expected = Expressions.size(
-            path = Paths.path(Employee::departments),
-        )
+        val expected =
+            Expressions.size(
+                path = Paths.path(Employee::departments),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -31,16 +33,18 @@ class SizeDslTest : WithAssertions {
     @Test
     fun `size() with path`() {
         // when
-        val expression = queryPart {
-            size(path1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                size(path1)
+            }.toExpression()
 
         val actual: Expression<Int> = expression // for type check
 
         // then
-        val expected = Expressions.size(
-            path = path1,
-        )
+        val expected =
+            Expressions.size(
+                path = path1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlBetweenSerializer : JpqlSerializer<JpqlBetween> {
-    override fun handledType(): KClass<JpqlBetween> {
-        return JpqlBetween::class
-    }
+    override fun handledType(): KClass<JpqlBetween> = JpqlBetween::class
 
-    override fun serialize(part: JpqlBetween, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlBetween,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         delegate.serialize(part.value, writer, context)

@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlPathTypeSerializer : JpqlSerializer<JpqlPathType> {
-    override fun handledType(): KClass<JpqlPathType> {
-        return JpqlPathType::class
-    }
+    override fun handledType(): KClass<JpqlPathType> = JpqlPathType::class
 
-    override fun serialize(part: JpqlPathType, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlPathType,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("TYPE")

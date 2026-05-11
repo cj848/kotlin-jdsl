@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlPowerSerializer : JpqlSerializer<JpqlPower<*>> {
-    override fun handledType(): KClass<JpqlPower<*>> {
-        return JpqlPower::class
-    }
+    override fun handledType(): KClass<JpqlPower<*>> = JpqlPower::class
 
-    override fun serialize(part: JpqlPower<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlPower<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("POWER")

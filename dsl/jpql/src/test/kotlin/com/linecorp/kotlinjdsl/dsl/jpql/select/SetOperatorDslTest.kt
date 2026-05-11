@@ -23,39 +23,44 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `union between two queries`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            union(
-                subquery1,
-                subquery2,
-            )
-        }
+                union(
+                    subquery1,
+                    subquery2,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryUnion::class.java)
 
@@ -70,41 +75,46 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `union between two queries with orderBy`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            union(
-                subquery1,
-                subquery2,
-            ).orderBy(
-                sort1,
-            )
-        }
+                union(
+                    subquery1,
+                    subquery2,
+                ).orderBy(
+                    sort1,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryUnion::class.java)
 
@@ -119,39 +129,44 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `union all between two queries`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            unionAll(
-                subquery1,
-                subquery2,
-            )
-        }
+                unionAll(
+                    subquery1,
+                    subquery2,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryUnionAll::class.java)
 
@@ -166,41 +181,46 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `union all between two queries with orderBy`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            unionAll(
-                subquery1,
-                subquery2,
-            ).orderBy(
-                sort1,
-            )
-        }
+                unionAll(
+                    subquery1,
+                    subquery2,
+                ).orderBy(
+                    sort1,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryUnionAll::class.java)
 
@@ -215,39 +235,44 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `except between two queries`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            except(
-                subquery1,
-                subquery2,
-            )
-        }
+                except(
+                    subquery1,
+                    subquery2,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryExcept::class.java)
 
@@ -262,41 +287,46 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `except between two queries with orderBy`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            except(
-                subquery1,
-                subquery2,
-            ).orderBy(
-                sort1,
-            )
-        }
+                except(
+                    subquery1,
+                    subquery2,
+                ).orderBy(
+                    sort1,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryExcept::class.java)
 
@@ -311,39 +341,44 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `except all between two queries`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            exceptAll(
-                subquery1,
-                subquery2,
-            )
-        }
+                exceptAll(
+                    subquery1,
+                    subquery2,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryExceptAll::class.java)
 
@@ -358,41 +393,46 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `except all between two queries with orderBy`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            exceptAll(
-                subquery1,
-                subquery2,
-            ).orderBy(
-                sort1,
-            )
-        }
+                exceptAll(
+                    subquery1,
+                    subquery2,
+                ).orderBy(
+                    sort1,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryExceptAll::class.java)
 
@@ -407,39 +447,44 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `intersect between two queries`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            intersect(
-                subquery1,
-                subquery2,
-            )
-        }
+                intersect(
+                    subquery1,
+                    subquery2,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryIntersect::class.java)
 
@@ -454,41 +499,46 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `intersect between two queries with orderBy`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            intersect(
-                subquery1,
-                subquery2,
-            ).orderBy(
-                sort1,
-            )
-        }
+                intersect(
+                    subquery1,
+                    subquery2,
+                ).orderBy(
+                    sort1,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryIntersect::class.java)
 
@@ -503,39 +553,44 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `intersect all between two queries`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            intersectAll(
-                subquery1,
-                subquery2,
-            )
-        }
+                intersectAll(
+                    subquery1,
+                    subquery2,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryIntersectAll::class.java)
 
@@ -550,41 +605,46 @@ class SetOperatorDslTest : WithAssertions {
     @Test
     fun `intersect all between two queries with orderBy`() {
         // when
-        val query = jpql {
-            val subquery1 = select(
-                entity1,
-            ).from(
-                entity1,
-            )
+        val query =
+            jpql {
+                val subquery1 =
+                    select(
+                        entity1,
+                    ).from(
+                        entity1,
+                    )
 
-            val subquery2 = select(
-                entity2,
-            ).from(
-                entity2,
-            )
+                val subquery2 =
+                    select(
+                        entity2,
+                    ).from(
+                        entity2,
+                    )
 
-            intersectAll(
-                subquery1,
-                subquery2,
-            ).orderBy(
-                sort1,
-            )
-        }
+                intersectAll(
+                    subquery1,
+                    subquery2,
+                ).orderBy(
+                    sort1,
+                )
+            }
 
         // then
-        val subquery1 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity1),
-            from = listOf(entity1),
-        )
+        val subquery1 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity1),
+                from = listOf(entity1),
+            )
 
-        val subquery2 = SelectQueries.selectQuery(
-            returnType = Book::class,
-            distinct = false,
-            select = listOf(entity2),
-            from = listOf(entity2),
-        )
+        val subquery2 =
+            SelectQueries.selectQuery(
+                returnType = Book::class,
+                distinct = false,
+                select = listOf(entity2),
+                from = listOf(entity2),
+            )
 
         assertThat(query).isInstanceOf(JpqlSelectQueryIntersectAll::class.java)
 

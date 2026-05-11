@@ -11,11 +11,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlLeftFetchJoinSerializer : JpqlSerializer<JpqlLeftFetchJoin<*>> {
-    override fun handledType(): KClass<JpqlLeftFetchJoin<*>> {
-        return JpqlLeftFetchJoin::class
-    }
+    override fun handledType(): KClass<JpqlLeftFetchJoin<*>> = JpqlLeftFetchJoin::class
 
-    override fun serialize(part: JpqlLeftFetchJoin<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlLeftFetchJoin<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("LEFT JOIN FETCH")

@@ -27,9 +27,10 @@ class JpqlValueSerializerTest : WithAssertions {
 
     private val value1 = "value1"
 
-    private val entityDescription1 = object : JpqlEntityDescription {
-        override val name = "entityName1"
-    }
+    private val entityDescription1 =
+        object : JpqlEntityDescription {
+            override val name = "entityName1"
+        }
 
     @Test
     fun handledType() {
@@ -43,9 +44,10 @@ class JpqlValueSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.value(
-            value1,
-        )
+        val part =
+            Expressions.value(
+                value1,
+            )
         val context = TestRenderContext()
 
         // when
@@ -62,9 +64,10 @@ class JpqlValueSerializerTest : WithAssertions {
         // given
         every { introspector.introspect(any<KClass<*>>()) } returns entityDescription1
 
-        val part = Expressions.value(
-            Book::class,
-        )
+        val part =
+            Expressions.value(
+                Book::class,
+            )
         val context = TestRenderContext(introspector)
 
         // when

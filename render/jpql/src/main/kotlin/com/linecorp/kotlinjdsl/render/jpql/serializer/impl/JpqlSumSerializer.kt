@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlSumSerializer : JpqlSerializer<JpqlSum<*, *>> {
-    override fun handledType(): KClass<JpqlSum<*, *>> {
-        return JpqlSum::class
-    }
+    override fun handledType(): KClass<JpqlSum<*, *>> = JpqlSum::class
 
-    override fun serialize(part: JpqlSum<*, *>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlSum<*, *>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("SUM")

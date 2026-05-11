@@ -21,18 +21,20 @@ class CoalesceDslTest : WithAssertions {
     @Test
     fun `coalesce() with strings`() {
         // when
-        val expression = queryPart {
-            coalesce(stringExpression1, string1, string2)
-        }.toExpression()
+        val expression =
+            queryPart {
+                coalesce(stringExpression1, string1, string2)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.coalesce(
-            value = stringExpression1,
-            alternate = Expressions.value(string1),
-            others = listOf(Expressions.value(string2)),
-        )
+        val expected =
+            Expressions.coalesce(
+                value = stringExpression1,
+                alternate = Expressions.value(string1),
+                others = listOf(Expressions.value(string2)),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -40,18 +42,20 @@ class CoalesceDslTest : WithAssertions {
     @Test
     fun `coalesce() with string expressions`() {
         // when
-        val expression = queryPart {
-            coalesce(stringExpression1, stringExpression2, stringExpression3)
-        }.toExpression()
+        val expression =
+            queryPart {
+                coalesce(stringExpression1, stringExpression2, stringExpression3)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.coalesce(
-            value = stringExpression1,
-            alternate = stringExpression2,
-            others = listOf(stringExpression3),
-        )
+        val expected =
+            Expressions.coalesce(
+                value = stringExpression1,
+                alternate = stringExpression2,
+                others = listOf(stringExpression3),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

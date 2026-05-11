@@ -37,9 +37,10 @@ class JpqlIsNullSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Predicates.isNull(
-            expression1,
-        )
+        val part =
+            Predicates.isNull(
+                expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

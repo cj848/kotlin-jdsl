@@ -56,23 +56,24 @@ internal object JpqlStageSessionUtils {
         query: String,
         queryParams: Map<String, Any?>,
         returnType: Class<T>,
-    ): Stage.Query<T> {
-        return session.createQuery(query, returnType).apply {
+    ): Stage.Query<T> =
+        session.createQuery(query, returnType).apply {
             setParams(this, queryParams)
         }
-    }
 
     private fun <T> createQuery(
         session: Stage.Session,
         query: String,
         queryParams: Map<String, Any?>,
-    ): Stage.Query<T> {
-        return session.createQuery<T>(query).apply {
+    ): Stage.Query<T> =
+        session.createQuery<T>(query).apply {
             setParams(this, queryParams)
         }
-    }
 
-    private fun <T> setParams(query: Stage.Query<T>, params: Map<String, Any?>) {
+    private fun <T> setParams(
+        query: Stage.Query<T>,
+        params: Map<String, Any?>,
+    ) {
         params.forEach { (name, value) ->
             try {
                 query.setParameter(name, value)

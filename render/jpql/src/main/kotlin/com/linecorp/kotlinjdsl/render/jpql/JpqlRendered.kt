@@ -12,7 +12,6 @@ import com.linecorp.kotlinjdsl.SinceJdsl
 data class JpqlRendered(
     @SinceJdsl("3.0.0")
     val query: String,
-
     @SinceJdsl("3.0.0")
     val params: JpqlRenderedParams,
 )

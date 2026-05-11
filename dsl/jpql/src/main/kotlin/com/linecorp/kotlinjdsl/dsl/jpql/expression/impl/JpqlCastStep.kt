@@ -9,19 +9,11 @@ import com.linecorp.kotlinjdsl.querymodel.jpql.expression.impl.JpqlCast
 internal data class JpqlCastStep(
     private val expression: Expression<String>,
 ) : CastStep {
-    override fun asInteger(): Expressionable<Int> {
-        return JpqlCast(expression, Int::class)
-    }
+    override fun asInteger(): Expressionable<Int> = JpqlCast(expression, Int::class)
 
-    override fun asLong(): Expressionable<Long> {
-        return JpqlCast(expression, Long::class)
-    }
+    override fun asLong(): Expressionable<Long> = JpqlCast(expression, Long::class)
 
-    override fun asFloat(): Expressionable<Float> {
-        return JpqlCast(expression, Float::class)
-    }
+    override fun asFloat(): Expressionable<Float> = JpqlCast(expression, Float::class)
 
-    override fun asDouble(): Expressionable<Double> {
-        return JpqlCast(expression, Double::class)
-    }
+    override fun asDouble(): Expressionable<Double> = JpqlCast(expression, Double::class)
 }

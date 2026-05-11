@@ -41,11 +41,12 @@ class JpqlNotBetweenSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Predicates.notBetween(
-            expression1,
-            expression2,
-            expression3,
-        )
+        val part =
+            Predicates.notBetween(
+                expression1,
+                expression2,
+                expression3,
+            )
         val context = TestRenderContext(serializer)
 
         // when

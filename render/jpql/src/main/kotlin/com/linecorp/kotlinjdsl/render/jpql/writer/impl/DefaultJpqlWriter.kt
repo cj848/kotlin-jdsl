@@ -79,18 +79,17 @@ internal class DefaultJpqlWriter private constructor(
         nodes.add(Node.String())
     }
 
-    override fun writeParam(name: String, value: Any?) {
+    override fun writeParam(
+        name: String,
+        value: Any?,
+    ) {
         internal.writeParam(name, value)
         nodes.add(Node.String())
     }
 
-    fun getQuery(): String {
-        return internal.stringBuilder.toString()
-    }
+    fun getQuery(): String = internal.stringBuilder.toString()
 
-    fun getParams(): JpqlRenderedParams {
-        return JpqlRenderedParams(internal.params)
-    }
+    fun getParams(): JpqlRenderedParams = JpqlRenderedParams(internal.params)
 
     private class Nodes {
         private var current: Node = Node.Null()
@@ -121,13 +120,16 @@ internal class DefaultJpqlWriter private constructor(
         abstract class Parenthesis(
             private val parentheses: Parentheses,
         ) : Node() {
-            fun isSibling(other: Parenthesis): Boolean {
-                return this.parentheses == other.parentheses
-            }
+            fun isSibling(other: Parenthesis): Boolean = this.parentheses == other.parentheses
         }
 
-        class OpenParenthesis(parentheses: Parentheses) : Parenthesis(parentheses)
-        class CloseParenthesis(parentheses: Parentheses) : Parenthesis(parentheses)
+        class OpenParenthesis(
+            parentheses: Parentheses,
+        ) : Parenthesis(parentheses)
+
+        class CloseParenthesis(
+            parentheses: Parentheses,
+        ) : Parenthesis(parentheses)
     }
 }
 
@@ -153,7 +155,10 @@ private class InternalJpqlWriter(
         writeParam(name, value)
     }
 
-    fun writeParam(name: String, value: Any?) {
+    fun writeParam(
+        name: String,
+        value: Any?,
+    ) {
         writeParamName(name)
         putParamValue(name, value)
     }
@@ -163,21 +168,26 @@ private class InternalJpqlWriter(
     }
 
     private fun writeParamName(name: String) {
-        val prefixedName = if (name.startsWith(":")) {
-            name
-        } else {
-            ":$name"
-        }
+        val prefixedName =
+            if (name.startsWith(":")) {
+                name
+            } else {
+                ":$name"
+            }
 
         write(prefixedName)
     }
 
-    private fun putParamValue(name: String, value: Any?) {
-        val nonPrefixedName = if (name.startsWith(":")) {
-            name.substring(1)
-        } else {
-            name
-        }
+    private fun putParamValue(
+        name: String,
+        value: Any?,
+    ) {
+        val nonPrefixedName =
+            if (name.startsWith(":")) {
+                name.substring(1)
+            } else {
+                name
+            }
 
         if (!params.containsKey(nonPrefixedName)) {
             params[nonPrefixedName] = value
@@ -186,15 +196,18 @@ private class InternalJpqlWriter(
 }
 
 private fun InternalJpqlWriter(params: Map<String, Any?>): InternalJpqlWriter {
-    val paramNumber = params.keys.mapNotNull {
-        suffixNumber.find(it)?.value?.toInt()
-    }.maxOrNull()
+    val paramNumber =
+        params.keys
+            .mapNotNull {
+                suffixNumber.find(it)?.value?.toInt()
+            }.maxOrNull()
 
-    val incrementer = if (paramNumber == null) {
-        Incrementer(initial = 1)
-    } else {
-        Incrementer(initial = paramNumber + 1)
-    }
+    val incrementer =
+        if (paramNumber == null) {
+            Incrementer(initial = 1)
+        } else {
+            Incrementer(initial = paramNumber + 1)
+        }
 
     return InternalJpqlWriter(params.toMutableMap(), incrementer)
 }
@@ -204,9 +217,7 @@ private class Incrementer(
 ) {
     private var counter: Int = initial
 
-    fun getNext(): Int {
-        return counter++
-    }
+    fun getNext(): Int = counter++
 }
 
 private val suffixNumber = Regex("[0-9]+$")

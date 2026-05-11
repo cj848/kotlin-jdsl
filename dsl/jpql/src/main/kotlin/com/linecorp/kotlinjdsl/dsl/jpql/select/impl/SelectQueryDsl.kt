@@ -21,7 +21,6 @@ internal data class SelectQueryDsl<T : Any>(
     SelectQueryGroupByStep<T>,
     SelectQueryHavingStep<T>,
     SelectQueryOrderByStep<T> {
-
     constructor(
         returnType: KClass<T>,
         distinct: Boolean,
@@ -83,7 +82,5 @@ internal data class SelectQueryDsl<T : Any>(
         return this
     }
 
-    override fun toQuery(): SelectQuery<T> {
-        return builder.build()
-    }
+    override fun toQuery(): SelectQuery<T> = builder.build()
 }

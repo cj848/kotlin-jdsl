@@ -11,9 +11,10 @@ class CurrentTimestampTest : WithAssertions {
     @Test
     fun currentTimestamp() {
         // when
-        val expression = queryPart {
-            currentTimestamp()
-        }.toExpression()
+        val expression =
+            queryPart {
+                currentTimestamp()
+            }.toExpression()
 
         val actual: Expression<Timestamp> = expression // for type check
 

@@ -14,16 +14,18 @@ class IsNullDslTest : WithAssertions {
     @Test
     fun isNull() {
         // when
-        val predicate = queryPart {
-            expression1.isNull()
-        }
+        val predicate =
+            queryPart {
+                expression1.isNull()
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.isNull(
-            expression1,
-        )
+        val excepted =
+            Predicates.isNull(
+                expression1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }
@@ -31,16 +33,18 @@ class IsNullDslTest : WithAssertions {
     @Test
     fun isNotNull() {
         // when
-        val predicate = queryPart {
-            expression1.isNotNull()
-        }
+        val predicate =
+            queryPart {
+                expression1.isNotNull()
+            }
 
         val actual: Predicate = predicate // for type check
 
         // then
-        val excepted = Predicates.isNotNull(
-            expression1,
-        )
+        val excepted =
+            Predicates.isNotNull(
+                expression1,
+            )
 
         assertThat(actual).isEqualTo(excepted)
     }

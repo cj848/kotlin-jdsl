@@ -19,44 +19,60 @@ internal data class SetOperatorSelectQueryBuilder<T : Any>(
         return this
     }
 
-    fun build(): SelectQuery<T> {
-        return when (setOperator) {
-            SetOperator.UNION -> SelectQueries.selectUnionQuery(
-                returnType = returnType,
-                left = leftQuery,
-                right = rightQuery,
-                orderBy = orderBy,
-            )
-            SetOperator.UNION_ALL -> SelectQueries.selectUnionAllQuery(
-                returnType = returnType,
-                left = leftQuery,
-                right = rightQuery,
-                orderBy = orderBy,
-            )
-            SetOperator.EXCEPT -> SelectQueries.selectExceptQuery(
-                returnType = returnType,
-                left = leftQuery,
-                right = rightQuery,
-                orderBy = orderBy,
-            )
-            SetOperator.EXCEPT_ALL -> SelectQueries.selectExceptAllQuery(
-                returnType = returnType,
-                left = leftQuery,
-                right = rightQuery,
-                orderBy = orderBy,
-            )
-            SetOperator.INTERSECT -> SelectQueries.selectIntersectQuery(
-                returnType = returnType,
-                left = leftQuery,
-                right = rightQuery,
-                orderBy = orderBy,
-            )
-            SetOperator.INTERSECT_ALL -> SelectQueries.selectIntersectAllQuery(
-                returnType = returnType,
-                left = leftQuery,
-                right = rightQuery,
-                orderBy = orderBy,
-            )
+    fun build(): SelectQuery<T> =
+        when (setOperator) {
+            SetOperator.UNION -> {
+                SelectQueries.selectUnionQuery(
+                    returnType = returnType,
+                    left = leftQuery,
+                    right = rightQuery,
+                    orderBy = orderBy,
+                )
+            }
+
+            SetOperator.UNION_ALL -> {
+                SelectQueries.selectUnionAllQuery(
+                    returnType = returnType,
+                    left = leftQuery,
+                    right = rightQuery,
+                    orderBy = orderBy,
+                )
+            }
+
+            SetOperator.EXCEPT -> {
+                SelectQueries.selectExceptQuery(
+                    returnType = returnType,
+                    left = leftQuery,
+                    right = rightQuery,
+                    orderBy = orderBy,
+                )
+            }
+
+            SetOperator.EXCEPT_ALL -> {
+                SelectQueries.selectExceptAllQuery(
+                    returnType = returnType,
+                    left = leftQuery,
+                    right = rightQuery,
+                    orderBy = orderBy,
+                )
+            }
+
+            SetOperator.INTERSECT -> {
+                SelectQueries.selectIntersectQuery(
+                    returnType = returnType,
+                    left = leftQuery,
+                    right = rightQuery,
+                    orderBy = orderBy,
+                )
+            }
+
+            SetOperator.INTERSECT_ALL -> {
+                SelectQueries.selectIntersectAllQuery(
+                    returnType = returnType,
+                    left = leftQuery,
+                    right = rightQuery,
+                    orderBy = orderBy,
+                )
+            }
         }
-    }
 }

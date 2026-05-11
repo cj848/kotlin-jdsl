@@ -53,12 +53,13 @@ class JpqlSelectQueryUnionSerializerTest : WithAssertions {
         // given
         val leftQuery = mockk<SelectQuery<String>>()
         val rightQuery = mockk<SelectQuery<String>>()
-        val part = SelectQueries.selectUnionQuery(
-            String::class,
-            leftQuery,
-            rightQuery,
-            orderBy = null,
-        ) as JpqlSelectQueryUnion
+        val part =
+            SelectQueries.selectUnionQuery(
+                String::class,
+                leftQuery,
+                rightQuery,
+                orderBy = null,
+            ) as JpqlSelectQueryUnion
         val queryContext = initialContext + JpqlRenderStatement.Select
         every { leftQuery.toQuery() } returns leftQuery
         every { rightQuery.toQuery() } returns rightQuery
@@ -81,12 +82,13 @@ class JpqlSelectQueryUnionSerializerTest : WithAssertions {
         every { leftQuery.toQuery() } returns leftQuery
         every { rightQuery.toQuery() } returns rightQuery
         val sort = mockk<Sort>()
-        val part = SelectQueries.selectUnionQuery(
-            returnType = String::class,
-            left = leftQuery,
-            right = rightQuery,
-            orderBy = listOf(sort),
-        ) as JpqlSelectQueryUnion
+        val part =
+            SelectQueries.selectUnionQuery(
+                returnType = String::class,
+                left = leftQuery,
+                right = rightQuery,
+                orderBy = listOf(sort),
+            ) as JpqlSelectQueryUnion
         val queryContext = initialContext + JpqlRenderStatement.Select
         val orderByContext = queryContext + JpqlRenderClause.OrderBy
 

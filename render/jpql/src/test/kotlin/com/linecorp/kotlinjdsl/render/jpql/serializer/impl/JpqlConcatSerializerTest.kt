@@ -37,11 +37,12 @@ class JpqlConcatSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.concat(
-            stringExpression1,
-            stringExpression2,
-            listOf(stringExpression3),
-        )
+        val part =
+            Expressions.concat(
+                stringExpression1,
+                stringExpression2,
+                listOf(stringExpression3),
+            )
         val context = TestRenderContext(serializer)
 
         // when

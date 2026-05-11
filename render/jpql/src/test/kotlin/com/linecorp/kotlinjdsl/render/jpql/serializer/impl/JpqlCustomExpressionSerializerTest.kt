@@ -38,14 +38,15 @@ class JpqlCustomExpressionSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.customExpression(
-            String::class,
-            "TEST({0}, {1})",
-            listOf(
-                expression1,
-                expression2,
-            ),
-        )
+        val part =
+            Expressions.customExpression(
+                String::class,
+                "TEST({0}, {1})",
+                listOf(
+                    expression1,
+                    expression2,
+                ),
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -64,13 +65,14 @@ class JpqlCustomExpressionSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the same expression, when the argument number is the same`() {
         // given
-        val part = Expressions.customExpression(
-            String::class,
-            "TEST({0}, {0})",
-            listOf(
-                expression1,
-            ),
-        )
+        val part =
+            Expressions.customExpression(
+                String::class,
+                "TEST({0}, {0})",
+                listOf(
+                    expression1,
+                ),
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -89,11 +91,12 @@ class JpqlCustomExpressionSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws only the template, when there are no the argument numbers`() {
         // given
-        val part = Expressions.customExpression(
-            String::class,
-            "TEST()",
-            emptyList(),
-        )
+        val part =
+            Expressions.customExpression(
+                String::class,
+                "TEST()",
+                emptyList(),
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -108,13 +111,14 @@ class JpqlCustomExpressionSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws well, even if there are no parentheses`() {
         // given
-        val part = Expressions.customExpression(
-            String::class,
-            "{0} = {0}",
-            listOf(
-                expression1,
-            ),
-        )
+        val part =
+            Expressions.customExpression(
+                String::class,
+                "{0} = {0}",
+                listOf(
+                    expression1,
+                ),
+            )
         val context = TestRenderContext(serializer)
 
         // when

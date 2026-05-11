@@ -44,9 +44,10 @@ class JpqlDeleteQuerySerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = DeleteQueries.deleteQuery(
-            entity = entity1,
-        )
+        val part =
+            DeleteQueries.deleteQuery(
+                entity = entity1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -69,10 +70,11 @@ class JpqlDeleteQuerySerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the WHERE, when the where is not null`() {
         // given
-        val part = DeleteQueries.deleteQuery(
-            entity = entity1,
-            where = predicate1,
-        )
+        val part =
+            DeleteQueries.deleteQuery(
+                entity = entity1,
+                where = predicate1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

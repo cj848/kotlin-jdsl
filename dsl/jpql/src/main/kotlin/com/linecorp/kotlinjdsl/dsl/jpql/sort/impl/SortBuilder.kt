@@ -21,10 +21,9 @@ internal data class SortBuilder(
         return this
     }
 
-    fun build(): Sort {
-        return when (order) {
+    fun build(): Sort =
+        when (order) {
             Sort.Order.ASC -> Sorts.asc(expr, nullOrder)
             Sort.Order.DESC -> Sorts.desc(expr, nullOrder)
         }
-    }
 }

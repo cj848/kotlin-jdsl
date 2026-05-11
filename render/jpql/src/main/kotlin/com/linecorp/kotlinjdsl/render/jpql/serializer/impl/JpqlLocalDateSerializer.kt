@@ -9,11 +9,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlLocalDateSerializer : JpqlSerializer<JpqlLocalDate> {
-    override fun handledType(): KClass<JpqlLocalDate> {
-        return JpqlLocalDate::class
-    }
+    override fun handledType(): KClass<JpqlLocalDate> = JpqlLocalDate::class
 
-    override fun serialize(part: JpqlLocalDate, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlLocalDate,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         writer.write("LOCAL DATE")
     }
 }

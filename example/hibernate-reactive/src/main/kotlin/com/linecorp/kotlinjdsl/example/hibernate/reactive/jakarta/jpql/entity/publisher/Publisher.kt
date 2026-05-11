@@ -12,11 +12,11 @@ class Publisher(
     @Id
     @Column(name = "publisher_id")
     val publisherId: Long,
-
     @Column(name = "name")
     var name: String,
 ) {
     override fun equals(other: Any?): Boolean = Objects.equals(publisherId, (other as? Publisher)?.publisherId)
+
     override fun hashCode(): Int = Objects.hashCode(publisherId)
 
     override fun toString(): String = "Publisher(publisherId=$publisherId)"

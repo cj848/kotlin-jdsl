@@ -26,28 +26,31 @@ class UpdateSetDslTest : WithAssertions {
     @Test
     fun `update() and set() with bigDecimals`() {
         // when
-        val update = queryPart {
-            update(
-                entity1,
-            ).set(
-                path1,
-                bigDecimal1,
-            ).set(
-                path2,
-                bigDecimal2,
-            )
-        }.toQuery()
+        val update =
+            queryPart {
+                update(
+                    entity1,
+                ).set(
+                    path1,
+                    bigDecimal1,
+                ).set(
+                    path2,
+                    bigDecimal2,
+                )
+            }.toQuery()
 
         val actual: UpdateQuery<Book> = update // for type check
 
         // then
-        val expected = UpdateQueries.updateQuery(
-            entity = entity1,
-            set = mapOf(
-                path1 to Expressions.value(bigDecimal1),
-                path2 to Expressions.value(bigDecimal2),
-            ),
-        )
+        val expected =
+            UpdateQueries.updateQuery(
+                entity = entity1,
+                set =
+                    mapOf(
+                        path1 to Expressions.value(bigDecimal1),
+                        path2 to Expressions.value(bigDecimal2),
+                    ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -55,28 +58,31 @@ class UpdateSetDslTest : WithAssertions {
     @Test
     fun `update() and set() with bigDecimal expressions`() {
         // when
-        val update = queryPart {
-            update(
-                entity1,
-            ).set(
-                path1,
-                bigDecimalExpression1,
-            ).set(
-                path2,
-                bigDecimalExpression2,
-            )
-        }.toQuery()
+        val update =
+            queryPart {
+                update(
+                    entity1,
+                ).set(
+                    path1,
+                    bigDecimalExpression1,
+                ).set(
+                    path2,
+                    bigDecimalExpression2,
+                )
+            }.toQuery()
 
         val actual: UpdateQuery<Book> = update // for type check
 
         // then
-        val expected = UpdateQueries.updateQuery(
-            entity = entity1,
-            set = mapOf(
-                path1 to bigDecimalExpression1,
-                path2 to bigDecimalExpression2,
-            ),
-        )
+        val expected =
+            UpdateQueries.updateQuery(
+                entity = entity1,
+                set =
+                    mapOf(
+                        path1 to bigDecimalExpression1,
+                        path2 to bigDecimalExpression2,
+                    ),
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

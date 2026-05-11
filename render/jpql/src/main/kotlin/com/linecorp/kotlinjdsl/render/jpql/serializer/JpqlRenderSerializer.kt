@@ -43,18 +43,21 @@ class JpqlRenderSerializer private constructor(
      * has the closest depth in the parent-child relationship to QueryPart.
      */
     @SinceJdsl("3.0.0")
-    fun serialize(part: QueryPart, writer: JpqlWriter, context: RenderContext) {
+    fun serialize(
+        part: QueryPart,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         @Suppress("UNCHECKED_CAST")
         val serializer = getCachedSerializer(part::class.java) as JpqlSerializer<QueryPart>
 
         serializer.serialize(part, writer, context)
     }
 
-    private fun getCachedSerializer(clazz: Class<*>): JpqlSerializer<*> {
-        return lookupCache.computeIfAbsent(clazz) {
+    private fun getCachedSerializer(clazz: Class<*>): JpqlSerializer<*> =
+        lookupCache.computeIfAbsent(clazz) {
             getSerializer(clazz)
         }
-    }
 
     private fun getSerializer(clazz: Class<*>): JpqlSerializer<*> {
         val matches = mappedSerializers.keys.filter { it.isAssignableFrom(clazz) }

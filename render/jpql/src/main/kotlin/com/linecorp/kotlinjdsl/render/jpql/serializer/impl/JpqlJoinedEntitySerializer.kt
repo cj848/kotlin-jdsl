@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlJoinedEntitySerializer : JpqlSerializer<JpqlJoinedEntity> {
-    override fun handledType(): KClass<JpqlJoinedEntity> {
-        return JpqlJoinedEntity::class
-    }
+    override fun handledType(): KClass<JpqlJoinedEntity> = JpqlJoinedEntity::class
 
-    override fun serialize(part: JpqlJoinedEntity, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlJoinedEntity,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         delegate.serialize(part.entity, writer, context)

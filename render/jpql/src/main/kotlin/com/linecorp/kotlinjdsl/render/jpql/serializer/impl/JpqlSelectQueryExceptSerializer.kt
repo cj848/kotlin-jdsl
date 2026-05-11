@@ -12,10 +12,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlSelectQueryExceptSerializer : JpqlSerializer<JpqlSelectQueryExcept<*>> {
-    override fun handledType(): KClass<JpqlSelectQueryExcept<*>> =
-        JpqlSelectQueryExcept::class
+    override fun handledType(): KClass<JpqlSelectQueryExcept<*>> = JpqlSelectQueryExcept::class
 
-    override fun serialize(part: JpqlSelectQueryExcept<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlSelectQueryExcept<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         val queryContext = context + JpqlRenderStatement.Select

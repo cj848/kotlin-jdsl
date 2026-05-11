@@ -4,4 +4,6 @@ import com.linecorp.kotlinjdsl.example.spring.data.jpa.javax.jpql.entity.employe
 import com.linecorp.kotlinjdsl.support.spring.data.jpa.javax.repository.KotlinJdslJpqlExecutor
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface EmployeeRepository : JpaRepository<Employee, Long>, KotlinJdslJpqlExecutor
+interface EmployeeRepository :
+    JpaRepository<Employee, Long>,
+    KotlinJdslJpqlExecutor

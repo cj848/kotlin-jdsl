@@ -22,24 +22,27 @@ class JoinsTest : WithAssertions {
 
     private val path1 = Paths.path(Book::authors)
 
-    private val predicate1 = Predicates.equal(
-        Paths.path(BookAuthor::authorId),
-        Paths.path(Author::authorId),
-    )
+    private val predicate1 =
+        Predicates.equal(
+            Paths.path(BookAuthor::authorId),
+            Paths.path(Author::authorId),
+        )
 
     @Test
     fun innerJoin() {
         // when
-        val actual = Joins.innerJoin(
-            entity = entity1,
-            predicate = predicate1,
-        )
+        val actual =
+            Joins.innerJoin(
+                entity = entity1,
+                predicate = predicate1,
+            )
 
         // then
-        val expected = JpqlInnerJoin(
-            entity = entity1,
-            on = predicate1,
-        )
+        val expected =
+            JpqlInnerJoin(
+                entity = entity1,
+                on = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -47,18 +50,20 @@ class JoinsTest : WithAssertions {
     @Test
     fun `innerJoin() with an association`() {
         // when
-        val actual = Joins.innerJoin(
-            entity = entity1,
-            association = path1,
-            predicate = predicate1,
-        )
+        val actual =
+            Joins.innerJoin(
+                entity = entity1,
+                association = path1,
+                predicate = predicate1,
+            )
 
         // then
-        val expected = JpqlInnerAssociationJoin(
-            entity = entity1,
-            association = path1,
-            on = predicate1,
-        )
+        val expected =
+            JpqlInnerAssociationJoin(
+                entity = entity1,
+                association = path1,
+                on = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -66,16 +71,18 @@ class JoinsTest : WithAssertions {
     @Test
     fun leftJoin() {
         // when
-        val actual = Joins.leftJoin(
-            entity = entity1,
-            predicate = predicate1,
-        )
+        val actual =
+            Joins.leftJoin(
+                entity = entity1,
+                predicate = predicate1,
+            )
 
         // then
-        val expected = JpqlLeftJoin(
-            entity = entity1,
-            on = predicate1,
-        )
+        val expected =
+            JpqlLeftJoin(
+                entity = entity1,
+                on = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -83,18 +90,20 @@ class JoinsTest : WithAssertions {
     @Test
     fun `leftJoin() with an association`() {
         // when
-        val actual = Joins.leftJoin(
-            entity = entity1,
-            association = path1,
-            predicate = predicate1,
-        )
+        val actual =
+            Joins.leftJoin(
+                entity = entity1,
+                association = path1,
+                predicate = predicate1,
+            )
 
         // then
-        val expected = JpqlLeftAssociationJoin(
-            entity = entity1,
-            association = path1,
-            on = predicate1,
-        )
+        val expected =
+            JpqlLeftAssociationJoin(
+                entity = entity1,
+                association = path1,
+                on = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -102,16 +111,18 @@ class JoinsTest : WithAssertions {
     @Test
     fun innerFetchJoin() {
         // when
-        val actual = Joins.innerFetchJoin(
-            entity = entity1,
-            predicate = predicate1,
-        )
+        val actual =
+            Joins.innerFetchJoin(
+                entity = entity1,
+                predicate = predicate1,
+            )
 
         // then
-        val expected = JpqlInnerFetchJoin(
-            entity = entity1,
-            on = predicate1,
-        )
+        val expected =
+            JpqlInnerFetchJoin(
+                entity = entity1,
+                on = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -119,18 +130,20 @@ class JoinsTest : WithAssertions {
     @Test
     fun `innerFetchJoin() with an association`() {
         // when
-        val actual = Joins.innerFetchJoin(
-            entity = entity1,
-            association = path1,
-            predicate = predicate1,
-        )
+        val actual =
+            Joins.innerFetchJoin(
+                entity = entity1,
+                association = path1,
+                predicate = predicate1,
+            )
 
         // then
-        val expected = JpqlInnerAssociationFetchJoin(
-            entity = entity1,
-            association = path1,
-            on = predicate1,
-        )
+        val expected =
+            JpqlInnerAssociationFetchJoin(
+                entity = entity1,
+                association = path1,
+                on = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -138,16 +151,18 @@ class JoinsTest : WithAssertions {
     @Test
     fun leftFetchJoin() {
         // when
-        val actual = Joins.leftFetchJoin(
-            entity = entity1,
-            predicate = predicate1,
-        )
+        val actual =
+            Joins.leftFetchJoin(
+                entity = entity1,
+                predicate = predicate1,
+            )
 
         // then
-        val expected = JpqlLeftFetchJoin(
-            entity = entity1,
-            on = predicate1,
-        )
+        val expected =
+            JpqlLeftFetchJoin(
+                entity = entity1,
+                on = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -155,18 +170,20 @@ class JoinsTest : WithAssertions {
     @Test
     fun `leftFetchJoin() with an association`() {
         // when
-        val actual = Joins.leftFetchJoin(
-            entity = entity1,
-            association = path1,
-            predicate = predicate1,
-        )
+        val actual =
+            Joins.leftFetchJoin(
+                entity = entity1,
+                association = path1,
+                predicate = predicate1,
+            )
 
         // then
-        val expected = JpqlLeftAssociationFetchJoin(
-            entity = entity1,
-            association = path1,
-            on = predicate1,
-        )
+        val expected =
+            JpqlLeftAssociationFetchJoin(
+                entity = entity1,
+                association = path1,
+                on = predicate1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

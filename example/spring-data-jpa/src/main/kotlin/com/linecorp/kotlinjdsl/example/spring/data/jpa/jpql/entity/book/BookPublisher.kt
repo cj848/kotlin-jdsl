@@ -31,11 +31,9 @@ class BookPublisher(
     override fun equals(other: Any?): Boolean =
         Objects.equals(bookPublisherId, (other as? BookPublisher)?.bookPublisherId)
 
-    override fun hashCode(): Int =
-        Objects.hashCode(bookPublisherId)
+    override fun hashCode(): Int = Objects.hashCode(bookPublisherId)
 
-    override fun toString(): String =
-        "BookPublisher(bookPublisherId=$bookPublisherId)"
+    override fun toString(): String = "BookPublisher(bookPublisherId=$bookPublisherId)"
 
     @CompositeId
     data class BookPublisherId(

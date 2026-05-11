@@ -12,13 +12,13 @@ class FullTimeEmployee(
     departments: MutableSet<EmployeeDepartment>,
     val annualSalary: BigDecimal,
 ) : Employee(
-    employeeId = employeeId,
-    name = name,
-    nickname = nickname,
-    age = age,
-    phone = phone,
-    address = address,
-    departments = departments,
-) {
+        employeeId = employeeId,
+        name = name,
+        nickname = nickname,
+        age = age,
+        phone = phone,
+        address = address,
+        departments = departments,
+    ) {
     fun getMonthlySalary() = annualSalary.div(BigDecimal.valueOf(12))
 }

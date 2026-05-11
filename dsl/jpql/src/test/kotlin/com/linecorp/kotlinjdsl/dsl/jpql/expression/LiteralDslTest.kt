@@ -19,16 +19,18 @@ class LiteralDslTest : WithAssertions {
     @Test
     fun intLiteral() {
         // when
-        val expression = queryPart {
-            intLiteral(int1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                intLiteral(int1)
+            }.toExpression()
 
         val actual: Expression<Int> = expression // for type check
 
         // then
-        val expected = Expressions.intLiteral(
-            int1,
-        )
+        val expected =
+            Expressions.intLiteral(
+                int1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -36,16 +38,18 @@ class LiteralDslTest : WithAssertions {
     @Test
     fun longLiteral() {
         // when
-        val expression = queryPart {
-            longLiteral(long1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                longLiteral(long1)
+            }.toExpression()
 
         val actual: Expression<Long> = expression // for type check
 
         // then
-        val expected = Expressions.longLiteral(
-            long1,
-        )
+        val expected =
+            Expressions.longLiteral(
+                long1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -53,16 +57,18 @@ class LiteralDslTest : WithAssertions {
     @Test
     fun floatLiteral() {
         // when
-        val expression = queryPart {
-            floatLiteral(float1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                floatLiteral(float1)
+            }.toExpression()
 
         val actual: Expression<Float> = expression // for type check
 
         // then
-        val expected = Expressions.floatLiteral(
-            float1,
-        )
+        val expected =
+            Expressions.floatLiteral(
+                float1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -70,16 +76,18 @@ class LiteralDslTest : WithAssertions {
     @Test
     fun doubleLiteral() {
         // when
-        val expression = queryPart {
-            doubleLiteral(double1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                doubleLiteral(double1)
+            }.toExpression()
 
         val actual: Expression<Double> = expression // for type check
 
         // then
-        val expected = Expressions.doubleLiteral(
-            double1,
-        )
+        val expected =
+            Expressions.doubleLiteral(
+                double1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -87,16 +95,18 @@ class LiteralDslTest : WithAssertions {
     @Test
     fun booleanLiteral() {
         // when
-        val expression = queryPart {
-            booleanLiteral(boolean1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                booleanLiteral(boolean1)
+            }.toExpression()
 
         val actual: Expression<Boolean> = expression // for type check
 
         // then
-        val expected = Expressions.booleanLiteral(
-            boolean1,
-        )
+        val expected =
+            Expressions.booleanLiteral(
+                boolean1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -104,16 +114,18 @@ class LiteralDslTest : WithAssertions {
     @Test
     fun charLiteral() {
         // when
-        val expression = queryPart {
-            charLiteral(char1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                charLiteral(char1)
+            }.toExpression()
 
         val actual: Expression<Char> = expression // for type check
 
         // then
-        val expected = Expressions.charLiteral(
-            char1,
-        )
+        val expected =
+            Expressions.charLiteral(
+                char1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -121,16 +133,18 @@ class LiteralDslTest : WithAssertions {
     @Test
     fun stringLiteral() {
         // when
-        val expression = queryPart {
-            stringLiteral(string1)
-        }.toExpression()
+        val expression =
+            queryPart {
+                stringLiteral(string1)
+            }.toExpression()
 
         val actual: Expression<String> = expression // for type check
 
         // then
-        val expected = Expressions.stringLiteral(
-            string1,
-        )
+        val expected =
+            Expressions.stringLiteral(
+                string1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -138,16 +152,18 @@ class LiteralDslTest : WithAssertions {
     @Test
     fun enumLiteral() {
         // when
-        val expression = queryPart {
-            enumLiteral(BookAuthorType.AUTHOR)
-        }.toExpression()
+        val expression =
+            queryPart {
+                enumLiteral(BookAuthorType.AUTHOR)
+            }.toExpression()
 
         val actual: Expression<BookAuthorType> = expression // for type check
 
         // then
-        val expected = Expressions.enumLiteral(
-            BookAuthorType.AUTHOR,
-        )
+        val expected =
+            Expressions.enumLiteral(
+                BookAuthorType.AUTHOR,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -155,9 +171,10 @@ class LiteralDslTest : WithAssertions {
     @Test
     fun nullLiteral() {
         // when
-        val expression = queryPart {
-            nullLiteral<Int>()
-        }.toExpression()
+        val expression =
+            queryPart {
+                nullLiteral<Int>()
+            }.toExpression()
 
         val actual: Expression<Int> = expression // for type check
 

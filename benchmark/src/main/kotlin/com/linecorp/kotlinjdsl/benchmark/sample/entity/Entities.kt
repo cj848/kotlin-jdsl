@@ -12,19 +12,18 @@ import com.linecorp.kotlinjdsl.benchmark.sample.entity.publisher.Publisher
 import kotlin.reflect.KClass
 
 object Entities {
-    private val classes = listOf(
-        Employee::class, // 0
-        FullTimeEmployee::class, // 1
-        PartTimeEmployee::class, // 2
-        Author::class, // 3
-        Book::class, // 4
-        BookAuthor::class, // 5
-        BookPublisher::class, // 6
-        Department::class, // 7
-        Publisher::class, // 8
-    )
+    private val classes =
+        listOf(
+            Employee::class, // 0
+            FullTimeEmployee::class, // 1
+            PartTimeEmployee::class, // 2
+            Author::class, // 3
+            Book::class, // 4
+            BookAuthor::class, // 5
+            BookPublisher::class, // 6
+            Department::class, // 7
+            Publisher::class, // 8
+        )
 
-    fun getClass(index: Int): KClass<*> {
-        return classes[index]
-    }
+    fun getClass(index: Int): KClass<*> = classes[index]
 }

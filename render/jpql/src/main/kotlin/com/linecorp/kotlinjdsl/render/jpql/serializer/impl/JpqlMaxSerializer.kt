@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlMaxSerializer : JpqlSerializer<JpqlMax<*>> {
-    override fun handledType(): KClass<JpqlMax<*>> {
-        return JpqlMax::class
-    }
+    override fun handledType(): KClass<JpqlMax<*>> = JpqlMax::class
 
-    override fun serialize(part: JpqlMax<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlMax<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("MAX")

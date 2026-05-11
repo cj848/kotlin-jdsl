@@ -5,21 +5,20 @@ import org.hibernate.reactive.stage.Stage
 import javax.persistence.Persistence
 
 object SessionFactoryTestUtils {
-    fun getMutinySessionFactory(): Mutiny.SessionFactory {
-        return entityManagerFactory.unwrap(Mutiny.SessionFactory::class.java)
-    }
+    fun getMutinySessionFactory(): Mutiny.SessionFactory =
+        entityManagerFactory.unwrap(Mutiny.SessionFactory::class.java)
 
-    fun getStageSessionFactory(): Stage.SessionFactory {
-        return entityManagerFactory.unwrap(Stage.SessionFactory::class.java)
-    }
+    fun getStageSessionFactory(): Stage.SessionFactory = entityManagerFactory.unwrap(Stage.SessionFactory::class.java)
 }
 
-private val entityManagerFactory = Persistence.createEntityManagerFactory("example").also {
-    val thread = Thread {
-        if (it.isOpen) it.close()
+private val entityManagerFactory =
+    Persistence.createEntityManagerFactory("example").also {
+        val thread =
+            Thread {
+                if (it.isOpen) it.close()
 
-        println("EntityManagerFactory is closed")
+                println("EntityManagerFactory is closed")
+            }
+
+        Runtime.getRuntime().addShutdownHook(thread)
     }
-
-    Runtime.getRuntime().addShutdownHook(thread)
-}

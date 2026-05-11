@@ -9,7 +9,5 @@ import com.linecorp.kotlinjdsl.querymodel.jpql.expression.impl.JpqlCast
 internal data class JpqlCastStepToString<T : Any>(
     private val expression: Expression<T>,
 ) : CastStepToString {
-    override fun asString(): Expressionable<String> {
-        return JpqlCast(expression, String::class)
-    }
+    override fun asString(): Expressionable<String> = JpqlCast(expression, String::class)
 }

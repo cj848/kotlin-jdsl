@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlCountSerializer : JpqlSerializer<JpqlCount> {
-    override fun handledType(): KClass<JpqlCount> {
-        return JpqlCount::class
-    }
+    override fun handledType(): KClass<JpqlCount> = JpqlCount::class
 
-    override fun serialize(part: JpqlCount, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlCount,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("COUNT")

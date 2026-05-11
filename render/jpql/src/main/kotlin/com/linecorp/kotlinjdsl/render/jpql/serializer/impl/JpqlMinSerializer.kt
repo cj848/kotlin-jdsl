@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlMinSerializer : JpqlSerializer<JpqlMin<*>> {
-    override fun handledType(): KClass<JpqlMin<*>> {
-        return JpqlMin::class
-    }
+    override fun handledType(): KClass<JpqlMin<*>> = JpqlMin::class
 
-    override fun serialize(part: JpqlMin<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlMin<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("MIN")

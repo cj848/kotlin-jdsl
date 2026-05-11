@@ -6,7 +6,9 @@ import com.linecorp.kotlinjdsl.querymodel.jpql.predicate.Predicatable
 import com.linecorp.kotlinjdsl.querymodel.jpql.select.SelectQuery
 
 @SinceJdsl("3.0.0")
-interface SelectQueryWhereStep<T : Any> : SelectQueryGroupByStep<T>, JpqlQueryable<SelectQuery<T>> {
+interface SelectQueryWhereStep<T : Any> :
+    SelectQueryGroupByStep<T>,
+    JpqlQueryable<SelectQuery<T>> {
     /**
      * Creates a where clause in a select query.
      */

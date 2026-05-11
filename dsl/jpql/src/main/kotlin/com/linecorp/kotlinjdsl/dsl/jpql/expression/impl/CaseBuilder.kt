@@ -7,7 +7,6 @@ import com.linecorp.kotlinjdsl.querymodel.jpql.predicate.Predicate
 internal data class CaseBuilder<T : Any>(
     private val whens: MutableMap<Predicate, Expression<T>>,
     private var `else`: Expression<T>? = null,
-
     private var currentPredicate: Predicate,
 ) {
     constructor(
@@ -37,10 +36,9 @@ internal data class CaseBuilder<T : Any>(
         return this
     }
 
-    fun build(): Expression<T> {
-        return Expressions.caseWhen(
+    fun build(): Expression<T> =
+        Expressions.caseWhen(
             whens = whens,
             `else` = `else`,
         )
-    }
 }

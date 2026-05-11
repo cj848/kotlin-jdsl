@@ -9,10 +9,9 @@ internal data class TrimLeadingDsl(
     private val character: Expression<Char>?,
     private val value: Expression<String>,
 ) : Expressionable<String> {
-    override fun toExpression(): Expression<String> {
-        return Expressions.trimLeading(
+    override fun toExpression(): Expression<String> =
+        Expressions.trimLeading(
             character = character,
             value = value,
         )
-    }
 }

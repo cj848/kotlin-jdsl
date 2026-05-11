@@ -42,15 +42,17 @@ class JpqlNewSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val expressions = listOf(
-            expression1,
-            expression2,
-        )
+        val expressions =
+            listOf(
+                expression1,
+                expression2,
+            )
 
-        val part = Expressions.new(
-            Row::class,
-            expressions,
-        )
+        val part =
+            Expressions.new(
+                Row::class,
+                expressions,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -71,10 +73,11 @@ class JpqlNewSerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the NEW without args, when the args is empty`() {
         // given
-        val part = Expressions.new(
-            Row::class,
-            emptyList(),
-        )
+        val part =
+            Expressions.new(
+                Row::class,
+                emptyList(),
+            )
         val context = TestRenderContext(serializer)
 
         // when

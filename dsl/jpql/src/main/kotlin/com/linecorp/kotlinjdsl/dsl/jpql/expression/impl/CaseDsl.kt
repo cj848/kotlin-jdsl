@@ -15,7 +15,6 @@ internal data class CaseDsl<T : Any>(
 ) : CaseWhenStep<T>,
     CaseThenStep<T>,
     CaseElseStep<T> {
-
     constructor(predicate: Predicate, then: Expression<T>) : this(CaseBuilder<T>(predicate, then))
 
     override fun `when`(predicate: Predicatable): CaseThenStep<T> {
@@ -48,7 +47,5 @@ internal data class CaseDsl<T : Any>(
         return this
     }
 
-    override fun toExpression(): Expression<T> {
-        return builder.build()
-    }
+    override fun toExpression(): Expression<T> = builder.build()
 }

@@ -35,9 +35,10 @@ class JpqlLengthSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.length(
-            stringExpression1,
-        )
+        val part =
+            Expressions.length(
+                stringExpression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

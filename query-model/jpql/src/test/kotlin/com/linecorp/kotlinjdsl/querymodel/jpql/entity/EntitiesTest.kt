@@ -24,16 +24,17 @@ class EntitiesTest : WithAssertions {
 
     private val sort1 = Sorts.asc(expression1)
 
-    private val selectQuery1 = JpqlSelectQuery(
-        returnType = Book::class,
-        distinct = false,
-        select = listOf(entity1),
-        from = listOf(entity1),
-        where = predicate1,
-        groupBy = listOf(expression1),
-        having = predicate2,
-        orderBy = listOf(sort1),
-    )
+    private val selectQuery1 =
+        JpqlSelectQuery(
+            returnType = Book::class,
+            distinct = false,
+            select = listOf(entity1),
+            from = listOf(entity1),
+            where = predicate1,
+            groupBy = listOf(expression1),
+            having = predicate2,
+            orderBy = listOf(sort1),
+        )
 
     private val alias1 = "alias1"
 
@@ -43,10 +44,11 @@ class EntitiesTest : WithAssertions {
         val actual = Entities.entity(Employee::class)
 
         // then
-        val expected = JpqlEntity(
-            type = Employee::class,
-            alias = Employee::class.simpleName!!,
-        )
+        val expected =
+            JpqlEntity(
+                type = Employee::class,
+                alias = Employee::class.simpleName!!,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -57,10 +59,11 @@ class EntitiesTest : WithAssertions {
         val actual = Entities.entity(Employee::class, alias1)
 
         // then
-        val expected = JpqlEntity(
-            type = Employee::class,
-            alias = alias1,
-        )
+        val expected =
+            JpqlEntity(
+                type = Employee::class,
+                alias = alias1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -71,10 +74,11 @@ class EntitiesTest : WithAssertions {
         val actual = Entities.treat(entity1, FullTimeEmployee::class)
 
         // then
-        val expected = JpqlEntityTreat(
-            entity1,
-            FullTimeEmployee::class,
-        )
+        val expected =
+            JpqlEntityTreat(
+                entity1,
+                FullTimeEmployee::class,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -85,10 +89,11 @@ class EntitiesTest : WithAssertions {
         val actual = Entities.derivedEntity(selectQuery1)
 
         // then
-        val expected = JpqlDerivedEntity(
-            selectQuery = selectQuery1.copy(orderBy = null),
-            alias = selectQuery1.returnType.simpleName!!,
-        )
+        val expected =
+            JpqlDerivedEntity(
+                selectQuery = selectQuery1.copy(orderBy = null),
+                alias = selectQuery1.returnType.simpleName!!,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -99,10 +104,11 @@ class EntitiesTest : WithAssertions {
         val actual = Entities.derivedEntity(selectQuery1, alias1)
 
         // then
-        val expected = JpqlDerivedEntity(
-            selectQuery = selectQuery1.copy(orderBy = null),
-            alias = alias1,
-        )
+        val expected =
+            JpqlDerivedEntity(
+                selectQuery = selectQuery1.copy(orderBy = null),
+                alias = alias1,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 class JpqlLengthSerializer : JpqlSerializer<JpqlLength> {
-    override fun handledType(): KClass<JpqlLength> {
-        return JpqlLength::class
-    }
+    override fun handledType(): KClass<JpqlLength> = JpqlLength::class
 
-    override fun serialize(part: JpqlLength, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlLength,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("LENGTH")

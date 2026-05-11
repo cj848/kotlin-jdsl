@@ -53,15 +53,17 @@ class JpqlUpdateQuerySerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val pathAndExpressions: Map<Path<*>, Expression<*>> = mapOf(
-            path1 to expression1,
-            path2 to expression2,
-        )
+        val pathAndExpressions: Map<Path<*>, Expression<*>> =
+            mapOf(
+                path1 to expression1,
+                path2 to expression2,
+            )
 
-        val part = UpdateQueries.updateQuery(
-            entity = entity1,
-            set = pathAndExpressions,
-        )
+        val part =
+            UpdateQueries.updateQuery(
+                entity = entity1,
+                set = pathAndExpressions,
+            )
         val context = TestRenderContext(serializer)
 
         // when
@@ -92,16 +94,18 @@ class JpqlUpdateQuerySerializerTest : WithAssertions {
     @Test
     fun `serialize() draws the WHERE, when the where is not null`() {
         // given
-        val pathAndExpressions: Map<Path<*>, Expression<*>> = mapOf(
-            path1 to expression1,
-            path2 to expression2,
-        )
+        val pathAndExpressions: Map<Path<*>, Expression<*>> =
+            mapOf(
+                path1 to expression1,
+                path2 to expression2,
+            )
 
-        val part = UpdateQueries.updateQuery(
-            entity = entity1,
-            set = pathAndExpressions,
-            where = predicate1,
-        )
+        val part =
+            UpdateQueries.updateQuery(
+                entity = entity1,
+                set = pathAndExpressions,
+                where = predicate1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

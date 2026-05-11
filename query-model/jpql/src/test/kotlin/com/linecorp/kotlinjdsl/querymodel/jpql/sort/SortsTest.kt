@@ -14,17 +14,19 @@ class SortsTest : WithAssertions {
     @EnumSource(Sort.NullOrder::class)
     fun asc(nullOrder: Sort.NullOrder) {
         // when
-        val actual = Sorts.asc(
-            expr = expression1,
-            nullOrder = nullOrder,
-        )
+        val actual =
+            Sorts.asc(
+                expr = expression1,
+                nullOrder = nullOrder,
+            )
 
         // then
-        val expected = JpqlSort(
-            expr = expression1,
-            order = Sort.Order.ASC,
-            nullOrder = nullOrder,
-        )
+        val expected =
+            JpqlSort(
+                expr = expression1,
+                order = Sort.Order.ASC,
+                nullOrder = nullOrder,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }
@@ -33,17 +35,19 @@ class SortsTest : WithAssertions {
     @EnumSource(Sort.NullOrder::class)
     fun desc(nullOrder: Sort.NullOrder) {
         // when
-        val actual = Sorts.desc(
-            expr = expression1,
-            nullOrder = nullOrder,
-        )
+        val actual =
+            Sorts.desc(
+                expr = expression1,
+                nullOrder = nullOrder,
+            )
 
         // then
-        val expected = JpqlSort(
-            expr = expression1,
-            order = Sort.Order.DESC,
-            nullOrder = nullOrder,
-        )
+        val expected =
+            JpqlSort(
+                expr = expression1,
+                order = Sort.Order.DESC,
+                nullOrder = nullOrder,
+            )
 
         assertThat(actual).isEqualTo(expected)
     }

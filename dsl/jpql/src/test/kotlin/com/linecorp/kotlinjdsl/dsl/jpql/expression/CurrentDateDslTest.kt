@@ -11,9 +11,10 @@ class CurrentDateDslTest : WithAssertions {
     @Test
     fun currentDate() {
         // when
-        val expression = queryPart {
-            currentDate()
-        }.toExpression()
+        val expression =
+            queryPart {
+                currentDate()
+            }.toExpression()
 
         val actual: Expression<Date> = expression // for type check
 

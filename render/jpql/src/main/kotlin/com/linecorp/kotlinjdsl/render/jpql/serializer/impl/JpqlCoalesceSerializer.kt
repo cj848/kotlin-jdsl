@@ -10,11 +10,13 @@ import kotlin.reflect.KClass
 
 @Internal
 internal class JpqlCoalesceSerializer : JpqlSerializer<JpqlCoalesce<*>> {
-    override fun handledType(): KClass<JpqlCoalesce<*>> {
-        return JpqlCoalesce::class
-    }
+    override fun handledType(): KClass<JpqlCoalesce<*>> = JpqlCoalesce::class
 
-    override fun serialize(part: JpqlCoalesce<*>, writer: JpqlWriter, context: RenderContext) {
+    override fun serialize(
+        part: JpqlCoalesce<*>,
+        writer: JpqlWriter,
+        context: RenderContext,
+    ) {
         val delegate = context.getValue(JpqlRenderSerializer)
 
         writer.write("COALESCE")

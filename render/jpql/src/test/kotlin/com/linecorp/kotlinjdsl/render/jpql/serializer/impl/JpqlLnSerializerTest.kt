@@ -37,9 +37,10 @@ class JpqlLnSerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Expressions.ln(
-            value = expression1,
-        )
+        val part =
+            Expressions.ln(
+                value = expression1,
+            )
         val context = TestRenderContext(serializer)
 
         // when

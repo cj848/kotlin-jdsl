@@ -37,9 +37,10 @@ class JpqlIsNotEmptySerializerTest : WithAssertions {
     @Test
     fun serialize() {
         // given
-        val part = Predicates.isNotEmpty(
-            path1,
-        )
+        val part =
+            Predicates.isNotEmpty(
+                path1,
+            )
         val context = TestRenderContext(serializer)
 
         // when
